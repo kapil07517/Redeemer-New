@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <%= stylesheet_link_tag "application","counselor/default.css","counselor/jquery-ui","fullcalendar", :media => "all" %>
+    <%= javascript_include_tag 'application',"fullcalendar","counselor/jquery.mCustomScrollbar","counselor/jquery.mousewheel.min","counselor/organictabs.jquery" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Redeemer Counseling Services</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="content">
+        <div class="topbar">
+          <div class="topheading">
+            <ul class="list-topmenu">
+              <li><%= link_to "Sign Out",destroy_user_session_path,:method => :delete %></li>
+              <li><%= current_user ? (link_to 'Settings', change_password_setting_path(:role => current_user.role,:id => current_user.id)) : '' %></li>
+            </ul>
+            <h4><span>Redeemer</span> Counseling Services</h4>
+          </div>
+          <div class="topsubheading">
+            <div class="searchbox"><input title="Search" type="text" placeholder="Search" /></div>
+            <h5>Welcome:<span><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></span></h5>
+          </div>	
+          <nav id="navigation">
+            <ul>
+              <li class=<%= (params[:controller] == "counselor/dashboards" and params[:action] == "index") ? "active" : "" %>><%= link_to "Home", "/", :title => "Home" %></li>
+              <li class=<%= (params[:controller] == "counselor/dashboards" and params[:action] == "case_list") ? "active" : "" %>><%= link_to "Clients / Cases","/counselor/dashboards/case_list" %></li>
+              <li class=<%= (params[:controller] == "counselor/dashboards" and params[:action] == "appointments") ? "active" : "" %>><%= link_to "Calendar", "/counselor/dashboards/appointments", :title => "Calendar" %></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="clearFix"></div>
+      </div>	
+    </header>
+    <article>
+      <div class="content">
+        <%= yield %>
+        <div class="clearFix"></div>
+      </div>	
+    </article>
+    <footer>
+      <%= render :partial => "layouts/client/footer" %>
+    </footer>
+    <script type="text/javascript" language="javascript">
+      $(document).ready(function() {
+        jQuery('#addReminders1').click(function() {
+          jQuery('#addRemindersBox1').slideToggle('slow', function() {
+          })
+        });
+        jQuery('#addCloseBox1').click(function() {
+          jQuery('#addRemindersBox1').slideToggle('slow', function() {
+          })
+        });
+      });
+    </script>
+    <script language="javascript" type="text/javascript">
+      (function($) {
+        $(window).load(function() {
+          $(".boxScrollbar").mCustomScrollbar({
+            set_height: "85%",
+            scrollInertia: 900,
+            scrollEasing: "easeOutQuint",
+            mouseWheel: false
+          });
+        });
+      })(jQuery);
+    </script>
+    <script language="javascript" type="text/javascript">
+      $(function() {
+        $("#tabs").organicTabs();
+        $("#tabs").organicTabs({
+          "speed": 200
+        });
+      });
+    </script>
+  </body>
+</html>

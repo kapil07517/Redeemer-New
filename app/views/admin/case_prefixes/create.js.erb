@@ -1,0 +1,8 @@
+<% if !@case_prefix.new_record? %>
+  $('#case_prefixes').html("<%= escape_javascript(render(:partial => 'case_prefixes', :locals => {:case_prefixes => @case_prefixes})) %> ");
+  $("input[type='text']").val('');
+  $(".field_with_errors input").css('border','1px solid #CCCCCC');
+  $("#error_explanation").hide();
+<% else %>
+  $("#case_prefixes_form").html("<%= escape_javascript(render(:partial => 'form')) %>")
+<% end %>

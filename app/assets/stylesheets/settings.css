@@ -1,0 +1,245 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29 Jan, 2014, 4:51:03 PM
+    Author     : rails
+*/
+input[type=checkbox][id*=checkbox_box_]{
+    position:absolute;
+    overflow:hidden;
+    clip:rect(0000);
+    height:1px;
+    width:1px;
+    border:0;
+    margin:-1px;
+    padding:0
+}
+input[type=checkbox]{
+    position:relative\9;
+    overflow:hidden\9;
+    clip:rect(auto,auto,auto,auto)\9;
+    height:14px;
+    width:14px
+}
+input[type=checkbox] + label.cssLabel{
+    position:relative;
+    top:0;
+    font-size:15px;
+    color:#64833d;
+    padding:0 0 0 10px
+}
+input[type=checkbox] + label.cssLabel span{
+    position:relative;
+    top:-6px;
+    width:40px;
+    left:-15px;
+    height:27px;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:0 0;
+    cursor:pointer
+}
+input[type=checkbox]:checked + label.cssLabel span{
+    background-position:0 -27px
+}
+.cssLabel span{
+    background-image:url(/assets/client/checkBox.png)
+}
+.cssLabel{
+    background-image:none;
+}
+q:before,q:after{content:''}
+abbr,acronym{border:0;font-variant:normal}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+input,select,textarea,button{
+    font-family:Cantarell, Tahoma, sans-serif;
+    font-size:12px;
+    color:#363636;
+    margin:0
+}
+input,button{overflow:visible}
+select{margin-right:8px;
+       color:#a6a8ab;
+       font-size:13px;
+       text-transform:uppercase;
+       border:none;background-color:#e6e7e8}
+select option{padding-left:4px}
+p{padding-bottom:10px;margin:0}
+.column-medical{float:left;width:283px}
+ul.list-children{float:left;width:450px;color:#403d3e;font-size:12px;padding:0}
+ul.list-children + ul.list-children{width:226px;font-size:12px;color:#a6a8ab;margin-top:10px;padding-left:20px;border-left:solid 1px #A8CF75}
+ul.list-children li + li{padding-top:12px}
+ul.list-children input[type=text]{margin:0 0 0 5px;padding:4px 5px 3px}
+ul.list-children input[type=text].input-noMarriages{width:30px}
+ul.list-children input[type=text].input-midname{width:53px}
+ul.list-children input[type=text].input-child{width:170px;margin-right:10px}
+ul.list-children li label.cssLabel{font-size:12px;color:#a6a8ab}
+input,textarea,a{
+    outline:none;
+    -webkit-transition:all .2s ease-out;
+    -moz-transition:all .2s ease-out;
+    transition:all .2s ease-out
+}
+input[type=file]{margin-right:5px}
+input[type=text],input[type=email],input[type=password],input[type=pass]{
+    line-height:16px;margin-right:5px; box-shadow: none;
+}
+input[type=submit],input[type=button],input[type=reset],a,button{cursor:pointer}
+input[type=submit],input[type=button],input[type=reset],button{
+    overflow:visible;
+    margin-right:5px;
+    color:#FFF;
+    border:solid 1px #FFF;
+    text-transform:uppercase;
+    text-align:center;
+    background-color:#231f20;padding:1px 8px}
+input[type=radio]{margin-right:4px;position:relative;top:2px}
+a img,img,input[type=checkbox],input[type=radio],iframe{border:none}
+ul{margin:0;padding:12px 0 12px 40px}
+ul li{list-style:none}
+del{visibility:hidden;text-decoration:line-through}
+input[type=text],input[type=email],input[type=password],textarea{
+    color:#666;
+    border-radius:2px;
+    border:solid 1px #c1cdb1;
+    -webkit-transition:all .2s ease-out;
+    -moz-transition:all .2s ease-out;
+    transition:all .2s ease-out;
+    padding:7px 5px
+}
+input[type=text],input[type=email],input[type=password]{width:270px}
+textarea{width:532px;min-height:70px;resize:none;border-radius:5px}
+a{color:#030303}
+a:hover{color:#484848}
+h1,h2,h3,h4,h5,h6{font-weight:400;padding-bottom:10px;margin:0}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+table{border-collapse:collapse;border-spacing:0}
+td{vertical-align:top}
+img{border:0;-ms-interpolation-mode:bicubic;vertical-align:middle}
+h1{
+    font-family:Arvo, Tahoma, sans-serif;
+    font-size:15px;
+    color:#c1cdb1;
+    line-height:26px;
+    font-weight:400;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    background-color:#64833d;
+    border:1px solid #819a61;
+    padding:0 0 1px 8px
+}
+h1 strong{
+    font-family:Cantarell, Tahoma, sans-serif;
+    color:#a8cf75;
+    font-size:12px;
+    padding-left:2px;font-weight:400}
+h1 span{
+    font-family:Cantarell, Tahoma, sans-serif;
+    color:#FFF;
+    font-size:14px;
+    padding-left:20px;
+    text-transform:uppercase
+}
+h5{font-size:13px;color:#312d2e}
+h5 em{text-transform:none}
+hr{clear:both;
+   border:none;
+   height:15px;
+   border-bottom:solid 1px #a8cf75;
+   margin:0 0 15px}
+a.backtotop{
+    color:#FFF;
+    font-size:18px;
+    padding-left:40px;
+    background:url(/assets/client/icon-up-arrow.png) no-repeat 0 0}
+.footer-lastColumn{
+    font-family:Cantarell, Tahoma, sans-serif;
+    color:#A6A8AB;font-size:8px}
+ul.list-topmenu{float:left;
+                font-size:15px;
+                padding:5px 18px 0 0}
+ul.list-topmenu li{display:inline}
+ul.list-topmenu li + li{
+    padding-left:7px;
+    background:url(/assets/client/divider-topmenu.png) no-repeat 1px 4px
+}
+ul.list-topmenu li a{color:#a6a8ab;text-decoration:none}
+ul.list-normal li + li{padding-top:10px}
+.staffrow{float:left;width:100%;padding-bottom:15px}
+.staffrow > div + div{
+    width:75%;color:#a6a8ab;
+    font-size:13px;text-transform:uppercase}
+.staffrow > div:first-child{
+    width:23%;color:#64833d;
+    font-size:15px;padding-right:2%}
+.staffrow div > span{color:#999;font-size:10px}
+.staffrow p{padding-bottom:25px}
+.staffrow input[type=text]{width:532px}
+input[type=text].input-name{width:200px}
+input[type=text].input-midname{width:90px}
+input[type=text].input-noMarriages{width:60px}
+input[type=text].input-occupation{width:310px}
+input[type=text].input-child{width:180px}
+input[type=text].input-other{width:442px}
+.boxGray{background-color:#f4f5ef;padding:15px 10px}
+.table-roomavailability tr:first-child td{
+    font-family:Cantarell, Tahoma, sans-serif;
+    color:#e6e7e8;
+    line-height:15px;
+    background-color:#231f20;
+    border-top:solid 0 #FFF;
+    border-left:solid 1px #231f20;padding:0 1%}
+.table-roomavailability td:first-child{
+    font-family:Arvo, Tahoma, sans-serif;
+    font-size:13px;width:13%}
+.table-roomavailability td:first-child span{
+    font-family:Cantarell, Tahoma, sans-serif;
+    font-size:11px;
+    color:#8a949a;
+    padding-left:5px}
+.table-roomavailability tr:nth-child(even){background-color:#d0d2d3}
+.table-roomavailability tr:nth-child(odd){background-color:#e6e7e8}
+.table-roomavailability td{border-top:solid 1px #FFF;padding:1%}
+.table-roomavailability td + td{
+    width:5%;
+    text-align:center;
+    border-left:solid 1px #FFF}
+.btn-createnew{
+    font-family:Cantarell, Tahoma, sans-serif;
+    position:relative;
+    right:-10px;
+    float:right;
+    color:#FFF;
+    margin-top:-1px;
+    text-transform:uppercase;
+    background-color:#a8cf75;
+    padding:1px 10px 3px}
+.btn-createnew em{position:absolute;right:0;bottom:-14px;width:9px;height:14px;display:block;background:url(/assets/client/arrow-heading.png) no-repeat left top}
+.btn-createnew input[type=submit]{float:right;border:none;font-size:15px;background-color:#A8CF75}
+.icon-no1,.icon-no2,.icon-no3{padding-left:30px}
+.icon-no1{background:url(/assets/client/sprite-number.png) no-repeat 5px 4px #64833D}
+.icon-no2{background:url(/assets/client/sprite-number.png) no-repeat 5px -25px #64833D}
+.icon-no3{background:url(/assets/client/sprite-number.png) no-repeat 5px -54px #64833D}
+.heading-occupation{font-size:15px;color:#64833D;padding:0 10px 0 27px}
+.heading-question{font-family:Arvo, Tahoma, sans-serif;font-size:18px;padding-top:10px;margin-bottom:5px;border-top:1px solid #000;border-bottom:1px solid #000}
+html body .table-medications .table-roomavailability td{font-family:Arvo, Tahoma, sans-serif;font-size:15px;padding:10px}
+.btn-row .btn-createnew{right:-19px}
+.f15{font-size:15px}
+.column-information{float:left;font-size:15px;padding-right:5px}
+ul.list-steps.list-createAccount li.step-1 span,ul.list-steps.list-createAccount li.step-3 span{margin:0}
+.counselingService{font-size:13px;color:#666;padding:30px 0 10px 115px}
+.counselingService h3{font-family:Arvo, Tahoma, sans-serif;font-size:16px;color:#64833D;margin-left:-115px}
+.getStarted{float:right;padding:90px 50px 0 0}
+input[type=text].input-email,input[type=email].input-email,input[type=password].input-password{width:145px;margin:-1px 20px 0 0}
+.heading-intakeForms{font-size:13px;border-bottom:1px solid #323232;padding:25px 0 18px}.heading-intakeForms h2{float:left;width:350px;font-size:24px;text-transform:uppercase;padding:15px 10px 10px 0}ul.list-box{font-family:Arvo, Tahoma, sans-serif;width:100%;font-size:16px;line-height:22px;text-align:center;display:inline-block;text-transform:uppercase;border-bottom:1px solid #323232;padding:20px 0}ul.list-box li{cursor:pointer;position:relative;float:left;display:inline-table;border:8px solid #323232;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;margin:0 5px 20px 10px}ul.list-box li:hover{color:#64833d;border:8px solid #64833d}ul.list-box li > div{width:158px;height:158px;max-width:158px;display:table-cell;vertical-align:middle}ul.list-box li > div > span{font-size:14px;color:#CCC;font-style:italic}ul.list-box li > div.list-box-hover{display:none;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;}ul.list-box li:hover > div.list-box-hover{position:absolute;left:8px;top:8px;font-size:12px;color:#FFF;width:128px;height:128px;display:block;background-color:#000;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;padding:15px}a.forgetPassword{color:#fff;float:right;font-size:13px;margin-top:-10px;padding-right:15px;text-decoration:none}a.forgetPassword:hover{color:#FFF;text-decoration:underline}.popupBox{position:absolute;top:10px;width:950px;min-height:405px;background-color:rgba(0,0,0,0.9)}.popupBox .staffrow > div:first-child{font-size:18px;color:#999;width:13%;padding-top:10px}.heading-marriage{width:100%;color:#fff;font-size:14px;line-height:80px;display:inline-block;border-bottom:1px solid #fff}.heading-marriage span{float:left;font-size:20px;text-transform:uppercase;padding:0 60px 0 40px}ul.list-name{width:100%;font-size:10px;display:inline-block;padding:0}ul.list-name li{float:left;margin-right:4px}ul.list-name li p{padding-bottom:0}.diviedColumn{float:left;width:100%;padding-bottom:15px;text-transform:uppercase}.diviedColumn > div.w50{width:50%}.diviedColumn > div{width:25%;float:left}.diviedColumn > div label{color:red}h6.greenBox{clear:both;padding-bottom:20px;border-top:1px solid #A8CF75}h6.greenBox span{font-size:14px;line-height:22px;text-transform:uppercase;background-color:#A8CF75;padding:2px 10px}input[type=password].input-password{margin-right:15px}.text-search{color:#fff;float:right;margin:-15px 22px 0 0}.clientPortal{border-bottom:1px solid #000;padding:20px 0 46px}ul.list-clientinfo{width:100%;display:inline-block;padding:0}ul.list-clientinfo > li{float:left;width:306px}ul.list-clientinfo > li:first-child{width:308px}ul.list-clientinfo > li + li{margin-left:15px}ul.list-clientinfo > li .box{min-height:220px;padding:5px 10px}ul.list-clientinfo > li .box h3,ul.list-clientinfo > li .box h4{font-size:14px;padding-bottom:5px}ul.list-clientinfo > li .box h4{margin-bottom:4px;text-transform:uppercase;border-bottom:solid 2px #000}ul.list-clientinfo > li .box h3{background:url(/assets/client/icon-plus-small.png) no-repeat right 4px}ul.list-clientinfo > li .box h3#addReminders1 a{float:right;width:18px;height:22px}ul.list-clientinfon{padding:0 0 15px 20px}.box{border:8px solid #000}.valignDiv{color:#000;text-align:center;position:relative;display:inline-table}.valignDiv h2{font-family:Arvo, Tahoma, sans-serif;font-size:24px;text-transform:uppercase}.valignDiv > div{height:220px;width:270px;display:table-cell;vertical-align:middle}.inTake{width:100%;display:inline-block;padding:25px 0 50px}ul.list-intake{width:960px;margin-left:-7px;padding:0}ul.list-intake li{width:306px;float:left;margin:15px 7px 0}.individualBox{position:relative;padding:20px 0}.marrigeForm{padding:20px 0 0 40px}.headingBorder{height:1px;font-size:0;line-height:0;background-color:#FFF}ul.list-grpInput > li{width:909px;margin-left:-40px;border-bottom:1px solid #fff;padding:20px 0 20px 40px}.addPerson{font-family:Arvo, tahoma, sans-serif;font-size:14px;color:#FFF;float:right;padding-right:20px}.gruardian{font-family:Arvo, tahoma, sans-serif;font-size:15px;color:#FFF;padding:20px 0 50px}.guardianCheck{padding:10px 0 30px}h6.indicate{font-size:14px;text-transform:uppercase}h6.indicate span{font-size:12px}.taxDocument{font-size:14px}.taxDocument span{font-size:16px}input[type=submit].input-upload{color:#000;margin-left:-6px;text-transform:uppercase;background-color:#64833d;padding:8px 10px}input[type=checkbox] + label.cssheight span{margin-bottom:3px}.collexpMenu ul ul,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}.collexpMenu div:hover,a img,a:hover img,img,a:hover,a input{text-decoration:none}html,span,applet,object,iframe,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,i,center,dl,dt,dd,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,footer,header{margin:0;padding:0}::-webkit-input-placeholder,::-moz-placeholder,:-ms-input-placeholder,input:-moz-placeholder{font-family:Arvo, Tahoma, sans-serif;font-size:12px;text-transform:uppercase}footer ul.list-footercontent ul,ul.list-normal,ul.list-indicate,ul.list-grpInput{padding:0}footer ul li.active a,a.link-getStarted:hover{color:#FFF}nav#navigation ul li.active a,nav#navigation ul li:hover a,ul.list-steps li.active{color:#231f20}.staffrow > div,ul.list-login li{float:left}.columnContact p,.select-padding{padding-bottom:15px}ul.list-steps li.step-2,ul.list-createAccount,ul.list-steps.list-createAccount li.step-3{text-align:center}
+.text-search,.staffrow,.columnRight-client span{text-transform:uppercase}
+@media screen {
+    ul.list-box li:hover > div.list-box-hover{
+        left:8px;top:8px;
+    }
+}

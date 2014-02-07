@@ -1,0 +1,43 @@
+<ul class='list-reminders'>
+  <li>
+    <div class='box'>
+      <div class='remindersBox'>						
+        <% if @start_date >= Date.today %>
+          <%= link_to '' , counselor_status_counselor_dashboards_path(:date => (@date - 1.week),:day =>@date - 1.week,:status => "above_only"),:remote => true, :id => "prev1",:class => "arrow-left" %>
+        <% end %>
+        <%= link_to '', counselor_status_counselor_dashboards_path(:date => (@date + 1.week),:day =>@date + 1.week,:status => "above_only"),:remote => true, :id => "next1",:class => "arrow-right" %>
+        <div id="pager1" class="pager">
+          <% i = 1 %>
+          <% for date in (@start_date..@end_date) %>
+            <a class="pagenav<%= i %> day_<%= date %>" href="javascript:display_this('<%= date %>', '<%= date %>', 'above_only')"><%= date.strftime("%a").upcase %></a>
+            <% i+=1 %>
+          <% end %>
+        </div>					
+        <div class='list_carousel caroulproduct1'>
+          <ul id='caroulproduct1'>
+            <li>
+              <ul class='list-remindersBox'>
+                <% if @appointments.exists? %>
+                  <% for appointment in @appointments %>
+                    <li id='clientName-1' onclick="display_invoice_form('counselor',<%= appointment.case.id %>,<%= appointment.counselor.id %>,<%= appointment.client.id %>,<%= appointment.id %>,<%= appointment.invoice.present? ? appointment.invoice.id : 0 %>)">
+                      <div class="timeColumn"><%= appointment.start_at.blank? ? '' : (appointment.start_at.strftime("%H:%M")+'-'+appointment.end_at.strftime("%H:%M")) %></div>
+                      <h4><%= appointment.client.first_name %></h4>
+                      <p class='columnClient'><%= appointment.case.number %> |    <span><%= appointment.case.appointments.count %>/<%#= appointment.case.total_sessions %></span>   |   <em>auth.</em></p>
+                    </li>
+                  <% end %>
+                <% else %>
+                  <li id='clientName1'>
+                    <p class='columnClient'>No Appointments</p>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>							
+        </div>		
+      </div>
+      <div class='clearFix'></div>
+    </div>
+  </li>
+  <li id='invoice_form'></li>
+  <li id='reminders'></li>
+</ul>

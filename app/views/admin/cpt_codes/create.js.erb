@@ -1,0 +1,8 @@
+<% if !@cpt_code.new_record? %>
+  $('#cpt_codes').html("<%= escape_javascript(render(:partial => 'cpt_codes', :locals => {:cpt_codes => @cpt_codes})) %> ");
+  $("input[type='text']").val('');
+  $(".field_with_errors input").css('border','1px solid #CCCCCC');
+  $("#error_explanation").hide();
+<% else %>
+  $("#cpt_codes_form").html("<%= escape_javascript(render(:partial => 'form')) %>")
+<% end %>

@@ -1,0 +1,178 @@
+<%= form_for @reduced_fee,:url => client_reduced_fees_path(@reduced_fee) do |f| %>
+  <%= f.hidden_field :intake_type,:value => @intake_type %>
+  <h1 class="icon-no1">Current Employee Status</h1>
+  <div class="boxGray">
+    <%= f.error_messages %>
+    <div class="diviedColumn">
+      <div>
+        <%= f.radio_button :job_type, "full time", :id=>"checkbox_box_127" %><label for="checkbox_box_127" class="cssLabel" style="color:gray;"><span></span>Full Time</label>
+      </div>
+      <div>
+        <%= f.radio_button :job_type, "part time", :id=>"checkbox_box_128" %><label for="checkbox_box_128" class="cssLabel" style="color:gray;"><span></span>Part Time</label>
+      </div>
+      <div>
+        Hours Per Week
+        <p><%= f.text_field :hours_per_week ,:class=>"input-midname"%></p>
+      </div>
+      <div>
+        Employer
+        <p><%= f.text_field :employer ,:class=>"input-name"%></p>
+      </div>
+    </div>
+    <h6 class="greenBox"><span>Student Information</span></h6>
+    <div class="diviedColumn">
+      <div>
+        <%= f.radio_button :student_job_type, "full time", :id=>"checkbox_box_129" %><label for="checkbox_box_129" class="cssLabel" style="color:gray;"><span></span>Full Time</label>
+      </div>
+      <div>
+        <%= f.radio_button :student_job_type, "part time", :id=>"checkbox_box_130" %><label for="checkbox_box_130" class="cssLabel" style="color:gray;"><span></span>Part Time</label>
+      </div>
+      <div>
+        School
+        <p><%= f.text_field :school ,:class=>"input-name"%></p>
+      </div>
+    </div>
+    <div class="diviedColumn">
+      <div class="w50">
+        <%= f.radio_button :student_job_type, "unemployeed", :id=>"checkbox_box_131" %><label for="checkbox_box_131" class="cssLabel" style="color:gray;"><span></span>Unemployed</label>
+      </div>
+      <div>
+        Date of last employment
+        <p>
+           <%= f.date_select :date_of_last_empl,:start_year => 1930 %>
+        </p>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+  <h1 class="icon-no2">Household Monthly Income</h1>
+  <div class="boxGray">
+    <hr />
+    <div class="staffrow">
+      <div>Gross monthly wages or salaries (pre-tax) personal income</div>
+      <div><%= f.text_field :gross_monthly_wages_p_income ,:class=>"input-midname",:placeholder=>"$"%></div>
+    </div>
+    <div class="staffrow">
+      <div>Gross monthly wages or salaries (pre-tax) from other family members.</div>
+      <div><%= f.text_field :gross_monthly_wages_o_income ,:class=>"input-midname",:placeholder=>"$"%></div>
+    </div>
+    <div class="staffrow">
+      <div>Income from other sources:</div>
+      <div><%= f.text_field :income_from_other ,:class=>"input-midname",:placeholder=>"$"%></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Total:</div>
+      <div><%= f.text_field :total_income ,:class=>"input-midname",:placeholder=>"$"%></div>
+    </div>
+    <h6 class="greenBox"><span>Household Incomes</span></h6>
+    <div class="staffrow">
+      <div>Other Income earner name</div>
+      <div><%= f.text_field :other_income_e_name %></div>
+    </div>
+    <div class="staffrow">
+      <div>Relationship to you:</div>
+      <div><%= f.text_field :relationship_to_you %></div>
+    </div>
+    <div class="staffrow">
+      <div>Occupation and Status</div>
+      <div><%= f.text_field :occupation_and_status %></div>
+    </div>
+    <div class="staffrow">
+      <div>Employer:</div>
+      <div><%= f.text_field :h_employer %></div>
+    </div>
+    <div class="staffrow">
+      <div>Other income earners in the household:</div>
+      <div><%= f.text_field :other_incomed_e_household %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Number of Dependents in family:</div>
+      <div>
+        <p><%= f.text_field :no_of_dependants,:class=>"input-midname" %></p>
+        <%= f.fields_for :dependents do |b| %>
+          <ul class="list-name">
+            <li><p>name</p><%= b.text_field :name,:class => "input-name" %></li>
+            <li><p>age</p><%= b.text_field :age,:class => "input-midname" %></li>
+          </ul>
+        <% end %>
+        <div>
+          <%= link_to_add_fields "Plus", f, :dependents  %>
+        </div>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>Total number of household</div>
+      <div><%= f.text_field :total_no_of_household,:class=>"input-midname" %></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+  <h1 class="icon-no3">Household Annual income</h1>
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>Please enter Adjusted Gross Income (pre-tax) of most recent tax return:</div>
+      <div>
+        <ul class="list-name">	
+          <li><p><del>.</del></p><%= f.text_field :most_recent_tax,:class=>"input-name" %></li>
+          <li><p>Year</p><%= f.text_field :most_recent_tax_year,:class=>"input-midname" %></li>
+          <li style="position: relative;top:26px;"><%= f.radio_button :tax_single_join,'single' %>Single&nbsp;&nbsp;<%= f.radio_button :tax_single_join,'join' %>Join</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="staffrow">
+      <div>Has your employment changed since your last tax return?</div>
+      <div>
+        <%= f.radio_button :e_changed_last_tax_return,"yes",:id => "checkbox_box_134"%><label for="checkbox_box_134" class="cssLabel"><span></span>Yes</label>
+        <%= f.radio_button :e_changed_last_tax_return,"no",:id => "checkbox_box_135"%><label for="checkbox_box_135" class="cssLabel"><span></span>No</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>If yes, please explain:</div>
+      <div><%= f.text_area :explain,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Do you have Out-of-Network Insurance Benefits for Mental/Behavioral Health Services?</div>
+      <div><%= f.text_area :out_of_network_insurance,:rows => 4 %></div>
+    </div>
+    <div class="staffrow">
+      <div>Is there any additional information you would like us to consider?</div>
+      <div><%= f.text_area :additional_information,:rows => 4 %></div>
+    </div>
+    <div class="staffrow">
+      <div>Please add any comments on how other factors may affect this application:</div>
+      <div><%= f.text_area :comments,:rows => 4 %></div>
+    </div>
+    <h6 class="greenBox"><span>Tax Documents</span></h6>
+    <div class="taxDocument">
+      <p><strong><em>Please fax or upload a copy of a recent paycheck stub, first page of the latest tax return, <br />and/or other income information to this application.</em></strong><br /><br />Redeemer Counseling Services, confidential fax number:<br /><span><strong>212-252-0649</strong></span>
+      </p>
+      <ul class="list-name">
+        <li><p><del>.</del></p><%= f.file_field :avatar,:class=>"input-name" %></li>
+        <li><p><strong>Password</strong></p><%= f.password_field :doc_password %>	</li>
+      </ul>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+  <h1 class="icon-no2">Consent And Signature</h1>	
+  <div class="boxGray">
+    <h3>Consent And Signature</h3>
+    <p> <%= f.check_box :content_and_signature, :id=>"checkbox_box_57" %>
+      <label for="checkbox_box_57" class="cssLabel cssheight"><span></span>In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</label></p>
+    <h3>Online Signature</h3>
+    <%= f.check_box :online_signature, :id=>"checkbox_box_58" %>
+    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span>By clicking this I approve this and recognize<br> this acts as an online signature</label>
+    <div class="btn-row">
+      <div class="btn-createnew"><input class="btn-submit" type="submit" title="Submit" value="Submit" /><em></em></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="clearFix"></div>
+
+<% end %>

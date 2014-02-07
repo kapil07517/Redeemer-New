@@ -1,0 +1,2 @@
+$("#existing-cases-list").html("<%= escape_javascript render :partial => "existing_cases",:locals => {:cases => @cases} %>");
+$("#intake_ids,#intake_id").val(<%= @intake_ids %>);

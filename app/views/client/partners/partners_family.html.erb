@@ -1,0 +1,48 @@
+<div class="heading-intakeForms">
+  <h2>Counseling Forms</h2>
+  <p>Please select the type of counseling you wish to pursue. You may fill<br />out as many forms as you need. Each form must be filled out by a<br />single client. You may save and come back to a form for up to 30 days.</p>
+</div>
+<div class="individualBox">
+  <ul class="list-box">
+    <li><div>Individual</div></li>
+    <li><div>Dating<br />&amp;<br />Pre-Marital</div></li>
+    <li><div>Marriage</div></li>
+    <li><div>Family<br />&amp;<br />Friends</div></li>
+    <li><div>Minor</div></li>
+    <li><div>Renewal<br />Group</div></li>
+    <li><div>Financial</div></li>
+    <li><div>Career<br />Assesment</div></li>
+    <li><div><span>Application For</span><br />Reduced Fee</div></li>
+  </ul>
+  <div class="popupBox">
+    <div class="heading-marriage">
+      <span>families & friends</span>
+      <p>Please enter the following information for the other particpant</p>
+    </div>
+    <div class="marrigeForm">
+      <%= form_for @partner,:url =>partners_family_create_client_partners_path(@partner) do |f| %>
+        <%= f.error_messages %>
+        <%= f.hidden_field :intake_type,:value => @intake_type %>
+        <ul class="list-grpInput">
+          <% 3.times do |i| %>
+            <li>
+              <%= render :partial => "client/partners/form",:locals => {:f => f,:i => i} %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="gruardian">
+          <p>If a participant is a minor (younger than 18) are you the <br />parent or guardian?</p>
+          <div class="guardianCheck">
+            <%= f.radio_button :is_minor,'yes' %><label for="checkbox_box_1" class="cssLabel"><span></span>YES</label>
+            <%= f.radio_button :is_minor,'no' %><label for="checkbox_box_2" class="cssLabel"><span></span>NO</label>
+          </div>
+          <p>If YES Please fill out a MINOR INTAKE FORM.</p>
+        </div>
+        <div class="btn-createnew">
+          <input class="btn-submit" type="submit" title="Submit" value="Submit" /><em></em>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="clearFix"></div>

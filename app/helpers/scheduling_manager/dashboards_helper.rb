@@ -1,0 +1,2 @@
+module SchedulingManager::DashboardsHelper
+end

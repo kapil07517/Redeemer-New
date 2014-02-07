@@ -1,0 +1,2 @@
+module Client::MinorsHelper
+end

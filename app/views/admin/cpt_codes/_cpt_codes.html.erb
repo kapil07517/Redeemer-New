@@ -1,0 +1,10 @@
+<% cpt_codes.each do |cpt_code| %>
+  <div id="cp_<%= cpt_code.id %>">
+    <div class="column w33"><%= cpt_code.cpt_code %></div>
+    <div class="column w33"><%= cpt_code.description %></div>
+    <div class="column w33">
+      <%= link_to "Edit", edit_admin_cpt_code_path(cpt_code.id), :remote => true, :title => "Edit", :class => "btn-green" %>
+      <%= link_to "Delete", ["admin", cpt_code], :method => :delete, :confirm => "Are you sure", :remote => true, :title => "Delete", :class => "btn-delete" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="graybg">
+  <h1>System Settings</h1>
+  <div class="tableBox">
+    <div class="tablerow">
+      <div class="column w33">CTP Codes</div>
+      <div class="column w33">Description</div>
+      <div class="column w33">Actions</div>
+    </div>
+    <div id="cpt_codes">
+      <%= render :partial => 'cpt_codes', :locals => {:cpt_codes => @cpt_codes} %>
+    </div>
+  </div>
+  <div id="cpt_codes_form">
+    <%= render "form" %>
+  </div>
+</div>

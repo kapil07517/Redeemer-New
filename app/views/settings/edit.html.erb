@@ -1,0 +1,5 @@
+<%= stylesheet_link_tag "settings" %>
+<h1 class="icon-no1">Edit Information</h1>
+<%= form_for @user,:url =>setting_path(@user) do |f| %>
+  <%= render :partial => "devise/registrations/form",:locals => {:f => f} %>
+<% end %>

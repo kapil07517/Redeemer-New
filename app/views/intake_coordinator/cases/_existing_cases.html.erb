@@ -1,0 +1,39 @@
+<table class="table-borLess" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tr>
+    <td colspan="3" bgcolor="#363636"><h6 class="clientList">APPLY TO EXISTING CASE</h6></td>
+    <td bgcolor="#363636" colspan="2">
+      <div style="color:red;" >
+        <%= form_tag(search_cases_intake_coordinator_cases_path, :remote => true, :method => "get") do   %>
+          <%= hidden_field_tag "intake_id" %>
+          <%= text_field_tag :search,"", :class=>"input-selectFile", :id=>"case-for-search", :style=>"margin-left: 30px;" %>
+          <%= submit_tag "Search", :title=>"Search", :class=>"btn-createnew2", :style=>"color: white;background-color: #a8cf75;" %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+  <% cases.each do |cas| %>
+    <tr>
+      <%= form_tag assign_case_intake_coordinator_cases_path,:remote => true do %>
+        <%= hidden_field_tag "intake_ids" %>
+        <td><%= check_box_tag "case_id","#{cas.id}" %></td>
+        <td><%= cas.number %></td>
+        <td><%= cas.case_name %></td>
+        <td><%= cas.created_at.strftime("%b %d, %Y") %></td>
+        <td><%= submit_tag "assign" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<script>
+  $(document).ready(function() {
+    $("input#case_check").each(function() {
+      if ($(this).is(":checked")) {
+        $(this).trigger('click');
+      }
+    });
+    $("#intake_ids").val('');
+    $("#intake_id").val('');
+    $("#other_intakes").val('');
+  });
+</script>

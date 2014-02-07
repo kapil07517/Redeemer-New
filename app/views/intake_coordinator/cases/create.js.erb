@@ -1,0 +1,10 @@
+<% if params[:cas_id].blank? %>
+  <% if @case.errors.any? %>
+    $("#create-case").html("<%= escape_javascript render :partial => "intake_coordinator/cases/case_creation_form" %>");
+    $("#other_intakes").val('<%= @intake_ids %>')
+  <% else %>
+    window.location.href = '<%= root_path %>'
+  <% end %>
+<% else %>
+  window.location.href = '<%= root_path %>'
+<% end %>

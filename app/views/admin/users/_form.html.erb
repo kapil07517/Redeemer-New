@@ -1,0 +1,97 @@
+<div class="graybg"> 
+  <%= f.error_messages %>
+  <div class="staffrow">
+    <div>Name:</div>
+    <div>
+      <%= f.text_field :first_name, :class => "input-name", :type => "text", :title => "Name" %>
+      <%= f.text_field :middle_initial, :class => "input-midname", :type =>"text",:title =>"Name"  %>
+      <%= f.text_field :last_name, :class => "input-name",:type =>"text", :title =>"Name" %>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>Address:</div>
+    <div>
+      <p><%= f.text_field :address, :title=>"Address" %></p>
+      <p><%= f.text_field :address2, :title=>"Address" %></p>
+      <%= f.text_field :city,:class => "input-name", :title=>"City" %>
+      <%= f.text_field :state, :class=>"input-midname", :title=>"State" %>
+      <%= f.text_field :zipcode, :class=>"input-name", :title=>"Zip"  %>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>Contact:</div>
+    <div>
+      <p><%= f.text_field :mobile, :class=>"input-name", :title => "Mobile"  %> </p>
+      <p><%= f.text_field :work, :class=>"input-name", :title => "Work"  %></p>
+      <%= f.text_field :home, :class=>"input-name", :title => "Home"  %>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>E-mail/Username:</div>
+    <div><%= f.email_field :email,:type=>"text", :title=>"E-mail/Username" %></div>
+  </div>
+  <% unless !f.object.new_record? %>
+    <div class="staffrow">
+      <div>Password:</div>
+      <div><%= f.password_field :password %></div>
+    </div>
+    <div class="staffrow">
+      <div>Confirm Password:</div>
+      <div><%= f.password_field :password_confirmation %></div>
+    </div>
+  <% end %>
+  <div class="staffrow">
+    <div>Sex:</div>
+    <div>
+      <%= f.select :gender,options_for_select([["Select",""]]+Gender,:selected => f.object.gender)%>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>Date of Birth:</div>
+    <div>
+      <%= f.date_select :date_of_birth,:start_year => 1930 %>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>Roles:</div>
+    <div>
+      <p>
+       <% if @role == 'Client' %><%= f.select :type,options_for_select([["Client","Client"]])%><% else %><%= f.select :type,options_for_select([["Select",""]]+ROLES[0..-2],:selected => @role)%><% end %>
+      </p>
+      <ul class="list-normal">
+        <li><%= check_box_tag "user[access_types][]", "admin" %> ADMIN-  Control over everything.</li>
+        <li><%= check_box_tag "user[access_types][]", "counselor" %> COUNSELOR-  Control over own clients.</li>
+        <li><%= check_box_tag "user[access_types][]", "supervisor" %> SUPERVISOR-  Control over own clients and read alerts to supervise clients.</li>
+        <li><%= check_box_tag "user[access_types][]", "intakecoordinator" %> INTAKE CO-ORDINATOR-  Read only Intakes. Clients Schedules  and Counselor Schedule.</li>
+        <li><%= check_box_tag "user[access_types][]", "accounting" %> ACCOUNTING-  Read only access to all Clients and Case Accounting.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="clearFix"></div>
+</div>
+<h1>Emergency Contact</h1>
+<div class="graybg">
+  <div class="staffrow">
+    <div>Name:</div>
+    <div><%= f.text_field :contact_name, :title => "Name" %></div>
+  </div>
+  <div class="staffrow">
+    <div>Contact:</div>
+    <div><%= f.text_field :emergency_contact, :title => "Contact"  %></div>
+  </div>
+  <div class="staffrow">
+    <div>Phone:</div>
+    <div><%= f.text_field :contact_phone, :title => "Phone" %></div>
+  </div>
+  <div class="staffrow">
+    <div>E-mail:</div>
+    <div><%= f.email_field :contact_email, :type=>"text", :title => "E-mail" %></div>
+  </div>
+  <div class="btn-createnew"> <% if f.object.new_record? %>
+      <input class="btn-submit" type="submit" title="CONTINUE" value="CREATE ACCOUNT" /><em></em>
+    <% else %>
+      <input class="btn-submit" type="submit" title="CONTINUE" value="Update" /><em></em>
+    <% end %>
+  </div>
+  <div class="clearFix"></div>
+</div>

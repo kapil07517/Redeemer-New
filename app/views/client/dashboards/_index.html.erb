@@ -1,0 +1,77 @@
+<div class="clientPortal">
+  <ul class="list-clientinfo">
+    <li>
+      <div class="box">
+        <h4>Account Information</h4>
+        <div class="columnRight-client">
+          <span><%= @client.first_name %> <%= @client.last_name %></span>
+          <p><%= @client.address %><br>
+            <%= @client.city %>,<%= @client.state %> <%= @client.zipcode %></p>
+          <p><%= @client.email %></p>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+    </li>
+    <li>
+      <div class="box">
+        <div class="valignDiv">
+          <div><h2>Faq</h2></div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="box">
+        <div class="valignDiv">
+          <div><h2 style="font-size: 15px;"><%#= @appointment ? ('appointment with <br />'+@appointment.counselor.first_name+' on <br />'+(@appointment.start_at.blank? ? '' : @appointment.start_at.strftime("%b %dth %I:%m %p")).html_safe) : "No Appointment" %></h2></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="inTake">
+  <ul class="list-intake">
+    <% for intake in @intake_forms %>
+      <li>
+        <div class="box">
+          <div class="valignDiv">
+            <div><h2><%= intake.intake_type %></h2><em><%= intake.intake_status %></em></div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<h6 class="heading-question">FREQUENTLY ASKED QUESTIONS</h6>	
+<ul id="collexp-menu" class="collexpMenu list-question">
+  <li><div class="expanded" title="WHAT IS THE POINT OF THERAPY?">WHAT IS THE POINT OF THERAPY?</div>
+    <ul>
+      <li>Answer goes here. Therapy copy and other advice, lists, answers ectcetera. This is the answer 	to the question that was asked.</li>
+    </ul>
+  </li>
+  <li><div class="collapsed" title="IS FINANCIAL AID AVAILABLE?">IS FINANCIAL AID AVAILABLE?</div>
+    <ul>
+      <li>Answer goes here. Therapy copy and other advice, lists, answers ectcetera. This is the answer 	to the question that was asked.</li>
+    </ul>
+  </li>
+  <li><div class="collapsed" title="WHAT IS THE POINT OF THERAPY?">WHAT IS THE POINT OF THERAPY?</div>
+    <ul>
+      <li>Answer goes here. Therapy copy and other advice, lists, answers ectcetera. This is the answer 	to the question that was asked.</li>
+    </ul>
+  </li>
+  <li><div class="collapsed" title="WHAT IS THE POINT OF THERAPY?">WHAT IS THE POINT OF THERAPY?</div>
+    <ul>
+      <li>Answer goes here. Therapy copy and other advice, lists, answers ectcetera. This is the answer 	to the question that was asked.</li>
+    </ul>
+  </li>
+  <li><div class="collapsed" title="WHAT IS THE POINT OF THERAPY?">WHAT IS THE POINT OF THERAPY?</div>
+    <ul>
+      <li>Answer goes here. Therapy copy and other advice, lists, answers ectcetera. This is the answer 	to the question that was asked.</li>
+    </ul>
+  </li>
+  <li><div class="collapsed" title="WHAT IS THE POINT OF THERAPY?">WHAT IS THE POINT OF THERAPY?</div>
+    <ul>
+      <li>Answer goes here. Therapy copy and other advice, lists, answers ectcetera. This is the answer 	to the question that was asked.</li>
+    </ul>
+  </li>
+</ul>
+<div class="clearFix"></div>

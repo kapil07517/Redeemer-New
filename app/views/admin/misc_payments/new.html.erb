@@ -1,0 +1,15 @@
+<%= form_for(["admin", @misc_payment]) do |f| %>
+  <div class="graybg">
+    <h1>Misc Payment</h1>
+    <%= f.error_messages %>
+    <div class="staffrow"><span class="rspace">Books</span><%= f.text_field :books, :class => "input-date", :title => "Payment1" %></div>
+    <div class="staffrow"><span class="rspace">Conferences</span><%= f.text_field :conferences, :class => "input-date", :title => "Payment2" %></div>
+    <div class="staffrow"><span class="rspace">Assessments</span><%= f.text_field :assesments, :class => "input-date", :title => "Payment3" %></div>
+    <div class="staffrow">
+      <span class="rspace"><%= image_tag("/assets/admin/spacer.png",:width => "39px") %></span>
+      <%= f.submit :save, :class => "btn-green" %>
+      <input type="submit" title="Cancel" value="Cancel" />
+    </div>
+    <div class="clearFix"></div>
+  </div>
+<% end %>

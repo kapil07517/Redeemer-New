@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <%= stylesheet_link_tag "application","admin/default.css", :media => "all" %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Redeemer Counseling Services</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="topbar">
+        <h4><span>Redeemer</span> Counseling Services</h4>
+        <ul class="list-topmenu">
+          <li><%= current_user ? (link_to 'Sign Out', destroy_user_session_path,:method => 'DELETE') : '' %></li>
+          <li><%= current_user ? (link_to 'Settings', change_password_setting_path(:role => current_user.role,:id => current_user.id)) : '' %></li>
+        </ul>
+        <h5>Welcome:<span><%= current_user.first_name %></span></h5>
+      </div>
+      <div class="clearFix"></div>
+    </header>
+    <article>
+      <section id="leftColumn">
+        <ul id="menu" class="example_menu">
+          <li>
+            <%= link_to "Staff Management", "javascript: void(0);", :class => (params[:controller] == "admin/users" and params[:role] != "Form" and params[:action] != "clients" and params[:role] != "Client") ? "expanded" : "collapsed", :title => "Staff Management" %>
+            <ul>
+              <li class=<%= (params[:controller] == "admin/users" and params[:action] == "index") ? "active" : "" %>> <%= link_to "List Staff (Edit)", admin_users_path, :title => "List Staff" %></li>
+              <li class=<%= (params[:controller] == "admin/users" and params[:action] == "new") ? "active" : "" %>> <%= link_to "Create New Staff", new_admin_user_path, :title => "Create New Staff" %></li>
+            </ul>
+          </li>
+          <li>
+            <%= link_to "System Settings", "javascript: void(0);", :class => ( params[:controller] == "admin/case_prefixes" or params[:controller] == "admin/cpt_codes" or params[:controller] == "admin/rooms" or params[:controller] == "admin/misc_payments") ?  "expanded" : "collapsed", :title => "System Settings" %>
+            <ul>
+              <li class=<%= params[:controller] == "admin/case_prefixes" ? "active" : "" %>>
+                <%= link_to "Case Prefix", admin_case_prefixes_path, :title => "Case Prefix" %>
+              </li>
+              <li class=<%= params[:controller] == "admin/cpt_codes" ? "active" : "" %>>
+                <%= link_to "CPT Codes", admin_cpt_codes_path, :title => "CPT Codes" %>
+              </li>
+              <li class=<%= params[:controller] == "admin/rooms" ? "active" : "" %>>
+                <%= link_to "Room Management", admin_rooms_path, :title => "Room Management" %>
+              </li>
+              <li class=<%= params[:controller] == "admin/misc_payments" ? "active" : "" %>>
+                <%= link_to "Misc Payment", new_admin_misc_payment_path, :title => "Misc Payment" %>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <%= link_to "Forms", "javascript: void(0);", :class => (params[:controller] == "admin/forms" or params[:role] == "Form") ? "expanded" : "collapsed", :title => "Forms" %>
+            <ul>
+              <li class=<%= params[:controller] == "admin/forms" ? "active" : "" %>><%= link_to "List", admin_forms_path %></li>
+              <li class=<%= params[:role] == "Form" ? "active" : "" %>><%= link_to "Create New", new_admin_user_path(:role => "Form") %></li>
+            </ul>
+          </li>
+          <li>
+            <%= link_to "Clients", "javascript: void(0);", :class => (params[:controller] == "admin/users" and params[:action] == "clients" or params[:role] == "Client" and params[:role] != "Info") ? "expanded" : "collapsed", :title => "Clients" %>
+            <ul>
+              <li class=<%= params[:controller] == "admin/users" and params[:action] == "clients" ? "active" : "" %>><%= link_to "Search", clients_admin_users_path %></li>
+              <li class=<%= params[:role] == "Client" ? "active" : "" %>><%= link_to "New client", new_admin_user_path(:role => "Client") %></li>
+            </ul>
+          </li>
+          <li>
+            <%= link_to "Payer 2", "javascript: void(0);", :class => (params[:role] == "Info" || (params[:controller] == "admin/payers" && params[:action] == "new")) ? "expanded" : "collapsed", :title => "Payer 2" %>
+            <ul>
+              <li class=<%= (params[:role] == "Info"  ? "active" : "") %>><%= link_to "Info", admin_payers_path(:role => "Info") %></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section id="rightColumn">
+        <% ['notice', 'error', 'warning'].each do |f|%>
+          <% if flash[f.to_sym] %>
+            <div class="<%= f %>"><%=  flash[f.to_sym] %></div>
+          <% end %>
+        <% end %>
+        <%= yield %>
+      </section>
+    </article>
+    <footer>
+      <nav>
+        <ul>
+          <li><a title="Home" href="/admin/case_prefixes">Home</a></li>
+        </ul>
+        <p>Redeemer Counseling Services @ 2013</p>
+      </nav>
+      <div class="clearFix"></div>
+    </footer>
+  </body>
+</html>

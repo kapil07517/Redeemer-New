@@ -1,0 +1,10 @@
+class CreateReminders < ActiveRecord::Migration
+  def change
+    create_table :reminders do |t|
+      t.integer :counselor_id
+      t.integer :client_id
+      t.text :description
+      t.timestamps
+    end
+  end
+end

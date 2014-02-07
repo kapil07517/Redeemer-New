@@ -1,0 +1,46 @@
+<div class="calendarColumn">
+  <div class="box">
+    <div class="collexp-schedulenote">
+      <div class="scheduleRow"><div class="fleft">SCHEDULE</div> <span>EXPAND | COLLAPSE | ALL</span> <div class="fright">INTAKE NOTES</div></div>
+      <ul id="collexp-menu" class="collexpMenu">
+        <% @cases.each do |cs| %>
+          <li>
+            <div title="Monday" class="expanded">								
+              <%= cs.number %>
+            </div>
+            <ul>
+              <li>
+                <div class="table-calendar">
+                  <%= select_tag :counselor_id, options_for_select([["Select", ""]] + Counselor.all.map {|coun| [coun.first_name, coun.id]}), {:onchange => "display_intake_details(this.value, '#{cs.id}')"} %>
+                </div>
+                <%= form_for(@note || Note.new, :as => :note, :url => notes_path, :html => {:method => "post", :remote => true}) do |f| %>
+                  <em><%= f.submit "Save" %></em>
+                  <%= f.hidden_field :notable_id, :value => cs.intake_form_id %>
+                  <%= f.hidden_field :notable_type, :value => "IntakeForm" %>
+                  <%= f.text_area :description, :class => "textarea-addSchedule", :placeholder => "Add Schedule" %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+      <div class="clearFix"></div>
+    </div>
+  </div>	
+</div>
+<div class="calendarColumn" id="intake_from_information">
+</div>
+<script>
+  function display_intake_details(coun_id, intake_id) {
+    if (coun_id !== "") {
+      $.ajax({
+        url: "/intake_coordinator/dashboards/" + intake_id + "/intake_details",
+        data: {
+          appointment: coun_id
+        }
+      });
+    } else {
+      $("#intake_from_information").html('');
+    }
+  }
+</script>

@@ -1,0 +1,23 @@
+<%= render :partial => "/documents/docments" %>
+<ul class="list-upload">
+  <%= form_for @document,:url => upload_document_client_management_path(:document => @document,:id => @client.id),:method => :post do |f| %>
+    <li>
+      <div class="greenBox">Upload<br />a file</div>
+      <div class="darkBoxGray">
+        <h6 class="selectHeading"><span>1</span> Select a File</h6>
+        <%= f.file_field :document,:class => "input-selectFile" %>
+        <%= validation_error(@document.errors["document"]) %>
+      </div>
+      <div class="darkBoxGray lightBoxGray">
+        <h6 class="selectHeading"><span>2</span> ASSIGN CASE NUMBER</h6>
+        <p><%= f.text_field :case_num,:class => "input-selectFile",:placeholder=>"IND-789-JK23" %></p>
+        <%= validation_error(@document.errors["case_num"]) %>
+        <div class="btn-createnew"><input type="submit" value="Upload" title="Upload" name="" onclick="javascript:if ($('#document_case_num').val() === '') {
+              alert('assign case');
+              return false;
+            }"/> <em></em></div>	
+      </div>
+      <div class="clearFix"></div>
+    </li>
+  <% end %>
+</ul>

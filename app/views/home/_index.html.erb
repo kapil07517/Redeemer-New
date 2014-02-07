@@ -1,0 +1,16 @@
+<div class="clientPortal">
+  <ul class="list-clientinfo">
+    <li>
+      <div class="box">
+        <h4>Account Information</h4>
+        <div class="columnRight-client">
+          <span><%= current_user.first_name %> <%= current_user.last_name %></span>
+          <p><%= current_user.address %><br>
+            <%= current_user.city %>,<%= current_user.state %> <%= current_user.zipcode %></p>
+          <p><%= current_user.email %></p>
+        </div>
+        <div class="clearFix"></div>
+      </div>
+    </li>
+  </ul>
+</div>

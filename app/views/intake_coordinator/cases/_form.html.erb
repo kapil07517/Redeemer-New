@@ -1,0 +1,61 @@
+<div class="calendarColumn">
+  <div class="box">
+    <table class="table-borLess table-copleted" cellpadding="0" cellspacing="0" width="100%" border="0">
+      <tr>
+        <td colspan="5"><h6 class="compHeading">LIST OF COMPLETED INTAKES</h6></td>
+      </tr>
+      <tr class="whitecolor">
+        <td></td>
+        <td>NAME</td>
+        <td>DOB</td>
+        <td>COMPLETED</td>
+        <td>TYPE</td>
+      </tr>
+      <% @intake_forms.each do |i| %>
+        <tr>
+          <% @client = User.find(i.user_id) %>
+          <% partners = @client.partners.where("intake_type = ?", i.intake_type) %>
+          <td style="padding: 5px 0;"><input type="checkbox" class="unique" value="<%= i.id %>" onclick="display_intake_details(this, '<%= i.id %>')"></td>
+          <td  style="padding: 5px 0;"><strong><%= @client.full_name %></strong></td>
+          <td  style="padding: 5px 0;"><%= @client.date_of_birth %></td>
+          <td  style="padding: 5px 0;">5/9/13</td>
+          <td  style="padding: 5px 0;"><%= i.intake_type %></td>
+        </tr>
+        <% if partners.present? %>
+          <% partners.each do |partner| %>
+            <tr>
+              <td style="border-top:none; padding: 1px 0;"> </td>
+              <td style="border-top:none; padding: 1px 0;"><strong><%= partner.name %></strong></td>
+              <td style="border-top:none; padding: 1px 0;"><%= partner.date_of_birth %></td>
+              <td style="border-top:none; padding: 1px 0;">5/9/13</td>
+              <td style="border-top:none; padding: 1px 0;"></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
+<div class="calendarColumn" id="intake_from_information">
+</div>
+<div id="create-case">
+  <%= render :partial => "case_creation_form" %>
+</div>
+<div class="box mt15" id="existing-cases-list">
+  <%= render :partial => "existing_cases",:locals => {:cases => @cases} %>
+</div>
+<div class="clearFix"></div>
+<script>
+  $(document).ready(function() {
+    $("input.unique").each(function() {
+      if ($(this).is(":checked")) {
+        $("#intake_ids").val($(this).val() + ',');
+        $("#intake_id").val($(this).val() + ',');
+        $("#other_intakes").val($(this).val() + ',');
+        $.ajax({
+          url: "/intake_coordinator/dashboards/" + $(this).val() + "/details"
+        });
+      }
+    });
+  });
+</script>

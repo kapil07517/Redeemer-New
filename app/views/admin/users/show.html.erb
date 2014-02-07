@@ -1,0 +1,18 @@
+<div class="well">
+  <%= render :partial => 'client/dashboards/index' %>
+  <% if !@cases.empty? %>
+    <br />
+    Cases
+    <table width="100%"  class="table table-striped">
+      <tr>
+        <th>Case Number</th>
+      </tr>
+      <% @cases.each do |cas| %>
+        <tr>
+          <td><%= cas.case.number %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+<div id="calendar"></div>

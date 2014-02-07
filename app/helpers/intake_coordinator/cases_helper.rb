@@ -1,0 +1,2 @@
+module IntakeCoordinator::CasesHelper
+end

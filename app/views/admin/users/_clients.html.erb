@@ -1,0 +1,29 @@
+<% if clients.present? %>
+  <div class="tableBox table-client">
+    <div class="tablerow">
+      <div class="column">Client Id</div>
+      <div class="column">Name of Client</div>
+      <div class="column">Email Id</div>
+      <div class="column">Phone No.</div>
+      <div class="column">Actions</div>
+    </div>
+    <% clients.each do |client| %>
+      <div class="tablerow">
+        <div class="column"><%= client.id %></div>
+        <div class="column"><%= client.first_name %></div>
+        <div class="column"><%= client.email %></div>
+        <div class="column">+91 <%= client.mobile.nil? ? "000000000" : client.mobile %></div>
+        <div class="column">
+          <% if client.status == "active" %>
+            <%= link_to "De-Active", change_status_admin_user_path(:id => client.id, :status => "deactive"), :method => "put", :confirm => "Are you sure", :remote => true, :class => "btn-delete" %>
+          <% else %>
+            <%= link_to "Active", change_status_admin_user_path(:id => client.id, :status => "active"), :method => "put", :confirm => "Are you sure", :remote => true, :class => "btn-green" %>
+          <% end %>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  No clients
+<% end %>

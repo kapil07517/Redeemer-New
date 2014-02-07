@@ -1,0 +1,13 @@
+<div class="graybg">
+  <div class="spacerow">
+    <%= form_tag(search_clients_admin_users_path, :remote => true, :method => :get) do %>
+      <%= text_field_tag :search, "", :placeholder=>"Search Clients", :title=>"Search Clients" %>
+      <input title="Search" type="submit" value="Search" class="btn-green" />
+    <% end %>
+  </div>
+  <h1><span class="btn-createnew">Create New<em></em></span>List  of  Clients</h1>
+  <div id="clients">
+    <%= render :partial => "clients", :locals => {:clients => @clients} %>    
+  </div>
+  <div class="clearFix"></div>
+</div>

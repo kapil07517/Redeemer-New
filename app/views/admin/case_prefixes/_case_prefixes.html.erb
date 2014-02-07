@@ -1,0 +1,10 @@
+<% case_prefixes.each do |case_prefix| %>
+  <div id="cp_<%= case_prefix.id %>">
+    <div class="column w33"><%= case_prefix.prefix %></div>
+    <div class="column w33"><%= case_prefix.description %></div>
+    <div class="column w33">
+      <%= link_to "Edit", edit_admin_case_prefix_path(case_prefix.id), :remote => true, :title => "Edit", :class => "btn-green" %>
+      <%= link_to "Delete", ["admin", case_prefix], :method => :delete, :confirm => "Are you sure", :remote => true, :title => "Delete", :class => "btn-delete" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,128 @@
+<div class="boxGray">
+  <%= f.error_messages %>
+  <div class="staffrow">
+    <div>Name:</div>
+    <div>
+      <ul class="list-name">
+        <li><p>First</p><%= f.text_field :first_name,:class => "input-name" %></li>
+        <li><p>M. l.</p><%= f.text_field :middle_initial, :class=>"input-midname" %></li>
+        <li><p>Last</p><%= f.text_field :last_name, :class=>"input-name"  %></li>
+      </ul>
+    </div>			
+  </div>
+  <div class="staffrow">
+    <div>ADDRESS:</div>
+    <div>
+      <p><%= f.text_field :address %></p>
+      <%= f.text_field :city,:class => "input-name",:placeholder => "City" %>
+      <%= f.text_field :state, :class=>"input-midname",:placeholder => "State"%>
+      <%= f.text_field :zipcode, :class=>"input-name",:placeholder => "Zip"  %>
+      <hr />
+    </div>				
+  </div>
+  <div class="staffrow">
+    <div>Phone:</div>
+    <div>
+      <div class="commonr">
+        <div class="column-medical">Mobile  <%= f.text_field :mobile, :class=>"input-name"  %></div>
+        <div class="column-medical">
+          <%= f.radio_button :primary,"mobile", :id=>"checkbox_box_100"  %>
+          <label class="cssLabel" for="checkbox_box_100">PRIMARY #</label>
+        </div>
+      </div>
+      <div class="commonr">
+        <div class="column-medical">Work  <%= f.text_field :work, :class=>"input-name"  %></div>
+        <div class="column-medical">
+          <%= f.radio_button :primary,"work", :id=>"checkbox_box_101"  %>
+          <label class="cssLabel" for="checkbox_box_101">PRIMARY #</label>
+        </div>
+      </div>
+      <div class="commonr">
+        <div class="column-medical">Home  <%= f.text_field :home, :class=>"input-name"  %></div>
+        <div class="column-medical">
+          <%= f.radio_button :primary,"home", :id=>"checkbox_box_102"  %>
+          <label class="cssLabel" for="checkbox_box_102">PRIMARY #</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if f.object.new_record? %>
+    <div class="staffrow">
+      <div>EMAIL:<br /><span>Username</span></div>
+      <div>
+        <%= f.email_field :email %>
+      </div>				
+    </div>
+    <div class="staffrow">
+      <div>Password:</div>
+      <div>
+        <%= f.password_field :password %>
+      </div>				
+    </div>
+    <div class="staffrow">
+      <div>Password:<br /><span>Confrim</span></div>
+      <div>
+        <%= f.password_field :password_confirmation %>
+      </div>				
+    </div>
+  <% end %>
+  <div class="staffrow">
+    <div>Sex:</div>
+    <div>
+      <ul class="list-children">
+        <li>
+          <%= f.radio_button :gender,"male", :id=>"checkbox_box_5"  %>
+          <label for="checkbox_box_5" class="cssLabel"><span></span>MALE</label>
+          <%= f.radio_button :gender,"female", :id=>"checkbox_box_6"  %><label for="checkbox_box_6" class="cssLabel"><span></span>FEMALE</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>Date Of Birth:</div>
+    <div>
+      <%= f.date_select :date_of_birth,:start_year => 1930 %>
+    </div>
+    <hr />
+  </div>
+  <div class="staffrow">
+    <div>Who referred you or how did you hear about us?</div>
+    <div>
+      <p><%= f.select :who_refered,options_for_select([["Select",""],["Friend or family","Friend or family"],["Internet or website","Internet or website"],["Redeemer Church","Redeemer Church"],["Other church","Other church"],["Former client","Former client"],["School","School"],["Other","Other"]]) %></p>
+      <%= f.text_area :about_us,:rows => 4 %>
+    </div>
+  </div>
+  <div class="clearFix"></div>
+</div>
+<hr />
+<h1 class="icon-no2">Emergency Contact <span>(Required)</span></h1>
+<div class="boxGray">			
+  <div class="staffrow">
+    <div>Name:<em>*</em></div>
+    <div><%= f.text_field :contact_name %></div>				
+  </div>
+  <div class="staffrow">
+    <div>Relationship:<em>*</em></div>
+    <div><%= f.text_field :relationship %></div>				
+  </div>
+  <div class="staffrow">
+    <div>Phone:<em>*</em></div>
+    <div><%= f.text_field :contact_phone %></div>
+  </div>
+  <div class="staffrow">
+
+  </div>
+  <div class="staffrow">
+    <div>Email:</div>
+    <div><%= f.email_field :contact_email %></div>
+  </div>
+  <div class="btn-createnew">
+    <% if f.object.new_record? %>
+      <input class="btn-submit" type="submit" title="CONTINUE" value="CREATE ACCOUNT" /><em></em>
+    <% else %>
+      <input class="btn-submit" type="submit" title="CONTINUE" value="Update" /><em></em>
+    <% end %>
+  </div>
+  <div class="clearFix"></div>
+</div>
+<div class="clearFix"></div>

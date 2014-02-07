@@ -1,0 +1,2 @@
+module IntakeCoordinator::DashboardsHelper
+end

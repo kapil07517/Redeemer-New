@@ -1,0 +1,42 @@
+<div class="content">
+  <ul class="list-footercontent">
+    <li>
+      <ul>
+        <li><a title="Home" href="/">Home</a></li>
+        <% if current_user and current_user.role == "counselor" %>
+          <li class="active"><a title="Clients" href="/counselor/dashboards/case_list">Clients</a></li>
+          <li><a title="Calendar" href="/counselor/dashboards/appointments">Calendar</a></li>
+        <% end %>
+      </ul>
+    </li>
+    <li>	
+      <ul class="list-midmenu">
+        <li>
+          <h2></h2>
+        </li>
+        <li>
+          <h2></h2>
+        </li>
+        <li>
+          <h2></h2>
+        </li>
+      </ul>
+    </li>
+    <li>	
+      <div class="footer-lastColumn">
+        <a class="backtotop" title="Go to top" href="#">Go to top</a>
+        <ul class="list-topmenu">
+          <% if current_user %>
+            <li><%= link_to 'Sign Out', destroy_user_session_path,:method => 'DELETE' %></li>
+            <li><%= link_to "Settings",change_password_setting_path(:role => current_user.role,:id => current_user.id) %></li>
+          <% else %>
+            <li><a title="Sign In" href="/users/sign_in">Sign In</a></li>
+            <li><a title="Sign Up" href="/users/sign_up">Sign Up</a></li>
+          <% end %>
+        </ul>
+        <p>Redeemer Counseling Services &reg; 2013</p>
+      </div>
+    </li>
+  </ul>	
+  <div class="clearFix"></div>
+</div>

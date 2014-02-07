@@ -1,0 +1,6 @@
+<% if @note.new_record? %>
+  alert("Add schedule can't be blank")
+<% else %>
+  alert("Successfully saved note.")
+  $("#note_description").val("");
+<% end %>

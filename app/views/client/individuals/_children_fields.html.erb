@@ -1,0 +1,8 @@
+<ul class="list-children" style="width:660px;border-left:none;padding-left: 0px;color:#403D3E;">
+  <li>
+    CHILD<%= f.text_field :child_name,:class => "input-child" %>
+    <%= f.radio_button :gender,'male' %><label for="checkbox_box_5" class="cssLabel"><span></span>MALE</label>
+    <%= f.radio_button :gender,'female' %><label for="checkbox_box_6" class="cssLabel"><span></span>FEMALE</label>
+    &nbsp;&nbsp;DOB <%= f.date_select :date_of_birth,:start_year => 1930 %>
+  </li>
+</ul>

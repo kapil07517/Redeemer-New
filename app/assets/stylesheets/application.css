@@ -1,0 +1,58 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+.notice{
+    color: green;
+    font-size: 13px;
+}
+
+.error,#flash_alert,#error_explanation ul li{
+    color: red;
+    font-size: 13px;
+}
+
+#flash_notice{
+    display: none;
+}
+
+#errorExplanation h2,#errorExplanation p{
+    display: none;
+}
+
+#errorExplanation ul li{
+    color:red;
+    list-style-type: disc;
+}
+
+.avalaible_checked{
+    background: greenyellow;
+}
+
+.messagepop {
+    background-color:#FFFFFF;
+    border:1px solid #999999;
+    cursor:default;
+    display:none;
+    margin-top: 15px;
+    position:absolute;
+    text-align:left;
+    width:394px;
+    z-index:50;
+    padding: 25px 25px 20px;
+  }
+
+  .messagepop p, .messagepop.div {
+    border-bottom: 1px solid #EFEFEF;
+    margin: 8px 0;
+    padding-bottom: 8px;
+  }
+

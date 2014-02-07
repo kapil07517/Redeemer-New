@@ -1,0 +1,21 @@
+<h1 class="icon-no1">Change your password</h1>
+<div class="well">
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+    <div class="staffrow">
+      <div>New Password:</div>
+      <div><%= f.password_field :password, :autofocus => true %></div>
+    </div>
+    <div class="staffrow">
+      <div>Confirm new password:</div>
+      <div><%= f.password_field :password_confirmation %></div>
+    </div>
+
+    <div><%= f.submit "Change password", :class => 'btn btn-primary' %></div>
+  <% end %>
+
+  <div id="devise_links">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

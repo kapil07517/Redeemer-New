@@ -1,0 +1,51 @@
+<div class="clearFix"></div>
+<%= form_for @case, :url => intake_coordinator_cases_path(@case), :remote => true do |f| %>
+  <%= f.hidden_field :intake_form_id %>
+  <%= hidden_field_tag "other_intakes" %>
+  <div class="box mt15 pRelative">
+    <ul class="list-upload list-upload-mb">
+      <li>
+        <div class="greenBox">Create<br />New Case</div>
+        <div class="darkBoxGray">
+          <h6 class="selectHeading"><span>1</span> Case Number</h6>
+          <%= f.select :prefix,options_for_select(CasePrefix.all.collect{|prefix| [prefix.prefix]},:selected => f.object.prefix),{},:style => 'padding: 7px;' %>
+          <%= f.text_field :extension,:style => "width:135px;" %>
+          <div style="width:300px;">
+            <%= validation_error(@case.errors["extension"]) %>
+          </div>
+        </div>
+        <div class="darkBoxGray lightBoxGray">
+          <h6 class="selectHeading"><span>2</span> CASE NAME</h6>
+          <%= f.text_field :case_name,:class=>"input-selectFile", :id=>"case-name" %>
+          <div style="width:200px;">
+            <%= validation_error(@case.errors["case_name"]) %>
+          </div>
+          <div class="btn-createnew" >
+            <button class="btn-submit" title="CONTINUE" style="border:none;background: none;">Save</button><em></em>
+          </div>	
+        </div>
+        <div class="clearFix"></div>
+      </li>
+    </ul>
+  <% end %>
+
+</div>
+<script>
+  $(".btn-submit").click(function() {
+    var st = false;
+    var intake_id;
+    $("input.unique").each(function() {
+      if ($(this).is(":checked")) {
+        st = true;
+        intake_id = $(this).val();
+      }
+    });
+    if (st == true) {
+      $("#case_intake_form_id").val(intake_id);
+      return true;
+    } else {
+      alert("Select intake form in the above box");
+      return false;
+    }
+  });
+</script>

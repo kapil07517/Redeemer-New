@@ -1,0 +1,40 @@
+<div class="content">
+  <ul class="list-login">
+    <% if !current_user %>
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <li>
+          <p><%= f.email_field :email, :class => "input-email", :title => "Email", :placeholder => "Email" %></p>
+        </li>
+        <li>
+          <p><%= f.password_field :password, :class => "input-password", :title => "Password", :placeholder => "Password" %></p>
+          <a class="forgetPassword" href="/users/password/new" title="Reset Password?">Reset Password?</a>
+        </li>
+        <li>
+          <div class="btn-createnew">
+            <input class="btn-submit" type="submit" title="Login" value="login" name="" /><em></em>
+          </div>
+        </li>
+      <% end %>
+    <% else %>
+      <li>
+        <p><input class="input-email" type="text" title="Search" name="" /></p>
+        <label class="text-search">Search</label>
+      </li>
+    <% end %>
+  </ul>
+  <h5>REDEEMER <strong>COUNSELLING SERVICES</strong></h5>
+  <nav id="navigation">
+    <ul>
+      <% if !current_user %>
+        <li class="active"><a title="WELCOME" href="/">WELCOME</a></li>
+      <% else %>
+        <li class=<%= (params[:controller] == "client/dashboards" and params[:action] == "index") ? "active" : "" %>><%= link_to "WELCOME", "/", :title => "WELCOME" %></li>
+        <li class=<%= (params[:controller] == "settings" and params[:action] == "edit") ? "active" : "" %>><%= link_to 'INFORMATION',edit_setting_path(:role => current_user.role,:id => current_user.id) %></li>
+        <% if current_user.role == 'client' %><li class=<%= (params[:controller] == "client/intakes") ? "active" : "" %>><%= link_to "INTAKE FORMS", "/client/intakes", :title => "INTAKE FORMS" %></li><% end %>
+        <li></li>
+        <li></li>
+      <% end %>
+    </ul>
+  </nav>
+  <div class="clearFix"></div>
+</div>

@@ -1,0 +1,147 @@
+<%= form_for @medical,:url => medical_information_client_minor_path(@minor,@medical) do |f| %>
+
+  <ul class="list-steps">
+    <li class="step-1">
+      <span>1</span>
+      <p>COUNSELING INFORMATION</p>
+    </li>
+    <li class="step-2 active">
+      <span>2</span>
+      <p>MEDICAL INFORMATION</p>
+    </li>
+    <li class="step-3">
+      <span>3</span>
+      <p>PERSONAL BACKGROUND</p>
+    </li>
+  </ul>
+  <h1 class="icon-no1">MEDICAL / HEALTH HISTORY</h1>
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>How would you rate your child's current physical health?</div>
+      <div>
+        <div class="commonr">
+          <div class="column-medical"><%= f.radio_button :rate_your_child_p_health, "excellent", :id=>"checkbox_box_43" %><label for="checkbox_box_43" class="cssLabel"><span></span>EXCELLENT</label></div>
+          <div class="column-medical"><%= f.radio_button :rate_your_child_p_health, "good", :id=>"checkbox_box_44" %><label for="checkbox_box_44" class="cssLabel"><span></span>GOOD</label></div>
+        </div>
+        <div class="commonr">
+          <div class="column-medical"><%= f.radio_button :rate_your_child_p_health, "fair", :id=>"checkbox_box_45" %><label for="checkbox_box_45" class="cssLabel"><span></span>FAIR</label></div>
+          <div class="column-medical"><%= f.radio_button :rate_your_child_p_health, "poor", :id=>"checkbox_box_46" %><label for="checkbox_box_46" class="cssLabel"><span></span>POOR</label></div>
+        </div>
+      </div>			
+    </div>
+    <hr />			
+    <div class="staffrow">
+      <div>Date of last physical exam</div>
+      <div>
+         <%= f.date_select :date_of_last_p_exam,:start_year => 1930 %>
+      </div>
+    </div>	
+    <hr />
+    <div class="staffrow">
+      <div>Is the child complaining of any physical problems? <br><em class="subheading-medical">(e.g. headaches, body aches, stomach problems etc.)</em></div>
+      <div>
+        <%= f.radio_button :child_complaining_of_prob,"yes",:id => "checkbox_box_47"%><label for="checkbox_box_47" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :child_complaining_of_prob,"no",:id => "checkbox_box_48"%><label for="checkbox_box_48" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>If YES, please explain</div>
+      <div><%= f.text_area :p_explain,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Previous hospitalizations for medical reasons:</div>
+      <div>
+        <%= f.fields_for :medical_reasons do |b| %>
+          <p><%= b.text_field :previous_hospital %></p>
+           <%= b.date_select :previous_hospital_date,:start_year => 1930 %>
+        <% end %>
+      </div>
+      <div style="float: right;">
+        <%= link_to_add_fields "Plus", f, :medical_reasons  %>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Please list any medical conditions or disabilites, including learning disabilites of the child</div>
+      <div><%= f.text_area :list_medical_cond_child,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Has the child ever been diagnosed with or treated for mental illness?</div>
+      <div>
+        <%= f.radio_button :child_mental_illness,"yes",:id => "checkbox_box_49"%><label for="checkbox_box_49" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :child_mental_illness,"no",:id => "checkbox_box_50"%><label for="checkbox_box_50" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>If YES, please explain and list any know conditions.</div>
+      <div><%= f.text_area :e_known_cond,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Has anyone in the family been diagnosed or treated for any type of mental illness?</div>
+      <div>
+        <%= f.radio_button :any_one_family_diagnosized,"yes",:id => "checkbox_box_51"%><label for="checkbox_box_51" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :any_one_family_diagnosized,"no",:id => "checkbox_box_52"%><label for="checkbox_box_52" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Has the child been to counseling before?</div>
+      <div>
+        <%= f.radio_button :child_before_counseling,"yes",:id => "checkbox_box_53"%><label for="checkbox_box_53" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :child_before_counseling,"no",:id => "checkbox_box_54"%><label for="checkbox_box_54" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>If YES, for how long and what reason?</div>
+      <div>
+        <p><%= f.select :how_long,%w(duration) %></p>
+        <%= f.text_field :reason, :rows => 4,:placeholder=>"REASON" %>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Please list name and location of previous counselor</div>
+      <div>
+        <p> <%= f.text_field :name_of_prev_counselor, :placeholder=>"NAME" %></p>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+  <h1 class="icon-no2">MEDICATIONS</h1>
+  <div class="boxGray">
+    <div class="table-medications">
+      <table class="table-roomavailability" cellpadding="0" cellspacing="0" width="100%" border="0">
+        <tr>
+          <td>MEDICATIONS</td>
+          <td>DOSAGE</td>
+        </tr>
+        <%= f.fields_for :medications do |b| %>
+          <tr>
+            <td><%= b.text_field :medician,:class => "input-name" %></td>
+            <td><%= b.text_field :dosage,:class => "input-name" %></td>
+          </tr>
+        <% end %>
+      </table>
+      <div style="margin-left:2px;">
+        <%= link_to_add_fields "Plus", f, :medications  %>
+      </div>
+      <div class="clearFix"></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div>
+    <div class="btn-row">
+      <div class="btn-createnew"><input type="submit" value="Save" title="Save" class="btn-submit"><em></em></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="clearFix"></div>
+
+<% end %>

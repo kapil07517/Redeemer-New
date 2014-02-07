@@ -1,0 +1,6 @@
+<%= form_for(["admin", @case_prefix], :remote => true) do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :prefix %>
+  <%= f.text_field :description %>
+  <%= f.submit :add %>
+<% end %>

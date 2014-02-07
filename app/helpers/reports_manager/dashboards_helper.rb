@@ -1,0 +1,2 @@
+module ReportsManager::DashboardsHelper
+end

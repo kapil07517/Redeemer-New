@@ -1,0 +1,2 @@
+module AdminDirector::DashboardsHelper
+end

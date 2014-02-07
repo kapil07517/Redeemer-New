@@ -1,0 +1,145 @@
+<ul class="list-steps">
+  <li class="step-1">
+    <span>1</span>
+    <p>COUNSELING INFORMATION</p>
+  </li>
+  <li class="step-2 active">
+    <span>2</span>
+    <p>MEDICAL INFORMATION</p>
+  </li>
+  <li class="step-3">
+    <span>3</span>
+    <p>PERSONAL BACKGROUND</p>
+  </li>
+</ul>
+<%= form_for @medical,:url => medical_information_client_individual_path(@intake_form,@medical) do |f| %>
+  <h1 class="icon-no1">MEDICAL / HEALTH HISTORY</h1>
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>How would you rate your current physical health?</div>
+      <div>
+        <%= f.radio_button :rate_your_current_p_health,"excellent",:id=>"checkbox_box_115" %><label for="checkbox_box_115" class="cssLabel"><span></span>EXCELLENT</label>
+        <%= f.radio_button :rate_your_current_p_health,"good",:id=>"checkbox_box_116" %><label for="checkbox_box_116" class="cssLabel"><span></span>GOOD</label>
+        <%= f.radio_button :rate_your_current_p_health,"fair",:id=>"checkbox_box_117" %><label for="checkbox_box_117" class="cssLabel"><span></span>FAIR</label>
+        <%= f.radio_button :rate_your_current_p_health,"poor",:id=>"checkbox_box_118" %><label for="checkbox_box_118" class="cssLabel"><span></span>POOR</label>
+      </div>			
+    </div>
+    <hr />			
+    <div class="staffrow">
+      <div>Date of last physical exam</div>
+      <div>
+         <%= f.date_select :date_of_last_p_exam,:start_year => 1930 %>
+      </div>
+    </div>	
+    <hr />
+    <div class="staffrow">
+      <div>Are you currently experiencing any physical problems? <br><em class="subheading-medical">(e.g. headaches, body aches, stomach problems etc.)</em></div>
+      <div>
+        <%= f.radio_button :e_physical_problems,'yes',:id=>"checkbox_box_119" %><label for="checkbox_box_119" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :e_physical_problems,'no',:id=>"checkbox_box_120" %><label for="checkbox_box_120" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>If YES, please explain</div>
+      <div><%= f.text_area :p_explain,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Previous hospitalizations for medical reasons:</div>
+      <div>
+        <%= f.fields_for :medical_reasons do |b| %>
+          <p><%= b.text_field :previous_hospital %></p>
+           <%= b.date_select :previous_hospital_date,:start_year => 1930 %>
+        <% end %>
+      </div>
+      <div style="float: right;">
+        <%= link_to_add_fields "Plus", f, :medical_reasons  %>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Have you ever been hospitalized for psychiatric purposes?</em></div>
+      <div>
+        <%= f.radio_button :hospitalized_for_physical_purposes,"yes",:id=>"checkbox_box_121" %><label for="checkbox_box_123" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :hospitalized_for_physical_purposes,"no",:id=>"checkbox_box_122" %><label for="checkbox_box_124" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>If YES, please explain including hospital location and dates.</div>
+      <div><%= f.text_area :hospital_location_and_dates,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Have you ever been to counseling before?</em></div>
+      <div>
+        <%= f.radio_button :counseling_before,'yes',:id=>"checkbox_box_123" %><label for="checkbox_box_123" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :counseling_before,'no',:id=>"checkbox_box_124" %><label for="checkbox_box_124" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />			
+    <div class="staffrow">
+      <div>Permission to contact previous counselors:</div>
+      <div>
+        <%= f.radio_button :permission_to_previous_counsellors,'yes',:id=>"checkbox_box_125" %><label for="checkbox_box_125" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :permission_to_previous_counsellors,'no',:id=>"checkbox_box_126" %><label for="checkbox_box_126" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Please list names of previous therapists including dates and contact number:</div>
+      <div>
+        <%= f.fields_for :therapists do |b| %>
+          <p><%= b.text_field :full_name,:class => "input-name" %></p>
+          <p>
+            <%= b.text_field :location,:class => "input-name" %>
+          </p>
+           <%= b.date_select :therapy_date,:start_year => 1930 %>
+        <% end %>
+      </div>
+      <div style="float: right;">
+        <%= link_to_add_fields "Plus", f, :therapists  %>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>How do you feel about the results of your previous counseling?</div>
+      <div><%= f.text_area :results_of_previous_counseling,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>What do you hope to gain from counseling?</div>
+      <div><%= f.text_area :gain_from_counseling,:rows => 4 %></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+
+  <h1 class="icon-no2">MEDICATIONS</h1>
+  <div class="boxGray">
+    <div class="table-medications">
+      <table class="table-roomavailability" cellpadding="0" cellspacing="0" width="100%" border="0">
+        <tr>
+          <td>MEDICATIONS</td>
+          <td>DOSAGE</td>
+        </tr>
+        <%= f.fields_for :medications do |b| %>
+          <tr>
+            <td><%= b.text_field :medician,:class => "input-name" %></td>
+            <td><%= b.text_field :dosage,:class => "input-name" %></td>
+          </tr>
+        <% end %>
+      </table>
+      <div style="margin-left:2px;">
+        <%= link_to_add_fields "Plus", f, :medications  %>
+      </div>
+      <div class="clearFix"></div>
+    </div>
+    <div class="btn-row">
+      <div class="btn-createnew"><input type="submit" value="Save" title="Save" class="btn-submit"><em></em></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="clearFix"></div>
+<% end %>

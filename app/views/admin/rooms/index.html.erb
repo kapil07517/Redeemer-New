@@ -1,0 +1,17 @@
+<div class="graybg">
+  <h1>System Settings</h1>
+  <div class="tableBox">
+    <div class="tablerow">
+      <div class="column">ROOM NAME</div>
+      <div class="column">DESCRIPTION</div>
+      <div class="column">STATUS</div>
+      <div class="column">ACTIONS</div>
+    </div>
+    <div id="rooms">
+      <%= render :partial => 'rooms', :locals => {:rooms => @rooms} %>
+    </div>
+  </div>
+  <div id="rooms_form">
+    <%= render "form" %>
+  </div>
+</div>

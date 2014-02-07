@@ -1,0 +1,17 @@
+<% rooms.each do |room| %>
+  <div id="cp_<%= room.id %>">
+    <div class="column"><%= room.name %></div>
+    <div class="column"><%= room.description %></div>
+    <div class="column">
+      <% if room.status == true %>
+        <input type='checkbox' name='checkbox[]' value='<%= room.status %>' id="room-status_<%= room.id %>" onclick="update_room_status('<%= room.id %>')" checked="checked" />
+      <% else %>
+        <input type='checkbox' name='checkbox[]' value='<%= room.status %>' id="room-status_<%= room.id %>" onclick="update_room_status('<%= room.id %>')" />
+      <% end %>
+    </div>
+    <div class="column">
+      <%= link_to "Edit", edit_admin_room_path(room.id), :remote => true, :title => "Edit", :class => "btn-green" %>
+      <%= link_to "Delete", ["admin", room], :method => :delete, :confirm => "Are you sure", :remote => true, :title => "Delete", :class => "btn-delete" %>
+    </div>
+  </div>
+<% end %>

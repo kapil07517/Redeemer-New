@@ -1,0 +1,206 @@
+<div class="box pRelative">
+  <div class="commonr row-intake">
+    <div class="columnIntake"><%= @intake_form.intake_type %> INTAKE</div>
+  </div>
+  <div class="commonrow">
+    <div class="columnPersonal"><a title="PERSONAL" href="#">PERSONAL</a></div>
+    <div class="columnMedical"><a title="COUNSELING INFO" href="#">COUNSELING INFO</a>    |    <a title="MEDICAL" href="#">MEDICAL</a></div>
+    <div class="columnViewall"><a title="view all" href="#">view all</a></div>
+  </div>
+  <ul id="collexp-menu_1" class="collexpMenu list-intale">
+    <li>
+      <div title="CONTACT INFORMATION" class="expanded">1. COUNSELING INFORMATION</div>
+      <ul>
+        <li>
+          <ul class="list-contactinfo">
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+                <li><span>ADDRESS:</span><br>  <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+                <li><span>SEX:</span><br><%= @intake_form.gender %></li>
+                <li><span>DATE OF BIRTH:</span><br><%= @intake_form.date_of_birth %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>MARITAL STATUS:</span><br><%= @intake_form.marital_status %></li>
+                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+                <li><span>LIVING WITH:</span><br> <%= @intake_form.living_with %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+              </ul>
+            </li>
+          </ul>
+        </li>								
+      </ul>
+    </li>
+
+    <li>
+      <div title="CONTACT INFORMATION" class="expanded">2. MEDICAL INFORMATION</div>
+      <ul>
+        <li>
+          <ul class="list-contactinfo">
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+                <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+                <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
+                <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
+                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+                <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+              </ul>
+            </li>
+          </ul>
+        </li>								
+      </ul>
+    </li>
+
+    <li>
+      <div title="CONTACT INFORMATION" class="expanded">3. CONTACT INFORMATION</div>
+      <ul>
+        <li>
+          <ul class="list-contactinfo">
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+                <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+                <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
+                <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
+                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+                <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+              </ul>
+            </li>
+          </ul>
+        </li>								
+      </ul>
+    </li>
+
+    <li>
+      <div title="EMERGENCY CONTACT" class="expanded">4.   EMERGENCY CONTACT</div>
+      <ul>
+        <li>
+          <div class="table-emergencyContact">
+            <div class="row">
+              <div class="column">NAME:</div>
+              <div class="column">RELATIONSHIP:</div>
+              <div class="column">PHONE:</div>
+              <div class="column">EMAIL:</div>
+            </div>	
+            <div class="row">
+              <div class="column"><%= @intake_form.contact_name %></div>
+              <div class="column"><%= @intake_form.relationship %></div>
+              <div class="column"><%= @intake_form.contact_no %></div>
+              <div class="column"><%= @intake_form.contact_email %></div>
+            </div>	
+          </div>									
+        </li>
+      </ul>
+    </li>
+    <li>
+      <div title="RELIGIOUS BACKGROUND" class="expanded">5.   RELIGIOUS BACKGROUND</div>
+      <ul>
+        <li>
+          <ul class="list-normal list-religious">
+            <li>
+              <span>BELIEVE IN GOD</span><br>
+              <%= @intake_form.believe_in_god %>
+            </li>
+            <li>
+              <span>RELIGIOUS PREFERENCE</span><br>
+              <%= @intake_form.religious_preference %>
+            </li>
+            <li>
+              <span>CHURCH CURRENTLY ATTENDING</span><br>
+              <%= @intake_form.current_church %>
+            </li>
+            <li>
+              <span>MEMBER OF RPC</span><br>
+              <%= @intake_form.member_of_redeemer_church %>
+            </li>
+            <li>
+              <span>INFLUENCE RELIGION ON DAILY LIFE</span><br>
+              <%= @intake_form.day_to_day_activity %>
+            </li>	
+          </ul>
+        </li>
+      </ul>
+    </li>						
+  </ul>
+  <% unless @intakes.empty?  %>
+    <div class="popupBox popupBox2 box">
+      <div class="popupInnerBox">
+        <table class="table-borLess table-copleted" cellpadding="0" cellspacing="0" width="100%" border="0">
+          <tr>
+            <td colspan="3">
+              <h6 class="compHeading">OTHER PARTIES SUBMITTED</h6>
+              <a class="icon-close" href="javascript:void(0);" title="Close">Close</a>
+            </td>
+          </tr>
+          <tr class="whitecolor">
+            <td></td>
+            <td>NAME</td>
+            <td>DOB <%= @intakes[0].empty? %></td>
+          </tr>
+          <% @intakes.each do |partner|  %>
+            <tr>
+              <td><input type="checkbox" value="<%= partner[3] %>" name="intake_ids[]" onclick="javascript:intake(this)"/></td>
+              <td><strong><%= partner[0] %></strong></td>
+              <td><%= partner[1] %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="3">
+              <input type="submit" title="Ok" value="Ok" />
+              <input type="submit" title="Cancel" value="Cancel" />
+            </td>
+          </tr>
+        </table>	
+      </div>
+    </div>
+  <% end %>
+  <div class="clearFix"></div>
+</div>	
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('#collexp-menu_1 > li > div.expnd + ul').slideToggle('medium');
+      $('#collexp-menu_1 > li > div').click(function() {
+        $('#collexp-menu_1 > li > div.expnd').not(this).toggleClass('expnd').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+        $(this).toggleClass('expnd').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+      });
+    }, 250);
+    $(".icon-close, input[type='submit']").click(function() {
+      $(".popupBox").hide();
+    });
+  });
+
+</script>

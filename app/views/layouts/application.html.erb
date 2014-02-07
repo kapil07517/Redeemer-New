@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redeemer Counseling Services</title>
+    <%= stylesheet_link_tag    "application","default", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render :partial => "layouts/client/header" %>
+    </header>
+    <article>
+      <div class="content">
+        <% ['notice', 'error', 'warning'].each do |f|%>
+          <% if flash[f.to_sym] %>
+            <div class="<%= f %>"><%=  flash[f.to_sym] %></div>
+          <% end %>
+        <% end %>
+        <%= yield %>
+        <div class="clearFix"></div>
+      </div> <!-- /container -->
+    </article>
+    <footer>
+      <%= render :partial => "layouts/client/footer" %>
+    </footer>
+  </body>
+</html>

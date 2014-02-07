@@ -1,0 +1,226 @@
+<%= form_for @minor,:url => minor_information_client_individual_path(@intake_form,@minor) do |f| %>
+  <%= f.hidden_field :intake_type,:value => @intake_type %>
+  <ul class="list-steps">
+    <li class="step-1 active">
+      <span>1</span>
+      <p>COUNSELING INFORMATION</p>
+    </li>
+    <li class="step-2">
+      <span>2</span>
+      <p>MEDICAL INFORMATION</p>
+    </li>
+    <li class="step-3">
+    </li>
+    <span>3</span>
+    <p>PERSONAL BACKGROUND</p>
+  </ul>
+  <h1 class="icon-no1">PARENT / GUARDIAN INFORMATION</h1>
+  <div class="boxGray">
+    <%= f.error_messages %>
+    <div class="staffrow">
+      <div>MARITAL STATUS</div>
+      <div>
+        <%= f.radio_button :marital_status, "engages", :id=>"checkbox_box_1" %>	<label for="checkbox_box_1" class="cssLabel"><span></span>Engages</label>
+        <%= f.radio_button :marital_status, "married", :id=>"checkbox_box_2" %><label for="checkbox_box_2" class="cssLabel"><span></span>MARRIED</label>
+        <%= f.radio_button :marital_status, "saperated", :id=>"checkbox_box_3" %><label for="checkbox_box_3" class="cssLabel"><span></span>SEPARATED</label>
+        <%= f.radio_button :marital_status, "widowed", :id=>"checkbox_box_4" %><label for="checkbox_box_4" class="cssLabel"><span></span>Widowed</label>
+      </div>			
+    </div>
+    <div class="staffrow">
+      <div>DATE OF MARRIAGE OR SEPARATION</div>
+      <div>
+         <%= f.date_select :date_of_marriage,:start_year => 1930 %>
+      </div>			
+    </div>
+    <div class="staffrow">
+      <div>NUMBER OF MARRIAGES</div>
+      <div>
+        <%= f.text_field :no_of_marriages ,:class=>"input-noMarriages"%>	
+        <hr />
+      </div>			
+    </div>
+    <div class="staffrow">
+      <div>CHILDREN</div>
+      <div>
+        <ul class="list-children" style="width:660px;">
+          <%= f.fields_for :childrens do |b| %>
+            <li>
+              CHILD <%= b.text_field :child_name,:class => "input-child" %>
+              <%= b.radio_button :gender,'male' %><label for="checkbox_box_5" class="cssLabel"><span></span>MALE</label>
+              <%= b.radio_button :gender,'female' %><label for="checkbox_box_6" class="cssLabel"><span></span>FEMALE</label>
+              &nbsp;&nbsp;DOB 
+               <%= b.date_select :date_of_birth,:start_year => 1930 %>
+            </li>
+          <% end %>
+        </ul>
+        <div>
+          <%= link_to_add_fields "Plus", f, :childrens  %>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <h4>OTHER CUSTODIAL GUARDIAN</h4>	
+    <div class="staffrow">
+      <div>NAME:</div>
+      <div>
+        <%= f.text_field :guardian_name%>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>ADDRESS:</div>
+      <div>
+        <p><%= f.text_field :guardian_address %></p>
+        <p><%= f.text_field :guardian_text %></p>
+        <%= f.text_field :g_city ,:class=>"input-name"%>
+        <%= f.text_field :g_state ,:class=>"input-midname"%>
+        <%= f.text_field :g_zip ,:class=>"input-name"%>
+        <hr />
+      </div>				
+    </div>
+    <div class="staffrow">
+      <div>CONTACT:</div>
+      <div>
+        <h5>DO YOU HAVE CONSENT FROM THE OTHER CUSTODIAL PARENT FOR TREATMENT OF SAID CHILD? <br /> <em>If no, this will be required by the therapist before counseling may begin.</em></h5>
+        <%= f.radio_button :consent_from_other_parent,"yes",:id => "checkbox_box_13"%><label for="checkbox_box_13" class="cssLabel"><span></span>YES</label>
+        <%= f.radio_button :consent_from_other_parent,"no",:id => "checkbox_box_14"%><label for="checkbox_box_14" class="cssLabel"><span></span>NO</label>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>How much contact does the child have with his/her biological mother/father?</div>
+      <div><%= f.text_area :how_much_contact_child_have,:rows => 4 %></div>
+    </div>	
+    <hr />
+    <div class="clearFix"></div>
+  </div>
+  <div class="heading-complete">COMPLETE ALL REMAINING INFORMATION ACCORDING TO THE CHILD COMING FOR TREATMENT.</div>
+  <h1 class="icon-no1">MINOR COUSNELING INFORMATON</h1>
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>NAME:</div>
+      <div>
+        <%= f.text_field :m_name%>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>DATE OF BIRTH</div>
+      <div>
+         <%= f.date_select :m_date_of_birth,:start_year => 1930 %>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>LIVES WITH</div>
+      <div><%= f.text_field :m_lives_with %></div>
+    </div>
+    <div class="staffrow">
+      <div>SCHOOL</div>
+      <div><%= f.text_field :m_school %></div>
+    </div>
+    <div class="staffrow">
+      <div>GRADE</div>
+      <div>
+        <%= f.text_field :m_grade1 ,:class=>"input-name"%>
+        <%= f.text_field :m_grade2 ,:class=>"input-midname"%>
+        <%= f.text_field :m_grade3 ,:class=>"input-name"%>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>ACTIVITIES AND INTERESTS</div>
+      <div><%= f.text_area :m_activities_and_interests,:rows => 4 %></div>
+    </div>	
+    <hr />
+    <div class="staffrow">
+      <div>What concerns about the child have led you to pursue counseling?</div>
+      <div><%= f.text_area :concerns_about_child_have,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Where are your concerns causing the most problems for YOU?</div>
+      <div>
+        <p>
+          <%= f.radio_button :your_concern_problems, "home", :id=>"checkbox_box_39" %><label for="checkbox_box_39" class="cssLabel"><span></span>HOME</label>
+          <%= f.radio_button :your_concern_problems, "work", :id=>"checkbox_box_40" %><label for="checkbox_box_40" class="cssLabel"><span></span>WORK</label>
+          <%= f.radio_button :your_concern_problems, "god", :id=>"checkbox_box_41" %><label for="checkbox_box_41" class="cssLabel"><span></span>GOD</label>
+          <%= f.radio_button :your_concern_problems, "marriage", :id=>"checkbox_box_42" %><label for="checkbox_box_42" class="cssLabel"><span></span>MARRIAGE</label>
+        </p>
+        <%= f.radio_button :your_concern_problems, "other", :id=>"checkbox_box_38" %><label for="checkbox_box_38" class="cssLabel"><span></span>OTHER</label><%= f.text_field :problems_expl,:class=>"input-other" %>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Where are these concerns causing the most problems for the CHILD?</div>
+      <div>
+        <p>
+          <%= f.radio_button :concerns_for_child, "home", :id=>"checkbox_box_35" %><label for="checkbox_box_35" class="cssLabel"><span></span>HOME</label>
+          <%= f.radio_button :concerns_for_child, "school", :id=>"checkbox_box_36" %><label for="checkbox_box_36" class="cssLabel"><span></span>SCHOOL</label>
+          <%= f.radio_button :concerns_for_child, "friends", :id=>"checkbox_box_37" %><label for="checkbox_box_37" class="cssLabel"><span></span>FRIENDS</label>
+        </p>
+        <%= f.radio_button:concerns_for_child, "other", :id=>"checkbox_box_38" %><label for="checkbox_box_38" class="cssLabel"><span></span>OTHER</label><%= f.text_field :child_problem_expl,:class=>"input-other" %>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>When did the present concerns become a problem for the child?</div>
+      <div><%= f.text_area :present_concerns_child,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Have any of the concerns of the child been identified by others?</div>
+      <div><%= f.text_area :any_other_ident_concerns,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Please indicate which of the following areas are currently problems for the child.</div>
+      <div>
+        <p>CHECK ALL THAT APPLY:</p>
+        <ul class="list-indicate">
+          <li>
+            <%= check_box_tag "minor[following_areas_child_prob][]", "Crying Spells",false, :id=>"checkbox_box_15" %><label for="checkbox_box_15" class="cssLabel"><span></span>Crying Spells</label>
+          </li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Excessive fears or anxiety",false, :id=>"checkbox_box_16" %><label for="checkbox_box_16" class="cssLabel"><span></span>Excessive fears or anxiety</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficult being awa from specific family members",false, :id=>"checkbox_box_17" %><label for="checkbox_box_17" class="cssLabel"><span></span>Difficult being awa from specific family members</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Angry feelings",false, :id=>"checkbox_box_18" %><label for="checkbox_box_18" class="cssLabel"><span></span>Angry feelings</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Hearing Voices",false, :id=>"checkbox_box_19" %><label for="checkbox_box_19" class="cssLabel"><span></span>Hearing Voices</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Getting into trouble at school/play",false, :id=>"checkbox_box_20" %><label for="checkbox_box_20" class="cssLabel"><span></span>Getting into trouble at school/play</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Temper Tantrums /Angry outbursts",false, :id=>"checkbox_box_21" %><label for="checkbox_box_21" class="cssLabel"><span></span>Temper Tantrums /Angry outbursts</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficulty falling asleep/inability to sleep at night",false, :id=>"checkbox_box_22" %><label for="checkbox_box_22" class="cssLabel"><span></span>Difficulty falling asleep/inability to sleep at night</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficulty making or keeping friends",false, :id=>"checkbox_box_23" %><label for="checkbox_box_23" class="cssLabel"><span></span>Difficulty making or keeping friends</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Decreased/Increased Appetite",false, :id=>"checkbox_box_24" %><label for="checkbox_box_24" class="cssLabel"><span></span>Decreased/Increased Appetite</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Loss of interest in usual activities",false, :id=>"checkbox_box_25" %><label for="checkbox_box_25" class="cssLabel"><span></span>Loss of interest in usual activities</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Hyperactivity",false, :id=>"checkbox_box_26" %><label for="checkbox_box_26" class="cssLabel"><span></span>Hyperactivity</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Bullying/Picking fights",false, :id=>"checkbox_box_27" %><label for="checkbox_box_27" class="cssLabel"><span></span>Bullying/Picking fights</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Refusal to respond to authority",false, :id=>"checkbox_box_28" %><label for="checkbox_box_28" class="cssLabel"><span></span>Refusal to respond to authority</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Nightmares",false, :id=>"checkbox_box_29" %><label for="checkbox_box_29" class="cssLabel"><span></span>Nightmares</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Obsession/Compulsion with specific activites",false, :id=>"checkbox_box_30" %><label for="checkbox_box_30" class="cssLabel"><span></span>Obsession/Compulsion with specific activites</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Lack of Motivation",false, :id=>"checkbox_box_31" %><label for="checkbox_box_31" class="cssLabel"><span></span>Lack of Motivation</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Lacking self-confidence",false, :id=>"checkbox_box_32" %><label for="checkbox_box_32" class="cssLabel"><span></span>Lacking self-confidence</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Issues with food and/or weight",false, :id=>"checkbox_box_33" %><label for="checkbox_box_33" class="cssLabel"><span></span>Issues with food and/or weight</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Other",false, :id=>"checkbox_box_34" %><label for="checkbox_box_34" class="cssLabel"><span></span>Other:</label></li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>What do you hope your child will gain from counseling?</div>
+      <div><%= f.text_area :child_gain_counseling,:rows => 4 %></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+  <h1 class="icon-no3">COUNSELOR PREFERENCE</h1>
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>Counselor Preference</div>
+      <div><%= f.text_field :counselor_preference %></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="boxGray">
+    <div class="btn-row">
+      <div class="btn-createnew"><input type="submit" class="btn-submit" title="Submit" value="Submit"><em></em></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="clearFix"></div>
+
+<% end %>

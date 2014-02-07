@@ -1,0 +1,34 @@
+<h1 class="icon-no1">Sign In</h1>
+<div class="boxGray">
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <% flash.each do |name, msg| %>
+      <% if msg.class == Array %>
+        <% msg.each do |message| %>
+          <%= content_tag :div, message, :id => "flash_#{name}" %>
+        <% end %>
+      <% else %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+    <% end %>
+    <div class="staffrow">
+      <div>Email:</div>
+      <div><%= f.email_field :email, :autofocus => true %></div>
+    </div>
+    <div class="staffrow">
+      <div>Password:</div>
+      <div><%= f.password_field :password %></div>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="column-medical">
+        <%= f.check_box :remember_me , :id=>"checkbox_box_3" %>&nbsp;&nbsp;<label class="cssLabel" for="checkbox_box_3">Remember Me</label>
+      </div>
+    <% end -%>
+
+    <div><%= f.submit "Sign in", :class => 'btn btn-primary' %></div>
+  <% end %>
+
+  <div id="devise_links">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

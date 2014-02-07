@@ -1,0 +1,2 @@
+module ClinicalSupervisor::DashboardsHelper
+end

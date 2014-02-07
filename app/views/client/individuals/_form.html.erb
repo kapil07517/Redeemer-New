@@ -1,0 +1,92 @@
+<%= f.hidden_field :intake_type,:value => @intake_type %>
+<div class="boxGray">
+  <%= f.error_messages %>
+  <div class="staffrow">
+    <div>What Concerns Have led you to Pursue Counseling?</div>
+    <div>
+      <%= f.text_area :concern_led,:rows => 4 %>
+    </div>
+  </div>
+  <hr />
+  <div class="staffrow">
+    <div>Where are your concerns causing the most problems for you?</div>
+    <div>
+      <p>
+        <%= f.radio_button :concern_counseling_problems,"home",:id => "checkbox_box_106" %><label for="checkbox_box_106" class="cssLabel"><span></span>Home</label>
+        <%= f.radio_button :concern_counseling_problems,"work",:id => "checkbox_box_107" %><label for="checkbox_box_107" class="cssLabel"><span></span>Work</label>
+        <%= f.radio_button :concern_counseling_problems,"god",:id => "checkbox_box_108" %><label for="checkbox_box_108" class="cssLabel"><span></span>God</label>
+        <%= f.radio_button :concern_counseling_problems,"marriage",:id => "checkbox_box_109" %><label for="checkbox_box_109" class="cssLabel"><span></span>Marriage</label>
+      </p>
+      <%= f.radio_button :concern_counseling_problems,"other_relationships",:id => "checkbox_box_110" %><label for="checkbox_box_110" class="cssLabel"><span></span>Ohter Relationships</label>
+    </div>
+  </div>
+  <hr />
+  <div class="staffrow">
+    <div>When did your present concerns begin to be a problem for you?</div>
+    <div><%= f.text_area :present_concern,:rows => 4 %></div>
+  </div>
+  <hr />
+  <div class="staffrow">
+    <div>Have any of your concerns been identified by others?</div>
+    <div><%= f.text_area :have_any_concerns_identified,:rows => 4 %></div>
+  </div>
+  <hr />
+  <div class="staffrow">
+    <div>Please rate the severity of your present concerns on the following scale.</div>
+    <div>
+      <p>
+        <%= f.radio_button :rate_of_present_concern,"mild",:id => "checkbox_box_112" %><label for="checkbox_box_111" class="cssLabel"><span></span>Mild</label>
+        <%= f.radio_button :rate_of_present_concern,"moderate",:id => "checkbox_box_112" %><label for="checkbox_box_112" class="cssLabel"><span></span>Moderate</label>
+        <%= f.radio_button :rate_of_present_concern,"severe",:id => "checkbox_box_112" %><label for="checkbox_box_113" class="cssLabel"><span></span>Severe</label>
+      </p>
+      <%= f.radio_button :rate_of_present_concern,"total_incapacitating",:id => "checkbox_box_114" %><label for="checkbox_box_114" class="cssLabel"><span></span>Total Incapacitating</label>
+    </div>
+  </div>
+  <hr />
+  <h6 class="indicate">Indicate which Areas are Currently a Problem. <span>Please Select all  That Apply</span></h6>
+  <% i =136 %>
+  <% AREA_PROBLEMS.each do |problem| %>
+    <div class="diviedColumn">
+      <div class="w50"><%= check_box_tag "counseling[areas_of_problems][]","#{problem[0]}",false,:id => "checkbox_box_#{i}" %><label for="checkbox_box_<%= i %>" class="cssLabel"><span></span><%= problem[0] %></label>
+      </div>
+      <div class="w50"><%= check_box_tag "counseling[areas_of_problems][]","#{problem[1]}",false,:id => "checkbox_box_#{i+1}" %><label for="checkbox_box_<%= i+1 %>" class="cssLabel"><span></span><%= problem[1] %></label>
+      </div>
+    </div>
+    <% i = i+2 %>
+  <% end %>
+  <div class="clearFix"></div>
+</div>
+<hr />
+<h1 class="icon-no2">AVAILABIILITY <strong>Highlight all available times</strong></h1>
+<table class="table-roomavailability" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tr>
+    <td class='hour-column'>Time</td>
+    <% for hour in (8..21).to_a %>
+      <td><%= hour %></td>
+    <% end %>
+  </tr>
+  <% for date in (@start_date..@end_date) %>
+    <tr>
+      <td><%= date.strftime("%A").upcase %></td>
+      <% (8..21).each do |i| %>
+        <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i > 9 ? i : '0'+i.to_s}:00:00,#{date} #{i > 9 ? i : '0'+i.to_s}:59:59",false,:style => "display:none;" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<hr />
+<h1 class="icon-no3">COUNSELOR PREFERENCE <strong>Optional</strong></h1>
+<div class="boxGray">
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>Counselor Preference</div>
+      <div><%= f.text_field :counselor_preference %></div>
+    </div>
+    <div class="btn-row">
+      <div class="btn-createnew"><input class="btn-submit" type="submit" title="Submit" value="Submit" /><em></em></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="clearFix"></div>
+</div>
+<div class="clearFix"></div>

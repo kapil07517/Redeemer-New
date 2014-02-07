@@ -1,0 +1,22 @@
+<% if payers.present? %>
+  <div class="tableBox table-player">
+    <div class="tablerow">
+      <div class="column">Organization</div>
+      <div class="column">Email Id</div>
+      <div class="column">Phone No.</div>
+      <div class="column">Address.</div>
+      <div class="column">Contact</div>
+    </div>
+    <% payers.each do |payer| %>
+      <div class="tablerow">
+        <div class="column"><%= payer.name_of_org %></div>
+        <div class="column"><%= payer.email %></div>
+        <div class="column"><%= payer.phone_no %></div>
+        <div class="column"><%= payer.address %></div>
+        <div class="column"><%= payer.contact_person %></div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  No payers
+<% end %>

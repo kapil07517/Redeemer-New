@@ -1,0 +1,205 @@
+<div class="box pRelative">
+  <%= form_tag(assign_case_counselor_intake_coordinator_dashboards_path(:case_in => @case.id, :con => @counselor.id), :remote => true) do  %>
+    <div class="commonr row-intake">
+      <div class="columnIntake"><%= @intake_form.intake_type %> INTAKE</div>
+      <div class="columnOffice">
+        FOR OFFICE USE
+        <ul class="list-normal">
+          <li><%= radio_button_tag "status","urgent" %><a style="padding:0px" title="waistlist" href="#">urgent</a></li>
+          <li><%= radio_button_tag "status","confirm" %><a style="padding:0px" title="waistlist" href="#">confirm</a></li>
+          <li><%= radio_button_tag "status","waitlist" %><a style="padding:0px" title="waistlist" href="#">wait list</a></li>
+        </ul>
+      </div>
+      <div class="columnDate">
+        <div class="btn-createnew">
+          <%= submit_tag "save" %><em></em>
+        </div>
+        <p><%= Date.today.strftime("%b %d %Y") %><br><span>start date</span></p>
+      </div>
+    </div>
+    <div id="error" style="display: none; color: red;">Please enter start_at and end_at timings.</div>
+    <br/>
+  <% end %>
+  <div class="commonrow">
+    <div class="columnPersonal"><a title="PERSONAL" href="#">PERSONAL</a></div>
+    <div class="columnMedical"><a title="COUNSELING INFO" href="#">COUNSELING INFO</a>    |    <a title="MEDICAL" href="#">MEDICAL</a></div>
+    <div class="columnViewall"><a title="view all" href="#">view all</a></div>
+  </div>
+  <ul id="collexp-menu_1" class="collexpMenu list-intale">
+    <li>
+      <div title="CONTACT INFORMATION" class="expanded">1. COUNSELING INFORMATION</div>
+      <ul>
+        <li>
+          <ul class="list-contactinfo">
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+                <li><span>ADDRESS:</span><br>  <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+                <li><span>SEX:</span><br><%= @intake_form.gender %></li>
+                <li><span>DATE OF BIRTH:</span><br><%= @intake_form.date_of_birth %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>MARITAL STATUS:</span><br><%= @intake_form.marital_status %></li>
+                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+                <li><span>LIVING WITH:</span><br> <%= @intake_form.living_with %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+              </ul>
+            </li>
+          </ul>
+        </li>								
+      </ul>
+    </li>
+
+    <li>
+      <div title="CONTACT INFORMATION" class="expanded">2. MEDICAL INFORMATION</div>
+      <ul>
+        <li>
+          <ul class="list-contactinfo">
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+                <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+                <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
+                <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
+                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+                <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+              </ul>
+            </li>
+          </ul>
+        </li>								
+      </ul>
+    </li>
+
+    <li>
+      <div title="CONTACT INFORMATION" class="expanded">3. CONTACT INFORMATION</div>
+      <ul>
+        <li>
+          <ul class="list-contactinfo">
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+                <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+                <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
+                <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
+                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+                <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
+              </ul>
+            </li>
+            <li>
+              <ul class="list-normal list-religious">
+                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+              </ul>
+            </li>
+          </ul>
+        </li>								
+      </ul>
+    </li>
+
+    <li>
+      <div title="EMERGENCY CONTACT" class="expanded">4.   EMERGENCY CONTACT</div>
+      <ul>
+        <li>
+          <div class="table-emergencyContact">
+            <div class="row">
+              <div class="column">NAME:</div>
+              <div class="column">RELATIONSHIP:</div>
+              <div class="column">PHONE:</div>
+              <div class="column">EMAIL:</div>
+            </div>	
+            <div class="row">
+              <div class="column"><%= @intake_form.contact_name %></div>
+              <div class="column"><%= @intake_form.relationship %></div>
+              <div class="column"><%= @intake_form.contact_no %></div>
+              <div class="column"><%= @intake_form.contact_email %></div>
+            </div>	
+          </div>									
+        </li>
+      </ul>
+    </li>
+    <li>
+      <div title="RELIGIOUS BACKGROUND" class="expanded">5.   RELIGIOUS BACKGROUND</div>
+      <ul>
+        <li>
+          <ul class="list-normal list-religious">
+            <li>
+              <span>BELIEVE IN GOD</span><br>
+              <%= @intake_form.believe_in_god %>
+            </li>
+            <li>
+              <span>RELIGIOUS PREFERENCE</span><br>
+              <%= @intake_form.religious_preference %>
+            </li>
+            <li>
+              <span>CHURCH CURRENTLY ATTENDING</span><br>
+              <%= @intake_form.current_church %>
+            </li>
+            <li>
+              <span>MEMBER OF RPC</span><br>
+              <%= @intake_form.member_of_redeemer_church %>
+            </li>
+            <li>
+              <span>INFLUENCE RELIGION ON DAILY LIFE</span><br>
+              <%= @intake_form.day_to_day_activity %>
+            </li>	
+          </ul>
+        </li>
+      </ul>
+    </li>						
+  </ul>
+  <div class="clearFix"></div>
+</div>	
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('#collexp-menu_1 > li > div.expanded + ul').slideToggle('medium');
+      $('#collexp-menu_1 > li > div').click(function() {
+        $('#collexp-menu_1 > li > div.expanded').not(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+        $(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+      });
+    }, 250);
+  });
+
+  function assign_case_counselor(ids) {
+    $.ajax({
+      url: "/intake_coordinator/dashboards/assign_case_counselor",
+      data: {
+        ids: ids
+      },
+      method: 'POST'
+    });
+  }
+
+  $(document).ready(function() {
+    $('#start_at, #end_at').datetimepicker({
+      timepicker: true,
+      format: 'Y-m-d H:i'
+    });
+  });
+</script>

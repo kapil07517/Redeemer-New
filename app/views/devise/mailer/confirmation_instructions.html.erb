@@ -1,0 +1,13 @@
+<div id="mailers">
+  <p>Welcome <b><%= @email %>!</b></p>
+
+  <p>You can confirm your account email through the link below:</p>
+
+  <p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+</div>
+<style>
+  #mailers a:hover{
+    text-decoration: none;
+    color: red;
+  }
+</style>

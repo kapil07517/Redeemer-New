@@ -1,0 +1,6 @@
+<%= form_for(["admin", @room], :remote => true) do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :name %>
+  <%= f.text_field :description %>
+  <%= f.submit :add %>
+<% end %>

@@ -1,0 +1,68 @@
+<div class="box">
+  <h2>
+    Renewal Group Form
+    <input class="input-renewal" placeholder="SELECT RENEWAL GROUP" title="Select Renewal Group" type="text" />
+    <div class="clearFix"></div>
+  </h2>
+  <ul class="list-question">
+    <% for question in @renewal_groups %>
+      <li>
+        <p><%= question.question %></p>
+        <input title="Question 1" type="text" />
+      </li>
+    <% end %>
+    <a title="Plus" href="#"><%= image_tag("/assets/counselor/icon-plus.png") %></a>
+  </ul>
+  <div class="btn-createnew"><input title="Save" value="Save" type="submit" /><em></em></div>	
+  <div class="clearFix"></div>
+</div>
+<style>
+  h2 {
+    border-bottom: 1px solid #231F20;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  *::-moz-placeholder {
+    font-family: Arvo,Tahoma,sans-serif;
+    font-size: 12px;
+  }
+
+  input.input-renewal[type="text"] {
+    background: url("/assets/counselor/icon-arrow-right.png") no-repeat scroll 180px 10px rgba(0, 0, 0, 0);
+    float: right;
+    width: 185px;
+  }
+  input.input-renewal[type="text"], input.input-date[type="text"] {
+    padding: 7px 5px 3px 10px;
+  }
+
+  ul.list-question {
+    display: inline-block;
+    padding: 2% 0 0 4%;
+    width: 96%;
+  }
+
+  ul.list-question li {
+    float: left;
+    padding-bottom: 15px;
+    width: 50%;
+  }
+
+  .btn-createnew {
+    background-color: #A8CF75;
+    bottom: 30px;
+    color: #FFFFFF;
+    float: right;
+    margin-top: -3px;
+    padding: 3px 10px 4px;
+    position: relative;
+    right: -17px;
+    text-transform: uppercase;
+  }
+</style>

@@ -1,0 +1,18 @@
+<ul class="list-steps">
+  <li class="step-1 active">
+    <span>1</span>
+    <p>COUNSELING INFORMATION</p>
+  </li>
+  <li class="step-2">
+    <span>2</span>
+    <p>MEDICAL INFORMATION</p>
+  </li>
+  <li class="step-3">
+    <span>3</span>
+    <p>PERSONAL BACKGROUND</p>
+  </li>
+</ul>
+<h1 class="icon-no1">Reasons For Seeking Counseling</h1>
+<%= form_for @individual,:url =>client_individuals_path(@individual) do |f| %>
+  <%= render :partial => "client/individuals/form",:locals => {:f => f} %>
+<% end %>

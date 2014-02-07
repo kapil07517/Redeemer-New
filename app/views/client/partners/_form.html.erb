@@ -1,0 +1,23 @@
+<div class="staffrow">
+  <div>Name</div>
+  <div>
+    <ul class="list-name">
+      <li><%= text_field_tag "partners[][name]" %></li>
+    </ul>
+  </div>			
+</div>
+<div class="staffrow">
+  <div>Dob</div>
+  <div>
+    <ul class="list-name">
+      <li>
+       <%= date_select 'partners[][date_of_birth]', "",:start_year => 1930 %>
+      </li>
+    </ul>
+  </div>			
+</div>
+<div class="staffrow">
+  <div>Email:</div>
+  <div><%= text_field_tag "partners[][email]" %></div>
+</div>
+<div class="clearFix"></div>

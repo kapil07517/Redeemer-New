@@ -1,0 +1,33 @@
+<div class="graybg">
+  <%= form_for(["admin", @payer]) do |f| %>
+    <h1>Payer</h1>
+    <%= f.error_messages %>
+    <div class="staffrow">
+      <div>Payer Organization Name</div>
+      <div><%= f.text_field :name_of_org,:type=>"text", :title=>"Name" %></div>
+    </div>
+    <div class="staffrow">
+      <div>E-mail</div>
+      <div><%= f.text_field :email, :title=>"E-mail" %></div>
+    </div>
+    <div class="staffrow">
+      <div>Address</div>
+      <div><%= f.text_field :address, :title=>"address" %></div>
+    </div>
+    <div class="staffrow">
+      <div>Phone</div>
+      <div><%= f.text_field :phone_no, :title=>"Phone" %></div>
+    </div>
+    <div class="staffrow">
+      <div>Fax Number</div>
+      <div><%= f.text_field :fax_no, :title=>"fax" %></div>
+    </div>
+    <div class="staffrow">
+      <div>Contact Person</div>
+      <div><%= f.text_field :contact_person, :title=>"contact person" %></div>
+    </div>
+    <div class="staffrow">
+      <%= f.submit :save, :class => "btn-green" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<div class="graybg">
+  <h1>System Settings</h1>
+  <div class="tableBox">
+    <div class="tablerow">
+      <div class="column w33">Case Prefix</div>
+      <div class="column w33">Description</div>
+      <div class="column w33">Actions</div>
+    </div>
+    <div id="case_prefixes">
+      <%= render :partial => 'case_prefixes', :locals => {:case_prefixes => @case_prefixes} %>
+    </div>
+  </div>
+  <div id="case_prefixes_form">
+    <%= render "form" %>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <%= stylesheet_link_tag "application","counselor/default.css","counselor/jquery-ui","fullcalendar", :media => "all" %>
+    <%= javascript_include_tag 'application',"fullcalendar","counselor/jquery.mCustomScrollbar","counselor/jquery.mousewheel.min","counselor/organictabs.jquery" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Redeemer Counseling Services</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="content">
+        <div class="topbar">
+          <div class="topheading">
+            <ul class="list-topmenu">
+              <li><%= link_to "Sign Out",destroy_user_session_path,:method => :delete %></li>
+              <li><%= current_user ? (link_to 'Settings', change_password_setting_path(:role => current_user.role,:id => current_user.id)) : '' %></li>
+            </ul>
+            <h4><span>Redeemer</span> Counseling Services</h4>
+          </div>
+          <div class="topsubheading">
+            <div class="searchbox"><input title="Search" type="text" placeholder="Search" /></div>
+            <h5>Welcome:<span><%= current_user.first_name %>&nbsp;<%= current_user.last_name %></span></h5>
+          </div>	
+          <nav id="navigation">
+            <ul>
+              <li class=<%= (params[:controller] == "intake_coordinator/dashboards" and params[:action] == "index" ? "active" : "")  %>><a title="Home" href="/">Home</a></li>
+              <li class=<%= (params[:controller] == "intake_coordinator/cases" and params[:action] == "new" ? "active" : "")  %>><%= link_to "Create case", new_intake_coordinator_case_path %></li>
+              <li class=<%= (params[:controller] == "intake_coordinator/cases" and params[:action] == "case_list" ? "active" : "")  %>><%= link_to "Case List", intake_coordinator_cases_path %></li>
+              <li><%= link_to "Calendar", calendar_intake_coordinator_dashboards_path %></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="clearFix"></div>
+      </div>	
+    </header>
+    <article>
+      <div class="content">
+        <%= yield %>
+        <div class="clearFix"></div>
+      </div>	
+    </article>
+    <footer>
+      <%= render :partial => "layouts/client/footer" %>
+    </footer>
+    <script type="text/javascript" language="javascript">
+      $(document).ready(function() {
+        jQuery('#addReminders1').click(function() {
+          jQuery('#addRemindersBox1').slideToggle('slow', function() {
+          })
+        });
+        jQuery('#addCloseBox1').click(function() {
+          jQuery('#addRemindersBox1').slideToggle('slow', function() {
+          })
+        });
+      });
+      (function($) {
+        $(window).load(function() {
+          $(".boxScrollbar").mCustomScrollbar({
+            set_height: "85%",
+            scrollInertia: 900,
+            scrollEasing: "easeOutQuint",
+            mouseWheel: false
+          });
+        });
+      })(jQuery);
+      $(function() {
+        $("#tabs").organicTabs();
+        $("#tabs").organicTabs({
+          "speed": 200
+        });
+      });
+    </script>
+  </body>
+</html>

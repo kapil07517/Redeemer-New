@@ -1,0 +1,6 @@
+<%= form_for(["admin", @cpt_code], :remote => true) do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :cpt_code %>
+  <%= f.text_field :description %>
+  <%= f.submit :add %>
+<% end %>

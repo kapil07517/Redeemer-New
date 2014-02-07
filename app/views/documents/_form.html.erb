@@ -1,0 +1,40 @@
+<%= render :partial => "counselor/documents/docments" %>
+<ul class="list-upload">
+  <%= form_for @document,:url => upload_document_counselor_case_management_path(:id => @case.id,:document => @document) do |f| %>
+    <%= f.hidden_field :case_id,:value => @case.id %>
+    <li>
+      <div class="greenBox">Upload<br />a file</div>
+      <div class="darkBoxGray">
+        <h6 class="selectHeading"><span>1</span> Select a File</h6>
+        <%= f.file_field :document,:class => "input-selectFile" %>
+        <%= validation_error(@document.errors["document"]) %>
+      </div>
+      <div class="darkBoxGray lightBoxGray">
+        <h6 class="selectHeading"></h6>
+        <p></p>
+        <div class="btn-createnew" style="margin-top:24px;"><input type="submit" value="Upload" title="Upload" name="" onclick="javascript:if ($('#document_case_num').val() === '') {
+              alert('assign case');
+              return false;
+            }"/> <em></em></div>	
+      </div>
+      <div class="clearFix"></div>
+    </li>
+  <% end %>
+  <%= form_for @client_document,:url => add_document_counselor_case_management_path(:id => @case.id,:client_document => @client_document),:remote => true do |f| %>
+    <%= f.hidden_field :case_id,:value => @case.id %>
+    <li id="client_document">
+      <div class="greenBox">Add a<br />Document</div>
+      <div class="darkBoxGray">
+        <h6 class="selectHeading"><span>1</span> Select a File</h6>
+        <p><%= f.select :document,options_for_select([["Select",""],["Initial Evaluation","initial_evaluation"],["Discharge Summary","discharge_summary"],["Adolesement Intake","adolesement_intake"]],:selected => f.object.document),{},:style => 'padding: 7px;' %></p>
+        <em id="doc_error" style="color:red;"></em>
+      </div>
+      <div class="darkBoxGray lightBoxGray">
+        <h6 class="selectHeading"></h6>
+        <p></p>
+        <div class="btn-createnew" style="margin-top:24px;"><input type="submit" value="Create" title="Create" name="" /> <em></em></div>	
+      </div>
+      <div class="clearFix"></div>
+    </li>
+  <% end %>
+</ul>

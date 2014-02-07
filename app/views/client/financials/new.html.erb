@@ -1,0 +1,130 @@
+<%= form_for @financial, :url => client_financials_path(@financial) do |f| %>
+  <%= f.hidden_field :intake_type,:value => @intake_type %>
+  <h1 class="icon-no1">Marriage And Family</h1>
+  <div class="boxGray">
+    <%= f.error_messages %>
+    <div class="staffrow">
+      <div>Marital Status</div>
+      <div>
+        <%= f.radio_button :marital_status, "single", :id=>"checkbox_box_1" %><label for="checkbox_box_1" class="cssLabel"><span></span>Single</label>
+        <%= f.radio_button :marital_status, "married", :id=>"checkbox_box_2" %><label for="checkbox_box_2" class="cssLabel"><span></span>Married</label>
+        <%= f.radio_button :marital_status, "separated", :id=>"checkbox_box_3" %><label for="checkbox_box_3" class="cssLabel"><span></span>Separated</label>
+        <%= f.radio_button :marital_status, "divorced", :id=>"checkbox_box_4" %><label for="checkbox_box_4" class="cssLabel"><span></span>Divorced</label>
+      </div>	
+    </div>
+    <div class="staffrow">
+      <div>Date Of Marriage</div>
+      <div>
+         <%= f.date_select :date_of_marriage,:start_year => 1930 %>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>Number Of Marriages</div>
+      <div> <%= f.text_field :no_of_marriages ,:class=>"input-midname"%></div>			
+    </div>
+    <div class="staffrow">
+      <div>Spouse Name</div>
+      <div> <%= f.text_field :spouse_name %></div>			
+    </div>
+    <div class="staffrow">
+      <div>Date Of Birth</div>
+      <div>
+       <%= f.date_select :date_of_birth,:start_year => 1930 %>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>Spouse Email</div>
+      <div><%= f.text_field :spouse_email %></div>
+    </div>
+    <div class="staffrow">
+      <div>Phone Number</div>
+      <div><%= f.text_field :ph_no , :id=>"input-name"%></div>
+    </div>
+    <div class="staffrow">
+      <div>Number Of Children</div>
+      <div>
+        <%= f.text_field :no_of_children ,:class=>"input-midname"%>
+        AGES
+        <%= f.text_field :age1 ,:class=>"input-midname"%>
+        <%= f.text_field :age2 ,:class=>"input-midname"%>
+        <%= f.text_field :age3 ,:class=>"input-midname"%>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>If Married, Will You Both Be Attending Counseling Together?</div>
+      <div>
+        <%= f.radio_button :attending_counselor_together,"yes",:id => "checkbox_box_1"%><label for="checkbox_box_1" class="cssLabel"><span></span>Yes</label>
+        <%= f.radio_button :attending_counselor_together,"no",:id => "checkbox_box_2"%><label for="checkbox_box_2" class="cssLabel"><span></span>No</label>
+      </div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+  <h1 class="icon-no2">Religious Background</h1>
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>Do you believe in God?</div>
+      <div>
+        <%= f.radio_button :believe_in_god,"yes",:id => "checkbox_box_1"%><label for="checkbox_box_1" class="cssLabel"><span></span>Yes</label>
+        <%= f.radio_button :believe_in_god,"no",:id => "checkbox_box_2"%><label for="checkbox_box_2" class="cssLabel"><span></span>No</label>
+      </div>			
+      <hr />
+    </div>
+    <div class="staffrow">
+      <div>Religious Preference</div>
+      <div> <%= f.text_field :religious_preference %></div>
+      <hr />
+    </div>
+    <div class="staffrow">
+      <div>What church do you <br />currently attend?</div>
+      <div><%= f.text_field :current_church %></div><hr />			
+    </div>
+    <div class="staffrow">
+      <div>Are you a member of<br /> Redeemer Presbyterian <br />Church?</div>
+      <div>
+        <%= f.radio_button :member_of_redeemer_church,"yes",:id => "checkbox_box_1"%><label for="checkbox_box_1" class="cssLabel"><span></span>Yes</label>
+        <%= f.radio_button :member_of_redeemer_church,"no",:id => "checkbox_box_2"%><label for="checkbox_box_2" class="cssLabel"><span></span>No</label>
+      </div>			
+      <hr />
+    </div>
+    <div class="staffrow">
+      <div>How much influence does your religion have on your day to day activity?</div>
+      <div><%= f.text_area :day_to_day_activity,:rows => 4 %></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <hr />
+  <h1 class="icon-no3">Counseling Purpose</h1>
+  <div class="boxGray">
+    <div class="staffrow">
+      <div>What Concerns led you to pursue conseling?</div>
+      <div><%= f.text_area :concerns_led_you,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>What do you hope to gain through counseling?</div>
+      <div><%= f.text_area :gain_through_counseling,:rows => 4 %></div>
+    </div>
+    <hr />
+    <div class="staffrow">
+      <div>Who referred you to Redeemer Counseling?</div>
+      <div><%= f.text_field :referred_you_to_redeemer %></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>	
+  <hr />
+  <h1 class="icon-no2">Consent And Signature</h1>	
+  <div class="boxGray">
+    <h3>Consent And Signature</h3>
+    <%= f.check_box :content_and_signature, :id=>"checkbox_box_57" %>
+    <label for="checkbox_box_57" class="cssLabel cssheight"><span></span>In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</label>
+    <h3>Online Signature</h3>
+    <%= f.check_box :online_signature, :id=>"checkbox_box_58" %>
+    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span>By clicking this I approve this and recognize<br> this acts as an online signature</label>
+    <div class="btn-row">
+      <div class="btn-createnew"><input type="submit" class="btn-submit" title="Submit" value="Submit"><em></em></div>
+    </div>
+    <div class="clearFix"></div>
+  </div>
+  <div class="clearFix"></div>
+<% end %>
