@@ -1,0 +1,146 @@
+<div>
+  <div title="CONTACT INFORMATION" class="expanded">1. COUNSELING INFORMATION</div>
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+            <li><span>ADDRESS:</span><br>  <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+            <li><span>SEX:</span><br><%= @intake_form.gender %></li>
+            <li><span>DATE OF BIRTH:</span><br><%= @intake_form.date_of_birth %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>MARITAL STATUS:</span><br><%= @intake_form.marital_status %></li>
+            <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+            <li><span>LIVING WITH:</span><br> <%= @intake_form.living_with %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+            <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+            <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+          </ul>
+        </li>
+      </ul>
+    </li>								
+  </ul>
+</div>
+
+<div>
+  <div title="CONTACT INFORMATION" class="expanded">2. MEDICAL INFORMATION</div>
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+            <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+            <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
+            <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
+            <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+            <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+            <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+            <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+          </ul>
+        </li>
+      </ul>
+    </li>								
+  </ul>
+</div>
+
+<div>
+  <div title="CONTACT INFORMATION" class="expanded">3. CONTACT INFORMATION</div>
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>NAME:</span><br> <%= @intake_form.name %></li>
+            <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+            <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
+            <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
+            <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
+            <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
+            <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
+            <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+          </ul>
+        </li>
+      </ul>
+    </li>								
+  </ul>
+</div>
+
+<div>
+  <div title="EMERGENCY CONTACT" class="expanded">4.   EMERGENCY CONTACT</div>
+  <ul>
+    <li>
+      <div>
+        <div class="row">
+          <div class="column">NAME:</div>
+          <div class="column">RELATIONSHIP:</div>
+          <div class="column">PHONE:</div>
+          <div class="column">EMAIL:</div>
+        </div>	
+        <div class="row">
+          <div class="column"><%= @intake_form.contact_name %></div>
+          <div class="column"><%= @intake_form.relationship %></div>
+          <div class="column"><%= @intake_form.contact_no %></div>
+          <div class="column"><%= @intake_form.contact_email %></div>
+        </div>	
+      </div>									
+    </li>
+  </ul>
+</div>
+<div>
+  <div title="RELIGIOUS BACKGROUND" class="expanded">5.   RELIGIOUS BACKGROUND</div>
+  <ul>
+    <li>
+      <ul class="list-normal list-religious">
+        <li>
+          <span>BELIEVE IN GOD</span><br>
+          <%= @intake_form.believe_in_god %>
+        </li>
+        <li>
+          <span>RELIGIOUS PREFERENCE</span><br>
+          <%= @intake_form.religious_preference %>
+        </li>
+        <li>
+          <span>CHURCH CURRENTLY ATTENDING</span><br>
+          <%= @intake_form.current_church %>
+        </li>
+        <li>
+          <span>MEMBER OF RPC</span><br>
+          <%= @intake_form.member_of_redeemer_church %>
+        </li>
+        <li>
+          <span>INFLUENCE RELIGION ON DAILY LIFE</span><br>
+          <%= @intake_form.day_to_day_activity %>
+        </li>	
+      </ul>
+    </li>
+  </ul>
+</div>						

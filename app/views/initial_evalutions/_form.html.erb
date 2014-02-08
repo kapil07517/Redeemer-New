@@ -1,0 +1,132 @@
+<%= f.error_messages %>  
+<div class="bor">
+</div>
+<h2>HISTORY</h2>
+<ul class="list-dischargeBox">
+  <li>
+    <div class="lightGrayColor">
+      <div class="resonHeading">
+        <h6 class="grayBoxHeading">PSYCHOSOCIAL HISTORY:</h6>
+        <p><span>(Relevant Family, Social &amp; Employment History. For Children and Adolescents. include developmental history. e.g. prenatal, academic &amp; social history)</span></p>
+      </div>
+      <%= f.text_area :psychosocial_history,:class => "textarea-reson" %>
+    </div>
+  </li>
+  <li>
+    <div class="midGrayColor">
+      <div class="resonHeading">
+        <h6 class="grayBoxHeading">PAST PSYCHIATRIC AND TREATMENT HISTORY</h6>
+        <p><span>(Describe previous psychiatric illnesses. including any mental health and/or sub-stance abuse treatment)</span></p>
+      </div>
+      <%= f.text_area :past_psychiatric_and_treatment,:class => "textarea-reson" %>
+    </div>
+  </li>
+  <li>
+    <div class="darkGrayColor">
+      <div class="resonHeading">
+        <h6 class="grayBoxHeading">MEDICAL HISTORY</h6>
+        <p><span>(Significant past and present medical treatments and conditions)</span></p>
+      </div>
+      <%= f.text_area :medical_history,:class => "textarea-reson" %>
+    </div>
+  </li>
+</ul>
+<div class="gaf">
+  <h2>RISK ASSESSMENT</h2>
+  <ul class="list-dischargeBox">
+    <li>
+      <div class="lightGrayColor" id="psychosocial_history">
+        <h6 class="grayBoxHeading">PSYCHOSOCIAL HISTORY:</h6>
+        <p><%= f.check_box :risk_physical_history,{},"none",false %> None </p>
+        <p><%= f.check_box :risk_physical_history,{},"ideation",false %> Ideation </p>
+        <p><%= f.check_box :risk_physical_history,{},"plan",false %> Plan </p>
+        <p><%= f.check_box :risk_physical_history,{},"intent",false %> Intent </p>
+        <p><%= f.check_box :risk_physical_history,{},"patient_agreed_to_safety_plan",false %> Patient Agreed to Safety Plan </p>
+        <p><%= f.check_box :risk_physical_history,{},"denial",false %> Denial </p>
+      </div>
+    </li>
+    <li>
+      <div class="midGrayColor" id="homicidality">
+        <h6 class="grayBoxHeading">HOMICIDALITY:</h6>
+        <p><%= f.check_box :homicidality,{},"none",false %> None </p>
+        <p><%= f.check_box :homicidality,{},"ideation",false %> Ideation </p>
+        <p><%= f.check_box :homicidality,{},"plan",false %> Plan </p>
+        <p><%= f.check_box :homicidality,{},"intent",false %> Intent </p>
+        <p><%= f.check_box :homicidality,{},"patient_agreed_to_safety_plan",false %> Patient Agreed to Safety Plan </p>
+        <p><%= f.check_box :homicidality,{},"denial",false %> Denial </p>
+      </div>
+    </li>
+    <li>
+      <div class="darkGrayColor" id="violent">
+        <h6 class="grayBoxHeading">VIOLENT:</h6>
+        <p><%= f.check_box :violent,{},"none",false %> None </p>
+        <p><%= f.check_box :violent,{},"ideation",false %> Ideation </p>
+        <p><%= f.check_box :violent,{},"plan",false %> Plan </p>
+        <p><%= f.check_box :violent,{},"intent",false %> Intent </p>
+        <p><%= f.check_box :violent,{},"patient_agreed_to_safety_plan",false %> Patient Agreed to Safety Plan </p>
+        <p><%= f.check_box :violent,{},"denial",false %> Denial </p>
+      </div>
+    </li>
+
+
+    <li>
+      <div class="lightGrayColor lightGrayColorh" id="able_to_care">
+        <h6 class="grayBoxHeading">ABLE TO CARE FOR SELF:</h6>
+        <p>
+          <%= f.check_box :able_to_care_self,{},"yes",false %> YES
+          <%= f.check_box :able_to_care_self,{},"no",false %> NO
+        </p>
+        <p>IF NOT PLEASE EXPLAIN:</p>
+        <%= f.text_area :if_not_explain,:class => "textarea-reson textarea-able" %>
+      </div>
+    </li>
+    <li>
+      <div class="midGrayColor">
+        <h6 class="grayBoxHeading">RISKS OF HARM TO SELF OR OTHERS:</h6>
+        <p><%= f.text_area :risks_of_harm_to_self,:class => "textarea-reson textarea-able" %></p>
+        <p>SAFETY PLAN FOR HIGH RISK BEHAVIOR</p>
+        <%= f.text_area :safty_plan_for_high_risk,:class => "textarea-reson textarea-able" %>
+      </div>
+    </li>
+    <li>
+      <div class="darkGrayColor">
+        <h6 class="grayBoxHeading">TREATMENT PLAN:</h6>
+        <p><%= f.check_box :individual_psycho_2 %> Individual psycho therapy sessions 2 &times; WEEK</p>
+        <p><%= f.check_box :individual_psycho_1 %> Individual psycho therapy sessions 1 &times; PER WEEK</p>
+        <p><%= f.check_box :plan %> Plan</p>
+        <p><%= f.check_box :intent %> Intent</p>
+        <p><%= f.check_box :patient_agreed_to_safty_plan %> Patient Agreed to Safety Plan</p>
+        <p><%= f.check_box :dental %> Denial</p>
+      </div>
+    </li>
+  </ul>
+  <div class="pleft15">
+    <p>Indicate to whom referral is made, if known:</p>
+    <%= f.text_area :whom_referal_made,:rows => 2,:cols => 20,:class => "textarea-comment" %>
+  </div>
+</div>
+<div class="gaf">
+  <h2>CLINICAL SUMMARY/FORMULATION:
+    <div class="intakeGaf midGrayColor">Intak GAF<%= f.text_field :intake_gaf,:class => "input-gaf" %></div>
+  </h2>
+</div>
+<div class="clearFix"></div><br/>
+<div class="btn-createnew"><input type="submit" title="Submit" name="" value="Submit" /><em></em></div>
+<div class="clearFix"></div>
+<script>
+  $("#psychosocial_history p input[type='checkbox']").click(function() {
+    $("#psychosocial_history p input[type='checkbox']").not(this).attr("checked", false);
+  });
+
+  $("#homicidality p input[type='checkbox']").click(function() {
+    $("#homicidality p input[type='checkbox']").not(this).attr("checked", false);
+  });
+
+  $("#violent p input[type='checkbox']").click(function() {
+    $("#violent p input[type='checkbox']").not(this).attr("checked", false);
+  });
+
+  $("#able_to_care p input[type='checkbox']").click(function() {
+    $("#able_to_care p input[type='checkbox']").not(this).attr("checked", false);
+  });
+</script>

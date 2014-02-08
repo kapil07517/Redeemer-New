@@ -1,0 +1,5 @@
+jQuery("#counselor_status").html("<%= escape_javascript(render :partial => 'index') %>");
+<% if !params[:status].present? %>
+  jQuery("#day_display").html("<%= escape_javascript(render :partial => 'counselor_status') %>");
+<% end %>
+jQuery(".day_<%= @day %>").addClass("active").css({"color":"black"});

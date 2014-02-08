@@ -1,0 +1,3 @@
+<%= form_for @progress_note ,:url =>counselor_progress_note_path(@progress_note),:method => :put,:remote => true do |f|%>
+  <%= render :partial => "counselor/progress_notes/form",:locals => {:f => f} %>
+<% end %>

@@ -1,0 +1,43 @@
+<%= form_for @session,:url => accountings_path(current_user.role,@session),:remote => true do |f| %>
+  <%= f.hidden_field :action_name,:value => "accounting" %>  
+  <div class="grayBox">
+    <%= f.error_messages %>
+    <div class="sessionPayment">
+      <div class="commentPlus" style="cursor: pointer;" onclick="javascript:$('#comment').toggle('slow')">COMMENT</div>
+      <h6 class="GrayBoxHeading">SESSION PAYMENT</h6>
+    </div>
+    <div class="payment">
+      <div>
+        <p>Date</p>
+        <%= f.date_select :session_date,:start_year => 1930 %>
+      </div>
+      <div>
+        <p>Case Number</p>
+        <%= f.select :case_id,options_for_select([["Select",""]]+Case.all.map{|a| [a.number,a.id]}) %>
+      </div>
+      <div>
+        <p>Amount</p>
+        <%= f.text_field :amount,:class => "input-amountPayment input-datePayment" %>
+      </div>
+      <div>
+        <p>Payment Type</p>
+        <%= f.select :payment_type,%W(cash ckeque credit_card) %>
+      </div>
+      <div>
+        <p>Payment Name</p>
+        <%= f.text_field :client_id,:class => "input-numberPayment input-datePayment" %>
+      </div>
+      <div>
+        <p>Amount</p>
+        <%= f.text_field :payment_amount,:class => "input-datePayment" %>
+      </div>
+    </div>
+    <div id="comment" style="display: none;">
+      <p>Comment</p>
+      <%= f.text_area :comment,:rows => 2,:cols => 20,:class => "textarea-comment" %>
+    </div>
+    <div class="btn-createnew">
+      <input type="submit" title="SAVE" value="SAVE" name="" /><em></em>
+    </div>
+  </div>
+<% end %>

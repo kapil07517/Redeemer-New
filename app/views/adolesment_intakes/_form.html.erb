@@ -1,0 +1,172 @@
+<h1 class="icon-no1"><span>Parent / Guardian Information</span></h1>
+<div class="boxGray">
+  <%= f.error_messages %>
+  <div class="staffrow">
+    <div>Name</div>
+    <div><%= f.text_field :name ,:class=>"input-midname"%></div>
+  </div>
+  <div class="staffrow">
+    <div>Date of Birth</div>
+    <div>
+      <%= f.date_select :date_of_birth,:start_year => 1930 %>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>Lives With:</div>
+    <div><%= f.text_field :lives_with ,:class=>"input-midname"%></div>
+  </div>
+  <div class="staffrow">
+    <div>School:</div>
+    <div><%= f.text_field :school ,:class=>"input-midname"%></div>
+  </div>
+  <div class="staffrow">
+    <div>Grade</div>
+    <div><%= f.text_field :grade %></div>
+  </div>
+  <div class="staffrow">
+    <div>Activities and Interests:</div>
+    <div><%= f.text_area :activities_and_interests,:rows => 4 %></div>
+  </div>
+  <div class="staffrow">
+    <div>Job</div>
+    <div><%= f.text_field :job %></div>
+  </div>
+  <div class="staffrow">
+    <div>Do you believe in god?</div>
+    <div>
+      <%= f.radio_button :do_you_believe_in_god,"yes",:id => "checkbox_box_134"%><label for="checkbox_box_134" class="cssLabel"><span></span>Yes</label>
+      <%= f.radio_button :do_you_believe_in_god,"no",:id => "checkbox_box_135"%><label for="checkbox_box_135" class="cssLabel"><span></span>No</label>
+    </div>
+  </div>
+  <div class="staffrow">
+    <div>Religious Preference:</div>
+    <div><%= f.text_field :relegious_preference %></div>
+  </div>
+  <hr/>
+  <div class="staffrow">
+    <div>What concerns have led you to pursue counseling?</div>
+    <div><%= f.text_field :pursue_counseling,:class=>"input-midname" %></div>
+  </div>
+  <hr/>
+  <div class="staffrow">
+    <div>Please rate each issue with a number:</div>
+    <div class="diviedColumn">
+      <% ADOLESMENT_ISSUES.each do |problem| %>
+        <div class="w50"><%= check_box_tag "adolesment_intake[rate_issue][]","#{problem}",false,:id => "checkbox_box" %><label for="checkbox_box" class="cssLabel"><span></span><%= problem.upcase %></label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <hr/>
+  <div class="staffrow">
+    <div>Are there any other concerns you would like to concern?</div>
+    <div><%= f.text_area :other_concerns_to_address,:rows=> 4 %></div>
+  </div>
+  <div class="btn-row">
+    <div class="btn-createnew"><input class="btn-submit" type="submit" title="Submit" value="Submit" /><em></em></div>
+  </div>
+  <div class="clearFix"></div>
+</div>
+<style>
+  .icon-no1 {
+    background: url("/assets/client/sprite-number.png") no-repeat scroll 5px 4px #64833D;
+  }
+  .icon-no1 {
+    padding-left: 30px;
+  }
+  h1 {
+    background-color: #64833D;
+    border: 1px solid #819A61;
+    color: #C1CDB1;
+    font-family: Arvo,Tahoma,sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    margin-bottom: 10px;
+    padding: 0 0 1px 8px;
+    text-transform: uppercase;
+  }
+  .boxGray {
+    background-color: #F4F5EF;
+    padding: 15px 10px;
+  }
+
+  .staffrow {
+    text-transform: uppercase;
+    float: left;
+    padding-bottom: 15px;
+    width: 100%;
+  }
+
+
+  .staffrow > div:first-child {
+    color: #64833D;
+    font-size: 15px;
+    padding-right: 2%;
+    width: 23%;
+  }
+  .staffrow > div {
+    float: left;
+  }
+
+
+  .staffrow > div + div {
+    color: #A6A8AB;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: 75%;
+  }
+
+  textarea {
+    border-radius: 5px;
+    min-height: 70px;
+    resize: none;
+    width: 470px;
+  }
+  input[type="text"], input[type="password"], textarea {
+    border: 1px solid #C1CDB1;
+    border-radius: 2px;
+    color: #666666;
+    padding: 7px 5px;
+    transition: all 0.2s ease-out 0s;
+  }
+  input, textarea, a {
+    outline: medium none;
+    transition: all 0.2s ease-out 0s;
+  }
+  input, select, textarea, button {
+    color: #363636;
+    font-family: Cantarell,Tahoma,sans-serif;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  input, textarea, a {
+    outline: medium none;
+    transition: all 0.2s ease-out 0s;
+  }
+  input, select, textarea, button {
+    color: #363636;
+    font-family: Cantarell,Tahoma,sans-serif;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .staffrow input[type="text"] {
+    width: 470px;
+  }
+
+  hr {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color -moz-use-text-color #A8CF75;
+    border-image: none;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    clear: both;
+    height: 15px;
+    margin: 0 0 15px;
+  }
+</style>

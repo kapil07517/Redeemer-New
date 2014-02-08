@@ -1,0 +1,93 @@
+  <div id="calendar"></div>
+<script>
+  $(document).ready(function() {
+    var url = window.location.pathname;
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    $('#calendar').fullCalendar({
+      events: [
+        // events here
+      ],
+      editable: true,
+      eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+        updateEvent(event);
+      },
+      eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+        updateEvent(event);
+      },
+      dayClick: function(start, end, allDay) {
+        var day = new Date()
+        if (start >= day) {
+          var title = prompt('Event Title:');
+          if (title) {
+            $('#calendar').fullCalendar('renderEvent',
+                    {
+                      title: title,
+                      start: start,
+                      end: end,
+                      allDay: allDay
+                    },
+            true // make the event "stick"
+                    );
+            /**
+             * ajax call to store event in DB
+             */
+            jQuery.post(
+                    "/counselor/dashboards/create_appointment", // your url
+                    {
+                      counselor_appointment: {
+                        title: title,
+                        start_at: start
+                      },
+                    }
+            );
+          }
+          $('#calendar').fullCalendar('unselect');
+        } else {
+          alert('not allowed');
+          return false;
+        }
+      },
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      defaultView: 'month',
+      height: 500,
+      slotMinutes: 15,
+      loading: function(bool) {
+        if (bool)
+          $('#loading').show();
+        else
+          $('#loading').hide();
+      },
+      // a future calendar might have many sources.
+      eventSources: [{
+          url: url,
+//            color: 'yellow',
+//            textColor: 'black',
+          ignoreTimezone: false
+        }],
+      timeFormat: "h:mm tt{ - h:mm tt} ",
+      dragOpacity: "0.5"
+    });
+
+  });
+
+  function updateEvent(the_event) {
+    jQuery.ajax({
+      url: "/counselor/dashboards/" + the_event.id + "/update_appointment",
+      data: {
+        appointment: {
+          start_at: the_event.start,
+          end_at: the_event.end
+        }
+      },
+      type:'PUT'
+    });
+  }
+</script>

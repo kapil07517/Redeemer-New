@@ -1,0 +1,5 @@
+<br /><br />
+<p><%= @progress_note.subjective %>.<%= @progress_note.objective %>.<%= @progress_note.assesment %>.<%= @progress_note.plan %>.</p>
+<%= link_to 'edit', edit_counselor_progress_note_path(@progress_note) %>
+<%= link_to 'delete', counselor_progress_note_path(@progress_note),:method => :delete,:confirm => 'are you sure' %>
+<br /><br />

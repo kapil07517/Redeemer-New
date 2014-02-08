@@ -1,0 +1,11 @@
+<ul class="menu-main">
+  <li><a class="current" href="#" title="Form"><span>FORM</span></a></li>
+  <li><a href="#" title="Mse"><span>Mse</span></a></li>
+</ul>
+<div class="box">
+  <%= form_for @intake_evalution,:url => initial_evalutions_path(current_user.role,@intake_evalution) do |f| %>
+    <%= f.hidden_field :case_id,:value => @case.id %>
+    <%= f.hidden_field :client_id,:value => @client.id %>
+    <%= render :partial => "/initial_evalutions/form",:locals => {:f => f} %>
+  <% end %>
+</div>

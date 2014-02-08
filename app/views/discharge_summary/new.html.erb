@@ -1,0 +1,11 @@
+<ul class="menu-main">
+  <li><a href="#"><span>FORM</span></a></li>
+</ul>
+<div class="box">
+  <%= form_for @discharge_summary,:url => discharge_summary_index_path(current_user.role,@discharge_summary) do |f| %>
+    <%= f.hidden_field :case_id,:value => @case.id %>
+    <%= f.hidden_field :client_id,:value => @client.id %>
+  <%= f.hidden_field :intake_date,:value => @case.intake_form.created_at.strftime("%d-%m-%Y") %>
+    <%= render :partial => "/discharge_summary/form",:locals => {:f => f} %>
+  <% end %>
+</div>

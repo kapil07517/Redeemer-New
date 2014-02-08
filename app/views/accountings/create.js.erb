@@ -1,0 +1,5 @@
+<% if @session.errors.any? %>
+  $("#session_form").html('<%= escape_javascript render :partial => "/accountings/session_form" %>');
+<% else %>
+  window.location.reload();
+<% end %>

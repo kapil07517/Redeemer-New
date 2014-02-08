@@ -1,0 +1,107 @@
+<%= f.error_messages %>  
+<div class="boxContent">
+  <div class="terminationLeftBox">
+    <div class="commonrow">
+      <p>REVIEW OF APPOINTMENTS</p>
+      <ul class="list-appointments">
+        <li>
+          <div>
+            <p>INTAKE DATE</p>
+            <h4><%= @case ? @case.intake_form.created_at.strftime("%d/%m/%y") : @discharge_summary.intake_date %></h4>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p>LAST SESSION</p>
+            <%= f.text_field :last_session,:style => "width:135px;height:10px;" %>
+          </div>
+        </li>
+        <li class="green">
+          <div>
+            <p>DISCHARGE DATE</p>
+            <%= f.date_select :discharge_date,:start_year => 1930 %>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="commonrow">
+      <p>SESSION SCHEDULE BY TREATMENT MODE</p>
+      <ul class="list-appointments four">
+        <li>
+          <p>INDIVIDUAL (IND)</p>
+          <div><%= f.text_field :treatment_mode_individual,:class => "input-session" %></div>
+        </li>
+        <li>	
+          <p>FAMILY (FAM)</p>
+          <div><%= f.text_field :treatment_mode_family,:class => "input-session" %></div>
+        </li>
+        <li>
+          <p>GROUP (GRP)</p>
+          <div><%= f.text_field :treatment_mode_group,:class => "input-session" %></div>
+        </li>
+        <li>
+          <p>OTHER</p>
+          <div><%= f.text_field :treatment_mode_other,:class => "input-session" %></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminationBox" id="treatment_type">
+    <p>TERMINATION</p>
+    <p class="normalText">Please list termination type</p>
+    <p><%= f.check_box :termination_type,{},"client",false %>CLIENT</p>
+    <p><%= f.check_box :termination_type,{},"client & counselor",false %>CLIENT &amp; COUNSELOR</p>
+    <p><%= f.check_box :termination_type,{},"counselor",false %>COUNSELOR</p>
+    <p><%= f.check_box :termination_type,{},"referred",false %>REFERRED</p>
+  </div>
+  <div class="clearFix"></div>
+</div>
+<div class="bor"></div>
+<h2>DISCHARGE NOTES</h2>
+<ul class="list-dischargeBox">
+  <li>
+    <div class="lightGrayColor">
+      <div class="resonHeading">
+        <h6 class="grayBoxHeading">REASON FOR DISCHARGE</h6>
+        <p><span>Include all relevant information</span></p>
+      </div>
+      <%= f.text_area :reason_for_discharge,:class => "textarea-reson" %>
+    </div>
+  </li>
+  <li>
+    <div class="midGrayColor">
+      <div class="resonHeading">
+        <h6 class="grayBoxHeading">Summary of Areas<br />Addressed In Therapy</h6>
+        <p><span>Include all relevant information</span></p>
+      </div>
+      <%= f.text_area :summary_of_areas,:class => "textarea-reson" %>
+    </div>
+  </li>
+  <li>
+    <div class="darkGrayColor">
+      <div class="resonHeading">
+        <h6 class="grayBoxHeading">Expectation Of Future<br />Needs And Unresolved<br />Issues And Progress</h6>
+      </div>
+      <%= f.text_area :expectation_of_future,:class => "textarea-reson" %>
+    </div>
+  </li>
+</ul>
+<div class="gaf">
+  <h2>GAF
+    <div class="intakeGaf darkGrayColor">Discharge GAF<%= f.text_field :discharge_gaf,:class => "input-gaf" %></div>
+    <div class="intakeGaf midGrayColor">Intak GAF<%= f.text_field :intake_gaf,:class => "input-gaf" %></div>
+  </h2>
+</div>
+<div class="clearFix"></div><br/>
+<div class="btn-createnew"><input type="submit" title="Submit" name="" value="Submit" /><em></em></div>
+<div class="clearFix"></div>
+<script>
+  $("#treatment_type p input[type='checkbox']").click(function() {
+    $("#treatment_type p input[type='checkbox']").not(this).attr("checked", false);
+  });
+</script>
+<style>
+  select{
+    width:50px;
+  }
+</style>

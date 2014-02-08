@@ -1,0 +1,3 @@
+<%= form_for @adolesment_intake,:url => adolesment_intake_path(current_user.role,@adolesment_intake),:method => :put do |f| %>
+  <%= render :partial => "/adolesment_intakes/form",:locals => {:f => f} %>
+<% end %>

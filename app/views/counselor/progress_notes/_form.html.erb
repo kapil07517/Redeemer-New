@@ -1,0 +1,27 @@
+<%= f.hidden_field :appointment_id,:value => @appointment.id %>
+<li>
+  <div class="blackBox">Subjective :</div>
+  <%= f.text_area :subjective,:cols => 40,:rows => 4 %>
+  <%= validation_error(@progress_note.errors["subjective"]) %>
+</li>
+<li>
+  <div class="blackBox">Objective :</div>
+  <%= f.text_area :objective,:cols => 40,:rows => 4%>
+  <%= validation_error(@progress_note.errors["objective"]) %>
+</li>
+<li>
+  <div class="blackBox">Assessment :</div>
+  <%= f.text_area :assesment,:cols => 40,:rows => 4%>
+  <%= validation_error(@progress_note.errors["assesment"]) %>
+</li>
+<li>
+  <div class="blackBox">Plan :</div>
+  <%= f.text_area :plan,:cols => 40,:rows => 4%>
+  <%= validation_error(@progress_note.errors["plan"]) %>
+</li>
+<li>
+  <div class="saveDeaft">
+    <%= f.submit "Save to Draft",:class => 'btn btn-primary' %>
+    <%= f.password_field :password,:style => "width:160px;padding:4px 5px;" %><%= f.submit "Sign & Finish",:class => 'btn btn-primary' %>
+  </div>
+</li>

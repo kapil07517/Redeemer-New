@@ -1,0 +1,2 @@
+module DischargeSummaryHelper
+end

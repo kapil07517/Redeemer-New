@@ -3,7 +3,8 @@ class RemindersController < ApplicationController
   
   def create
     @reminder = Reminder.new(params[:reminder])
-    @client = Client.find(@reminder.client_id)
+    @client = Client.find(@reminder.client_id) if params[:reminder][:client_id]
+    @case = Case.find(@reminder.case_id) if params[:reminder][:case_id]
     @reminder.save
     respond_to do |format|
       format.js

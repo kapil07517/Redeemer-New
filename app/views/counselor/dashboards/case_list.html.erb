@@ -1,0 +1,46 @@
+<div><%= link_to "View all", case_list_counselor_dashboards_path(:query => "all"),:class => params[:query] == "all" ? "selected" : "" %> | <%= link_to "Active", case_list_counselor_dashboards_path(:query => "active"),:class => params[:query] == "active" ? "selected" : "" %> | <%= link_to "Inactive", case_list_counselor_dashboards_path(:query => "inactive"),:class => params[:query] == "inactive" ? "selected" : "" %> | <%= link_to "Discharged", case_list_counselor_dashboards_path(:query => "discharged"),:class => params[:query] == "discharged" ? "selected" : "" %></div>
+<div id="tabs" class="commonr">
+  <div class="box">
+    <table class="table-accounting table-case-final" cellpadding="0" cellspacing="0" width="100%" border="0">
+      <tr>
+        <td>CASE NAME</td>
+        <td>CASE NUMBER</td>
+        <td>COUNSELOR</td>
+        <td>ADD CLIENT</td>
+        <td>CLIENT</td>
+        <td>DOB</td>
+        <td>STATUS</td>
+      </tr>
+      <% @appointments.each do |appointment| %>
+        <tr>
+          <td><span><%= link_to appointment.case.case_name, case_management_path(current_user.role,appointment.case,:appointment_id => appointment.id) %></span></td>
+          <td><%= link_to appointment.case.number, case_management_path(current_user.role,appointment.case,:appointment_id => appointment.id) %></td>
+          <td><%= link_to appointment.counselor.full_name, "/counselor/dashboards/client_list" %></td>
+          <td><%= link_to_function "add_client", "search_form(this,'#{appointment.id}')",:id => "add_client" %>
+            <div class="messagepop pop">
+
+            </div>
+          </td>
+          <td>
+            <% appointment.case.forms.each do |client| %>
+              <div><%= link_to client.user.full_name, client_management_path(current_user.role,client.user_id,:appointment_id => appointment.id) %></div>
+            <% end %>
+          </td>
+          <td>
+            <% appointment.case.forms.each do |client| %>
+              <div><%= client.user.date_of_birth.strftime("%m/%d/%Y") %></div>
+            <% end %>
+          </td>
+          <td><span><%= select_tag "status",options_for_select([["Active","active"],["Inactive","inactive"],["DIP","dip"],["Discharged","discharged"]],:selected => appointment.case.status),:onchange => "change_status(this,#{appointment.case_id})" %></span></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="clearFix"></div>
+  </div>
+</div>
+<div class="clearFix"></div>
+<style>
+  a.selected{
+    text-decoration: none;
+  }
+</style>

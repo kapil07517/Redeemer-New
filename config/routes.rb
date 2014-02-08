@@ -42,7 +42,20 @@ Rcms::Application.routes.draw do
   end
   
   namespace :counselor do
-    resources :dashboards
+    resources :dashboards do
+      collection do
+        get :appointments
+        get :case_list
+        get :client_list
+        get :counselor_status
+        get :counselor_down_status
+        post :create_appointment
+      end
+      member do
+        put :update_appointment
+      end
+    end
+    resources :progress_notes
   end
 
   namespace :intake_coordinator do
@@ -121,9 +134,31 @@ Rcms::Application.routes.draw do
       post :upload_document
     end
   end
-  resources :case_managements,:path => "/:role/case_managements"
+  resources :case_managements,:path => "/:role/case_managements" do
+    member do
+      post :upload_document
+    end
+  end
   resources :reminders,:path => "/:role/reminders"
-  resources :documents,:path => "/:role/documents"
+  resources :documents,:path => "/:role/documents" do
+    collection do
+      get :case_documents
+    end
+  end
+  
+  resources :adolesment_intakes,:path => "/:role/adolesment_intakes"
+  resources :discharge_summary,:path => "/:role/discharge_summary"
+  resources :initial_evalutions,:path => "/:role/initial_evalutions"
+  resources :accountings,:path => "/:role/accountings" do
+    collection do
+      post :m_payment
+    end
+  end
+  
+  match "/:role/initial_evalutions/:case_id/new" => "initial_evalutions#new",:as => "initial_evalution_new"
+  match "/:role/discharge_summary/:case_id/new" => "discharge_summary#new",:as => "discharge_summary_new"
+  match "/:role/adolesment_intakes/:case_id/new" => "adolesment_intakes#new",:as => "adolesments_intake_new"
+  match "/:role/intakes/:id" => "client/intakes#show",:as => "intake_form_details"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

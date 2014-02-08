@@ -1,7 +1,8 @@
-<%= render :partial => "counselor/documents/docments" %>
+<%= render :partial => "/documents/docments" %>
 <ul class="list-upload">
-  <%= form_for @document,:url => upload_document_counselor_case_management_path(:id => @case.id,:document => @document) do |f| %>
+  <%= form_for @document,:url => upload_document_case_management_path(:id => @case.id,:document => @document) do |f| %>
     <%= f.hidden_field :case_id,:value => @case.id %>
+    <%= f.hidden_field :appointment_id,:value => @appointment.id if @appointment %>
     <li>
       <div class="greenBox">Upload<br />a file</div>
       <div class="darkBoxGray">
@@ -20,13 +21,12 @@
       <div class="clearFix"></div>
     </li>
   <% end %>
-  <%= form_for @client_document,:url => add_document_counselor_case_management_path(:id => @case.id,:client_document => @client_document),:remote => true do |f| %>
-    <%= f.hidden_field :case_id,:value => @case.id %>
+  <%= form_for :client_document,:url => documents_path(:case_id => @case.id),:remote => true do |f| %>
     <li id="client_document">
       <div class="greenBox">Add a<br />Document</div>
       <div class="darkBoxGray">
         <h6 class="selectHeading"><span>1</span> Select a File</h6>
-        <p><%= f.select :document,options_for_select([["Select",""],["Initial Evaluation","initial_evaluation"],["Discharge Summary","discharge_summary"],["Adolesement Intake","adolesement_intake"]],:selected => f.object.document),{},:style => 'padding: 7px;' %></p>
+        <p><%= f.select :document,options_for_select([["Select",""],["Initial Evaluation","initial_evalutions"],["Discharge Summary","discharge_summary"],["Adolesement Intake","adolesment_intakes"]]),{},:style => 'padding: 7px;' %></p>
         <em id="doc_error" style="color:red;"></em>
       </div>
       <div class="darkBoxGray lightBoxGray">

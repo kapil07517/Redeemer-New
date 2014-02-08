@@ -1,6 +1,7 @@
 <%= render :partial => "/documents/docments" %>
 <ul class="list-upload">
   <%= form_for @document,:url => upload_document_client_management_path(:document => @document,:id => @client.id),:method => :post do |f| %>
+    <%= f.hidden_field :appointment_id,:value => @appointment.id if @appointment %>  
     <li>
       <div class="greenBox">Upload<br />a file</div>
       <div class="darkBoxGray">
@@ -18,6 +19,22 @@
             }"/> <em></em></div>	
       </div>
       <div class="clearFix"></div>
+    </li>
+  <% end %>
+  <%= form_for :client_document,:url => documents_path(:client_id => @client.id),:remote => true do |f| %>
+    <li id="client_document">
+      <div class="greenBox">Add a<br />Document</div>
+      <div class="darkBoxGray">
+        <h6 class="selectHeading"><span>1</span> Select a File</h6>
+        <p><%= f.select :document,options_for_select([["Select",""],["Initial Evaluation","initial_evalutions"],["Discharge Summary","discharge_summary"],["Adolesement Intake","adolesment_intakes"]]),{},:style => 'padding: 7px;' %></p>
+        <em id="doc_error" style="color:red;"></em>
+      </div>
+      <div class="darkBoxGray lightBoxGray">
+        <h6 class="selectHeading"><span>2</span> ASSIGN CASE NUMBER</h6>
+        <p><%= f.text_field :case_num,:class => "input-selectFile",:placeholder=>"IND-789-JK23" %></p>
+        <em id="cas_error"></em>
+        <div class="btn-createnew"><input type="submit" value="Create" title="Create" name="" /> <em></em></div>	
+      </div>
     </li>
   <% end %>
 </ul>

@@ -11,17 +11,17 @@
     <tr>
       <td>
         <% if document.doc_type == "progress_note" %>
-          <%= link_to document.doc_type, counselor_document_path(document.progress_note_id,:doc => 'progress_note') %>
+          <%= link_to document.doc_type, counselor_progress_note_path(document.progress_note_id) %>
         <% elsif document.doc_type == "intake_evalution" %>
-          <%= link_to document.doc_type,edit_initial_evalution_counselor_client_management_path(document.intake_evalution_id) %>
+          <%= link_to document.doc_type,edit_initial_evalution_path(current_user.role,document.intake_evalution_id) %>
         <% elsif document.doc_type == "discharge_summary" %>
-          <%= link_to document.doc_type,edit_discharge_summary_counselor_client_management_path(document.discharge_summary_id) %>
+          <%= link_to document.doc_type,edit_discharge_summary_path(current_user.role,document.discharge_summary_id) %>
         <% elsif document.doc_type == "adolesment_intake" %>
-          <%= link_to document.doc_type,edit_adolesment_intake_counselor_client_management_path(document.adolesment_intake_id) %>
+          <%= link_to document.doc_type,edit_adolesment_intake_path(current_user.role,document.adolesment_intake_id) %>
         <% elsif document.doc_type == "intake_form"   %>
-          <%#= link_to document.intake_form.intake_type,intake_form_path(:role => current_user.role,:id => document.intake_form_id,:intake_type => document.intake_form.intake_type) %>
+          <%= link_to document.intake_form.intake_type,intake_form_details_path(:role => current_user.role,:id => document.intake_form_id) %>
         <% else %>
-          <%= link_to 'doc',counselor_document_path(document,:doc => 'document') %>
+          <%= link_to 'doc',document_path(current_user.role,document) %>
         <% end %>
       </td>
       <td><% if document.doc_type == "progress_note" and ProgressNote.find(document.progress_note_id).is_draft == true %>draft<% else %><% end %></td>

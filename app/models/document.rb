@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base
-  attr_accessible :document,:case_id,:intake_form_id,:client_id,:case_num,:progress_note_id,:adolesment_intake_id,:discharge_summary_id,:intake_evalution_id,:doc_type
-  attr_accessor :case_num,:valid
+  attr_accessible :document,:case_id,:intake_form_id,:client_id,:case_num,:progress_note_id,:adolesment_intake_id,:discharge_summary_id,:intake_evalution_id,:doc_type,:appointment_id
+  attr_accessor :case_num,:appointment_id
   belongs_to :case
   belongs_to :client
   belongs_to :progress_note
@@ -14,7 +14,7 @@ class Document < ActiveRecord::Base
   validate :case_num_val
   
   def case_num_val
-    if self.valid != true and self.case_num.blank?
+    if self.case_num
       self.errors.add(:case_num,"can't be blank")
     end
   end

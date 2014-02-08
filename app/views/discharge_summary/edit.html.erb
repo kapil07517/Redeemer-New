@@ -1,0 +1,8 @@
+<ul class="menu-main">
+  <li><a href="#"><span>FORM</span></a></li>
+</ul>
+<div class="box">
+  <%= form_for @discharge_summary,:url => discharge_summary_path(current_user.role,@discharge_summary),:method => :put do |f| %>
+    <%= render :partial => "/discharge_summary/form",:locals => {:f => f} %>
+  <% end %>
+</div>

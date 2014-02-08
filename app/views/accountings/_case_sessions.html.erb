@@ -1,0 +1,62 @@
+<div id="session_form">
+  <%= render :partial => "accountings/session_form" %>
+</div>
+<div id="misc_form">
+  <%= render :partial => "accountings/misce_form" %>
+</div>
+<%= render :partial => "accountings/client_accounts" %>
+<div class="clearFix"></div>
+</div>
+<div class="payer">Payer 2 Sheet</div>		
+<div class="grayBox darkGrayBox">
+  <div class="sessionPayment">
+    <h6 class="GrayBoxHeading">ACCOUNT INFORMATION
+      <input class="input-info input-information" type="text" title="" name="" placeholder="CASE NUMBER" />
+    </h6>
+  </div>
+  <div class="btn-createnew">
+    <input type="submit" title="Edit" value="Edit" name="" /><em></em>
+  </div>
+  <div class="info payment">
+    <div>
+      <p>Payer 2</p>
+      <input class="input-info" type="text" title="Select Payer 2" name="" placeholder="SELECT PLAYER 2" />
+    </div>
+    <div>
+      <p>Client Id</p>
+      <input class="input-info input-infoArrowNone" type="text" title="Client Id" name="" />
+    </div>
+    <div>
+      <p>Authorizations</p>
+      <input class="input-info input-Authoriz" type="text" title="Authorizations" name="" placeholder="5" />
+    </div>
+    <div>
+      <p>Amt Per Session</p>
+      <input class="input-info input-Authoriz" type="text" title="Authorizations" name="" placeholder="$85" /> + Add
+    </div>
+  </div>
+  <div class="info payment">
+    <div>
+      <p>FEE</p>
+      <input class="input-infoArrowNone input-info" type="text" title="Fee" name="" placeholder="$" />
+    </div>
+    <div>
+      <p>Start Date</p>
+      <input class="input-Authoriz input-info" type="text" title="Start Date" name="" />
+      <input class="input-Authoriz input-info" type="text" title="Start Date" name="" />
+      <input class="input-info input-amountPayment" type="text" title="Start Date" name="" />
+    </div>
+  </div>
+  <div class="btn-createnew">
+    <input type="submit" title="SAVE" value="SAVE" name="" /><em></em>
+  </div>
+</div>
+<%= render :partial => "accountings/payer_accounts" %>
+<style>
+  select{
+    padding: 4px 3px;
+  }
+  .btn-createnew{
+    bottom: -3px;
+  }
+</style>

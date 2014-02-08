@@ -1,0 +1,5 @@
+<% if @m_payment.errors.any? %>
+  $("#misc_form").html('<%= escape_javascript render :partial => "/accountings/misce_form" %>');
+<% else %>
+  window.location.reload();
+<% end %>

@@ -4,4 +4,8 @@ class Client::IntakesController < ApplicationController
   def index
     
   end
+  
+  def show
+    @intake_form = IntakeForm.all_information(params[:id]).first
+  end
 end

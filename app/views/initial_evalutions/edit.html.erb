@@ -1,0 +1,9 @@
+<ul class="menu-main">
+  <li><a class="current" href="#" title="Form"><span>FORM</span></a></li>
+  <li><a href="#" title="Mse"><span>Mse</span></a></li>
+</ul>
+<div class="box">
+  <%= form_for @intake_evalution,:url => initial_evalution_path(current_user.role,@intake_evalution),:method => :put do |f| %>
+    <%= render :partial => "/initial_evalutions/form",:locals => {:f => f} %>
+  <% end %>
+</div>

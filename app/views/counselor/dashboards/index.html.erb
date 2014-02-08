@@ -1,0 +1,15 @@
+<div id="counselor_status">
+  <%= link_to "Current week", counselor_status_counselor_dashboards_path(:date => Date.today,:day =>Date.today),
+    :remote => true, :id => "current-week", :style => "display: none;" %>
+</div>
+<hr />
+<div id="day_display">
+  <%= link_to "Current week1", counselor_down_status_counselor_dashboards_path(:date => Date.today,:day =>Date.today),
+    :remote => true, :id => "current-week", :style => "display: none;" %>
+</div>
+<script>
+  $(document).ready(function() {
+    $("#current-week").trigger("click");
+    $("#current-week1").trigger("click");
+  })
+</script>

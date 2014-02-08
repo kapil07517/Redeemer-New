@@ -5,6 +5,7 @@ class ClientManagementsController < ApplicationController
     @documents = @client.documents
     @document = Document.new
     @reminder = Reminder.new
+    @appointment = Appointment.find(params[:appointment_id]) if params[:appointment_id]
   end
   
   def upload_document

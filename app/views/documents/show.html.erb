@@ -1,0 +1,7 @@
+<% if Rails.env == 'development' %>
+  <% if @document.document_content_type.split("/")[0] == "image" %>
+    <%= image_tag(@document.document) %>
+  <% else %>
+    <%= link_to "document","#{@document.document}",:target => "_blank" %>
+  <% end %>
+<% end %>

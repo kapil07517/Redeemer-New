@@ -11,8 +11,8 @@
       </tr>
       <% @cases.each do |cs| %>
         <tr>
-          <td><span><%= cs.case_name %></span></td>
-          <td><%= cs.number %></td>
+          <td><span><%= link_to cs.case_name, case_management_path(current_user.role,cs) %></span></td>
+          <td><%= link_to cs.number, case_management_path(current_user.role,cs) %></td>
           <td>
             <% cs.forms.each do |intake| %>
               <div><%= link_to intake.user.full_name, client_management_path(current_user.role,intake.user) %></div>

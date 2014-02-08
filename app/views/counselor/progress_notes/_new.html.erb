@@ -1,0 +1,19 @@
+<div class="columnRight-clientPnFinal">
+  <ul class="list-Right-clientPnFinal">
+    <li>Progress Notes <span>4/1/13</span></li>
+    <% if @is_draft == true %>
+      <%= form_for @progress_note ,:url =>counselor_progress_note_path(@progress_note),:method => :put,:remote => true do |f|%>
+        <%= render :partial => "counselor/progress_notes/form",:locals => {:f => f} %>
+      <% end %>
+    <% else %>
+      <%= form_for @progress_note ,:url =>counselor_progress_notes_path(@progress_note),:remote => true do |f|%>
+        <%= render :partial => "counselor/progress_notes/form",:locals => {:f => f} %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<style>
+  textarea{
+    width:425px;
+  }
+</style>

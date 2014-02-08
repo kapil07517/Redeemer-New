@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140207121135) do
+ActiveRecord::Schema.define(:version => 20140208102926) do
+
+  create_table "adolesment_intakes", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "case_id"
+    t.string   "name"
+    t.date     "date_of_birth"
+    t.string   "lives_with"
+    t.string   "school"
+    t.string   "grade"
+    t.text     "activities_and_interests"
+    t.string   "job"
+    t.string   "do_you_believe_in_god"
+    t.string   "relegious_preference"
+    t.text     "pursue_counseling"
+    t.string   "rate_issue"
+    t.text     "other_concerns_to_address"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "appointments", :force => true do |t|
     t.integer  "case_id"
@@ -106,6 +125,28 @@ ActiveRecord::Schema.define(:version => 20140207121135) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "discharge_summaries", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "case_id"
+    t.date     "intake_date"
+    t.string   "last_session"
+    t.date     "discharge_date"
+    t.string   "termination_type"
+    t.string   "treatment_mode_individual"
+    t.string   "treatment_mode_family"
+    t.string   "treatment_mode_group"
+    t.string   "treatment_mode_other"
+    t.text     "reason_for_discharge"
+    t.text     "summary_of_areas"
+    t.text     "expectation_of_future"
+    t.string   "intake_gaf"
+    t.string   "discharge_gaf"
+    t.boolean  "is_draft"
+    t.string   "password"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   create_table "documents", :force => true do |t|
     t.integer  "case_id"
     t.integer  "client_id"
@@ -121,6 +162,33 @@ ActiveRecord::Schema.define(:version => 20140207121135) do
     t.datetime "document_updated_at"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "intake_evalutions", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "case_id"
+    t.text     "psychosocial_history"
+    t.text     "past_psychiatric_and_treatment"
+    t.text     "medical_history"
+    t.string   "risk_physical_history"
+    t.string   "homicidality"
+    t.string   "violent"
+    t.string   "able_to_care_self"
+    t.text     "if_not_explain"
+    t.text     "risks_of_harm_to_self"
+    t.text     "safty_plan_for_high_risk"
+    t.string   "individual_psycho_1"
+    t.string   "individual_psycho_2"
+    t.string   "plan"
+    t.string   "intent"
+    t.string   "patient_agreed_to_safty_plan"
+    t.string   "dental"
+    t.text     "whom_referal_made"
+    t.string   "intake_gaf"
+    t.string   "discharge_gaf"
+    t.boolean  "is_draft",                       :default => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   create_table "intake_forms", :force => true do |t|
@@ -224,6 +292,18 @@ ActiveRecord::Schema.define(:version => 20140207121135) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "miscellaneous_payments", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "case_id"
+    t.date     "pay_date"
+    t.string   "description"
+    t.string   "payment_type"
+    t.string   "item"
+    t.text     "comment"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "notes", :force => true do |t|
     t.integer  "notable_id"
     t.string   "notable_type"
@@ -304,6 +384,18 @@ ActiveRecord::Schema.define(:version => 20140207121135) do
     t.datetime "updated_at",                   :null => false
   end
 
+  create_table "progress_notes", :force => true do |t|
+    t.integer  "appointment_id"
+    t.string   "status"
+    t.boolean  "is_draft"
+    t.text     "objective"
+    t.text     "assesment"
+    t.text     "plan"
+    t.text     "subjective"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "reduced_fees", :force => true do |t|
     t.integer  "intake_form_id"
     t.integer  "client_id"
@@ -366,6 +458,28 @@ ActiveRecord::Schema.define(:version => 20140207121135) do
     t.string   "status"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "session_payments", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "case_id"
+    t.integer  "appointment_id"
+    t.integer  "payer_id"
+    t.date     "session_date"
+    t.string   "amount"
+    t.string   "payment_type"
+    t.string   "payment_amount"
+    t.text     "comment"
+    t.string   "session_status"
+    t.string   "auth"
+    t.string   "fee"
+    t.string   "copay"
+    t.string   "debit"
+    t.string   "balance"
+    t.string   "uos"
+    t.string   "owes"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "therapists", :force => true do |t|

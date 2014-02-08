@@ -1,0 +1,81 @@
+<div class="commonr">
+  <% if @start_date >= Date.today %>
+    <%= link_to 'LAST WEEK' , counselor_down_status_counselor_dashboards_path(:date => (@date - 1.week),:day =>@date - 1.week),
+      :remote => true, :id => "prev",:class => "arrow-left-week" %>
+  <% end %>
+  <%= link_to 'NEXT WEEK', counselor_down_status_counselor_dashboards_path(:date => (@date + 1.week),:day =>@date + 1.week),
+    :remote => true, :id => "next", :class => "arrow-right-week" %>
+</div>
+
+<div class="box">						
+  <div class="list_carousel caroulproduct">
+    <ul id="caroulproduct">
+      <li>
+        <ul id="collexp-menu1" class="collexpMenu">
+          <% for date in (@start_date..@end_date) %>
+            <li style='width: 95%;'><em><input type="submit" title="Save" value="Save" /></em><div title="MONDAY APRIL 1" class="expanded" style='width:902px;'><%= date.strftime("%A").upcase %> <span><%= date.strftime("%B %d").upcase %></span></div>
+              <ul style='padding: 0px;width:894px;'>
+                <li>
+                  <table class="table-curweek" cellpadding="0" cellspacing="0" width="100%" border="0">
+                    <% appointments = current_user.appointments.where("start_at BETWEEN '#{date} 00:01:01' AND '#{date} 23:59:59'") %>
+                    <% if appointments.exists? %>
+                      <% for appointment in appointments %>
+                        <tr>
+                          <td>
+                            <ul class="list-remindersBox">
+                              <li>
+                                <div class="timeColumn"><%#= appointment.start_at.strftime("%H:%M")+'-'+appointment.end_at.strftime("%H:%M") %></div>
+                                <h4><%= appointment.client.first_name %></h4>
+                                <p class="columnClient"><%= appointment.case.number %> <abbr>|</abbr>   <span>1/5</span>   <abbr>|</abbr>   <em>auth.</em></p>
+                              </li>
+                            </ul>
+                          </td>
+                          <% if !appointment.invoice.nil? %>
+                            <td class="columnCopay"><%= text_field_tag :copay,'',:value =>appointment.invoice.copay,:onclick => "change_back(this)",:style => "width: 25px; border: medium none; background: none repeat scroll 0% 0% transparent; box-shadow: none; font-size: 15px; font-weight: bold; color: rgb(70, 70, 70);padding:1px;",:id => "copay_#{appointment.invoice.id}" %><br><em>copay</em></td>
+                            <td class="columnCopay"><%= text_field_tag :uos,'',:value =>appointment.invoice.uos,:onclick => "change_back(this)",:style => "width: 25px; border: medium none; background: none repeat scroll 0% 0% transparent; box-shadow: none; font-size: 15px; font-weight: bold; color: rgb(70, 70, 70);padding:1px;",:id => "uos_#{appointment.invoice.id}" %><br><em>uos</em></td>
+                            <td class="columnCopay"><%= appointment.invoice.balance %><br><em>balance</em></td>
+                            <td class="columnCopay"><%= appointment.invoice.owes %><br><em>owes</em></td>
+                            <td class="columnCopay"><%= text_field_tag :paid,'',:value =>appointment.invoice.paid,:onclick => "change_back(this)",:style => "width: 25px; border: medium none; background: none repeat scroll 0% 0% transparent; box-shadow: none; font-size: 15px; font-weight: bold; color: rgb(70, 70, 70);padding:1px;",:id => "paid_#{appointment.invoice.id}" %><br><em>paid</em></td>
+                            <td class="columnPayTy">
+                              <div class="menu-payType">
+                                <%= appointment.invoice.invoice_payment %>
+                                <span></span>
+                                <ul>
+                                  <li><%= select_tag(:invoice_payment,options_for_select([["ckeque","check"],["cash","cash"],["credit_card","credit_card"]],:selected => appointment.invoice.invoice_payment ),:id => "payment_#{appointment.invoice.id}") %></li>
+                                </ul>
+                              </div>	
+                            </td>
+                            <td class="columnStatus"><%= appointment.invoice.invoice_status %></td>
+                            <td class="columnPlus" onclick="update_invoice('<%= appointment.invoice.id %>')"></td>
+                          <% else %>
+                            <td colspan="7"></td>
+                          <% end %>
+                        </tr>   
+                      <% end %>
+                    <% else %>
+                      <tr>
+                        <td colspan="9">No Sessions</td>
+                      </tr>
+                    <% end %>
+                  </table>
+                </li>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('#collexp-menu1 > li > div.expanded + ul').slideToggle('medium');
+      $('#collexp-menu1 > li > div').click(function() {
+        $('#collexp-menu1 > li > div.expanded').not(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+        $(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+      });
+    }, 250);
+  });
+
+</script>

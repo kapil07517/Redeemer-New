@@ -1,0 +1,29 @@
+	
+<ul class="list-remindersBox">
+  <% @case.reminders.each do |reminder| %>
+    <li style='margin-left: -1px;'>
+      <div class="remindersColumn"><%= check_box_tag "reminders[]","#{reminder.id}" %></div>
+      <%= reminder.case.intake_form.user.first_name %>
+      <p><%= reminder.description %></p>
+    </li>
+  <% end %>
+</ul>
+<script>
+  $(document).ready(function() {
+    jQuery('#addReminders').click(function() {
+      jQuery('#addRemindersBox').slideToggle('slow', function() {
+      });
+    });
+    jQuery('#addCloseBox').click(function() {
+      jQuery('#addRemindersBox').slideToggle('slow', function() {
+      });
+    });
+  });
+
+  function display_reminder_form(appointment) {
+    $.ajax({
+      url: '/counselor/reminders/new?client_id=' + appointment,
+      dataType: 'script'
+    });
+  }
+</script>

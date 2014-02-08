@@ -1,0 +1,5 @@
+<%= form_for @adolesment_intake,:url => adolesment_intakes_path(current_user.role,@adolesment_intake) do |f| %>
+  <%= f.hidden_field :case_id,:value => @case.id %>
+  <%= f.hidden_field :client_id,:value => @client.id %>
+  <%= render :partial => "/adolesment_intakes/form",:locals => {:f => f} %>
+<% end %>

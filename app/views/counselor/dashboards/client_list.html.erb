@@ -1,0 +1,24 @@
+<div id="tabs" class="commonr">
+  <div class="caseNumber">
+    <ul class="list-breadCurm">
+      <li class="active"><a href="#" title="Case Number">Search</a></li>
+      <li>View All</li>
+    </ul>
+    <input type="text" placeholder="NEW" name="" title="NEW" class="input-infoArrowNone input-info input-caseNum">
+  </div>
+  <div class="box">
+    <table class="table-borLess" cellpadding="0" cellspacing="0" width="100%" border="0">
+      <tr><td colspan="6" bgcolor="#363636"><h6 class="clientList">Client List</h6></td></tr>
+      <% @appointments.each do |appointment| %>
+        <tr>
+          <td><%= appointment.client.full_name %></td>
+          <td><%= appointment.client.created_at.strftime("%d/%m/%y") %></td>
+          <td><%= appointment.client.email %></td>
+          <td><%= appointment.client.city %></td>
+          <td><%= appointment.case.number %></td>
+          <td><%= link_to "client management", counselor_client_management_path(appointment.client) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
