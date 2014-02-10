@@ -9,7 +9,7 @@ class IntakeForm < ActiveRecord::Base
   has_one :minor,:dependent => :destroy
   has_many :notes, :as => :notable
   has_one :case
-  has_many :documents
+  has_one :document,:dependent => :destroy
   has_many :appointments,:dependent => :destroy
   has_many :case_intake_forms,:dependent => :destroy
   def self.all_information(intake_id)

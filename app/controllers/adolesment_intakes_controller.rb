@@ -18,6 +18,23 @@ class AdolesmentIntakesController < ApplicationController
     end
   end
   
+  def client_adolesment_intake
+    @client = Client.find(params[:id])
+    @adolesment_intake = AdolesmentIntake.new
+  end
+  
+  def client_adolesment
+    @client = Client.find(params[:adolesment_intake][:client_id])
+    @adolesment_intake = AdolesmentIntake.new(params[:adolesment_intake])
+    if @adolesment_intake.save
+      @document = Document.new(:client_id =>@client.id,:adolesment_intake_id => @adolesment_intake.id,:doc_type => "adolesment_intake")
+      @document.save(:validate => false)
+      redirect_to edit_adolesment_intake_path(current_user.role,@adolesment_intake)
+    else
+      render :action => :client_adolesment_intake
+    end
+  end
+  
   def edit
     @adolesment_intake = AdolesmentIntake.find(params[:id])
   end

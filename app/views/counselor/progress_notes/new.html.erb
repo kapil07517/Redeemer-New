@@ -1,0 +1,25 @@
+<div id='progress_notes'>
+  <div id="invoice_form" style='float: left;width:303px;'>
+    <%= render :partial => 'counselor/invoices/form' %>
+  </div>
+  <div style='float: left;width:508px;' id='progress_notes_form'>
+    <%= render :partial => 'counselor/progress_notes/progress_new' %>
+  </div>
+</div>
+<script>
+  $("#invoice_invoice_status").change(function() {
+    if ($(this).val() === "missed_unbillable") {
+      $(".btn-progressNotes").hide();
+    } else {
+      $(".btn-progressNotes").show();
+    }
+  });
+
+  $(document).ready(function() {
+    if ($("#invoice_invoice_status").val() === "missed_unbillable") {
+      $(".btn-progressNotes").hide();
+    } else {
+      $(".btn-progressNotes").show();
+    }
+  });
+</script>

@@ -1,6 +1,12 @@
-<% if @client %>
-  $('#reminder_section').html('<%= escape_javascript render  :partial => "/reminders/reminders" %>');
+
+<% if @counselor_home %>
+  $('#addRemindersBox').css('display', 'none');
+  $('#reminder_list').html('<%= escape_javascript render  :partial => "/reminders/reminder_list" %>');
 <% else %>
-  $('#reminder_section').html('<%= escape_javascript render  :partial => "/reminders/case_reminders" %>');
+  <% if @client %>
+    $('#reminder_section').html('<%= escape_javascript render  :partial => "/reminders/reminders" %>');
+  <% else %>
+    $('#reminder_section').html('<%= escape_javascript render  :partial => "/reminders/case_reminders" %>');
+  <% end %>
+  $("#addRemindersBox1").hide();
 <% end %>
-$("#addRemindersBox1").hide();

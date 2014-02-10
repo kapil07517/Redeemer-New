@@ -1,0 +1,3 @@
+<%= form_for @invoice ,:url =>counselor_invoices_path(:role => current_user.role,:invoice =>@invoice),:method => 'POST',:remote => true do |f|%>
+  <%= render :partial => 'common',:locals => {:f => f} %>
+<% end %>

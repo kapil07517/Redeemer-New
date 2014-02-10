@@ -1,0 +1,39 @@
+<div class="box" id="reminders-list">
+  <div class="remindersBox">
+    <h3><%= link_to 'REMINDERS',"#",:onclick => "javascript:$('#addReminderBox').toggle('slow');return false;",:id => "addReminders",:class => "link-plus" %></h3>
+    <div id="addRemindersBox" style="display:none;">
+      <%= form_for @reminder ,:url => reminders_path(current_user.role,@reminder),:remote => true do |f| %>
+        <%= hidden_field_tag "counselor_home",'',:value => true %>
+        <%= f.hidden_field :client_id,:value => @client.id if @client %>
+        <%= f.hidden_field :case_id,:value => @case.id if @case %>
+        <div class="addRemindersContent">
+          <div onclick="javascript:$('#addRemindersBox').css('display', 'none');" id="addCloseBox1">Close</div>
+          <%= f.text_area :description,:rows => 4,:cols => 20,:style => "width:244px;" %>
+          <input id="resetPasswordClose" type="submit" title="Submit" value="Submit" />
+        </div>
+      <% end %>
+    </div>	
+    <ul class="list-remindersBox" id="reminder_list">
+      <%= render :partial => "/reminders/reminder_list" %>
+    </ul>
+  </div>
+  <script>
+    $(document).ready(function() {
+      jQuery('#addReminders').click(function() {
+        jQuery('#addRemindersBox').slideToggle('slow', function() {
+        });
+      });
+      jQuery('#addCloseBox').click(function() {
+        jQuery('#addRemindersBox').slideToggle('slow', function() {
+        });
+      });
+    });
+
+    function display_reminder_form(appointment) {
+      $.ajax({
+        url: '/counselor/reminders/new?client_id=' + appointment,
+        dataType: 'script'
+      });
+    }
+  </script>
+</div>

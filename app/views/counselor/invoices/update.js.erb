@@ -1,0 +1,5 @@
+<% if @invoice.errors.any? %>
+$("#invoice_form").html('<%= escape_javascript render :partial => "counselor/invoices/form" %>');
+<% else %>
+window.location.href = "<%= new_counselor_progress_note_path(:invoice_id => @invoice.id) %>"
+<% end %>

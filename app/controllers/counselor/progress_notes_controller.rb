@@ -10,6 +10,26 @@ class Counselor::ProgressNotesController < ApplicationController
     end
   end
   
+  def new
+    @invoice = SessionPayment.find(params[:invoice_id])
+    @appointment = Appointment.find(@invoice.appointment_id)
+    @progress_note = ProgressNote.new
+  end
+  
+  def appointment_progress
+    @appointment = Appointment.find(params[:progress_note][:appointment_id])
+    @progress_note = ProgressNote.new(params[:progress_note])
+    params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
+    respond_to do |format|
+      if @progress_note.save
+        @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
+        @document.save(:validate => false)
+      else
+      end
+      format.js
+    end
+  end
+  
   def create
     @appointment = Appointment.find(params[:progress_note][:appointment_id])
     @progress_note = ProgressNote.new(params[:progress_note])
@@ -44,5 +64,15 @@ class Counselor::ProgressNotesController < ApplicationController
   
   def show
     @progress_note = ProgressNote.find(params[:id])
+  end
+  
+  def destroy
+    @progress_note = ProgressNote.find(params[:id])
+    if @progress_note.destroy
+      flash[:notice] = "Progress Note deleted successfully!"
+    else
+      flash[:error] = "Progress deletion failed!"
+    end
+    redirect_to root_path
   end
 end

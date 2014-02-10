@@ -1,0 +1,13 @@
+<div class="columnRight-clientPnFinal">
+  <ul class="list-Right-clientPnFinal">
+    <li>Progress Notes <span>4/1/13</span></li>
+    <%= form_for @progress_note ,:url =>appointment_progress_counselor_progress_notes_path(@progress_note),:method => :post,:remote => true do |f|%>
+      <%= render :partial => "counselor/progress_notes/form",:locals => {:f => f} %>
+    <% end %>
+  </ul>
+</div>
+<style>
+  textarea{
+    width:425px;
+  }
+</style>

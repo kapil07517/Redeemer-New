@@ -1,0 +1,8 @@
+<%= form_for @invoice ,:url =>counselor_invoice_path(@invoice),:html => {:method => 'PUT',:format => :pdf},:remote => true do |f|%>
+  <%= render :partial => "/counselor/invoices/common",:locals => {:f => f} %>
+  <style>
+    select{
+      width:124px;
+    }
+  </style>
+<% end %>

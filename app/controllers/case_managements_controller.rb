@@ -5,7 +5,8 @@ class CaseManagementsController < ApplicationController
     @reminder = Reminder.new
     @documents = @case.documents
     @document = Document.new
-    @appointment = Appointment.find(params[:appointment_id]) if params[:appointment_id]
+    session[:ap_id] = params[:appointment_id] if params[:appointment_id]
+    @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
   end
   
   def upload_document
@@ -13,6 +14,7 @@ class CaseManagementsController < ApplicationController
     @reminder = Reminder.new
     @documents = @case.documents
     @document = Document.new(params[:document])
+    @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
     if @document.save
       redirect_to case_management_path(@case)
     else

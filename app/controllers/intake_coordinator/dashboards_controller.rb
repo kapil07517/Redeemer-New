@@ -35,4 +35,12 @@ class IntakeCoordinator::DashboardsController < ApplicationController
     @case.update_attribute(:counselor_id,@counselor)
     render
   end
+  
+  def calendar
+    @appointments = CounselorAvailability.scoped
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @appointments.to_json }
+    end
+  end
 end

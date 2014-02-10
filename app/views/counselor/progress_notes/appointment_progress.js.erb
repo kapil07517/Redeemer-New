@@ -1,0 +1,5 @@
+<% if @progress_note.errors.any? %>
+  $("#progress_notes_form").html('<%= escape_javascript render :partial => "counselor/progress_notes/progress_new" %>');
+<% else %>
+  window.location.reload();
+<% end %>

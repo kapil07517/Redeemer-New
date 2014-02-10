@@ -1,0 +1,4 @@
+$("#invoice_form").html('<%= escape_javascript render :partial => "new" %>');
+$("#reminders").html('<%= escape_javascript render :partial => '/reminders/appointment_reminders' %>');
+$(".right").hide();
+$("#right_<%= @appointment.id %>").show();

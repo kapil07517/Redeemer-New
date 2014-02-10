@@ -21,7 +21,7 @@
       <div class="clearFix"></div>
     </li>
   <% end %>
-  <%= form_for :client_document,:url => documents_path(:client_id => @client.id),:remote => true do |f| %>
+  <%= form_for :client_document,:url => upload_client_document_documents_path(current_user.role,@client_document,:client_id => @client.id),:method => :post,:remote => true do |f| %>
     <li id="client_document">
       <div class="greenBox">Add a<br />Document</div>
       <div class="darkBoxGray">

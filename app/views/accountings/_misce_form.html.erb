@@ -1,36 +1,38 @@
-<%= form_for @m_payment,:url => m_payment_accountings_path(current_user.role,@m_payment),:method => :post,:remote => true do |f| %>
-  <%= f.hidden_field :case_id,:value => @case.id if @case %> 
-  <%= f.hidden_field :client_id,:value => @client.id if @client %> 
-  <div class="grayBox lightGrayBox">
-    <%= f.error_messages %>
-    <div class="sessionPayment">
-      <div class="commentPlus" style="cursor: pointer;" onclick="javascript:$('#comment1').toggle('slow')">COMMENT</div>
-      <h6 class="GrayBoxHeading">MISCELLANEOUS PAYMENT</h6>
-    </div>
-    <div class="payment">
-      <div>
-        <p>Date</p>
-        <%= f.date_select :pay_date,:start_year => 1930 %>
+<% if @client %>
+  <%= form_for @m_payment,:url => m_payment_accountings_path(current_user.role,@m_payment),:method => :post,:remote => true do |f| %>
+    <%= f.hidden_field :case_id,:value => @case.id if @case %> 
+    <%= f.hidden_field :client_id,:value => @client.id if @client %> 
+    <div class="grayBox lightGrayBox">
+      <%= f.error_messages %>
+      <div class="sessionPayment">
+        <div class="commentPlus" style="cursor: pointer;" onclick="javascript:$('#comment1').toggle('slow')">COMMENT</div>
+        <h6 class="GrayBoxHeading">MISCELLANEOUS PAYMENT</h6>
       </div>
-      <div>
-        <p>Description</p>
-        <%= f.text_field :description,:class => "input-namePayment input-datePayment" %>
+      <div class="payment">
+        <div>
+          <p>Date</p>
+          <%= f.date_select :pay_date,:start_year => 1930 %>
+        </div>
+        <div>
+          <p>Description</p>
+          <%= f.text_field :description,:class => "input-namePayment input-datePayment" %>
+        </div>
+        <div>
+          <p>Item</p>
+          <%= f.text_field :item,:class => "input-namePayment input-datePayment" %>
+        </div>
+        <div>
+          <p>Payment Type</p>
+          <%= f.select :payment_type,%W(cash ckeque credit_card) %>
+        </div>
       </div>
-      <div>
-        <p>Item</p>
-        <%= f.text_field :item,:class => "input-namePayment input-datePayment" %>
+      <div id="comment1" style="display: none;">
+        <p>Comment</p>
+        <%= f.text_area :comment,:rows => 2,:cols => 20,:class => "textarea-comment" %>
       </div>
-      <div>
-        <p>Payment Type</p>
-        <%= f.select :payment_type,%W(cash ckeque credit_card) %>
+      <div class="btn-createnew">
+        <input type="submit" title="SAVE" value="SAVE" name="" /><em></em>
       </div>
     </div>
-    <div id="comment1" style="display: none;">
-      <p>Comment</p>
-      <%= f.text_area :comment,:rows => 2,:cols => 20,:class => "textarea-comment" %>
-    </div>
-    <div class="btn-createnew">
-      <input type="submit" title="SAVE" value="SAVE" name="" /><em></em>
-    </div>
-  </div>
+  <% end %>
 <% end %>

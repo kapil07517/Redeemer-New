@@ -18,6 +18,23 @@ class DischargeSummaryController < ApplicationController
     end
   end
   
+  def client_discharge_summary
+    @client = Client.find(params[:id])
+    @discharge_summary = DischargeSummary.new
+  end
+  
+  def client_discharge
+    @client = Client.find(params[:discharge_summary][:client_id])
+    @discharge_summary = DischargeSummary.new(params[:discharge_summary])
+    if @discharge_summary.save
+      @document = Document.new(:client_id =>@client.id,:discharge_summary_id => @discharge_summary.id,:doc_type => "discharge_summary")
+      @document.save(:validate => false)
+      redirect_to edit_discharge_summary_path(current_user.role,@discharge_summary)
+    else
+      render :action => :client_discharge_summary
+    end
+  end
+  
   def edit
     @discharge_summary = DischargeSummary.find(params[:id])
   end

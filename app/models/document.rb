@@ -14,8 +14,9 @@ class Document < ActiveRecord::Base
   validate :case_num_val
   
   def case_num_val
-    if self.case_num
-      self.errors.add(:case_num,"can't be blank")
+    cs = Case.find_by_number(self.case_num)
+    if self.case_num and cs == nil
+      self.errors.add(:case_num,"number not exists!")
     end
   end
 end

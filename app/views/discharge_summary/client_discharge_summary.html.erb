@@ -1,0 +1,9 @@
+<ul class="menu-main">
+  <li><a href="#"><span>FORM</span></a></li>
+</ul>
+<div class="box">
+  <%= form_for @discharge_summary,:url => client_discharge_discharge_summary_path(current_user.role,@client,@discharge_summary) do |f| %>
+    <%= f.hidden_field :client_id,:value => @client.id %>
+    <%= render :partial => "/discharge_summary/form",:locals => {:f => f} %>
+  <% end %>
+</div>

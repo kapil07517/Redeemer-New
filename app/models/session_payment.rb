@@ -7,4 +7,5 @@ class SessionPayment < ActiveRecord::Base
   belongs_to :payer
   belongs_to :appointment
   validates :case_id,:amount,:payment_amount,:payment_type,:session_date,:presence => true,:if => lambda{ |object| object.action_name == 'accounting' }
+  validates :amount,:fee,:payment_type,:session_status,:uos,:presence => true
 end

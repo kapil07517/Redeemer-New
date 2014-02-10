@@ -1,0 +1,7 @@
+<% @reminders.each do |reminder| %>
+  <li style='margin-left: -1px;'>
+    <div class="remindersColumn"><%= check_box_tag "reminders[]","#{reminder.id}" %></div>
+    <h4><%= reminder.client.first_name %></h4>
+    <p><%= reminder.description %></p>
+  </li>
+<% end %>

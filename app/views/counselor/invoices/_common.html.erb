@@ -1,0 +1,106 @@
+<%= f.hidden_field :appointment_id ,:value => @appointment.id %>
+<div class="clientDetail" id="clientNameContent-1">
+  <%= f.error_messages %>
+  <span class="arrow-clientdetail"></span>
+  <p>CELL: <span>123. 456. 7890</span></p>
+  <p>HOME: <span>123. 456. 7890</span></p>
+  <p>EMAIL: <span><%= "email" %></span></p>
+  <ul class="list-receiptdetail">
+    <li>
+      <div>Fees</div>
+      <div><%= f.text_field :fee,:class=>"input-none"  %></div>
+    </li>
+    <li>
+      <div>UOS</div>
+      <div><%= f.text_field :uos,:class=>"input-none"  %></div>
+    </li>
+    <li>
+      <div>COPAY</div>
+      <div><%= f.text_field :copay,:class=>"input-none",:readonly => true  %></div>
+    </li>
+    <li>
+      <div>BALANCE</div>
+      <div><%= f.text_field :balance,:class=>"input-none",:readonly => true   %></div>
+    </li>
+    <li>
+      <div>OWES</div>
+      <div><%= f.text_field :owes,:class=>"input-none",:readonly => true   %></div>
+    </li>
+    <li class="columnTotal">
+      <div>PAYER 2</div>
+      <div><%= f.text_field :payer_id,:class=>"input-none",:readonly => true   %></div>
+    </li>
+    <li>
+      <div>PAID</div>
+      <div><%= f.text_field :amount,:class=>"input-none"  %></div>
+    </li>
+    <li class="columnTotal">
+      <div class="columnPaySta">
+        <%= f.select :payment_type,%W(cash ckeque credit_card) %>
+      </div>
+      <div class="columnPaySta">
+        <%= f.select :session_status,%w(completed missed_billable missed_unbillable) %>
+      </div>
+    </li>
+  </ul>
+  <div class="row-clientdetail playername">
+    <div>PAYER 2 NAME<br> AUTHORIZATION</div>
+    <div>
+      <em>payer 2 name</em><br><span>1/5</span>
+    </div>
+  </div>
+  <div class="row-clientdetail">
+    <%= f.submit "PRINT RECEIPT",:class => 'btn-printReceipt',:style => "background-color: #6D6E70;
+border: 1px solid #4D4B4C;
+color:#E6E7E8;
+float: right;font-family: Arvo,Tahoma,sans-serif;
+font-size: 12px;
+font-weight: bold;
+padding: 10px;
+text-align: center;
+text-decoration: none;
+text-transform: uppercase;
+width: 120px;float:left;
+    " %>
+    <%= f.submit "EMAIL RECEIPT",:class => 'btn-emailReceipt',:style => "background-color: #FFFFFF;
+border-top: 1px solid #878585;
+color: #404041;
+float: right;font-family: Arvo,Tahoma,sans-serif;
+font-size: 12px;
+font-weight: bold;
+padding: 10px;
+text-align: center;
+text-decoration: none;
+text-transform: uppercase;
+width: 120px;
+    " %>
+  </div>
+  <div class="row-clientdetail">
+    <%= f.submit "SAVE",:class => 'btn-save' %>
+    <%= link_to "PROGRESS NOTES","javascript:void(0)",:onclick => "javascript:$('#invoice_form form').submit();",:class=>"btn-progressNotes" %>
+  </div>
+</div>
+<del>.</del>
+<style>
+  select{
+    width:133px;
+  }
+</style>
+<script>
+  $("#invoice_invoice_status").change(function() {
+    if ($(this).val() === "missed_unbillable") {
+      $(".btn-progressNotes").hide();
+    }else{
+       $(".btn-progressNotes").show();
+    }
+  });
+
+  $(document).ready(function() {
+    if ($("#invoice_invoice_status").val() === "missed_unbillable") {
+      $(".btn-progressNotes").hide();
+    }else{
+       $(".btn-progressNotes").show();
+    }
+  });
+</script>
+

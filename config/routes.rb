@@ -55,7 +55,12 @@ Rcms::Application.routes.draw do
         put :update_appointment
       end
     end
-    resources :progress_notes
+    resources :progress_notes do
+      collection do
+        post :appointment_progress
+      end
+    end
+    resources :invoices
   end
 
   namespace :intake_coordinator do
@@ -143,12 +148,28 @@ Rcms::Application.routes.draw do
   resources :documents,:path => "/:role/documents" do
     collection do
       get :case_documents
+      post :upload_client_document
     end
   end
   
-  resources :adolesment_intakes,:path => "/:role/adolesment_intakes"
-  resources :discharge_summary,:path => "/:role/discharge_summary"
-  resources :initial_evalutions,:path => "/:role/initial_evalutions"
+  resources :adolesment_intakes,:path => "/:role/adolesment_intakes" do
+    member do
+      get :client_adolesment_intake
+      post :client_adolesment
+    end
+  end
+  resources :discharge_summary,:path => "/:role/discharge_summary" do
+    member do
+      get :client_discharge_summary
+      post :client_discharge
+    end
+  end
+  resources :initial_evalutions,:path => "/:role/initial_evalutions" do
+    member do
+      get :client_intake_evalution
+      post :client_intake
+    end
+  end
   resources :accountings,:path => "/:role/accountings" do
     collection do
       post :m_payment

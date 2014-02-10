@@ -1,0 +1,23 @@
+<div class="well">
+  <table width="100%">
+    <tr>
+      <td>Case Number:</td>
+      <td><%= @invoice.appointment.case.number %></td>
+    </tr>
+    <tr>
+      <td>Client Name:</td>
+      <td><%= @invoice.appointment.client.first_name %></td>
+    </tr>
+    <tr>
+      <td>Amount:</td>
+      <td><%= @invoice.fee %></td>
+    </tr>
+  </table>
+</div>
+
+<style>
+
+  table tr td:nth-child(2){
+    font-weight: bold;
+  }
+</style>

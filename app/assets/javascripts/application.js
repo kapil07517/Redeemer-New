@@ -116,19 +116,14 @@ function show_this_date_appointments1(date) {
     }
 }
 
-function display_invoice_form(role, case_id, counselor_id, client_id, appointment_id, form) {
-    if (form != 0) {
-        url = "/" + role + "/invoices/" + form + "/edit"
-    } else {
-        url = "/" + role + "/cases/" + case_id + "/invoices/new"
-    }
+function display_invoice_form(role, case_id, counselor_id, client_id, appointment_id) {
+    url = "/" + role + "/invoices/new";
     $.ajax({
         url: url,
         data: {
             role: role,
             appointment_id: appointment_id,
-            client_id: client_id,
-            invoice_id: form
+            client_id: client_id
         },
         type: 'GET',
         dataType: 'script',

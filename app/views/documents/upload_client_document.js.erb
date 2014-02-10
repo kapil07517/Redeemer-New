@@ -1,0 +1,6 @@
+<% if @blank and @blank == true %>
+  $("em#doc_error").html("<%= @doc_error %>");
+  $("em#cas_error").html("<%= @cas_error %>");
+<% else %>
+  window.location.href = "<%= document_redirect(current_user.role,@client.id.to_s,@doc) %>"
+<% end %>

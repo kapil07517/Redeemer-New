@@ -30,26 +30,7 @@
                               </li>
                             </ul>
                           </td>
-                          <% if !appointment.invoice.nil? %>
-                            <td class="columnCopay"><%= text_field_tag :copay,'',:value =>appointment.invoice.copay,:onclick => "change_back(this)",:style => "width: 25px; border: medium none; background: none repeat scroll 0% 0% transparent; box-shadow: none; font-size: 15px; font-weight: bold; color: rgb(70, 70, 70);padding:1px;",:id => "copay_#{appointment.invoice.id}" %><br><em>copay</em></td>
-                            <td class="columnCopay"><%= text_field_tag :uos,'',:value =>appointment.invoice.uos,:onclick => "change_back(this)",:style => "width: 25px; border: medium none; background: none repeat scroll 0% 0% transparent; box-shadow: none; font-size: 15px; font-weight: bold; color: rgb(70, 70, 70);padding:1px;",:id => "uos_#{appointment.invoice.id}" %><br><em>uos</em></td>
-                            <td class="columnCopay"><%= appointment.invoice.balance %><br><em>balance</em></td>
-                            <td class="columnCopay"><%= appointment.invoice.owes %><br><em>owes</em></td>
-                            <td class="columnCopay"><%= text_field_tag :paid,'',:value =>appointment.invoice.paid,:onclick => "change_back(this)",:style => "width: 25px; border: medium none; background: none repeat scroll 0% 0% transparent; box-shadow: none; font-size: 15px; font-weight: bold; color: rgb(70, 70, 70);padding:1px;",:id => "paid_#{appointment.invoice.id}" %><br><em>paid</em></td>
-                            <td class="columnPayTy">
-                              <div class="menu-payType">
-                                <%= appointment.invoice.invoice_payment %>
-                                <span></span>
-                                <ul>
-                                  <li><%= select_tag(:invoice_payment,options_for_select([["ckeque","check"],["cash","cash"],["credit_card","credit_card"]],:selected => appointment.invoice.invoice_payment ),:id => "payment_#{appointment.invoice.id}") %></li>
-                                </ul>
-                              </div>	
-                            </td>
-                            <td class="columnStatus"><%= appointment.invoice.invoice_status %></td>
-                            <td class="columnPlus" onclick="update_invoice('<%= appointment.invoice.id %>')"></td>
-                          <% else %>
                             <td colspan="7"></td>
-                          <% end %>
                         </tr>   
                       <% end %>
                     <% else %>
