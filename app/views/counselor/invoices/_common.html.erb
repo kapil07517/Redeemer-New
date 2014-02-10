@@ -28,7 +28,7 @@
     </li>
     <li class="columnTotal">
       <div>PAYER 2</div>
-      <div><%= f.text_field :payer_id,:class=>"input-none",:readonly => true   %></div>
+      <div><%= f.select :payer_id,options_for_select([["Select",""]]+Payer.all.map{|a| [a.name_of_org,a.id]}),:class=>"input-none",:readonly => true   %></div>
     </li>
     <li>
       <div>PAID</div>
@@ -83,7 +83,7 @@ width: 120px;
 <del>.</del>
 <style>
   select{
-    width:133px;
+    width:103px;
   }
 </style>
 <script>
