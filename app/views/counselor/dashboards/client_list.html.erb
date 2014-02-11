@@ -16,7 +16,7 @@
           <td><%= appointment.client.email %></td>
           <td><%= appointment.client.city %></td>
           <td><%= appointment.case.number %></td>
-          <td><%= link_to "client management", counselor_client_management_path(appointment.client) %></td>
+          <td><%= link_to "client management", client_management_path(current_user.role,appointment.client,:appointment_id => appointment.id) %></td>
         </tr>
       <% end %>
     </table>
