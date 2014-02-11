@@ -13,7 +13,7 @@
       </div>
       <div>
         <p>Case Number</p>
-        <%= f.select :case_id,options_for_select([["Select",""]]+Case.all.map{|a| [a.number,a.id]}) %>
+        <%= f.select :case_id,options_for_select([["Select",""]]+Case.all.map{|a| [a.number,a.id]},:selected => f.object.case_id) %>
       </div>
       <div>
         <p>Amount</p>
@@ -25,7 +25,7 @@
       </div>
       <div>
         <p>Payment Name</p>
-        <%= f.text_field :client_id,:class => "input-numberPayment input-datePayment" %>
+        <%= f.select :payment_name,options_for_select([["Select",""]]+Client.all.map{|a| [a.full_name,"Client,#{a.id}"]}+Payer.all.map{|a| [a.name_of_org,"Payer,#{a.id}"]},:selected => f.object.payment_name) %>
       </div>
       <div>
         <p>Amount</p>

@@ -1,0 +1,5 @@
+<% if @payer_account.errors.any? %>
+  $("#payer_form").html('<%= escape_javascript render :partial => "/accountings/payer_form" %>');
+<% else %>
+  window.location.reload();
+<% end %>

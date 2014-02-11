@@ -7,11 +7,14 @@ class AccountingsController < ApplicationController
     @session_payments = @client.session_payments if @client
     @session = SessionPayment.new
     @m_payment = MiscellaneousPayment.new
+    @payer_account = PayerAccount.new
   end
   
   def create
     @session = SessionPayment.new(params[:session_payment])
-    if @session.save
+    @session.client_id = @session.payment_name.split(",").last if @session.payment_name and @session.payment_name.split(",").first == "Client"
+    @session.payer_id = @session.payment_name.split(",").last if @session.payment_name and @session.payment_name.split(",").first == "Payer"
+    if @session.valid?
     else
       
     end
@@ -25,6 +28,12 @@ class AccountingsController < ApplicationController
     if @m_payment.save
     else
     end
+    render
+  end
+  
+  def payer_account
+    @payer_account = PayerAccount.new(params[:payer_account])
+    @payer_account.save
     render
   end
 end

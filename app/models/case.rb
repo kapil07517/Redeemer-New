@@ -13,6 +13,7 @@ class Case < ActiveRecord::Base
   has_many :adolesment_intakes,:dependent => :destroy
   has_many :session_payments,:dependent => :destroy
   has_many :miscellaneous_payments,:dependent => :destroy
+  has_many :payer_accounts,:dependent => :destroy
   validates :prefix,:extension,:case_name,:presence => true
   before_create :combine_case_number
   

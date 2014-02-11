@@ -1,0 +1,29 @@
+<%= form_for @payer_account,:url => payer_account_accountings_path(current_user.role,@payer_account),:remote => true do |f| %>
+  <%= f.error_messages %>
+  <div class="sessionPayment">
+    <h6 class="GrayBoxHeading">ACCOUNT INFORMATION
+      <%= f.select :case_id,options_for_select([["Select",""]]+Case.all.map{|a| [a.number,a.id]},:selected => f.object.case_id) %>
+    </h6>
+  </div>
+  <div class="info payment">
+    <div>
+      <p>Payer 2</p>
+      <%= f.select :payer_id,options_for_select([["Select",""]]+Payer.all.map{|a| [a.name_of_org,a.id]},:selected => f.object.payer_id) %>
+    </div>
+    <div>
+      <p>Client Id</p>
+      <%= f.select :client_id,options_for_select([["Select",""]]+Client.all.map{|a| [a.full_name,a.id]},:selected => f.object.client_id) %>
+    </div>
+    <div>
+      <p>Authorizations</p>
+      <%= f.text_field :auth,:class=>"input-info input-Authoriz",:title=>"Authorizations", :placeholder=>"5"  %>
+    </div>
+    <div>
+      <p>Amt Per Session</p>
+      <%= f.text_field :amount,:class=>"input-info input-Authoriz",:title=>"Authorizations", :placeholder=>"$85"  %>
+    </div>
+  </div>
+  <div class="btn-createnew">
+    <input type="submit" title="Edit" value="Edit" name="" /><em></em>
+  </div>
+<% end %>

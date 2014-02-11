@@ -173,6 +173,7 @@ Rcms::Application.routes.draw do
   resources :accountings,:path => "/:role/accountings" do
     collection do
       post :m_payment
+      post :payer_account
     end
   end
   
