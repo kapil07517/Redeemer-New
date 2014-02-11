@@ -2,7 +2,7 @@ class ClientManagementsController < ApplicationController
   before_filter :is_intake_coordinator_or_counselor
   def show
     @client = Client.find(params[:id])
-    @documents = @client.documents
+    @documents = @client.documents.order("created_at desc")
     @document = Document.new
     @reminder = Reminder.new
     session[:ap_id] = params[:appointment_id] if params[:appointment_id]
@@ -11,7 +11,7 @@ class ClientManagementsController < ApplicationController
   
   def upload_document
     @client = Client.find(params[:id])
-    @documents = @client.documents
+    @documents = @client.documents.order("created_at desc")
     @reminder = Reminder.new
     @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
     @document = Document.new(params[:document])

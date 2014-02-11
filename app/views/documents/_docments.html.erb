@@ -21,11 +21,11 @@
         <% elsif document.doc_type == "intake_form"   %>
           <%= link_to document.intake_form.intake_type,intake_form_details_path(:role => current_user.role,:id => document.intake_form_id) %>
         <% else %>
-          <%= link_to 'doc',document_path(current_user.role,document) %>
+          <%= link_to document.document_content_type,document_path(current_user.role,document) %>
         <% end %>
       </td>
-      <td><% if document.doc_type == "progress_note" and ProgressNote.find(document.progress_note_id).is_draft == true %>draft<% else %><% end %></td>
-      <td>INTAKE FORM (<%= document.case ? document.case.number.split("-")[0] : '' %>)</td>
+      <td><%= document.case ? document.case.number : '' %></td>
+      <td>edited: <%= document.updated_at.strftime("%B %d, %Y").upcase %></td>
       <td>created: <%= document.created_at.strftime("%B %d, %Y").upcase %></td>
     </tr>
   <% end %>

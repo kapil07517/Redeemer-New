@@ -3,14 +3,14 @@ class DocumentsController < ApplicationController
   def index
     @client = Client.find(params[:client_id])
     @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
-    @documents = @client.documents
+    @documents = @client.documents.order("created_at desc")
     @document = Document.new
   end
   
   def case_documents
     @case = Case.find(params[:case_id])
     @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
-    @documents = @case.documents
+    @documents = @case.documents.order("created_at desc")
     @document = Document.new
   end
   

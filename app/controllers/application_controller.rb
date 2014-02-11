@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   
   #if not current_user and his role is not in admin or counselor it will take to /home
   def is_intake_coordinator_or_counselor
-    unless current_user and ['intake_coordinator','counselor'].include?(current_user.role)
+    unless current_user and ['intake_coordinator','counselor','admin'].include?(current_user.role)
       flash[:error] = "You don't have permissions!"
       redirect_to root_path
     end

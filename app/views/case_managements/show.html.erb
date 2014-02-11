@@ -122,8 +122,8 @@
   </div>
   <ul class="menu-main">
     <li><%= link_to 'Documents',case_documents_documents_path(current_user.role,:case_id => @case.id),:remote => true %></li>
-    <% if current_user.role == 'counselor' %><li><%= link_to 'PROGRESS NOTES',counselor_progress_notes_path(:appointment_id => @appointment.id),:remote => true %></li><% end %>
-    <li><a title="TREATMENT MAP" href="#treatmentMap"><span>TREATMENT MAP</span></a></li>
+    <% if current_user.role == 'counselor' %><li><%= link_to 'PROGRESS NOTES',counselor_progress_notes_path(:appointment_id => @appointment.id),:remote => true %></li>
+    <li><a title="TREATMENT MAP" href="#treatmentMap"><span>TREATMENT MAP</span></a></li><% end %>
     <li><%= link_to 'Accounting',new_accounting_path(current_user.role,:case_id => @case.id),:remote => true %></li>
   </ul>
   <div class="box" id="display_details">
