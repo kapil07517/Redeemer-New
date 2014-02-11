@@ -16,13 +16,13 @@
     <div class="box">
       <h4>CLIENT INFORMATION</h4>
       <ul class="list-clientinfo-em">
-        <li>HOME      <%= !@client.home.blank? ? (@client.home[0..2]+'-'+@client.home[3..5]+'-'+@client.home[6..9]) : '' %></li>
-        <li>MOBILE  <%= !@client.mobile.blank? ? (@client.mobile[0..2]+'-'+@client.mobile[3..5]+'-'+@client.mobile[6..9]) : '' %></li>
-        <li>OFFICE    <%= !@client.work.blank? ? (@client.work[0..2]+'-'+@client.work[3..5]+'-'+@client.work[6..9]) : '' %></li>
+        <li>HOME      <%= phone_no(@client.home) %></li>
+        <li>MOBILE  <%= phone_no(@client.mobile) %></li>
+        <li>OFFICE    <%= phone_no(@client.work) %></li>
       </ul>					
       <h4>EMERGENY CONTACT</h4>
       <p><%= @client.contact_name %></p>
-      <p>CONTACT:   <%= !@client.contact_phone.blank? ? (@client.contact_phone[0..2]+'-'+@client.contact_phone[3..5]+'-'+@client.contact_phone[6..9]) : '' %></p>
+      <p>CONTACT:   <%= phone_no(@client.contact_phone) %></p>
       <div class="clearFix"></div>
     </div>
   </li>

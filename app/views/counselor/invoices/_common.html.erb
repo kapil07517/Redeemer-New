@@ -2,9 +2,9 @@
 <div class="clientDetail" id="clientNameContent-1">
   <%= f.error_messages %>
   <span class="arrow-clientdetail"></span>
-  <p>CELL: <span>123. 456. 7890</span></p>
-  <p>HOME: <span>123. 456. 7890</span></p>
-  <p>EMAIL: <span><%= "email" %></span></p>
+  <p>CELL: <span><%= phone_no(@appointment.client.mobile) %></span></p>
+  <p>HOME: <span><%= phone_no(@appointment.client.home) %></span></p>
+  <p>EMAIL: <span><%= @appointment.client.email %></span></p>
   <ul class="list-receiptdetail">
     <li>
       <div>Fees</div>
