@@ -141,6 +141,11 @@ Rcms::Application.routes.draw do
   resources :client_managements,:path => "/:role/client_managements" do
     member do
       post :upload_document
+      get :add_client
+    end
+    collection do
+      get :search
+      get :search_form
     end
   end
   resources :case_managements,:path => "/:role/case_managements" do

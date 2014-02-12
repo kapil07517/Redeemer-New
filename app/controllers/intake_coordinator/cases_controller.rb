@@ -1,6 +1,6 @@
 class IntakeCoordinator::CasesController < ApplicationController
   before_filter :is_login
-  before_filter :is_correct_user  
+  before_filter :is_correct_user,:except => :update
   
   def index
     if params[:query] and params[:query] != "all"
@@ -25,12 +25,14 @@ class IntakeCoordinator::CasesController < ApplicationController
       @case = Case.new(params[:case])
       @intake_ids = params[:other_intakes]
       if @case.save
+        CaseClient.create(:case_id => @case.id,:client_id => @intake_form.user_id)
         CaseIntakeForm.create(:case_id =>@case.id,:intake_form_id => @case.intake_form_id)
         @intake_form.update_attribute(:case_id,@case.id)
         update_doc(@intake_form.id,@case.id)
         if params[:other_intakes]
           params[:other_intakes].split(",").each do |int|
-            IntakeForm.find(int).update_attribute(:case_id,@case.id) unless int.nil?
+            intake = IntakeForm.find(int).update_attribute(:case_id,@case.id) unless int.nil?
+            CaseClient.create(:case_id => @case.id,:client_id => intake.user_id) if (intake and !CaseClient.exists?(:case_id => @case.id,:client_id => intake.user_id))
             update_doc(int,@case.id)
           end
         end
@@ -48,7 +50,8 @@ class IntakeCoordinator::CasesController < ApplicationController
     respond_to do |format|
       if params[:case_id] and !params[:intake_ids].blank?
         params[:intake_ids].split(",").each do |int|
-          IntakeForm.find(int).update_attribute(:case_id,params[:case_id]) unless int.nil?
+          intake = IntakeForm.find(int).update_attribute(:case_id,params[:case_id]) unless int.nil?
+          CaseClient.create(:case_id => params[:case_id],:client_id => intake.user_id) if (intake and !CaseClient.exists?(:case_id => params[:case_id],:client_id => intake.user_id))
           update_doc(int,params[:case_id])
         end
         @redirect = true
@@ -61,6 +64,14 @@ class IntakeCoordinator::CasesController < ApplicationController
         end
       end
       format.js
+    end
+  end
+  
+  def update
+    @case = Case.find(params[:id])
+    @case.update_attribute(:status, params[:status])
+    respond_to do |format|
+      format.js { head :no_content }
     end
   end
   

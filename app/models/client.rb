@@ -15,4 +15,5 @@ class Client < User
   has_many :session_payments,:dependent => :destroy
   has_many :miscellaneous_payments,:dependent => :destroy
   has_many :payer_accounts,:dependent => :destroy
+  has_many :case_clients,:dependent => :destroy
 end

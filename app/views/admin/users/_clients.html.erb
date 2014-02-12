@@ -10,7 +10,7 @@
     <% clients.each do |client| %>
       <div class="tablerow">
         <div class="column"><%= client.id %></div>
-        <div class="column"><%= client.first_name %><%#= link_to client.first_name, client_management_path(current_user.role,client) %></div>
+        <div class="column"><%= link_to client.first_name, client_management_path(current_user.role,client) %></div>
         <div class="column"><%= client.email %></div>
         <div class="column"><%= phone_no(client.mobile) %></div>
         <div class="column">

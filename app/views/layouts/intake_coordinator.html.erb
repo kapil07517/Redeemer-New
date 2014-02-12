@@ -30,8 +30,8 @@
             <ul>
               <li class=<%= (params[:controller] == "intake_coordinator/dashboards" and params[:action] == "index" ? "active" : "")  %>><a title="Home" href="/">Home</a></li>
               <li class=<%= (params[:controller] == "intake_coordinator/cases" and params[:action] == "new" ? "active" : "")  %>><%= link_to "Create case", new_intake_coordinator_case_path %></li>
-              <li class=<%= (params[:controller] == "intake_coordinator/cases" and params[:action] == "case_list" ? "active" : "")  %>><%= link_to "Case List", intake_coordinator_cases_path %></li>
-              <li><%= link_to "Calendar", calendar_intake_coordinator_dashboards_path %></li>
+              <li class=<%= (params[:controller] == "intake_coordinator/cases" and params[:action] == "index" ? "active" : "")  %>><%= link_to "Case List", intake_coordinator_cases_path %></li>
+              <li class=<%= (params[:controller] == "intake_coordinator/dashboards" and params[:action] == "calendar" ? "active" : "")  %>><%= link_to "Calendar", calendar_intake_coordinator_dashboards_path %></li>
             </ul>
           </nav>
         </div>

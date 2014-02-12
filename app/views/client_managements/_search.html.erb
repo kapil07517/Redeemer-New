@@ -1,0 +1,13 @@
+<a class="close" style="float:right;" href="#" onclick="$('.pop').hide();$('#add_client').removeClass('selected');return false;">Cancel</a>
+<%= form_for(:search, url: search_client_managements_path(:appointment_id => @appointment.id), :method=>'get',:remote => true) do |f|%>
+  <div id="email">
+    <%= f.label :client_name %>
+    <%= f.text_field :client_name %>
+  </div>
+  <div id="message_submit">
+    <%=f.submit "search"%>
+  </div>
+<% end %>
+<div id="results">
+
+</div>

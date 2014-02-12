@@ -11,12 +11,12 @@
         <td>PHONE</td>
         <td>EMAIL</td>
       </tr>
-      <% @case.forms.each do |form| %>
+      <% @case.case_clients.each do |form| %>
         <tr>
-          <td><%= form.user.full_name %></td>
-          <td><%= form.user.date_of_birth %></td>
-          <td><%= form.user.mobile %></td>
-          <td><%= form.user.email %></td>
+          <td><%= form.client.full_name %></td>
+          <td><%= form.client.date_of_birth %></td>
+          <td><%= phone_no(form.client.mobile) %></td>
+          <td><%= form.client.email %></td>
         </tr>
       <% end %>
       <tr><td class="4"><del>.</del></td></tr>
