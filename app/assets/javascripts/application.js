@@ -150,14 +150,14 @@ function deselect(th) {
     });
 }
 
-function search_form(th, appointment) {
+function search_form(th, role, appointment) {
     if ($(th).hasClass("selected")) {
         deselect(th);
     } else {
         $(th).addClass("selected");
         $(".pop").slideFadeToggle(function() {
             $.ajax({
-                url: "/counselor/case_managements/search_form",
+                url: "/" + role + "/client_managements/search_form",
                 data: {
                     appointment_id: appointment
                 },

@@ -21,4 +21,22 @@ class ClientManagementsController < ApplicationController
       render :action => :show
     end
   end
+  
+  def search_form
+    @appointment = Appointment.find(params[:appointment_id])
+    render
+  end
+  
+  def search
+    @appointment = Appointment.find(params[:appointment_id])
+    @clients = Client.where("first_name LIKE '%#{params[:search][:client_name]}%'")
+    render
+  end
+  
+  def add_client
+    @appointment = Appointment.find(params[:appointment_id])
+    @client = Client.find(params[:id])
+    CaseClient.create(:case_id => @appointment.case_id,:client_id => @client.id) if !CaseClient.exists?(:case_id => @appointment.case_id,:client_id => @client.id)
+    render
+  end
 end

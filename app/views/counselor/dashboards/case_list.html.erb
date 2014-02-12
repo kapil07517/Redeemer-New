@@ -16,19 +16,19 @@
           <td><span><%= link_to appointment.case.case_name, case_management_path(current_user.role,appointment.case,:appointment_id => appointment.id) %></span></td>
           <td><%= link_to appointment.case.number, case_management_path(current_user.role,appointment.case,:appointment_id => appointment.id) %></td>
           <td><%= link_to appointment.counselor.full_name, "/counselor/dashboards/client_list" %></td>
-          <td><%= link_to_function "add_client", "search_form(this,'#{appointment.id}')",:id => "add_client" %>
+          <td><%= link_to_function "add_client", "search_form(this,'#{current_user.role}','#{appointment.id}')",:id => "add_client" %>
             <div class="messagepop pop">
 
             </div>
           </td>
           <td>
-            <% appointment.case.forms.each do |client| %>
-              <div><%= link_to client.user.full_name, client_management_path(current_user.role,client.user_id,:appointment_id => appointment.id) %></div>
+            <% appointment.case.case_clients.each do |client| %>
+              <div><%= link_to client.client.full_name, client_management_path(current_user.role,client.client,:appointment_id => appointment.id) %></div>
             <% end %>
           </td>
           <td>
-            <% appointment.case.forms.each do |client| %>
-              <div><%= client.user.date_of_birth.strftime("%m/%d/%Y") %></div>
+            <% appointment.case.case_clients.each do |client| %>
+              <div><%= client.client.date_of_birth.strftime("%m/%d/%Y") %></div>
             <% end %>
           </td>
           <td><span><%= select_tag "status",options_for_select([["Active","active"],["Inactive","inactive"],["DIP","dip"],["Discharged","discharged"]],:selected => appointment.case.status),:onchange => "change_status(this,#{appointment.case_id})" %></span></td>
