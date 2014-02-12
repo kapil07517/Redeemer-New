@@ -136,7 +136,7 @@ function display_invoice_form(role, case_id, counselor_id, client_id, appointmen
 function change_status(th, cas) {
     var st = $(th).val();
     $.ajax({
-        url: "/counselor/case_managements/" + cas,
+        url: "/intake_coordinator/cases/" + cas,
         data: {
             status: st
         },

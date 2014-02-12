@@ -1,6 +1,6 @@
 class IntakeCoordinator::CasesController < ApplicationController
   before_filter :is_login
-  before_filter :is_correct_user  
+  before_filter :is_correct_user,:except => :update
   
   def index
     if params[:query] and params[:query] != "all"
@@ -64,6 +64,14 @@ class IntakeCoordinator::CasesController < ApplicationController
         end
       end
       format.js
+    end
+  end
+  
+  def update
+    @case = Case.find(params[:id])
+    @case.update_attribute(:status, params[:status])
+    respond_to do |format|
+      format.js { head :no_content }
     end
   end
   
