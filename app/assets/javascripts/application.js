@@ -58,7 +58,7 @@ function update_room_status(id) {
         dataType: "script",
         success: function(data) {
         }
-    })
+    });
 }
 
 function remove_fields(link) {
@@ -68,9 +68,9 @@ function remove_fields(link) {
 
 function add_fields(link, association, content) {
     var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g")
+    var regexp = new RegExp("new_" + association, "g");
     $(link).parent().before(content.replace(regexp, new_id));
-    if ($(link).closest(".fields").length == '5') {
+    if ($(link).closest(".fields").length === '5') {
         return false;
     }
 //    $('.fields input[type=file]').customFileInput();
@@ -89,30 +89,30 @@ function display_this(date, day, st) {
         success: function(data) {
 
         }
-    })
+    });
 }
 
 function show_this_date_appointments(date) {
     var list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    if (date in list == true) {
+    if (date in list === true) {
         date = '0' + date;
         $("#appointments_" + date).show();
-        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments1(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">-</a>')
+        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments1(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">-</a>');
     } else {
         $("#appointments_" + date).show();
-        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments1(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">-</a>')
+        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments1(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">-</a>');
     }
 }
 
 function show_this_date_appointments1(date) {
     var list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    if (date in list == true) {
+    if (date in list === true) {
         date = '0' + date;
         $("#appointments_" + date).hide();
-        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">+</a>')
+        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">+</a>');
     } else {
         $("#appointments_" + date).hide();
-        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">+</a>')
+        $("a#show_this_" + date).replaceWith('<a onclick="show_this_date_appointments(' + date + '); return false;" href="#" id="show_this_' + date + '" class="plus-minus-link">+</a>');
     }
 }
 
@@ -130,7 +130,7 @@ function display_invoice_form(role, case_id, counselor_id, client_id, appointmen
         success: function(data) {
 
         }
-    })
+    });
 }
 
 function change_status(th, cas) {
@@ -175,26 +175,26 @@ $.fn.slideFadeToggle = function(easing, callback) {
 function change_back(th) {
     $(th).css({"border": "1px solid #C1CDB1", "box-shadow": "4px 4px 4px #999999 inset"});
 }
-
-function update_invoice(invoice_id) {
-    var copay = $("#copay_" + invoice_id).val();
-    var uos = $("#uos_" + invoice_id).val();
-    var paid = $("#paid_" + invoice_id).val();
-    var payment = $("#payment_" + invoice_id).val();
-    $.ajax({
-        url: "/counselor/invoices/" + invoice_id + "/update_invoice",
-        data: {
-            invoice: {
-                copay: copay,
-                uos: uos,
-                paid: paid,
-                invoice_payment: payment
-            }
-        },
-        type: 'PUT',
-        dataType: 'script'
-    });
-}
+/* update invoice function in counselor dashboard
+ function update_invoice(invoice_id) {
+ var copay = $("#copay_" + invoice_id).val();
+ var uos = $("#uos_" + invoice_id).val();
+ var paid = $("#paid_" + invoice_id).val();
+ var payment = $("#payment_" + invoice_id).val();
+ $.ajax({
+ url: "/counselor/invoices/" + invoice_id + "/update_invoice",
+ data: {
+ invoice: {
+ copay: copay,
+ uos: uos,
+ paid: paid,
+ invoice_payment: payment
+ }
+ },
+ type: 'PUT',
+ dataType: 'script'
+ });
+ }*/
 
 function intake(th) {
     if ($(th).is(":checked")) {
