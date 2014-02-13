@@ -31,9 +31,12 @@ class IntakeCoordinator::CasesController < ApplicationController
         update_doc(@intake_form.id,@case.id)
         if params[:other_intakes]
           params[:other_intakes].split(",").each do |int|
-            intake = IntakeForm.find(int).update_attribute(:case_id,@case.id) unless int.nil?
-            CaseClient.create(:case_id => @case.id,:client_id => intake.user_id) if (intake and !CaseClient.exists?(:case_id => @case.id,:client_id => intake.user_id))
-            update_doc(int,@case.id)
+            unless int.nil?
+              intake = IntakeForm.find(int)
+              intake.update_attribute(:case_id,@case.id)
+              CaseClient.create(:case_id => @case.id,:client_id => intake.user_id) if !CaseClient.exists?(:case_id => @case.id,:client_id => intake.user_id)
+              update_doc(int,@case.id)
+            end
           end
         end
       end
@@ -50,9 +53,12 @@ class IntakeCoordinator::CasesController < ApplicationController
     respond_to do |format|
       if params[:case_id] and !params[:intake_ids].blank?
         params[:intake_ids].split(",").each do |int|
-          intake = IntakeForm.find(int).update_attribute(:case_id,params[:case_id]) unless int.nil?
-          CaseClient.create(:case_id => params[:case_id],:client_id => intake.user_id) if (intake and !CaseClient.exists?(:case_id => params[:case_id],:client_id => intake.user_id))
-          update_doc(int,params[:case_id])
+          unless int.nil?
+            intake = IntakeForm.find(int)
+            intake.update_attribute(:case_id,params[:case_id])
+            CaseClient.create(:case_id => params[:case_id],:client_id => intake.user_id) if !CaseClient.exists?(:case_id => params[:case_id],:client_id => intake.user_id)
+            update_doc(int,params[:case_id])
+          end
         end
         @redirect = true
       else

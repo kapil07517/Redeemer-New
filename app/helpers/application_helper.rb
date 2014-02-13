@@ -12,7 +12,7 @@ module ApplicationHelper
     if message.class.to_s == 'Array'
       message = message.join(",")
     end
-    return !message.to_s.blank? ? ("<div class='form_error' style='color:red;text-transform:none;width:225px;'>&nbsp;&nbsp;"+message.to_s+"</div>").html_safe : " "
+    return !message.to_s.blank? ? ("<div class='form_error' style='color:red;text-transform:none;width:auto;'>&nbsp;&nbsp;"+message.to_s+"</div>").html_safe : " "
   end
 
   #displaying errors for devise forms
