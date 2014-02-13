@@ -12,7 +12,7 @@
     </li>
     <li>
       <div>UOS</div>
-      <div><%= f.text_field :uos,:class=>"input-none"  %></div>
+      <div><%= f.text_field :uos,:class=>"input-none", :onblur=>"UpdateValues(this.value)"  %></div>
     </li>
     <li>
       <div>COPAY</div>
@@ -90,17 +90,32 @@ width: 120px;
   $("#invoice_invoice_status").change(function() {
     if ($(this).val() === "missed_unbillable") {
       $(".btn-progressNotes").hide();
-    }else{
-       $(".btn-progressNotes").show();
+    } else {
+      $(".btn-progressNotes").show();
     }
   });
 
   $(document).ready(function() {
     if ($("#invoice_invoice_status").val() === "missed_unbillable") {
       $(".btn-progressNotes").hide();
-    }else{
-       $(".btn-progressNotes").show();
+    } else {
+      $(".btn-progressNotes").show();
     }
   });
+
+  function UpdateValues(va) {
+    var fees = $("#session_payment_fee").val();
+    var uos = va
+    $.ajax({
+      url: "/counselor/invoices/" + uos + "/update_values/",
+      data: {
+        fees: fees
+      },
+      type: "GET",
+      dataType: "script",
+      success: function(data) {
+      }
+    })
+  }
 </script>
 

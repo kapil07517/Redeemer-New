@@ -60,7 +60,11 @@ Rcms::Application.routes.draw do
         post :appointment_progress
       end
     end
-    resources :invoices
+    resources :invoices do
+      member do
+        get :update_values
+      end
+    end
   end
 
   namespace :intake_coordinator do

@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20140212080137) do
     t.string   "case_name"
     t.integer  "counselor_id"
     t.integer  "intake_form_id"
-    t.string   "status"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "status",         :default => "inactive"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "children", :force => true do |t|

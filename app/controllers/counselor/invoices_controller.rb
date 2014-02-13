@@ -44,4 +44,11 @@ class Counselor::InvoicesController < ApplicationController
       format.js
     end
   end
+  
+  def update_values
+    @uos = params[:id].to_i
+    @fees = params[:fees].to_i
+    @copay = @fees * @uos
+    @owes = @copay
+  end
 end
