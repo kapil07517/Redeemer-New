@@ -7,6 +7,7 @@ class ClientManagementsController < ApplicationController
     @reminder = Reminder.new
     session[:ap_id] = params[:appointment_id] if params[:appointment_id]
     @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
+    render :layout => "counselor" if current_user.role == 'admin'
   end
   
   def upload_document
@@ -18,7 +19,11 @@ class ClientManagementsController < ApplicationController
     if @document.save
       redirect_to client_management_path(@client)
     else
-      render :action => :show
+      if current_user.role == 'admin'
+        render :action => :show,:layout => "counselor"
+      else
+        render :action => :show
+      end
     end
   end
   
@@ -39,4 +44,5 @@ class ClientManagementsController < ApplicationController
     CaseClient.create(:case_id => @appointment.case_id,:client_id => @client.id) if !CaseClient.exists?(:case_id => @appointment.case_id,:client_id => @client.id)
     render
   end
+  
 end
