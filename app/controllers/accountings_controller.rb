@@ -8,6 +8,7 @@ class AccountingsController < ApplicationController
     @session = SessionPayment.new
     @m_payment = MiscellaneousPayment.new
     @payer_account = PayerAccount.new
+    @session_fee = SessionFee.new
   end
   
   def create
@@ -19,6 +20,13 @@ class AccountingsController < ApplicationController
       
     end
     render
+  end
+  
+  def update
+    @session = SessionPayment.find(params[:id])
+    @session.client_id = params[:session_payment][:payment_name].split(",").last if params[:session_payment][:payment_name] and params[:session_payment][:payment_name].split(",").first == "Client"
+    @session.payer_id = params[:session_payment][:payment_name].split(",").last if params[:session_payment][:payment_name] and params[:session_payment][:payment_name].split(",").first == "Payer"
+    @session.update_attributes(params[:session_payment])
   end
   
   def m_payment
@@ -35,5 +43,14 @@ class AccountingsController < ApplicationController
     @payer_account = PayerAccount.new(params[:payer_account])
     @payer_account.save
     render
+  end
+  
+  def session_fee
+    @session_fee = SessionFee.new(params[:session_fee])
+    @session_fee.save
+  end
+  
+  def update_session_payment
+    @session = SessionPayment.find(params[:id])
   end
 end

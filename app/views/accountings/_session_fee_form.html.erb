@@ -1,0 +1,21 @@
+<%= form_for @session_fee,:url => session_fee_accountings_path(current_user.role,@session_fee),:remote => true do |f| %>
+  <%= f.error_messages %>
+  <div class="sessionPayment">
+    <h6 class="GrayBoxHeading">ACCOUNT INFORMATION
+      <%= f.select :case_id,options_for_select([["Select",""]]+Case.all.map{|a| [a.number,a.id]},:selected => f.object.case_id) %>
+    </h6>
+  </div>
+  <div class="info payment">
+    <div>
+      <p>Fee</p>
+      <%= f.text_field :fee,:class=>"input-info input-Authoriz",:title=>"Fee"  %>
+    </div>
+    <div>
+      <p>Start Date</p>
+      <%= f.date_select :start_date,:start_year => 1930 %>
+    </div>
+  </div>
+  <div class="btn-createnew">
+    <input type="submit" title="Save" value="Save" name="" /><em></em>
+  </div>
+<% end %>

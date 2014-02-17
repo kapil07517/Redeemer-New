@@ -183,6 +183,10 @@ Rcms::Application.routes.draw do
     collection do
       post :m_payment
       post :payer_account
+      post :session_fee
+    end
+    member do
+      get :update_session_payment
     end
   end
   

@@ -8,11 +8,11 @@
   <ul class="list-receiptdetail">
     <li>
       <div>Fees</div>
-      <div><%= f.text_field :fee,:class=>"input-none"  %></div>
+      <div><%= f.text_field :fee,:class=>"input-none", :value => !@fee.nil? ? @fee.fee : ""  %></div>
     </li>
     <li>
       <div>UOS</div>
-      <div><%= f.text_field :uos,:class=>"input-none", :onblur=>"UpdateValues(this.value)"  %></div>
+      <div><%= f.text_field :uos,:class=>"input-none", "data-payer_amt" => !@acc.nil? ? @acc.amount : "" , :onblur=>"UpdateValues(this.value)"  %></div>
     </li>
     <li>
       <div>COPAY</div>
@@ -28,7 +28,11 @@
     </li>
     <li class="columnTotal">
       <div>PAYER 2</div>
-      <div><%= f.select :payer_id,options_for_select([["Select",""]]+Payer.all.map{|a| [a.name_of_org,a.id]}),:class=>"input-none",:readonly => true   %></div>
+      <% if !@acc.nil?  %>
+        <div><%= f.select :payer_id,options_for_select([["Select",""]]+Payer.all.map{|a| [a.name_of_org,a.id]}, :selected => @acc.payer_id),:class=>"input-none",:readonly => true %></div>
+      <% else %>
+        <div><%= f.select :payer_id,options_for_select([["Select",""]]+Payer.all.map{|a| [a.name_of_org,a.id]}),:class=>"input-none",:readonly => true   %></div>
+      <% end %>
     </li>
     <li>
       <div>PAID</div>
@@ -44,10 +48,17 @@
     </li>
   </ul>
   <div class="row-clientdetail playername">
-    <div>PAYER 2 NAME<br> AUTHORIZATION</div>
-    <div>
-      <em>payer 2 name</em><br><span>1/5</span>
-    </div>
+    <% if !@acc.nil?  %>
+      <div>PAYER 2 NAME<br> <%= @acc.payer.name_of_org %></div>
+      <div>
+        <em>payer 2 name</em><br><span>1/<%= @acc.auth %></span>
+      </div>
+    <% else %>
+      <div>PAYER 2 NAME<br> AUTHORIZATION</div>
+      <div>
+        <em>payer 2 name</em><br><span>1/5</span>
+      </div>
+    <% end %>
   </div>
   <div class="row-clientdetail">
     <%= f.submit "PRINT RECEIPT",:class => 'btn-printReceipt',:style => "background-color: #6D6E70;
@@ -106,10 +117,12 @@ width: 120px;
   function UpdateValues(va) {
     var fees = $("#session_payment_fee").val();
     var uos = va
+    var payer_amt = $("#session_payment_uos").data("payer_amt");
     $.ajax({
       url: "/counselor/invoices/" + uos + "/update_values/",
       data: {
-        fees: fees
+        fees: fees,
+        payer_amt: payer_amt
       },
       type: "GET",
       dataType: "script",

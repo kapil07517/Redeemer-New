@@ -6,11 +6,16 @@
 </div>
 <%= render :partial => "accountings/client_accounts" %>
 <div class="clearFix"></div>
-</div>
 <div class="payer">Payer 2 Sheet</div>		
-<div class="grayBox darkGrayBox" id="payer_form">
-  <%= render :partial => "accountings/payer_form" %>
+<div class="grayBox darkGrayBox">
+  <div id="payer_form">
+    <%= render :partial => "accountings/payer_form" %>
+  </div>
+  <div id="session_fee_form">
+    <%= render :partial => "accountings/session_fee_form" %>
+  </div>
 </div>
+
 <%= render :partial => "accountings/payer_accounts" %>
 <style>
   select{
