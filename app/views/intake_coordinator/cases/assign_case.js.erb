@@ -1,0 +1,5 @@
+<% if @redirect == true %>
+  window.location.href = '/';
+<% else %>
+  alert('<%= @alert %>');
+<% end %>

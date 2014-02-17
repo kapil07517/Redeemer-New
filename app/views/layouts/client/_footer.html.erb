@@ -3,7 +3,7 @@
     <li>
       <ul>
         <li><a title="Home" href="/">Home</a></li>
-        <% if current_user and current_user.role == "counselor" %>
+        <% if current_user and current_user.role == "counselor" and current_user.role != "admin" %>
           <li class="active"><a title="Clients" href="/counselor/dashboards/case_list">Clients</a></li>
           <li><a title="Calendar" href="/counselor/dashboards/appointments">Calendar</a></li>
         <% end %>
