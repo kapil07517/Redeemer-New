@@ -7,8 +7,8 @@ class CaseManagementsController < ApplicationController
     @document = Document.new
     session[:ap_id] = params[:appointment_id] if params[:appointment_id]
     @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
-    @acccount = PayerAccount.where("case_id = #{@case.id} and client_id = #{@appointment.client.id}").last
-    @authcounts = SessionPayment.where("case_id = #{@case.id} and client_id = #{@appointment.client.id}").count
+    @acccount = @appointment.nil? ? PayerAccount.where("case_id = #{@case.id}").last : PayerAccount.where("case_id = #{@case.id} and client_id = #{@appointment.client.id}").last
+    @authcounts = @appointment.nil? ? SessionPayment.where("case_id = #{@case.id}").count : SessionPayment.where("case_id = #{@case.id} and client_id = #{@appointment.client.id}").count
   end
   
   def upload_document
