@@ -51,7 +51,7 @@
     <% if !@acc.nil?  %>
       <div>PAYER 2 NAME<br> <%= @acc.payer.name_of_org %></div>
       <div>
-        <em>payer 2 name</em><br><span>1/<%= @acc.auth %></span>
+        <em>payer 2 name</em><br><span><%= @authcounts %>/<%= @acc.auth %></span>
       </div>
     <% else %>
       <div>PAYER 2 NAME<br> AUTHORIZATION</div>

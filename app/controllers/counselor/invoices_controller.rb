@@ -8,6 +8,7 @@ class Counselor::InvoicesController < ApplicationController
     @reminders = Reminder.where("case_id = #{@case.id} and client_id = #{@client.id}")
     @acc = PayerAccount.where("case_id = #{@case.id} and client_id = #{@client.id}").last
     @fee = SessionFee.where("case_id = #{@case.id}").last
+    @authcounts = SessionPayment.where("case_id = #{@case.id} and client_id = #{@client.id}").count
     @reminder= Reminder.new
     @invoice = SessionPayment.new
     respond_to do |format|

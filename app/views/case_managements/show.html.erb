@@ -76,7 +76,7 @@
     </div>
     <div class="multiRow">
       <div class="multiColumn w50">Authorization:</div>
-      <div class="multiColumn w50">3/10</div>
+      <div class="multiColumn w50"><%= @authcounts %>/<%= !@acccount.nil? ? @acccount.auth : ""  %></div>
     </div>
   </div>
   <div class="clearFix"></div>
@@ -105,7 +105,7 @@
         <td><%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%H:%M") %>-<%= appointment.start_at.blank? ? '' : appointment.end_at.strftime("%H:%M") %></td>
         <td><%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%b %d %Y") %></td>
         <td>2X A MONTH</td>
-        <td>3 / 5</td>
+        <td><%= @authcounts %>/<%= !@acccount.nil? ? @acccount.auth : ""  %></td>
       </tr>
     <% end %>
   </table>
