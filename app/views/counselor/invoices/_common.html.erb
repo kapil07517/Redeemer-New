@@ -12,7 +12,7 @@
     </li>
     <li>
       <div>UOS</div>
-      <div><%= f.text_field :uos,:class=>"input-none", "data-payer_amt" => !@acc.nil? ? @acc.amount : "" , :onblur=>"UpdateValues(this.value)"  %></div>
+      <div><%= f.text_field :uos,:class=>"input-none", "data-payer_amt" => !@acc.nil? ? @acc.amount : "", "data-balance" => !@session_payment.nil? ? @session_payment.balance : "" , :onblur=>"UpdateValues(this.value)"  %></div>
     </li>
     <li>
       <div>COPAY</div>
@@ -20,7 +20,7 @@
     </li>
     <li>
       <div>BALANCE</div>
-      <div><%= f.text_field :balance,:class=>"input-none",:readonly => true   %></div>
+      <div><%= f.text_field :balance,:class=>"input-none",:readonly => true, :value => !@session_payment.nil? ? @session_payment.balance : ""   %></div>
     </li>
     <li>
       <div>OWES</div>
@@ -118,11 +118,13 @@ width: 120px;
     var fees = $("#session_payment_fee").val();
     var uos = va
     var payer_amt = $("#session_payment_uos").data("payer_amt");
+    var balance = $("#session_payment_uos").data("balance");
     $.ajax({
       url: "/counselor/invoices/" + uos + "/update_values/",
       data: {
         fees: fees,
-        payer_amt: payer_amt
+        payer_amt: payer_amt,
+        bal: balance
       },
       type: "GET",
       dataType: "script",
