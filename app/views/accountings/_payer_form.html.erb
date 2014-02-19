@@ -12,7 +12,7 @@
     </div>
     <div>
       <p>Client Id</p>
-      <%= f.select :client_id,options_for_select([["Select",""]]+Client.all.map{|a| [a.full_name,a.id]},:selected => f.object.client_id) %>
+      <%= f.text_field :client_id,:class=>"input-info input-Authoriz",:title=>"client id" %>
     </div>
     <div>
       <p>Authorizations</p>

@@ -24,7 +24,7 @@
         <%= f.select :payment_type,%W(cash ckeque credit_card) %>
       </div>
       <div>
-        <p>Payment Name</p>
+        <p>Payer</p>
         <%= f.select :payment_name,options_for_select([["Select",""]]+Client.all.map{|a| [a.full_name,"Client,#{a.id}"]}+Payer.all.map{|a| [a.name_of_org,"Payer,#{a.id}"]},:selected => f.object.payment_name) %>
       </div>
       <!--<div>
