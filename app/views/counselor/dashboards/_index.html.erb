@@ -2,9 +2,9 @@
   <li>
     <div class='box'>
       <div class='remindersBox'>						
-        <%# if @start_date >= Date.today %>
+        <% if @start_date >= Date.today %>
           <%= link_to '' , counselor_status_counselor_dashboards_path(:date => (@date - 1.week),:day =>@date - 1.week,:status => "above_only"),:remote => true, :id => "prev1",:class => "arrow-left" %>
-        <%# end %>
+        <% end %>
         <%= link_to '', counselor_status_counselor_dashboards_path(:date => (@date + 1.week),:day =>@date + 1.week,:status => "above_only"),:remote => true, :id => "next1",:class => "arrow-right" %>
         <div id="pager1" class="pager">
           <% i = 1 %>
