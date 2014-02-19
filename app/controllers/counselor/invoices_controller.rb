@@ -9,6 +9,7 @@ class Counselor::InvoicesController < ApplicationController
     @acc = PayerAccount.where("case_id = #{@case.id} and client_id = #{@client.id}").last
     @fee = SessionFee.where("case_id = #{@case.id}").last
     @authcounts = SessionPayment.where("case_id = #{@case.id} and client_id = #{@client.id}").count
+    @session_payment = SessionPayment.where("case_id = #{@case.id} and client_id = #{@client.id}").last
     @reminder= Reminder.new
     @invoice = SessionPayment.new
     respond_to do |format|
@@ -26,10 +27,12 @@ class Counselor::InvoicesController < ApplicationController
     @reminder= Reminder.new
     respond_to do |format|
       if @invoice.save
-        if @invoice.session_status == "missed_unbillable"
-          balance =  @invoice.fees
+        if @invoice.session_status == "completed"
+          balance =  @invoice.fee.to_f - @invoice.amount.to_f
         else
+          balance =  @invoice.fee.to_f
         end
+        @invoice.update_attribute(:balance, balance)
         if params[:commit] == 'EMAIL RECEIPT'
           NotifierMailer.email_invoice_details(@invoice,@invoice.client).deliver
         end
@@ -55,12 +58,9 @@ class Counselor::InvoicesController < ApplicationController
   def update_values
     @uos = params[:id].to_i
     @fees = params[:fees].to_i
-    @payer_amt = params[:payer_amt].to_i if @payer_amt.blank?
-    if !@payer_amt.blank?
-      @copay = @fees * @uos - @payer_amt * @uos
-    else
-      @copay = @fees * @uos
-    end
-    @owes = @copay
+    @payer_amt = params[:payer_amt].to_i 
+    @balance = params[:balance].to_i
+    @copay = @fees * @uos - @payer_amt * @uos
+    @owes = @copay + @balance
   end
 end
