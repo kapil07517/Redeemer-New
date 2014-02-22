@@ -15,10 +15,7 @@ class AccountingsController < ApplicationController
     @session = SessionPayment.new(params[:session_payment])
     @session.client_id = @session.payment_name.split(",").last if @session.payment_name and @session.payment_name.split(",").first == "Client"
     @session.payer_id = @session.payment_name.split(",").last if @session.payment_name and @session.payment_name.split(",").first == "Payer"
-    if @session.valid?
-    else
-      
-    end
+    @session.save
     render
   end
   

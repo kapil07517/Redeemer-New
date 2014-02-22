@@ -10,7 +10,7 @@ class CounselorAvailability < ActiveRecord::Base
   def as_json(options = {})
     {
       :id => self.id,
-      :title => self.title,
+      :title => self.title+" by "+self.counselor.full_name,
       :start => start_at.rfc822,
       :end => end_at.rfc822,
       :allDay => 0,
