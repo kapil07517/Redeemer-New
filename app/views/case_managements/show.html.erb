@@ -52,15 +52,31 @@
       </div>
       <div class="perColumn">
         <h6 class="counselorHeading">Permissions</h6>
-        <p><input type="checkbox" title="Read" name="" /> Read</p>
-        <p><input type="checkbox" title="Read / Write" name="" /> Read / Write</p>
-        <p><input type="checkbox" title="Add" name="" /> Add</p>
-        <p><input type="checkbox" title="Remove" name="" /> Remove</p>
-        <p><input type="checkbox" title="Edit" name="" /> Edit</p>
+        <% if @case.counselor %>
+          <% ["Read","Read / Write","Add","Remove","Edit"].each do |permission| %>
+            <p><%= check_box_tag "permission",permission,@permission == permission ? true : false,:onclick => "update_permission(this,'#{current_user.role}',#{@case.id},#{@case.counselor_id})",:class => "permisson" %><%= permission %></p>
+          <% end %>
+        <% end %>
       </div>						
       <div class="clearFix"></div>
     </div>
   </div>
+  <script>
+    function update_permission(th, role, cs, coun) {
+      $("input.permisson").not(th).attr("checked", false);
+      $.ajax({
+        url: "/" + role + "/case_managements/counselor_permisson",
+        data: {
+          counselor_id: coun,
+          case_id: cs,
+          permission: $(th).val()
+        },
+        method: "post",
+        success: function(data) {
+        }
+      });
+    }
+  </script>
   <div class="box counselorBox mleft10">
     <div class="multiRow">
       <div class="multiColumn">Session Schedule:</div>
@@ -123,7 +139,7 @@
   <ul class="menu-main">
     <li><%= link_to 'Documents',case_documents_documents_path(current_user.role,:case_id => @case.id),:remote => true %></li>
     <% if current_user.role == 'counselor' %><li><%= link_to 'PROGRESS NOTES',counselor_progress_notes_path(:appointment_id => @appointment.id),:remote => true %></li>
-    <li><a title="TREATMENT MAP" href="#treatmentMap"><span>TREATMENT MAP</span></a></li><% end %>
+      <li><a title="TREATMENT MAP" href="#treatmentMap"><span>TREATMENT MAP</span></a></li><% end %>
     <li><%= link_to 'Accounting',new_accounting_path(current_user.role,:case_id => @case.id),:remote => true %></li>
   </ul>
   <div class="box" id="display_details">

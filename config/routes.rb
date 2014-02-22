@@ -152,6 +152,9 @@ Rcms::Application.routes.draw do
     member do
       post :upload_document
     end
+    collection do
+      post :counselor_permisson
+    end
   end
   resources :reminders,:path => "/:role/reminders"
   resources :documents,:path => "/:role/documents" do
