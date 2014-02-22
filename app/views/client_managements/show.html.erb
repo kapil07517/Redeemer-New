@@ -58,6 +58,7 @@
       <td>AUTHORIZATIONS</td>
     </tr>
     <% @client.appointments.each do |appointment| %>
+    <% account = PayerAccount.where("case_id = #{appointment.case_id} and client_id = #{appointment.client.id}").last %>
       <tr>
         <td><%= appointment.case.number %></td>
         <td><%= appointment.counselor.full_name %></td>
@@ -65,7 +66,7 @@
         <td><%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%H:%M") %>-<%= appointment.end_at.blank? ? '' : appointment.end_at.strftime("%H:%M") %></td>
         <td><%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%b %d %Y") %></td>
         <td>2X A MONTH</td>
-        <td>3 / 5</td>
+        <td><%= SessionPayment.where("case_id = #{appointment.case_id} and client_id = #{appointment.client.id}").count %>/<%= !account.nil? ? account.auth : ""  %></td>
       </tr>
     <% end %>
   </table>
