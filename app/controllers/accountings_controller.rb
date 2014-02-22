@@ -3,8 +3,10 @@ class AccountingsController < ApplicationController
   def new
     @case = Case.find(params[:case_id]) if params[:case_id]
     @client = Client.find(params[:client_id]) if params[:client_id]
-    @session_payments = @case.session_payments if @case
-    @session_payments = @client.session_payments if @client
+    @client_payments = @case.session_payments.where("client_id IS NOT NULL") if @case
+    @payer_payments = @case.session_payments.where("payer_id IS NOT NULL") if @case
+    @client_payments = @client.session_payments.where("client_id IS NOT NULL") if @client
+    @payer_payments = @client.session_payments.where("payer_id IS NOT NULL") if @client
     @session = SessionPayment.new
     @m_payment = MiscellaneousPayment.new
     @payer_account = PayerAccount.new

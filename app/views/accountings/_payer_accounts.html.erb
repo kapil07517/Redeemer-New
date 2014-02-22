@@ -10,7 +10,7 @@
     <td>DEBIT</td>
     <td>BALANCE</td>
   </tr>
-  <% @session_payments.each do |session_payment| %>
+  <% @payer_payments.each do |session_payment| %>
     <tr>
       <td><span><%= session_payment.session_date %></span></td>
       <td>SESSION <span><%= session_payment.case ? session_payment.case.number : '' %></span></td>
