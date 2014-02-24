@@ -23,6 +23,7 @@ class IntakeCoordinator::CasesController < ApplicationController
     @intake_form = IntakeForm.find params[:case][:intake_form_id]
     respond_to do |format|
       @case = Case.new(params[:case])
+      @case.status = 'inactive'
       @intake_ids = params[:other_intakes]
       if @case.save
         CaseClient.create(:case_id => @case.id,:client_id => @intake_form.user_id)
