@@ -1,9 +1,9 @@
 	
 <ul class="list-remindersBox">
   <% @case.reminders.each do |reminder| %>
-    <li style='margin-left: -1px;'>
-      <div class="remindersColumn"><%= check_box_tag "reminders[]","#{reminder.id}" %></div>
-      <%= reminder.case.intake_form.user.first_name %>
+    <li>
+      <div class="box-reminders"><%= check_box_tag "reminders[]","#{reminder.id}" %></div>
+      <div class="box-reminders-date" style="width:71px;"><%= reminder.case.number %><br><%= reminder.created_at.strftime("%m/%d/%Y") %></div>
       <p><%= reminder.description %></p>
     </li>
   <% end %>
