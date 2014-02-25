@@ -19,6 +19,7 @@ class Counselor::ProgressNotesController < ApplicationController
   def appointment_progress
     @appointment = Appointment.find(params[:progress_note][:appointment_id])
     @progress_note = ProgressNote.new(params[:progress_note])
+    @progress_note.counselor_id = current_user.id
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
     respond_to do |format|
       if @progress_note.save
@@ -33,6 +34,7 @@ class Counselor::ProgressNotesController < ApplicationController
   def create
     @appointment = Appointment.find(params[:progress_note][:appointment_id])
     @progress_note = ProgressNote.new(params[:progress_note])
+    @progress_note.counselor_id = current_user.id
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
     if @progress_note.save
       @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
@@ -55,6 +57,10 @@ class Counselor::ProgressNotesController < ApplicationController
         format.js
       end
     end
+  end
+  
+  def update_progress
+    
   end
   
   def edit

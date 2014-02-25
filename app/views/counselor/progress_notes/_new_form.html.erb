@@ -1,4 +1,6 @@
+<%= form_for @progress_note ,:url =>counselor_progress_note_path(@progress_note),:method => :put,:remote => true do |f|%>
   <%= f.hidden_field :appointment_id,:value => @appointment.id %>
+  <%= hidden_field_tag "actions","edit" %>
   <ul>
     <li>
       <div class="blackBox">Subjective :</div>
@@ -27,3 +29,4 @@
       </div>
     </li>
   </ul>
+<% end %>

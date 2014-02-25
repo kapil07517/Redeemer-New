@@ -11,7 +11,7 @@
     <tr>
       <td>
         <% if document.doc_type == "progress_note" %>
-          <%= link_to document.doc_type, counselor_progress_note_path(document.progress_note_id) %>
+          <%= link_to document.doc_type, edit_counselor_progress_note_path(document.progress_note_id),:remote => true %>
         <% elsif document.doc_type == "intake_evalution" %>
           <%= link_to document.doc_type,edit_initial_evalution_path(current_user.role,document.intake_evalution_id) %>
         <% elsif document.doc_type == "discharge_summary" %>
