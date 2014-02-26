@@ -118,7 +118,7 @@
             <div class="row">
               <div class="column"><%= @intake_form.contact_name %></div>
               <div class="column"><%= @intake_form.relationship %></div>
-              <div class="column"><%= phone_no(@intake_form.contact_no) %></div>
+              <div class="column"><%= number_to_phone(@intake_form.contact_no) %></div>
               <div class="column"><%= @intake_form.contact_email %></div>
             </div>	
           </div>									

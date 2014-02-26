@@ -11,7 +11,7 @@
       <div class="tablerow">
         <div class="column"><%= payer.name_of_org %></div>
         <div class="column"><%= payer.email %></div>
-        <div class="column"><%= payer.phone_no %></div>
+        <div class="column"><%= number_to_phone(payer.phone_no) %></div>
         <div class="column"><%= payer.address %></div>
         <div class="column"><%= payer.contact_person %></div>
       </div>

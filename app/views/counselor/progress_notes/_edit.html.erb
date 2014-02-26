@@ -1,5 +1,7 @@
 <div class="boxContent">
-  <p><bdo><%= @progress_note.appointment.case.number %>-<%= @progress_note.appointment.counselor.initial %>-<%= @progress_note.created_at.strftime("%m/%d/%Y") %>-</bdo><%= @progress_note.subjective %>.<%= @progress_note.objective %>.<%= @progress_note.assesment %>.<%= @progress_note.plan %>.</p>
+  <% @progress_notes.each do |progress| %>
+    <p><bdo><%= progress.appointment.case.number %>-<%= progress.appointment.counselor.initial %>-<%= progress.created_at.strftime("%m/%d/%Y") %>-</bdo><%= progress.subjective %>.<%= progress.objective %>.<%= progress.assesment %>.<%= progress.plan %>.</p>
+  <% end %>
   <div class="clearFix"></div>
 </div>
 <div class="bor-info"></div>

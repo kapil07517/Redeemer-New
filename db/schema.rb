@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225062329) do
+ActiveRecord::Schema.define(:version => 20140226062933) do
 
   create_table "adolesment_intakes", :force => true do |t|
     t.integer  "client_id"
@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20140225062329) do
     t.string   "case_name"
     t.integer  "counselor_id"
     t.integer  "intake_form_id"
-    t.string   "status"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "status",         :default => "inactive"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "children", :force => true do |t|
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20140225062329) do
     t.datetime "document_updated_at"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.integer  "reduced_fee_id"
   end
 
   create_table "intake_evalutions", :force => true do |t|
@@ -423,7 +424,6 @@ ActiveRecord::Schema.define(:version => 20140225062329) do
   end
 
   create_table "reduced_fees", :force => true do |t|
-    t.integer  "intake_form_id"
     t.integer  "client_id"
     t.string   "job_type"
     t.string   "hours_per_week"

@@ -16,13 +16,13 @@
     <div class="box">
       <h4>CLIENT INFORMATION</h4>
       <ul class="list-clientinfo-em">
-        <li>HOME      <%= phone_no(@client.home) %></li>
-        <li>MOBILE  <%= phone_no(@client.mobile) %></li>
-        <li>OFFICE    <%= phone_no(@client.work) %></li>
+        <li>HOME      <%= number_to_phone(@client.home) %></li>
+        <li>MOBILE  <%= number_to_phone(@client.mobile) %></li>
+        <li>OFFICE    <%= number_to_phone(@client.work) %></li>
       </ul>					
       <h4>EMERGENY CONTACT</h4>
       <p><%= @client.contact_name %></p>
-      <p>CONTACT:   <%= phone_no(@client.contact_phone) %></p>
+      <p>CONTACT:   <%= number_to_phone(@client.contact_phone) %></p>
       <div class="clearFix"></div>
     </div>
   </li>

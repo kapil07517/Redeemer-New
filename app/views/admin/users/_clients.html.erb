@@ -12,7 +12,7 @@
         <div class="column"><%= client.id %></div>
         <div class="column"><%= link_to client.first_name, client_management_path(current_user.role,client) %></div>
         <div class="column"><%= client.email %></div>
-        <div class="column"><%= phone_no(client.mobile) %></div>
+        <div class="column"><%= number_to_phone(client.mobile) %></div>
         <div class="column">
           <% if client.status == "active" %>
             <%= link_to "De-Active", change_status_admin_user_path(:id => client.id, :status => "deactive"), :method => "put", :confirm => "Are you sure", :remote => true, :class => "btn-delete" %>

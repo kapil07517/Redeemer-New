@@ -2,6 +2,11 @@ class Counselor::ProgressNotesController < ApplicationController
   
   def index
     @appointment = Appointment.find(params[:appointment_id])
+    appoint_ids = []
+    @appointment.case.appointments.each do |app|
+      appoint_ids<<app.id
+    end
+    @progress_notes = ProgressNote.where("appointment_id IN (#{appoint_ids.split(",").join(",")})")
     if @appointment.progress_note and @appointment.progress_note.is_draft == true
       @is_draft = true
       @progress_note = ProgressNote.find(@appointment.progress_note.id)
@@ -13,11 +18,21 @@ class Counselor::ProgressNotesController < ApplicationController
   def new
     @invoice = SessionPayment.find(params[:invoice_id])
     @appointment = Appointment.find(@invoice.appointment_id)
+    appoint_ids = []
+    @appointment.case.appointments.each do |app|
+      appoint_ids<<app.id
+    end
+    @progress_notes = ProgressNote.where("appointment_id IN (#{appoint_ids.split(",").join(",")})")
     @progress_note = ProgressNote.new
   end
   
   def appointment_progress
     @appointment = Appointment.find(params[:progress_note][:appointment_id])
+    appoint_ids = []
+    @appointment.case.appointments.each do |app|
+      appoint_ids<<app.id
+    end
+    @progress_notes = ProgressNote.where("appointment_id IN (#{appoint_ids.split(",").join(",")})")
     @progress_note = ProgressNote.new(params[:progress_note])
     @progress_note.counselor_id = current_user.id
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
@@ -33,6 +48,11 @@ class Counselor::ProgressNotesController < ApplicationController
   
   def create
     @appointment = Appointment.find(params[:progress_note][:appointment_id])
+    appoint_ids = []
+    @appointment.case.appointments.each do |app|
+      appoint_ids<<app.id
+    end
+    @progress_notes = ProgressNote.where("appointment_id IN (#{appoint_ids.split(",").join(",")})")
     @progress_note = ProgressNote.new(params[:progress_note])
     @progress_note.counselor_id = current_user.id
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
@@ -59,13 +79,14 @@ class Counselor::ProgressNotesController < ApplicationController
     end
   end
   
-  def update_progress
-    
-  end
-  
   def edit
     @progress_note = ProgressNote.find(params[:id])
     @appointment = Appointment.find(@progress_note.appointment_id)
+    appoint_ids = []
+    @appointment.case.appointments.each do |app|
+      appoint_ids<<app.id
+    end
+    @progress_notes = ProgressNote.where("appointment_id IN (#{appoint_ids.split(",").join(",")})")
   end
   
   def show

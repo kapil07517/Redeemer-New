@@ -1,4 +1,12 @@
-<br /><div class="commonrow">
+<div class="boxContent">
+  <% @progress_notes.each do |progress| %>
+    <p><bdo><%= progress.appointment.case.number %>-<%= progress.appointment.counselor.initial %>-<%= progress.created_at.strftime("%m/%d/%Y") %>-</bdo><%= progress.subjective %>.<%= progress.objective %>.<%= progress.assesment %>.<%= progress.plan %>.</p>
+  <% end %>
+  <div class="clearFix"></div>
+</div>
+<div class="bor-info"></div>
+<h3>PROGRESS NOTES  <span>+</span></h3>
+<div class="commonrow">
   <div class="columnLeft-clientInfo">
     <div class="clientDetail">
       <p><span>DATE OF SESSION</span></p>
