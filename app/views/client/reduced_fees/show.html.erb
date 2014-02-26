@@ -1,0 +1,31 @@
+<div>
+  <div title="CONTACT INFORMATION" class="expanded">REDUCED FEE DETAILS</div>
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>Current Employee Status:</span><br> <%= @reduced_fee.job_type %></li>
+            <li><span>Student Information:</span><br>  <%= @reduced_fee.student_job_type %></li>
+            <li><span>Gross monthly wages or salaries (pre-tax) personal income:</span><br><%= @reduced_fee.gross_monthly_wages_p_income %></li>
+            <li><span>Gross monthly wages or salaries (pre-tax) from other family members.:</span><br><%= @reduced_fee.gross_monthly_wages_o_income %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>Income from other sources::</span><br><%= @reduced_fee.income_from_other %></li>
+            <li><span>Other Income earner name:</span><br> <%= @reduced_fee.other_income_e_name %></li>
+            <li><span>Relationship to you:</span><br> <%= @reduced_fee.relationship_to_you %></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-normal list-religious">
+            <li><span>Occupation and Status:</span><br> <%= @reduced_fee.occupation_and_status %></li>
+            <li><span>EMPLOYER:</span><br> <%= @reduced_fee.h_employer %></li>
+            <li><span>Other income earners in the household:</span><br><%= @reduced_fee.other_incomed_e_household %></li>
+          </ul>
+        </li>
+      </ul>
+    </li>								
+  </ul>
+</div>

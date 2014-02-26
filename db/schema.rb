@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226062933) do
+ActiveRecord::Schema.define(:version => 20140226090344) do
 
   create_table "adolesment_intakes", :force => true do |t|
     t.integer  "client_id"
@@ -466,8 +466,9 @@ ActiveRecord::Schema.define(:version => 20140226062933) do
     t.integer  "client_id"
     t.integer  "case_id"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "hidden",      :default => false
   end
 
   create_table "renewal_groups", :force => true do |t|

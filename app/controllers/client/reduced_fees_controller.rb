@@ -1,6 +1,6 @@
 class Client::ReducedFeesController < ApplicationController
   before_filter :is_login
-  before_filter :is_correct_user
+  before_filter :is_correct_user,:except => [:show]
   def new
     @reduced_fee = ReducedFee.new
     2.times{@reduced_fee.dependents.build}
@@ -16,6 +16,11 @@ class Client::ReducedFeesController < ApplicationController
     else
       render :action => :new
     end
+  end
+  
+  #displaying reduced form details 
+  def show
+    @reduced_fee = ReducedFee.find(params[:id])
   end
   
 end

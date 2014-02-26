@@ -217,3 +217,14 @@ function display_intake_details(ele, intake_id) {
         $("#intake_from_information").html('');
     }
 }
+
+function hide_review(role, th) {
+    var id = $(th).val();
+    $.ajax({
+        url: "/" + role + "/reminders/" + id,
+        method: 'PUT',
+        success: function() {
+            $(th).parent('li').hide();
+        }
+    });
+}

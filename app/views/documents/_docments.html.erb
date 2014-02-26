@@ -21,7 +21,7 @@
         <% elsif document.doc_type == "intake_form"   %>
           <%= link_to document.intake_form.intake_type,intake_form_details_path(:role => current_user.role,:id => document.intake_form_id) %>
         <% elsif document.doc_type == "reduced_fee" %>
-          reduced fee
+          <%= link_to "reduced fee", reduced_fee_details_path(current_user.role,document.reduced_fee_id) %>
         <% else %>
           <%= link_to document.document_content_type,document_path(current_user.role,document) %>
         <% end %>

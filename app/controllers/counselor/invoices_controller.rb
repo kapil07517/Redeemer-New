@@ -5,7 +5,7 @@ class Counselor::InvoicesController < ApplicationController
     @appointment = Appointment.find(params[:appointment_id])
     @client = Client.find(params[:client_id])
     @case = Case.find(@appointment.case_id)
-    @reminders = Reminder.where("case_id = #{@case.id} and client_id = #{@client.id}")
+    @reminders = Reminder.where("case_id = #{@case.id} and client_id = #{@client.id} and hidden = #{false}")
     @acc = PayerAccount.where("case_id = #{@case.id} and client_id = #{@client.id}").last
     @fee = SessionFee.where("case_id = #{@case.id}").last
     @authcounts = SessionPayment.where("case_id = #{@case.id} and client_id = #{@client.id}").count
@@ -23,7 +23,7 @@ class Counselor::InvoicesController < ApplicationController
     @client = Client.find(@appointment.client_id)
     @invoice.case_id = @appointment.case_id
     @invoice.client_id = @client.id
-    @reminders = Reminder.where("case_id = #{@appointment.case_id} and client_id = #{@appointment.client_id}")
+    @reminders = Reminder.where("case_id = #{@appointment.case_id} and client_id = #{@appointment.client_id} and hidden = #{false}")
     @reminder= Reminder.new
     respond_to do |format|
       if @invoice.save

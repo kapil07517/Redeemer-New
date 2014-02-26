@@ -197,7 +197,7 @@ Rcms::Application.routes.draw do
   match "/:role/discharge_summary/:case_id/new" => "discharge_summary#new",:as => "discharge_summary_new"
   match "/:role/adolesment_intakes/:case_id/new" => "adolesment_intakes#new",:as => "adolesments_intake_new"
   match "/:role/intakes/:id" => "client/intakes#show",:as => "intake_form_details"
-  
+  match "/:role/reduced_fees/:id" => "client/reduced_fees#show",:as => "reduced_fee_details"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

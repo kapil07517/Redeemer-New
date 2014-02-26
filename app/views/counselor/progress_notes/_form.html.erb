@@ -1,5 +1,6 @@
   <%= f.hidden_field :appointment_id,:value => @appointment.id %>
   <ul>
+    <li><%= validation_error(@progress_note.errors["password"]) %></li>
     <li>
       <div class="blackBox">Subjective :</div>
       <%= f.text_area :subjective,:cols => 40,:rows => 4 %>

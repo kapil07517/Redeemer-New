@@ -37,12 +37,16 @@ class Counselor::ProgressNotesController < ApplicationController
     @progress_note.counselor_id = current_user.id
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
     respond_to do |format|
-      if @progress_note.save
-        @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
-        @document.save(:validate => false)
+      if current_user.valid_password?(params[:progress_note][:password])
+        if @progress_note.save
+          @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
+          @document.save(:validate => false)
+        else
+        end
       else
+        @progress_note.errors.add(:password,'Entered password is wrong.Please try again!')
+        format.js
       end
-      format.js
     end
   end
   
@@ -56,10 +60,16 @@ class Counselor::ProgressNotesController < ApplicationController
     @progress_note = ProgressNote.new(params[:progress_note])
     @progress_note.counselor_id = current_user.id
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
-    if @progress_note.save
-      @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
-      @document.save(:validate => false)
+    if current_user.valid_password?(params[:progress_note][:password])
+      if @progress_note.save
+        @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
+        @document.save(:validate => false)
+      else
+        puts @progress_note.errors.inspect
+        render :action => :index
+      end
     else
+      @progress_note.errors.add(:password,'Entered password is wrong.Please try again!')
       render :action => :index
     end
   end
@@ -70,10 +80,15 @@ class Counselor::ProgressNotesController < ApplicationController
     @progress_note = ProgressNote.find(params[:id])
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
     respond_to do |format|
-      if @progress_note.update_attributes(params[:progress_note])
-        format.js
+      if current_user.valid_password?(params[:progress_note][:password])
+        if @progress_note.update_attributes(params[:progress_note])
+          format.js
+        else
+          params[:commit] == 'Save to Draft' ?  @is_draft = true : ""
+          format.js
+        end
       else
-        params[:commit] == 'Save to Draft' ?  @is_draft = true : ""
+        @progress_note.errors.add(:password,'Entered password is wrong.Please try again!')
         format.js
       end
     end
