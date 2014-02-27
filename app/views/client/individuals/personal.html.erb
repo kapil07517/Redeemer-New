@@ -15,12 +15,14 @@
 <%= form_for @personal,:url => personal_information_client_individual_path(@intake_form,@personal) do |f| %>
   <h1 class="icon-no1">Marriage And Family</h1>
   <div class="boxGray">
-     <%= f.error_messages %>
+    <%= f.error_messages %>
     <div class="staffrow">
       <div>Marital Status</div>
       <div>
         <%= f.radio_button :marital_status,"engaged", :id=>"checkbox_box_87"  %><label for="checkbox_box_87" class="cssLabel"><span></span>Engaged</label>
         <%= f.radio_button :marital_status,"married", :id=>"checkbox_box_88"  %><label for="checkbox_box_88" class="cssLabel"><span></span>Married</label>
+        <%= f.radio_button :marital_status,"single", :id=>"checkbox_box_90"  %><label for="checkbox_box_90" class="cssLabel"><span></span>Single</label>
+        <%= f.radio_button :marital_status,"divorced", :id=>"checkbox_box_90"  %><label for="checkbox_box_90" class="cssLabel"><span></span>Divorced</label>
         <%= f.radio_button :marital_status,"saperated", :id=>"checkbox_box_89"  %><label for="checkbox_box_89" class="cssLabel"><span></span>Separated</label>
         <%= f.radio_button :marital_status,"widowed", :id=>"checkbox_box_90"  %><label for="checkbox_box_90" class="cssLabel"><span></span>Widowed</label>
       </div>	
@@ -28,7 +30,7 @@
     <div class="staffrow">
       <div>Date Of Marriage <br />Date Of Separation</div>
       <div>
-         <%= f.date_select :date_of_marriage,:start_year => 1930 %>
+        <%= f.date_select :date_of_marriage,:start_year => 1930 %>
       </div>
     </div>
     <div class="staffrow">
@@ -42,7 +44,7 @@
     <div class="staffrow">
       <div>Date Of Birth</div>
       <div>
-         <%= f.date_select :date_of_birth,:start_year => 1930 %>
+        <%= f.date_select :date_of_birth,:start_year => 1930 %>
       </div>
     </div>
     <div class="staffrow">
@@ -158,7 +160,7 @@
     </div>
     <div class="staffrow">
       <div>How much influence does your religion have on your day to day activity?</div>
-      <div><%= f.text_area :day_to_day_activity,:rows => 4 %></div>
+      <div><%= f.text_area :day_to_day_activity,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <div class="clearFix"></div>
   </div>

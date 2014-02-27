@@ -33,7 +33,7 @@
     </div>
     <div class="staffrow">
       <div>How much influence does your religion have on your day to day activity?</div>
-      <div><%= f.text_area :day_to_day_activity,:rows => 4 %></div>
+      <div><%= f.text_area :day_to_day_activity,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <div class="clearFix"></div>
   </div>
@@ -69,7 +69,7 @@
     </div>
     <div class="staffrow">
       <div>Previous Occupations <span>Please Summarize Your Occupational History (List Past Occupations. Employers, And Length Of Employment):</span></div>
-      <div><%= f.text_area :previous_occupation,:rows => 4 %></div>
+      <div><%= f.text_area :previous_occupation,:rows => 4,:maxlength=>"350" %></div>
     </div>	
     <div class="clearFix"></div>
   </div>
@@ -106,12 +106,12 @@
   <div class="boxGray">
     <div class="staffrow">
       <div>What Concerns led you to pursue conseling?</div>
-      <div><%= f.text_area :concerns_led_you,:rows => 4 %></div>
+      <div><%= f.text_area :concerns_led_you,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
       <div>What do you hope to gain through counseling?</div>
-      <div><%= f.text_area :gain_through_counseling,:rows => 4 %></div>
+      <div><%= f.text_area :gain_through_counseling,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">

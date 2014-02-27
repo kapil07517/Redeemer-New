@@ -4,7 +4,7 @@
   <div class="staffrow">
     <div>What Concerns Have led you to Pursue Counseling?</div>
     <div>
-      <%= f.text_area :concern_led,:rows => 4 %>
+      <%= f.text_area :concern_led,:rows => 4,:maxlength=>"350" %>
     </div>
   </div>
   <hr />
@@ -23,12 +23,12 @@
   <hr />
   <div class="staffrow">
     <div>When did your present concerns begin to be a problem for you?</div>
-    <div><%= f.text_area :present_concern,:rows => 4 %></div>
+    <div><%= f.text_area :present_concern,:rows => 4,:maxlength=>"350" %></div>
   </div>
   <hr />
   <div class="staffrow">
     <div>Have any of your concerns been identified by others?</div>
-    <div><%= f.text_area :have_any_concerns_identified,:rows => 4 %></div>
+    <div><%= f.text_area :have_any_concerns_identified,:rows => 4,:maxlength=>"350" %></div>
   </div>
   <hr />
   <div class="staffrow">

@@ -38,6 +38,14 @@ $(document).ready(function() {
         });
     }, 250);
 
+    $(".notice").delay(3200).fadeOut(30);
+    $("#counselor_home").mouseover(function() {
+        $("#sub-menu").show();
+    });
+    $("#counselor_home").mouseout(function() {
+        $("#sub-menu").hide();
+    });
+
 });
 
 function update_room_status(id) {

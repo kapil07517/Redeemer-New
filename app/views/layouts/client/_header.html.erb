@@ -24,8 +24,6 @@
         <li class="active"><a title="WELCOME" href="/">WELCOME</a></li>
       <% else %>
         <li class=<%= (params[:controller] == "client/dashboards" and params[:action] == "index") ? "active" : "" %>><%= link_to "WELCOME", "/", :title => "WELCOME" %></li>
-        <li class=<%= (params[:controller] == "settings" and params[:action] == "edit") ? "active" : "" %>><%= link_to 'INFORMATION',edit_setting_path(:role => current_user.role,:id => current_user.id) %></li>
-        <% if current_user.role == 'client' %><li class=<%= (params[:controller] == "client/intakes") ? "active" : "" %>><%= link_to "INTAKE FORMS", "/client/intakes", :title => "INTAKE FORMS" %></li><% end %>
         <li></li>
         <li></li>
       <% end %>

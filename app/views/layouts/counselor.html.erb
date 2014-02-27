@@ -27,7 +27,9 @@
           </div>	
           <nav id="navigation">
             <ul>
-              <li class=<%= (params[:controller] == "counselor/dashboards" and params[:action] == "index") ? "active" : "" %>><%= link_to "Home", "/", :title => "Home" %></li>
+              <li id="counselor_home" class=<%= (params[:controller] == "counselor/dashboards" and params[:action] == "index") ? "active" : "" %>><%= link_to "Home", "/", :title => "Home" %>
+                <ul id="sub-menu" style="display:none;width:184px;"><li style="width:100%;"><%= link_to "Progress Notes","" %></li></ul>
+              </li>
               <% if current_user.role != 'admin' %><li class=<%= (params[:controller] == "counselor/dashboards" and params[:action] == "case_list") ? "active" : "" %>><%= link_to "Clients / Cases","/counselor/dashboards/case_list" %></li>
                 <li class=<%= (params[:controller] == "counselor/dashboards" and params[:action] == "appointments") ? "active" : "" %>><%= link_to "Calendar", "/counselor/dashboards/appointments", :title => "Calendar" %></li><% end %>
             </ul>

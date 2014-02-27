@@ -132,20 +132,20 @@
     <hr />
     <div class="staffrow">
       <div>If yes, please explain:</div>
-      <div><%= f.text_area :explain,:rows => 4 %></div>
+      <div><%= f.text_area :explain,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
       <div>Do you have Out-of-Network Insurance Benefits for Mental/Behavioral Health Services?</div>
-      <div><%= f.text_area :out_of_network_insurance,:rows => 4 %></div>
+      <div><%= f.text_area :out_of_network_insurance,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <div class="staffrow">
       <div>Is there any additional information you would like us to consider?</div>
-      <div><%= f.text_area :additional_information,:rows => 4 %></div>
+      <div><%= f.text_area :additional_information,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <div class="staffrow">
       <div>Please add any comments on how other factors may affect this application:</div>
-      <div><%= f.text_area :comments,:rows => 4 %></div>
+      <div><%= f.text_area :comments,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <h6 class="greenBox"><span>Tax Documents</span></h6>
     <div class="taxDocument">

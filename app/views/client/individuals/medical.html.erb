@@ -42,7 +42,7 @@
     <hr />
     <div class="staffrow">
       <div>If YES, please explain</div>
-      <div><%= f.text_area :p_explain,:rows => 4 %></div>
+      <div><%= f.text_area :p_explain,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
@@ -68,7 +68,7 @@
     <hr />
     <div class="staffrow">
       <div>If YES, please explain including hospital location and dates.</div>
-      <div><%= f.text_area :hospital_location_and_dates,:rows => 4 %></div>
+      <div><%= f.text_area :hospital_location_and_dates,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
@@ -105,12 +105,12 @@
     <hr />
     <div class="staffrow">
       <div>How do you feel about the results of your previous counseling?</div>
-      <div><%= f.text_area :results_of_previous_counseling,:rows => 4 %></div>
+      <div><%= f.text_area :results_of_previous_counseling,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
       <div>What do you hope to gain from counseling?</div>
-      <div><%= f.text_area :gain_from_counseling,:rows => 4 %></div>
+      <div><%= f.text_area :gain_from_counseling,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <div class="clearFix"></div>
   </div>

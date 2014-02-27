@@ -9,6 +9,8 @@ class Counselor::DashboardsController < ApplicationController
 
   #counselor appointments through calendar /counselor/dashboards/counselor_status?params[:date]&params[:day]
   def counselor_status
+    @reminder = Reminder.new
+    @reminders = Reminder.all
     @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
     @start_date = @date.beginning_of_week(:sunday).to_date
     @end_date = @date.end_of_week(:sunday).to_date

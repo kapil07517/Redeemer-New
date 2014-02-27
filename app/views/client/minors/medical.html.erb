@@ -47,7 +47,7 @@
     <hr />
     <div class="staffrow">
       <div>If YES, please explain</div>
-      <div><%= f.text_area :p_explain,:rows => 4 %></div>
+      <div><%= f.text_area :p_explain,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
@@ -65,7 +65,7 @@
     <hr />
     <div class="staffrow">
       <div>Please list any medical conditions or disabilites, including learning disabilites of the child</div>
-      <div><%= f.text_area :list_medical_cond_child,:rows => 4 %></div>
+      <div><%= f.text_area :list_medical_cond_child,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
@@ -78,7 +78,7 @@
     <hr />
     <div class="staffrow">
       <div>If YES, please explain and list any know conditions.</div>
-      <div><%= f.text_area :e_known_cond,:rows => 4 %></div>
+      <div><%= f.text_area :e_known_cond,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">

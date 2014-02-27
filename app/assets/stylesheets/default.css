@@ -358,6 +358,27 @@ input[type=text].input-email,input[type=email].input-email,input[type=password].
 .text-search,.staffrow,.columnRight-client span{text-transform:uppercase}
 @media screen {
     ul.list-box li:hover > div.list-box-hover{
-        left:8px;top:8px;
+        left:0px;top:0px;
     }
+}
+
+#addCloseBox1 {
+  background-color:#FFFFFF;
+  background-image:url(/assets/counselor/icon-close.png);
+  background-position:50% 50%;
+  background-repeat:no-repeat no-repeat;
+  border:1px solid #666666;
+  border-bottom-left-radius:14px;
+  border-bottom-right-radius:14px;
+  border-top-left-radius:14px;
+  border-top-right-radius:14px;
+  box-shadow:#666666 0 2px 3px;
+  cursor:pointer;
+  height:14px;
+  padding:5px;
+  position:absolute;
+  right:-10px;
+  text-indent:-999em;
+  top:-10px;
+  width:14px;
 }
