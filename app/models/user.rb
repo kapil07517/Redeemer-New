@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   validates :first_name,:last_name,:type,:role,:presence => true
-  validate :client_information ,:on => :update
+  validate :client_information
   has_many :intake_forms,:dependent => :destroy
   def client_information
     if self.role == 'client'
