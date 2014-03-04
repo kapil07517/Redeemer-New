@@ -1,7 +1,7 @@
 <%= form_for @career_assesment, :url => client_career_assessments_path(@career_assesment) do |f| %>
   <%= f.hidden_field :intake_type,:value => @intake_type %>
 
-  <h1 class="icon-no2">Religious Background</h1>
+  <h1 class="icon-no1">Religious Background</h1>
   <div class="boxGray">
     <%= f.error_messages %>
     <div class="staffrow">
@@ -38,7 +38,7 @@
     <div class="clearFix"></div>
   </div>
   <hr />
-  <h1 class="icon-no3">Occupation</h1>
+  <h1 class="icon-no2">Occupation</h1>
   <div class="boxGray">
     <div class="staffrow">
       <div>Occupation</div>
@@ -95,14 +95,14 @@
     <div class="staffrow">
       <div>Grad Date</div>
       <div>
-        <%= f.date_select :grade_date,:start_year => 1930 %>
+        <%= f.date_select :grade_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>
     <a href="#" title="Plus" class="icon-plus">Plus</a>
     <div class="clearFix"></div>
   </div>
   <hr />
-  <h1 class="icon-no3">Counseling Purpose</h1>
+  <h1 class="icon-no4">Counseling Purpose</h1>
   <div class="boxGray">
     <div class="staffrow">
       <div>What Concerns led you to pursue conseling?</div>
@@ -124,11 +124,11 @@
   </div>
 
   <hr />			
-  <h1 class="icon-no2">E-signature</h1>
+  <h1 class="icon-no5">E-signature</h1>
   <div class="boxGray">
     <p class="f15"><em>Copy To Come. In the event that a Redeemer Counselor is not available to adderss the needs of the client, <br />due to scheduling or otherwise ,Redeemer Conuseling Services is authorized to  release all intake information<br />to a referred therapist. The consent for release of information avoids any delays in beginning therapy and<br />insures that the client receives appropriate care.</em></p>
     <p>
-      <%= f.check_box :acts_as_online_sig, :id=>"checkbox_box_56" %><label for="checkbox_box_56" class="cssLabel"><span></span>By clicking this I approve this and recognize<br> this acts as an online signature</label>
+      <%= f.check_box :acts_as_online_sig, :id=>"checkbox_box_56" %><label for="checkbox_box_56" class="cssLabel"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this and recognize<br> this acts as an online signature</em></label>
     </p>
     <div class="column-information">
       <p>PASSWORD</p>
@@ -136,7 +136,7 @@
     </div>
     <div class="column-information">	
       <p>DATE:</p>
-      <%= f.date_select :p_date,:start_year => 1930 %>
+      <%= f.date_select :p_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
     </div>
     <div class="clearFix"></div>
   </div>
@@ -146,10 +146,10 @@
     <h3>Consent And Signature</h3>
     <p>
       <%= f.check_box :content_and_signature, :id=>"checkbox_box_57" %>
-      <label for="checkbox_box_57" class="cssLabel cssheight"><span></span>In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</label></p>
+      <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</em></label></p>
     <h3>Online Signature</h3>
     <%= f.check_box :online_signature, :id=>"checkbox_box_58" %>
-    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span>By clicking this I approve this and recognize<br> this acts as an online signature</label>
+    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this and recognize<br> this acts as an online signature</em></label>
     <div class="btn-row">
       <div class="btn-createnew">
         <input type="submit" class="btn-submit" title="Submit" value="Submit"><em></em>

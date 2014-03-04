@@ -49,14 +49,14 @@
   <div class="staffrow">
     <div>Date of Birth:</div>
     <div>
-      <%= f.date_select :date_of_birth,:start_year => 1930 %>
+      <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
     </div>
   </div>
   <div class="staffrow">
     <div>Roles:</div>
     <div>
       <p>
-       <% if @role == 'Client' %><%= f.select :type,options_for_select([["Client","Client"]])%><% else %><%= f.select :type,options_for_select([["Select",""]]+ROLES[0..-2],:selected => @role)%><% end %>
+       <% if @role == 'Client' %><%= f.select :type,options_for_select([["Client","Client"]])%><% else %><%= f.select :type,options_for_select([["Select",""]]+ROLES[0..-2],:selected => f.object.new_record? ? @role : f.object.type)%><% end %>
       </p>
       <ul class="list-normal">
         <li><%= check_box_tag "user[access_types][]", "admin" %> ADMIN-  Control over everything.</li>
@@ -88,9 +88,9 @@
     <div><%= f.email_field :contact_email, :type=>"text", :title => "E-mail" %></div>
   </div>
   <div class="btn-createnew"> <% if f.object.new_record? %>
-      <input class="btn-submit" type="submit" title="CONTINUE" value="CREATE ACCOUNT" /><em></em>
+      <input style="background:none;border:none;" class="btn-submit" type="submit" title="CONTINUE" value="CREATE ACCOUNT" /><em></em>
     <% else %>
-      <input class="btn-submit" type="submit" title="CONTINUE" value="Update" /><em></em>
+      <input style="background:none;border:none;" class="btn-submit" type="submit" title="CONTINUE" value="Update" /><em></em>
     <% end %>
   </div>
   <div class="clearFix"></div>

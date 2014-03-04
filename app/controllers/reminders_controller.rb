@@ -8,6 +8,7 @@ class RemindersController < ApplicationController
   
   def create
     @reminder = Reminder.new(params[:reminder])
+    @reminder.counselor_id = current_user.id
     @client = Client.find(@reminder.client_id) if params[:reminder][:client_id]
     @case = Case.find(@reminder.case_id) if params[:reminder][:case_id]
     if params[:counselor_home]

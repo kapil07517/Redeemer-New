@@ -6,7 +6,7 @@ class Client::MinorsController < ApplicationController
     @client = current_user
     @intake_type = params[:intake_type]
     @start_date = Date.today
-    @end_date = Date.today+7.days
+    @end_date = Date.today+6.days
     @minor = Minor.new
     3.times{@minor.childrens.build}
   end
@@ -15,7 +15,7 @@ class Client::MinorsController < ApplicationController
     @client = current_user
     @intake_type = params[:minor][:intake_type]
     @start_date = Date.today
-    @end_date = Date.today+7.days
+    @end_date = Date.today+6.days
     @minor = Minor.new(params[:minor])
     @minor.client_id = @client.id
     if @minor.save

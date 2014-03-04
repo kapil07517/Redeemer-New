@@ -8,7 +8,7 @@
   <div class="staffrow">
     <div>Date of Birth</div>
     <div>
-      <%= f.date_select :date_of_birth,:start_year => 1930 %>
+      <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
     </div>
   </div>
   <div class="staffrow">

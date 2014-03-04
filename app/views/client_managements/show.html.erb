@@ -2,12 +2,15 @@
   <li>
     <div class="box">
       <h4>CLIENT INFORMATION</h4>
-      <div class="columnLeft-client">(M)</div>
+      <div class="columnLeft-client"></div>
       <div class="columnRight-client">
         NAME <%= @client.full_name %>
         <p><%= @client.address %><br>
           <%= @client.city %>, <%= @client.state %> <%= @client.zipcode %></p>
         <%= @client.email %>
+        <p>HOME      <%= number_to_phone(@client.home) %></p>
+        <p>MOBILE  <%= number_to_phone(@client.mobile) %></p>
+        <p>OFFICE    <%= number_to_phone(@client.work) %></p>
       </div>
       <div class="clearFix"></div>
     </div>
@@ -16,11 +19,12 @@
     <div class="box">
       <h4>CLIENT INFORMATION</h4>
       <ul class="list-clientinfo-em">
-        <li>HOME      <%= number_to_phone(@client.home) %></li>
-        <li>MOBILE  <%= number_to_phone(@client.mobile) %></li>
-        <li>OFFICE    <%= number_to_phone(@client.work) %></li>
+        <% prim = @client.primary %>
+        <li>HOME     <%= prim == "home" ? "*" : "" %><%= number_to_phone(@client.home) %></li>
+        <li>MOBILE  <%= prim == "mobile" ? "*" : "" %><%= number_to_phone(@client.mobile) %></li>
+        <li>OFFICE    <%= prim == "work" ? "*" : "" %><%= number_to_phone(@client.work) %></li>
       </ul>					
-      <h4>EMERGENY CONTACT</h4>
+      <h4>EMERGENCY CONTACT</h4>
       <p><%= @client.contact_name %></p>
       <p>CONTACT:   <%= number_to_phone(@client.contact_phone) %></p>
       <div class="clearFix"></div>
@@ -58,7 +62,7 @@
       <td>AUTHORIZATIONS</td>
     </tr>
     <% @client.appointments.each do |appointment| %>
-    <% account = PayerAccount.where("case_id = #{appointment.case_id} and client_id = #{appointment.client.id}").last %>
+      <% account = PayerAccount.where("case_id = #{appointment.case_id} and client_id = #{appointment.client.id}").last %>
       <tr>
         <td><%= appointment.case.number %></td>
         <td><%= appointment.counselor.full_name %></td>
@@ -84,7 +88,7 @@
   <ul class="menu-main">
     <li><%= link_to 'Documents',documents_path(:client_id => @client.id),:remote => true %></li>
     <% if current_user.role == 'counselor' %><li><%= link_to 'PROGRESS NOTES',counselor_progress_notes_path(:appointment_id => @appointment.id),:remote => true %></li>
-    <li><a title="TREATMENT MAP" href="#treatmentMap"><span>TREATMENT MAP</span></a></li><% end %>
+      <li><a title="TREATMENT MAP" href="#treatmentMap"><span>TREATMENT MAP</span></a></li><% end %>
     <li><%= link_to 'Accounting',new_accounting_path(current_user.role,:client_id => @client.id),:remote => true %></li>
   </ul>
   <div class="box" id="display_details">

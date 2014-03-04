@@ -1,17 +1,21 @@
 <div class="boxGray">
-  <%= f.error_messages %>
+  <% if f.error_messages.blank? == false %>
+    <div id="errorExplanation" class="errorExplanation">
+      <ul><li>Please enter required(*) fields</li></ul>
+    </div>
+  <% end %>
   <div class="staffrow">
     <div>Name:</div>
     <div>
       <ul class="list-name">
-        <li><p>First</p><%= f.text_field :first_name,:class => "input-name" %></li>
+        <li><p>First<em>*</em></p><%= f.text_field :first_name,:class => "input-name" %></li>
         <li><p>M. l.</p><%= f.text_field :middle_initial, :class=>"input-midname" %></li>
-        <li><p>Last</p><%= f.text_field :last_name, :class=>"input-name"  %></li>
+        <li><p>Last<em>*</em></p><%= f.text_field :last_name, :class=>"input-name"  %></li>
       </ul>
     </div>			
   </div>
   <div class="staffrow">
-    <div>ADDRESS:</div>
+    <div>ADDRESS<em>*</em>:</div>
     <div>
       <p><%= f.text_field :address %></p>
       <%= f.text_field :city,:class => "input-name",:placeholder => "City" %>
@@ -21,53 +25,53 @@
     </div>				
   </div>
   <div class="staffrow">
-    <div>Phone:</div>
+    <div>Phone<em>*</em>:</div>
     <div>
       <div class="commonr">
         <div class="column-medical">Mobile  <%= f.text_field :mobile, :class=>"input-name"  %></div>
         <div class="column-medical">
           <%= f.radio_button :primary,"mobile", :id=>"checkbox_box_100"  %>
-          <label class="cssLabel" for="checkbox_box_100">PRIMARY #</label>
+          <label class="cssLabel" for="checkbox_box_100">PRIMARY</label>
         </div>
       </div>
       <div class="commonr">
-        <div class="column-medical">Work  <%= f.text_field :work, :class=>"input-name"  %></div>
+        <div class="column-medical">Work&nbsp;&nbsp;  <%= f.text_field :work, :class=>"input-name"  %></div>
         <div class="column-medical">
           <%= f.radio_button :primary,"work", :id=>"checkbox_box_101"  %>
-          <label class="cssLabel" for="checkbox_box_101">PRIMARY #</label>
+          <label class="cssLabel" for="checkbox_box_101">PRIMARY</label>
         </div>
       </div>
       <div class="commonr">
-        <div class="column-medical">Home  <%= f.text_field :home, :class=>"input-name"  %></div>
+        <div class="column-medical">Home&nbsp;&nbsp;  <%= f.text_field :home, :class=>"input-name"  %></div>
         <div class="column-medical">
           <%= f.radio_button :primary,"home", :id=>"checkbox_box_102"  %>
-          <label class="cssLabel" for="checkbox_box_102">PRIMARY #</label>
+          <label class="cssLabel" for="checkbox_box_102">PRIMARY</label>
         </div>
       </div>
     </div>
   </div>
   <% if f.object.new_record? %>
     <div class="staffrow">
-      <div>EMAIL:<br /><span>Username</span></div>
+      <div>EMAIL<em>*</em>:<br /><span>Username</span></div>
       <div>
         <%= f.email_field :email %>
       </div>				
     </div>
     <div class="staffrow">
-      <div>Password:</div>
+      <div>Password<em>*</em>:</div>
       <div>
         <%= f.password_field :password %>
       </div>				
     </div>
     <div class="staffrow">
-      <div>Password:<br /><span>Confrim</span></div>
+      <div>Password<em>*</em>:<br /><span>Confrim</span></div>
       <div>
         <%= f.password_field :password_confirmation %>
       </div>				
     </div>
   <% end %>
   <div class="staffrow">
-    <div>Sex:</div>
+    <div>Sex<em>*</em>:</div>
     <div>
       <ul class="list-children">
         <li>
@@ -79,9 +83,9 @@
     </div>
   </div>
   <div class="staffrow">
-    <div>Date Of Birth:</div>
+    <div>Date Of Birth<em>*</em>:</div>
     <div>
-      <%= f.date_select :date_of_birth,:start_year => 1930 %>
+      <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
     </div>
     <hr />
   </div>
@@ -95,18 +99,23 @@
   <div class="clearFix"></div>
 </div>
 <hr />
-<h1 class="icon-no2">Emergency Contact <span>(Required)</span></h1>
+<h1 class="icon-no2">Emergency Contact</h1>
 <div class="boxGray">			
   <div class="staffrow">
     <div>Name:<em>*</em></div>
-    <div><%= f.text_field :contact_name %></div>				
+    <div>
+      <ul class="list-name">
+        <li><p>First Name<span>*</span></p><%= f.text_field :contact_name1,:value => f.object.new_record? ? f.object.contact_name1 : (@user and f.object.contact_name1 ? f.object.contact_name1 : @user.contact_name.split(" ")[0] ) ,:class => "input-name" %></li>
+        <li><p>Last Name<span>*</span></p><%= f.text_field :contact_name2,:value => f.object.new_record? ? f.object.contact_name2 : (@user and f.object.contact_name2 ? f.object.contact_name2 : @user.contact_name.split(" ")[1] )  , :class=>"input-name"  %></li>
+      </ul>
+    </div>
   </div>
   <div class="staffrow">
-    <div>Relationship:<em>*</em></div>
+    <div>Relationship<em>*</em>:</div>
     <div><%= f.text_field :relationship %></div>				
   </div>
   <div class="staffrow">
-    <div>Phone:<em>*</em></div>
+    <div>Phone<em>*</em>:</div>
     <div><%= f.text_field :contact_phone %></div>
   </div>
   <div class="staffrow">

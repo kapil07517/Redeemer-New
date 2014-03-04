@@ -28,7 +28,7 @@
     <div class="staffrow">
       <div>Date of last physical exam</div>
       <div>
-         <%= f.date_select :date_of_last_p_exam,:start_year => 1930 %>
+         <%= f.date_select :date_of_last_p_exam, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>	
     <hr />
@@ -50,7 +50,7 @@
       <div>
         <%= f.fields_for :medical_reasons do |b| %>
           <p><%= b.text_field :previous_hospital %></p>
-           <%= b.date_select :previous_hospital_date,:start_year => 1930 %>
+           <%= b.date_select :previous_hospital_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
         <% end %>
       </div>
       <div style="float: right;">
@@ -95,7 +95,7 @@
           <p>
             <%= b.text_field :location,:class => "input-name" %>
           </p>
-           <%= b.date_select :therapy_date,:start_year => 1930 %>
+           <%= b.date_select :therapy_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
         <% end %>
       </div>
       <div style="float: right;">

@@ -37,7 +37,7 @@
           <div>
             <ul class="list-name">
               <li>
-               <%= f.date_select :date_of_birth,:start_year => 1930 %>
+               <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
               </li>
             </ul>
           </div>			

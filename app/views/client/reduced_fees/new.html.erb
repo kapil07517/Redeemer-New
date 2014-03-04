@@ -38,7 +38,7 @@
       <div>
         Date of last employment
         <p>
-           <%= f.date_select :date_of_last_empl,:start_year => 1930 %>
+           <%= f.date_select :date_of_last_empl, {:include_blank => true, :default => nil,:start_year => 1930} %>
         </p>
       </div>
     </div>
@@ -163,10 +163,10 @@
   <div class="boxGray">
     <h3>Consent And Signature</h3>
     <p> <%= f.check_box :content_and_signature, :id=>"checkbox_box_57" %>
-      <label for="checkbox_box_57" class="cssLabel cssheight"><span></span>In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</label></p>
+      <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</em></label></p>
     <h3>Online Signature</h3>
     <%= f.check_box :online_signature, :id=>"checkbox_box_58" %>
-    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span>By clicking this I approve this and recognize<br> this acts as an online signature</label>
+    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this and recognize<br> this acts as an online signature</em></label>
     <div class="btn-row">
       <div class="btn-createnew"><input class="btn-submit" type="submit" title="Submit" value="Submit" /><em></em></div>
     </div>

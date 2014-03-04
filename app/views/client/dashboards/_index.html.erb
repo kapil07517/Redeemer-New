@@ -17,11 +17,11 @@
       </div>
     </li>
     <li>
-      <div class="box">
+      <div class="box" onclick="window.location.href='/client/intakes'" style="cursor:pointer;">
         <div class="valignDiv">
           <div>
             <h2>Intake Forms</h2>
-            <%= link_to "INTAKE","/client/intakes" %>
+            In order to begin counseling, please click here to complete an intake form
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
     <li>
       <div class="box">
         <div class="valignDiv">
-          <div><h2 style="font-size: 15px;"><%#= @appointment ? ('appointment with <br />'+@appointment.counselor.first_name+' on <br />'+(@appointment.start_at.blank? ? '' : @appointment.start_at.strftime("%b %dth %I:%m %p")).html_safe) : "No Appointment" %></h2></div>
+          <div><h2 style="font-size: 15px;">FAQ</h2></div>
         </div>
       </div>
     </li>
@@ -41,7 +41,7 @@
       <li>
         <div class="box">
           <div class="valignDiv">
-            <div><h2><%= intake.intake_type %></h2><em><%= intake.intake_status %></em></div>
+            <div><h2><%= intake.intake_type.split("_").join(" ") %></h2><em><%= intake.intake_status %></em></div>
           </div>
         </div>
       </li>

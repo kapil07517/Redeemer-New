@@ -1,5 +1,5 @@
 <div style="float:right;padding-top: 18px;">
   <p><%= f.text_field :full_name,:class => "input-name" %></p>
   <p><%= f.text_field :location,:class => "input-name" %></p>
-   <%= f.date_select :therapy_date,:start_year => 1930 %>
+   <%= f.date_select :therapy_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
 </div>

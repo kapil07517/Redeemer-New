@@ -6,7 +6,7 @@
     </tr>
     <tr>
       <td></td>
-      <td><%= f.date_select :previous_hospital_date,:start_year => 1930 %></td>
+      <td><%= f.date_select :previous_hospital_date, {:include_blank => true, :default => nil,:start_year => 1930} %></td>
     </tr>
   </table>
 </div>

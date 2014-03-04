@@ -12,7 +12,7 @@
     </div>
     <div>
       <p>Start Date</p>
-      <%= f.date_select :start_date,:start_year => 1930 %>
+      <%= f.date_select :start_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
     </div>
   </div>
   <div class="btn-createnew">

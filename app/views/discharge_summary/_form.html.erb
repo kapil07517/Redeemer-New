@@ -19,7 +19,7 @@
         <li class="green">
           <div>
             <p>DISCHARGE DATE</p>
-            <%= f.date_select :discharge_date,:start_year => 1930 %>
+            <%= f.date_select :discharge_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
           </div>
         </li>
       </ul>

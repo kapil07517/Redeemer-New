@@ -9,7 +9,7 @@
     <div class="payment">
       <div>
         <p>Date</p>
-        <%= f.date_select :session_date,:start_year => 1930 %>
+        <%= f.date_select :session_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
       <div>
         <p>Case Number</p>

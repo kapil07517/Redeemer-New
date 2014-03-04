@@ -2,14 +2,14 @@
 <div class="boxGray">
   <%= f.error_messages %>
   <div class="staffrow">
-    <div>What Concerns Have led you to Pursue Counseling?</div>
+    <div>What Concerns Have led you to Pursue Counseling?<em>*</em></div>
     <div>
       <%= f.text_area :concern_led,:rows => 4,:maxlength=>"350" %>
     </div>
   </div>
   <hr />
   <div class="staffrow">
-    <div>Where are your concerns causing the most problems for you?</div>
+    <div>Where are your concerns causing the most problems for you?<em>*</em></div>
     <div>
       <p>
         <%= f.radio_button :concern_counseling_problems,"home",:id => "checkbox_box_106" %><label for="checkbox_box_106" class="cssLabel"><span></span>Home</label>
@@ -22,12 +22,12 @@
   </div>
   <hr />
   <div class="staffrow">
-    <div>When did your present concerns begin to be a problem for you?</div>
+    <div>When did your present concerns begin to be a problem for you?<em>*</em></div>
     <div><%= f.text_area :present_concern,:rows => 4,:maxlength=>"350" %></div>
   </div>
   <hr />
   <div class="staffrow">
-    <div>Have any of your concerns been identified by others?</div>
+    <div>Have any of your concerns been identified by others?<em>*</em></div>
     <div><%= f.text_area :have_any_concerns_identified,:rows => 4,:maxlength=>"350" %></div>
   </div>
   <hr />
@@ -43,14 +43,16 @@
     </div>
   </div>
   <hr />
-  <h6 class="indicate">Indicate which Areas are Currently a Problem. <span>Please Select all  That Apply</span></h6>
+  <h6 class="indicate">Indicate which Areas are Currently a Problem. (<span>Please Select all  That Apply</span>)</h6>
   <% i =136 %>
   <% AREA_PROBLEMS.each do |problem| %>
     <div class="diviedColumn">
-      <div class="w50"><%= check_box_tag "counseling[areas_of_problems][]","#{problem[0]}",false,:id => "checkbox_box_#{i}" %><label for="checkbox_box_<%= i %>" class="cssLabel"><span></span><%= problem[0] %></label>
+      <div class="w50"><%= check_box_tag "counseling[areas_of_problems][]","#{problem[0]}",false,:id => "checkbox_box_#{i}" %><label for="checkbox_box_<%= i %>" class="cssLabel"><span></span><em style="width: 428px; float: right; margin-top: -33px;"><%= problem[0] %></em></label>
       </div>
-      <div class="w50"><%= check_box_tag "counseling[areas_of_problems][]","#{problem[1]}",false,:id => "checkbox_box_#{i+1}" %><label for="checkbox_box_<%= i+1 %>" class="cssLabel"><span></span><%= problem[1] %></label>
-      </div>
+      <% if !problem[1].blank? %>
+        <div class="w50"><%= check_box_tag "counseling[areas_of_problems][]","#{problem[1]}",false,:id => "checkbox_box_#{i+1}" %><label for="checkbox_box_<%= i+1 %>" class="cssLabel"><span></span><em style="width: 428px; float: right; margin-top: -33px;"><%= problem[1] %></em></label>
+        </div>
+      <% end %>
     </div>
     <% i = i+2 %>
   <% end %>
@@ -60,18 +62,24 @@
 <h1 class="icon-no2">AVAILABIILITY <strong>Highlight all available times</strong></h1>
 <table class="table-roomavailability" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tr>
-    <td class='hour-column'>Time</td>
-    <% for hour in (8..21).to_a %>
-      <td><%= hour %></td>
+    <td class='hour-column'></td>
+    <% time_type = "am" %>
+    <% for hour in (8..12).to_a+(1..10).to_a %>
+    <% if hour == 12 %><% time_type = "pm" %><% end %>
+      <td><%= hour %><%= time_type %></td>
     <% end %>
   </tr>
   <% for date in (@start_date..@end_date) %>
-    <tr>
-      <td><%= date.strftime("%A").upcase %></td>
-      <% (8..21).each do |i| %>
-        <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i > 9 ? i : '0'+i.to_s}:00:00,#{date} #{i > 9 ? i : '0'+i.to_s}:59:59",false,:style => "display:none;" %></td>
-      <% end %>
-    </tr>
+    <% if date.strftime("%A").upcase != "SUNDAY" %>
+      <tr>
+        <td><%= date.strftime("%A").upcase %></td>
+        <% time_count = 0 %>
+        <% for i in (8..12).to_a+(1..10).to_a %>
+          <% if i == 1 %><% time_count = 12 %><% end %>
+          <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:00:00,#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:59:59",false,:style => "display:none;" %></td>
+        <% end %>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 <hr />

@@ -10,9 +10,9 @@
       <p>MEDICAL INFORMATION</p>
     </li>
     <li class="step-3">
+      <span>3</span>
+      <p>PERSONAL BACKGROUND</p>
     </li>
-    <span>3</span>
-    <p>PERSONAL BACKGROUND</p>
   </ul>
   <h1 class="icon-no1">PARENT / GUARDIAN INFORMATION</h1>
   <div class="boxGray">
@@ -20,16 +20,18 @@
     <div class="staffrow">
       <div>MARITAL STATUS</div>
       <div>
-        <%= f.radio_button :marital_status, "engages", :id=>"checkbox_box_1" %>	<label for="checkbox_box_1" class="cssLabel"><span></span>Engages</label>
+        <%= f.radio_button :marital_status, "engaged", :id=>"checkbox_box_1" %>	<label for="checkbox_box_1" class="cssLabel"><span></span>Engaged</label>
+        <%= f.radio_button :marital_status, "single", :id=>"checkbox_box_1" %>	<label for="checkbox_box_1" class="cssLabel"><span></span>Single</label>
         <%= f.radio_button :marital_status, "married", :id=>"checkbox_box_2" %><label for="checkbox_box_2" class="cssLabel"><span></span>MARRIED</label>
         <%= f.radio_button :marital_status, "saperated", :id=>"checkbox_box_3" %><label for="checkbox_box_3" class="cssLabel"><span></span>SEPARATED</label>
         <%= f.radio_button :marital_status, "widowed", :id=>"checkbox_box_4" %><label for="checkbox_box_4" class="cssLabel"><span></span>Widowed</label>
-      </div>			
+        <%= f.radio_button :marital_status, "divorced", :id=>"checkbox_box_1" %>	<label for="checkbox_box_1" class="cssLabel"><span></span>Divorced</label>
+      </div>				
     </div>
     <div class="staffrow">
       <div>DATE OF MARRIAGE OR SEPARATION</div>
       <div>
-         <%= f.date_select :date_of_marriage,:start_year => 1930 %>
+        <%= f.date_select :date_of_marriage, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>			
     </div>
     <div class="staffrow">
@@ -49,7 +51,7 @@
               <%= b.radio_button :gender,'male' %><label for="checkbox_box_5" class="cssLabel"><span></span>MALE</label>
               <%= b.radio_button :gender,'female' %><label for="checkbox_box_6" class="cssLabel"><span></span>FEMALE</label>
               &nbsp;&nbsp;DOB 
-               <%= b.date_select :date_of_birth,:start_year => 1930 %>
+              <%= b.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
             </li>
           <% end %>
         </ul>
@@ -94,7 +96,7 @@
     <div class="clearFix"></div>
   </div>
   <div class="heading-complete">COMPLETE ALL REMAINING INFORMATION ACCORDING TO THE CHILD COMING FOR TREATMENT.</div>
-  <h1 class="icon-no1">MINOR COUSNELING INFORMATON</h1>
+  <h1 class="icon-no2">MINOR COUSNELING INFORMATON</h1>
   <div class="boxGray">
     <div class="staffrow">
       <div>NAME:</div>
@@ -105,7 +107,7 @@
     <div class="staffrow">
       <div>DATE OF BIRTH</div>
       <div>
-         <%= f.date_select :m_date_of_birth,:start_year => 1930 %>
+        <%= f.date_select :m_date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>
     <div class="staffrow">
@@ -175,27 +177,27 @@
         <p>CHECK ALL THAT APPLY:</p>
         <ul class="list-indicate">
           <li>
-            <%= check_box_tag "minor[following_areas_child_prob][]", "Crying Spells",false, :id=>"checkbox_box_15" %><label for="checkbox_box_15" class="cssLabel"><span></span>Crying Spells</label>
+            <%= check_box_tag "minor[following_areas_child_prob][]", "Crying Spells",false, :id=>"checkbox_box_15" %><label for="checkbox_box_15" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Crying Spells</em></label>
           </li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Excessive fears or anxiety",false, :id=>"checkbox_box_16" %><label for="checkbox_box_16" class="cssLabel"><span></span>Excessive fears or anxiety</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficult being awa from specific family members",false, :id=>"checkbox_box_17" %><label for="checkbox_box_17" class="cssLabel"><span></span>Difficult being awa from specific family members</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Angry feelings",false, :id=>"checkbox_box_18" %><label for="checkbox_box_18" class="cssLabel"><span></span>Angry feelings</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Hearing Voices",false, :id=>"checkbox_box_19" %><label for="checkbox_box_19" class="cssLabel"><span></span>Hearing Voices</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Getting into trouble at school/play",false, :id=>"checkbox_box_20" %><label for="checkbox_box_20" class="cssLabel"><span></span>Getting into trouble at school/play</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Temper Tantrums /Angry outbursts",false, :id=>"checkbox_box_21" %><label for="checkbox_box_21" class="cssLabel"><span></span>Temper Tantrums /Angry outbursts</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficulty falling asleep/inability to sleep at night",false, :id=>"checkbox_box_22" %><label for="checkbox_box_22" class="cssLabel"><span></span>Difficulty falling asleep/inability to sleep at night</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficulty making or keeping friends",false, :id=>"checkbox_box_23" %><label for="checkbox_box_23" class="cssLabel"><span></span>Difficulty making or keeping friends</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Decreased/Increased Appetite",false, :id=>"checkbox_box_24" %><label for="checkbox_box_24" class="cssLabel"><span></span>Decreased/Increased Appetite</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Loss of interest in usual activities",false, :id=>"checkbox_box_25" %><label for="checkbox_box_25" class="cssLabel"><span></span>Loss of interest in usual activities</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Hyperactivity",false, :id=>"checkbox_box_26" %><label for="checkbox_box_26" class="cssLabel"><span></span>Hyperactivity</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Bullying/Picking fights",false, :id=>"checkbox_box_27" %><label for="checkbox_box_27" class="cssLabel"><span></span>Bullying/Picking fights</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Refusal to respond to authority",false, :id=>"checkbox_box_28" %><label for="checkbox_box_28" class="cssLabel"><span></span>Refusal to respond to authority</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Nightmares",false, :id=>"checkbox_box_29" %><label for="checkbox_box_29" class="cssLabel"><span></span>Nightmares</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Obsession/Compulsion with specific activites",false, :id=>"checkbox_box_30" %><label for="checkbox_box_30" class="cssLabel"><span></span>Obsession/Compulsion with specific activites</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Lack of Motivation",false, :id=>"checkbox_box_31" %><label for="checkbox_box_31" class="cssLabel"><span></span>Lack of Motivation</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Lacking self-confidence",false, :id=>"checkbox_box_32" %><label for="checkbox_box_32" class="cssLabel"><span></span>Lacking self-confidence</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Issues with food and/or weight",false, :id=>"checkbox_box_33" %><label for="checkbox_box_33" class="cssLabel"><span></span>Issues with food and/or weight</label></li>
-          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Other",false, :id=>"checkbox_box_34" %><label for="checkbox_box_34" class="cssLabel"><span></span>Other:</label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Excessive fears or anxiety",false, :id=>"checkbox_box_16" %><label for="checkbox_box_16" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Excessive fears or anxiety</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficult being awa from specific family members",false, :id=>"checkbox_box_17" %><label for="checkbox_box_17" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Difficult being awa from specific family members</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Angry feelings",false, :id=>"checkbox_box_18" %><label for="checkbox_box_18" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Angry feelings</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Hearing Voices",false, :id=>"checkbox_box_19" %><label for="checkbox_box_19" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Hearing Voices</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Getting into trouble at school/play",false, :id=>"checkbox_box_20" %><label for="checkbox_box_20" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Getting into trouble at school/play</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Temper Tantrums /Angry outbursts",false, :id=>"checkbox_box_21" %><label for="checkbox_box_21" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Temper Tantrums /Angry outbursts</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficulty falling asleep/inability to sleep at night",false, :id=>"checkbox_box_22" %><label for="checkbox_box_22" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Difficulty falling asleep/inability to sleep at night</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Difficulty making or keeping friends",false, :id=>"checkbox_box_23" %><label for="checkbox_box_23" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Difficulty making or keeping friends</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Decreased/Increased Appetite",false, :id=>"checkbox_box_24" %><label for="checkbox_box_24" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Decreased/Increased Appetite</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Loss of interest in usual activities",false, :id=>"checkbox_box_25" %><label for="checkbox_box_25" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Loss of interest in usual activities</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Hyperactivity",false, :id=>"checkbox_box_26" %><label for="checkbox_box_26" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Hyperactivity</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Bullying/Picking fights",false, :id=>"checkbox_box_27" %><label for="checkbox_box_27" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Bullying/Picking fights</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Refusal to respond to authority",false, :id=>"checkbox_box_28" %><label for="checkbox_box_28" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Refusal to respond to authority</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Nightmares",false, :id=>"checkbox_box_29" %><label for="checkbox_box_29" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Nightmares</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Obsession/Compulsion with specific activites",false, :id=>"checkbox_box_30" %><label for="checkbox_box_30" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Obsession/Compulsion with specific activites</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Lack of Motivation",false, :id=>"checkbox_box_31" %><label for="checkbox_box_31" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Lack of Motivation</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Lacking self-confidence",false, :id=>"checkbox_box_32" %><label for="checkbox_box_32" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Lacking self-confidence</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Issues with food and/or weight",false, :id=>"checkbox_box_33" %><label for="checkbox_box_33" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Issues with food and/or weight</em></label></li>
+          <li><%= check_box_tag "minor[following_areas_child_prob][]", "Other",false, :id=>"checkbox_box_34" %><label for="checkbox_box_34" class="cssLabel"><span></span><em style="top: 1px; float: right; width: 647px;">Other:</em></label></li>
         </ul>
       </div>
     </div>
@@ -207,25 +209,31 @@
     <div class="clearFix"></div>
   </div>
   <hr />
-  <h1 class="icon-no2">AVAILABIILITY <strong>PLEASE CHECK ALL AVAILABLE TIMES</strong></h1>
+  <h1 class="icon-no3">AVAILABIILITY <strong>PLEASE CHECK ALL AVAILABLE TIMES</strong></h1>
   <table class="table-roomavailability" cellpadding="0" cellspacing="0" width="100%" border="0">
     <tr>
-      <td class='hour-column'>Time</td>
-      <% for hour in (8..21).to_a %>
-        <td><%= hour %></td>
+      <td class='hour-column'></td>
+      <% time_type = "am" %>
+      <% for hour in (8..12).to_a+(1..10).to_a %>
+        <% if hour == 12 %><% time_type = "pm" %><% end %>
+        <td><%= hour %><%= time_type %></td>
       <% end %>
     </tr>
     <% for date in (@start_date..@end_date) %>
-      <tr>
-        <td><%= date.strftime("%A").upcase %></td>
-        <% (8..21).each do |i| %>
-          <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i > 9 ? i : '0'+i.to_s}:00:00,#{date} #{i > 9 ? i : '0'+i.to_s}:59:59",false,:style => "display:none;" %></td>
-        <% end %>
-      </tr>
+      <% if date.strftime("%A").upcase != "SUNDAY" %>
+        <tr>
+          <td><%= date.strftime("%A").upcase %></td>
+          <% time_count = 0 %>
+          <% for i in (8..12).to_a+(1..10).to_a %>
+            <% if i == 1 %><% time_count = 12 %><% end %>
+            <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:00:00,#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:59:59",false,:style => "display:none;" %></td>
+          <% end %>
+        </tr>
+      <% end %>
     <% end %>
   </table>
   <hr />
-  <h1 class="icon-no3">COUNSELOR PREFERENCE</h1>
+  <h1 class="icon-no4">COUNSELOR PREFERENCE</h1>
   <div class="boxGray">
     <div class="staffrow">
       <div>Counselor Preference</div>

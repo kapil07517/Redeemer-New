@@ -11,7 +11,7 @@
   <div>
     <ul class="list-name">
       <li>
-       <%= date_select 'partners[][date_of_birth]', "",:start_year => 1930 %>
+       <%= date_select 'partners[][date_of_birth]', "", {:include_blank => true, :default => nil,:start_year => 1930} %>
       </li>
     </ul>
   </div>			

@@ -11,7 +11,7 @@
       <div class="payment">
         <div>
           <p>Date</p>
-          <%= f.date_select :pay_date,:start_year => 1930 %>
+          <%= f.date_select :pay_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
         </div>
         <div>
           <p>Description</p>

@@ -11,7 +11,7 @@
         </li>
         <li>
           <div class="btn-createnew">
-            <input class="btn-submit" type="submit" title="Login" value="login" name="" /><em></em>
+            <input class="btn-submit" type="submit" title="Login" value="Sign In" name="" /><em></em>
           </div>
         </li>
       <% end %>
@@ -24,8 +24,6 @@
         <li class="active"><a title="WELCOME" href="/">WELCOME</a></li>
       <% else %>
         <li class=<%= (params[:controller] == "client/dashboards" and params[:action] == "index") ? "active" : "" %>><%= link_to "WELCOME", "/", :title => "WELCOME" %></li>
-        <li></li>
-        <li></li>
       <% end %>
     </ul>
   </nav>
