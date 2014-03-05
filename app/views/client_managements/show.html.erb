@@ -65,7 +65,7 @@
       <% account = PayerAccount.where("case_id = #{appointment.case_id} and client_id = #{appointment.client.id}").last %>
       <tr>
         <td><%= appointment.case.number %></td>
-        <td><%= appointment.counselor.full_name %></td>
+        <td><%= appointment.counselor.full_name if appointment.counselor %></td>
         <td><%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%A") %></td>
         <td><%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%H:%M") %>-<%= appointment.end_at.blank? ? '' : appointment.end_at.strftime("%H:%M") %></td>
         <td><%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%b %d %Y") %></td>
