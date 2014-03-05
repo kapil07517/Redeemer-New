@@ -1,7 +1,11 @@
 <%= form_for @reduced_fee,:url => client_reduced_fees_path(@reduced_fee) do |f| %>
   <h1 class="icon-no1">Current Employee Status</h1>
   <div class="boxGray">
-    <%= f.error_messages %>
+    <% if f.error_messages.blank? == false %>
+      <div id="errorExplanation" class="errorExplanation">
+        <ul><li>Please enter required(*) fields</li></ul>
+      </div>
+    <% end %>
     <div class="diviedColumn">
       <div>
         <%= f.radio_button :job_type, "full time", :id=>"checkbox_box_127" %><label for="checkbox_box_127" class="cssLabel" style="color:gray;"><span></span>Full Time</label>
@@ -38,7 +42,7 @@
       <div>
         Date of last employment
         <p>
-           <%= f.date_select :date_of_last_empl, {:include_blank => true, :default => nil,:start_year => 1930} %>
+          <%= f.date_select :date_of_last_empl, {:include_blank => true, :default => nil,:start_year => 1930} %>
         </p>
       </div>
     </div>

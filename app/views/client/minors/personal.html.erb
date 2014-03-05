@@ -14,8 +14,13 @@
     </li>
   </ul>
   <div class="boxGray">
+    <% if f.error_messages.blank? == false %>
+      <div id="errorExplanation" class="errorExplanation">
+        <ul><li>Please enter required(*) fields</li></ul>
+      </div>
+    <% end %>
     <div class="staffrow">
-      <div>Do you believe in God?</div>
+      <div>Do you believe in God?<em>*</em></div>
       <div>
         <%= f.radio_button :believe_in_god,"yes", :id=>"checkbox_box_96"  %><label for="checkbox_box_96" class="cssLabel"><span></span>Yes</label>
         <%= f.radio_button :believe_in_god,"no", :id=>"checkbox_box_97"  %><label for="checkbox_box_97" class="cssLabel"><span></span>No</label>
@@ -49,14 +54,15 @@
     <div class="boxGray">
       <h3>Consent And Signature</h3>
       <p><%= f.check_box :content_and_signature, :id=>"checkbox_box_57"  %>
-        <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</em></label></p>
+        <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and ensures that the client receives appropriate care.</em></label></p>
       <h3>Online Signature</h3>
       <%= f.check_box :online_signature, :id=>"checkbox_box_58"  %>
-      <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this and recognize<br> this acts as an online signature</em></label>
+      <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this, and recognize<br> formatting</em></label>
       <div class="btn-row">
         <div class="btn-createnew"><input type="submit" class="btn-submit" title="Submit" value="Submit"><em></em></div>
       </div>
       <div class="clearFix"></div>
     </div>
     <div class="clearFix"></div>
-  <% end %>
+  </div>
+<% end %>

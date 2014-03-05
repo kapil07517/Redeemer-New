@@ -2,7 +2,7 @@
   <li>
     <div class="box">
       <h4>CLIENT INFORMATION</h4>
-      <div class="columnLeft-client"></div>
+      <div style="float:right;" class="columnLeft-client">(<%= @client.gender == "male" ? "M" : "F" %>)</div>
       <div class="columnRight-client">
         NAME <%= @client.full_name %>
         <p><%= @client.address %><br>

@@ -3,9 +3,13 @@
 
   <h1 class="icon-no1">Religious Background</h1>
   <div class="boxGray">
-    <%= f.error_messages %>
+    <% if f.error_messages.blank? == false %>
+      <div id="errorExplanation" class="errorExplanation">
+        <ul><li>Please enter required(*) fields</li></ul>
+      </div>
+    <% end %>
     <div class="staffrow">
-      <div>Do you believe in God?</div>
+      <div>Do you believe in God?<em>*</em></div>
       <div>
         <%= f.radio_button :believe_in_god,"yes",:id => "checkbox_box_1"%><label for="checkbox_box_1" class="cssLabel"><span></span>Yes</label>
         <%= f.radio_button :believe_in_god, "no", :id=>"checkbox_box_2" %><label for="checkbox_box_2" class="cssLabel"><span></span>No</label>
@@ -41,34 +45,34 @@
   <h1 class="icon-no2">Occupation</h1>
   <div class="boxGray">
     <div class="staffrow">
-      <div>Occupation</div>
+      <div>Occupation<em>*</em></div>
       <div>
         <%= f.text_field :occupation %>
       </div>
     </div>
     <div class="staffrow">
-      <div>Status</div>
+      <div>Status<em>*</em></div>
       <div>
         <%= f.text_field :status %></div>
     </div>
     <div class="staffrow">
-      <div>Employer</div>
+      <div>Employer<em>*</em></div>
       <div> <%= f.text_field :employer %></div>
     </div>
     <div class="staffrow">
-      <div>Annual Income</div>
+      <div>Annual Income<em>*</em></div>
       <div><%= f.text_field :annual_income %></div>
     </div>
     <div class="staffrow">
-      <div>Time With Current Employer</div>
+      <div>Time With Current Employer<em>*</em></div>
       <div><%= f.text_field :time_with_current_emp %></div>
     </div>
     <div class="staffrow">
-      <div>How Satisfied Are  You With Your  Occupation?</div>
+      <div>How Satisfied Are  You With Your  Occupation?<em>*</em></div>
       <div><%= f.text_field :satisfy_occupation %></div>
     </div>
     <div class="staffrow">
-      <div>Previous Occupations <span>Please Summarize Your Occupational History (List Past Occupations. Employers, And Length Of Employment):</span></div>
+      <div>Previous Occupations <span>Please Summarize Your Occupational History (List Past Occupations. Employers, And Length Of Employment)<em>*</em>:</span></div>
       <div><%= f.text_area :previous_occupation,:rows => 4,:maxlength=>"350" %></div>
     </div>	
     <div class="clearFix"></div>
@@ -105,17 +109,17 @@
   <h1 class="icon-no4">Counseling Purpose</h1>
   <div class="boxGray">
     <div class="staffrow">
-      <div>What Concerns led you to pursue conseling?</div>
+      <div>What Concerns led you to pursue conseling?<em>*</em></div>
       <div><%= f.text_area :concerns_led_you,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
-      <div>What do you hope to gain through counseling?</div>
+      <div>What do you hope to gain through counseling?<em>*</em></div>
       <div><%= f.text_area :gain_through_counseling,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
-      <div>Who referred you to Redeemer Counseling?</div>
+      <div>Who referred you to Redeemer Counseling?<em>*</em></div>
       <div>
         <%= f.text_field :referred_you_to_redeemer %>
       </div>
@@ -146,10 +150,10 @@
     <h3>Consent And Signature</h3>
     <p>
       <%= f.check_box :content_and_signature, :id=>"checkbox_box_57" %>
-      <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</em></label></p>
+      <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and ensures that the client receives appropriate care.</em></label></p>
     <h3>Online Signature</h3>
     <%= f.check_box :online_signature, :id=>"checkbox_box_58" %>
-    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this and recognize<br> this acts as an online signature</em></label>
+    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this, and recognize<br> formatting.</em></label>
     <div class="btn-row">
       <div class="btn-createnew">
         <input type="submit" class="btn-submit" title="Submit" value="Submit"><em></em>

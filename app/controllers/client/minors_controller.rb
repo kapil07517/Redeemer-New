@@ -5,8 +5,8 @@ class Client::MinorsController < ApplicationController
   def new
     @client = current_user
     @intake_type = params[:intake_type]
-    @start_date = Date.today
-    @end_date = Date.today+6.days
+    @start_date = Date.today.beginning_of_week(start_day = :monday)
+    @end_date = Date.today.beginning_of_week+5.days
     @minor = Minor.new
     3.times{@minor.childrens.build}
   end
@@ -14,8 +14,8 @@ class Client::MinorsController < ApplicationController
   def create
     @client = current_user
     @intake_type = params[:minor][:intake_type]
-    @start_date = Date.today
-    @end_date = Date.today+6.days
+    @start_date = Date.today.beginning_of_week(start_day = :monday)
+    @end_date = Date.today.beginning_of_week+5.days
     @minor = Minor.new(params[:minor])
     @minor.client_id = @client.id
     if @minor.save

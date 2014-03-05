@@ -15,17 +15,21 @@
     <li><div><span>Application For</span><br />Reduced Fee</div></li>
   </ul>
   <div class="popupBox">
-    <div id="addCloseBox1" onclick="window.location.href='/client/intakes';"></div>
+    <div id="addCloseBox1" onclick="window.location.href = '/client/intakes';"></div>
     <div class="heading-marriage">
       <span>marriage and couples</span>
       <p>Please enter the following information for the other particpant</p>
     </div>
     <div class="marrigeForm">
       <%= form_for @partner,:url =>client_partners_path(@partner) do |f| %>
-        <%= f.error_messages %>
+        <% if f.error_messages.blank? == false %>
+          <div id="errorExplanation" class="errorExplanation">
+            <ul><li>Please enter required(*) fields</li></ul>
+          </div>
+        <% end %>
         <%= f.hidden_field :intake_type,:value => @intake_type %>
         <div class="staffrow">
-          <div>Name</div>
+          <div>Name<em>*</em></div>
           <div>
             <ul class="list-name">
               <li><%= f.text_field :name %></li>
@@ -33,17 +37,17 @@
           </div>			
         </div>
         <div class="staffrow">
-          <div>DOB</div>
+          <div>DOB<em>*</em></div>
           <div>
             <ul class="list-name">
               <li>
-               <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
+                <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
               </li>
             </ul>
           </div>			
         </div>
         <div class="staffrow">
-          <div>Email</div>
+          <div>Email<em>*</em></div>
           <div>
             <ul class="list-name">
               <li><%= f.text_field :email %></li>

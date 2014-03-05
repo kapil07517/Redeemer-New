@@ -16,9 +16,13 @@
   </ul>
   <h1 class="icon-no1">PARENT / GUARDIAN INFORMATION</h1>
   <div class="boxGray">
-    <%= f.error_messages %>
+    <% if f.error_messages.blank? == false %>
+      <div id="errorExplanation" class="errorExplanation">
+        <ul><li>Please enter required(*) fields</li></ul>
+      </div>
+    <% end %>
     <div class="staffrow">
-      <div>MARITAL STATUS</div>
+      <div>MARITAL STATUS<em>*</em></div>
       <div>
         <%= f.radio_button :marital_status, "engaged", :id=>"checkbox_box_1" %>	<label for="checkbox_box_1" class="cssLabel"><span></span>Engaged</label>
         <%= f.radio_button :marital_status, "single", :id=>"checkbox_box_1" %>	<label for="checkbox_box_1" class="cssLabel"><span></span>Single</label>
@@ -29,13 +33,13 @@
       </div>				
     </div>
     <div class="staffrow">
-      <div>DATE OF MARRIAGE OR SEPARATION</div>
+      <div>DATE OF MARRIAGE OR SEPARATION<em>*</em></div>
       <div>
         <%= f.date_select :date_of_marriage, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>			
     </div>
     <div class="staffrow">
-      <div>NUMBER OF MARRIAGES</div>
+      <div>NUMBER OF MARRIAGES<em>*</em></div>
       <div>
         <%= f.text_field :no_of_marriages ,:class=>"input-noMarriages"%>	
         <hr />
@@ -111,7 +115,7 @@
       </div>
     </div>
     <div class="staffrow">
-      <div>LIVES WITH</div>
+      <div>LIVES WITH<em>*</em></div>
       <div><%= f.text_field :m_lives_with %></div>
     </div>
     <div class="staffrow">
@@ -132,12 +136,12 @@
     </div>	
     <hr />
     <div class="staffrow">
-      <div>What concerns about the child have led you to pursue counseling?</div>
+      <div>What concerns about the child have led you to pursue counseling?<em>*</em></div>
       <div><%= f.text_area :concerns_about_child_have,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
-      <div>Where are your concerns causing the most problems for YOU?</div>
+      <div>Where are your concerns causing the most problems for YOU?<em>*</em></div>
       <div>
         <p>
           <%= f.radio_button :your_concern_problems, "home", :id=>"checkbox_box_39" %><label for="checkbox_box_39" class="cssLabel"><span></span>HOME</label>
@@ -150,7 +154,7 @@
     </div>
     <hr />
     <div class="staffrow">
-      <div>Where are these concerns causing the most problems for the CHILD?</div>
+      <div>Where are these concerns causing the most problems for the CHILD?<em>*</em></div>
       <div>
         <p>
           <%= f.radio_button :concerns_for_child, "home", :id=>"checkbox_box_35" %><label for="checkbox_box_35" class="cssLabel"><span></span>HOME</label>
@@ -203,7 +207,7 @@
     </div>
     <hr />
     <div class="staffrow">
-      <div>What do you hope your child will gain from counseling?</div>
+      <div>What do you hope your child will gain from counseling?<em>*</em></div>
       <div><%= f.text_area :child_gain_counseling,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <div class="clearFix"></div>
@@ -220,16 +224,14 @@
       <% end %>
     </tr>
     <% for date in (@start_date..@end_date) %>
-      <% if date.strftime("%A").upcase != "SUNDAY" %>
-        <tr>
-          <td><%= date.strftime("%A").upcase %></td>
-          <% time_count = 0 %>
-          <% for i in (8..12).to_a+(1..10).to_a %>
-            <% if i == 1 %><% time_count = 12 %><% end %>
-            <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:00:00,#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:59:59",false,:style => "display:none;" %></td>
-          <% end %>
-        </tr>
-      <% end %>
+      <tr>
+        <td><%= date.strftime("%A") %></td>
+        <% time_count = 0 %>
+        <% for i in (8..12).to_a+(1..10).to_a %>
+          <% if i == 1 %><% time_count = 12 %><% end %>
+          <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:00:00,#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:59:59",false,:style => "display:none;" %></td>
+        <% end %>
+      </tr>
     <% end %>
   </table>
   <hr />

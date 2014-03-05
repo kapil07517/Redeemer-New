@@ -16,7 +16,11 @@
   </ul>
   <h1 class="icon-no1">PARENT / GUARDIAN INFORMATION</h1>
   <div class="boxGray">
-    <%= f.error_messages %>
+    <% if f.error_messages.blank? == false %>
+      <div id="errorExplanation" class="errorExplanation">
+        <ul><li>Please enter required(*) fields</li></ul>
+      </div>
+    <% end %>
     <div class="staffrow">
       <div>MARITAL STATUS</div>
       <div>
@@ -31,7 +35,7 @@
     <div class="staffrow">
       <div>DATE OF MARRIAGE OR SEPARATION</div>
       <div>
-         <%= f.date_select :date_of_marriage, {:include_blank => true, :default => nil,:start_year => 1930} %>
+        <%= f.date_select :date_of_marriage, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>			
     </div>
     <div class="staffrow">
@@ -51,7 +55,7 @@
               <%= b.radio_button :gender,'male' %><label for="checkbox_box_5" class="cssLabel"><span></span>MALE</label>
               <%= b.radio_button :gender,'female' %><label for="checkbox_box_6" class="cssLabel"><span></span>FEMALE</label>
               &nbsp;&nbsp;DOB 
-               <%= b.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
+              <%= b.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
             </li>
           <% end %>
         </ul>
@@ -107,7 +111,7 @@
     <div class="staffrow">
       <div>DATE OF BIRTH</div>
       <div>
-         <%= f.date_select :m_date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
+        <%= f.date_select :m_date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>
     <div class="staffrow">

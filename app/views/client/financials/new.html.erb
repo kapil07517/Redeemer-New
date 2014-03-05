@@ -2,9 +2,13 @@
   <%= f.hidden_field :intake_type,:value => @intake_type %>
   <h1 class="icon-no1">Marriage And Family</h1>
   <div class="boxGray">
-    <%= f.error_messages %>
+    <% if f.error_messages.blank? == false %>
+      <div id="errorExplanation" class="errorExplanation">
+        <ul><li>Please enter required(*) fields</li></ul>
+      </div>
+    <% end %>
     <div class="staffrow">
-      <div>Marital Status</div>
+      <div>Marital Status<em>*</em></div>
       <div>
         <%= f.radio_button :marital_status, "single", :id=>"checkbox_box_1" %><label for="checkbox_box_1" class="cssLabel"><span></span>Single</label>
         <%= f.radio_button :marital_status, "married", :id=>"checkbox_box_2" %><label for="checkbox_box_2" class="cssLabel"><span></span>Married</label>
@@ -13,13 +17,13 @@
       </div>	
     </div>
     <div class="staffrow">
-      <div>Date Of Marriage</div>
+      <div>Date Of Marriage<em>*</em></div>
       <div>
-         <%= f.date_select :date_of_marriage, {:include_blank => true, :default => nil,:start_year => 1930} %>
+        <%= f.date_select :date_of_marriage, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>
     <div class="staffrow">
-      <div>Number Of Marriages</div>
+      <div>Number Of Marriages<em>*</em></div>
       <div> <%= f.text_field :no_of_marriages ,:class=>"input-midname"%></div>			
     </div>
     <div class="staffrow">
@@ -29,7 +33,7 @@
     <div class="staffrow">
       <div>Date Of Birth</div>
       <div>
-       <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
+        <%= f.date_select :date_of_birth, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>
     <div class="staffrow">
@@ -63,7 +67,7 @@
   <h1 class="icon-no2">Religious Background</h1>
   <div class="boxGray">
     <div class="staffrow">
-      <div>Do you believe in God?</div>
+      <div>Do you believe in God?<em>*</em></div>
       <div>
         <%= f.radio_button :believe_in_god,"yes",:id => "checkbox_box_1"%><label for="checkbox_box_1" class="cssLabel"><span></span>Yes</label>
         <%= f.radio_button :believe_in_god,"no",:id => "checkbox_box_2"%><label for="checkbox_box_2" class="cssLabel"><span></span>No</label>
@@ -97,17 +101,17 @@
   <h1 class="icon-no3">Counseling Purpose</h1>
   <div class="boxGray">
     <div class="staffrow">
-      <div>What Concerns led you to pursue conseling?</div>
+      <div>What Concerns led you to pursue conseling?<em>*</em></div>
       <div><%= f.text_area :concerns_led_you,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
-      <div>What do you hope to gain through counseling?</div>
+      <div>What do you hope to gain through counseling?<em>*</em></div>
       <div><%= f.text_area :gain_through_counseling,:rows => 4,:maxlength=>"350" %></div>
     </div>
     <hr />
     <div class="staffrow">
-      <div>Who referred you to Redeemer Counseling?</div>
+      <div>Who referred you to Redeemer Counseling?<em>*</em></div>
       <div><%= f.text_field :referred_you_to_redeemer %></div>
     </div>
     <div class="clearFix"></div>
@@ -117,10 +121,10 @@
   <div class="boxGray">
     <h3>Consent And Signature</h3>
     <%= f.check_box :content_and_signature, :id=>"checkbox_box_57" %>
-    <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and insures that the client receives appropriate care.</em></label>
+    <label for="checkbox_box_57" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">In the event that a Redeemer Counselor is not available to address the needs of the client,<br>due to scheduling or otherwise, Redeemer Counseling Services is authorized to release all<br>intake information to a referred therapist. The consent for release of information avoids<br>any delays in beginning therapy and ensures that the client receives appropriate care.</em></label>
     <h3>Online Signature</h3>
     <%= f.check_box :online_signature, :id=>"checkbox_box_58" %>
-    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this and recognize<br> this acts as an online signature</em></label>
+    <label for="checkbox_box_58" class="cssLabel cssheight"><span></span><em style="float: right; margin-top: -33px; width: 901px;">By clicking this I approve this, and recognize<br> formatting.</em></label>
     <div class="btn-row">
       <div class="btn-createnew"><input type="submit" class="btn-submit" title="Submit" value="Submit"><em></em></div>
     </div>

@@ -11,19 +11,19 @@
     <tr>
       <td>
         <% if document.doc_type == "progress_note" %>
-          <%= link_to document.doc_type, edit_counselor_progress_note_path(document.progress_note_id),:remote => true %>
+          <%= link_to document.doc_type.split("_").join(" ").upcase, edit_counselor_progress_note_path(document.progress_note_id),:remote => true %>
         <% elsif document.doc_type == "intake_evalution" %>
-          <%= link_to document.doc_type,edit_initial_evalution_path(current_user.role,document.intake_evalution_id) %>
+          <%= link_to document.doc_type.split("_").join(" ").upcase,edit_initial_evalution_path(current_user.role,document.intake_evalution_id) %>
         <% elsif document.doc_type == "discharge_summary" %>
-          <%= link_to document.doc_type,edit_discharge_summary_path(current_user.role,document.discharge_summary_id) %>
+          <%= link_to document.doc_type.split("_").join(" ").upcase,edit_discharge_summary_path(current_user.role,document.discharge_summary_id) %>
         <% elsif document.doc_type == "adolesment_intake" %>
-          <%= link_to document.doc_type,edit_adolesment_intake_path(current_user.role,document.adolesment_intake_id) %>
+          <%= link_to document.doc_type.split("_").join(" ").upcase,edit_adolesment_intake_path(current_user.role,document.adolesment_intake_id) %>
         <% elsif document.doc_type == "intake_form"   %>
-          <%= link_to document.intake_form.intake_type,intake_form_details_path(:role => current_user.role,:id => document.intake_form_id) %>
+          <%= link_to ["individual","dating","family","marriage"].include?(document.intake_form.intake_type) ? "adult intake".upcase : document.intake_form.intake_type.split("_").join(" ").upcase,intake_form_details_path(:role => current_user.role,:id => document.intake_form_id) %>
         <% elsif document.doc_type == "reduced_fee" %>
-          <%= link_to "reduced fee", reduced_fee_details_path(current_user.role,document.reduced_fee_id) %>
+          <%= link_to "reduced fee".upcase, reduced_fee_details_path(current_user.role,document.reduced_fee_id) %>
         <% else %>
-          <%= link_to document.document_content_type,document_path(current_user.role,document) %>
+          <%= link_to document.document_content_type.upcase,document_path(current_user.role,document) %>
         <% end %>
       </td>
       <td><%= document.case ? document.case.number : '' %></td>

@@ -15,14 +15,18 @@
     <li><div><span>Application For</span><br />Reduced Fee</div></li>
   </ul>
   <div class="popupBox">
-    <div id="addCloseBox1" onclick="window.location.href='/client/intakes';"></div>
+    <div id="addCloseBox1" onclick="window.location.href = '/client/intakes';"></div>
     <div class="heading-marriage">
       <span>families & friends</span>
       <p>Please enter the following information for the other particpant</p>
     </div>
     <div class="marrigeForm">
       <%= form_for @partner,:url =>partners_family_create_client_partners_path(@partner) do |f| %>
-        <%= f.error_messages %>
+        <% if f.error_messages.blank? == false %>
+          <div id="errorExplanation" class="errorExplanation">
+            <ul><li>Please enter required(*) fields</li></ul>
+          </div>
+        <% end %>
         <%= f.hidden_field :intake_type,:value => @intake_type %>
         <ul class="list-grpInput">
           <% 3.times do |i| %>

@@ -4,8 +4,8 @@ class Client::IndividualsController < ApplicationController
   def new
     @individual = Counseling.new
     @intake_type = params[:intake_type]
-    @start_date = Date.today
-    @end_date = Date.today+6.days
+    @start_date = Date.today.beginning_of_week(start_day = :monday)
+    @end_date = Date.today.beginning_of_week+5.days
   end
   
   #intake form with type individual
@@ -13,8 +13,8 @@ class Client::IndividualsController < ApplicationController
     @individual = Counseling.new(params[:counseling])
     @individual.client_id = current_user.id
     @intake_type = params[:counseling][:intake_type]
-    @start_date = Date.today
-    @end_date = Date.today+6.days
+    @start_date = Date.today.beginning_of_week(start_day = :monday)
+    @end_date = Date.today.beginning_of_week+5.days
     if @individual.save
       @intake_form = IntakeForm.new(:intake_type =>  @intake_type,:user_id => current_user.id,:intake_status => "processing")
       @intake_form.save

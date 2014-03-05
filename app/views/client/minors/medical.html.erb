@@ -16,8 +16,13 @@
   </ul>
   <h1 class="icon-no1">MEDICAL / HEALTH HISTORY</h1>
   <div class="boxGray">
+    <% if f.error_messages.blank? == false %>
+      <div id="errorExplanation" class="errorExplanation">
+        <ul><li>Please enter required(*) fields</li></ul>
+      </div>
+    <% end %>
     <div class="staffrow">
-      <div>How would you rate your child's current physical health?</div>
+      <div>How would you rate your child's current physical health?<em>*</em></div>
       <div>
         <div class="commonr">
           <div class="column-medical"><%= f.radio_button :rate_your_child_p_health, "excellent", :id=>"checkbox_box_43" %><label for="checkbox_box_43" class="cssLabel"><span></span>EXCELLENT</label></div>
@@ -31,14 +36,14 @@
     </div>
     <hr />			
     <div class="staffrow">
-      <div>Date of last physical exam</div>
+      <div>Date of last physical exam<em>*</em></div>
       <div>
-         <%= f.date_select :date_of_last_p_exam, {:include_blank => true, :default => nil,:start_year => 1930} %>
+        <%= f.date_select :date_of_last_p_exam, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>	
     <hr />
     <div class="staffrow">
-      <div>Is the child complaining of any physical problems? <br><em class="subheading-medical">(e.g. headaches, body aches, stomach problems etc.)</em></div>
+      <div>Is the child complaining of any physical problems?<em>*</em> <br><em class="subheading-medical">(e.g. headaches, body aches, stomach problems etc.)</em></div>
       <div>
         <%= f.radio_button :child_complaining_of_prob,"yes",:id => "checkbox_box_47"%><label for="checkbox_box_47" class="cssLabel"><span></span>YES</label>
         <%= f.radio_button :child_complaining_of_prob,"no",:id => "checkbox_box_48"%><label for="checkbox_box_48" class="cssLabel"><span></span>NO</label>
@@ -55,7 +60,7 @@
       <div>
         <%= f.fields_for :medical_reasons do |b| %>
           <p><%= b.text_field :previous_hospital %></p>
-           <%= b.date_select :previous_hospital_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
+          <%= b.date_select :previous_hospital_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
         <% end %>
       </div>
       <div style="float: right;">

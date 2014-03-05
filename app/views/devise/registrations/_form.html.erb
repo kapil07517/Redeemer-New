@@ -112,7 +112,7 @@
   </div>
   <div class="staffrow">
     <div>Relationship<em>*</em>:</div>
-    <div><%= f.text_field :relationship %></div>				
+    <div><%= f.select :relationship,options_for_select([["Select",""],["spouse","spouse"],["friend","friend"],["pastor","pastor"],["relative","relative"],["other","other"]],:selected => f.object.relationship) %></div>				
   </div>
   <div class="staffrow">
     <div>Phone<em>*</em>:</div>

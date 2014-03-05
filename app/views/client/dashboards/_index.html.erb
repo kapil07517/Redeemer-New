@@ -2,22 +2,25 @@
   <ul class="list-clientinfo">
     <li>
       <div class="box">
-        <h4>Account Information</h4>
+        <h4>Account Information<div style="float:right;"><%= link_to 'Edit',edit_setting_path(:role => current_user.role,:id => current_user.id) %></div></h4>
         <div class="columnRight-client">
-          <span><%= @client.first_name %> <%= @client.last_name %></span>
-          <p><%= @client.address %><br>
-            <%= @client.city %>,<%= @client.state %> <%= @client.zipcode %></p>
-          <p><%= @client.email %></p>
-          <p>HOME      <%= number_to_phone(@client.home) %></p>
-          <p>MOBILE  <%= number_to_phone(@client.mobile) %></p>
-          <p>OFFICE    <%= number_to_phone(@client.work) %></p>
-          <div style="float:right;"><%= link_to 'Edit',edit_setting_path(:role => current_user.role,:id => current_user.id) %></div>
+          <span><%= "*"+@client.full_name %></span>
+          <p><%= "*"+@client.address %><br>
+            <%= "*"+@client.city %>,<%= @client.state %> <%= @client.zipcode %></p>
+          <p><%= "*"+@client.email %></p>
+          <% prim = @client.primary %>
+          <p>HOME     <%= prim == "home" ? "*" : "" %><%= number_to_phone(@client.home) %></p>
+          <p>MOBILE  <%= prim == "mobile" ? "*" : "" %><%= number_to_phone(@client.mobile) %></p>
+          <p>OFFICE    <%= prim == "work" ? "*" : "" %><%= number_to_phone(@client.work) %></p>
         </div>
+        <h4>EMERGENCY CONTACT</h4>
+        <p><%= @client.contact_name %></p>
+        <p>CONTACT:   <%= number_to_phone(@client.contact_phone) %></p>
         <div class="clearFix"></div>
       </div>
     </li>
     <li>
-      <div class="box" onclick="window.location.href='/client/intakes'" style="cursor:pointer;">
+      <div class="box" onclick="window.location.href = '/client/intakes'" style="cursor:pointer;">
         <div class="valignDiv">
           <div>
             <h2>Intake Forms</h2>

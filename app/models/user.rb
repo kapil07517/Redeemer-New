@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
       errors.add(:contact_phone,"Can't be blank") if self.contact_phone.blank?
       errors.add(:contact_name1,"Can't be blank") if self.contact_name1.blank?
       errors.add(:contact_name2,"Can't be blank") if self.contact_name2.blank?
+      errors.add(:gender,"Can't be blank") if self.gender.blank?
+      errors.add(:relationship,"Can't be blank") if self.relationship.blank?
     end
   end
   

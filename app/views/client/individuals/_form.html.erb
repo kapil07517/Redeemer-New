@@ -1,6 +1,10 @@
 <%= f.hidden_field :intake_type,:value => @intake_type %>
 <div class="boxGray">
-  <%= f.error_messages %>
+  <% if f.error_messages.blank? == false %>
+    <div id="errorExplanation" class="errorExplanation">
+      <ul><li>Please enter required(*) fields</li></ul>
+    </div>
+  <% end %>
   <div class="staffrow">
     <div>What Concerns Have led you to Pursue Counseling?<em>*</em></div>
     <div>
@@ -27,7 +31,7 @@
   </div>
   <hr />
   <div class="staffrow">
-    <div>Have any of your concerns been identified by others?<em>*</em></div>
+    <div>Have any of your concerns been identified by others?<em>*</em>(please explain)</div>
     <div><%= f.text_area :have_any_concerns_identified,:rows => 4,:maxlength=>"350" %></div>
   </div>
   <hr />
@@ -65,21 +69,19 @@
     <td class='hour-column'></td>
     <% time_type = "am" %>
     <% for hour in (8..12).to_a+(1..10).to_a %>
-    <% if hour == 12 %><% time_type = "pm" %><% end %>
+      <% if hour == 12 %><% time_type = "pm" %><% end %>
       <td><%= hour %><%= time_type %></td>
     <% end %>
   </tr>
   <% for date in (@start_date..@end_date) %>
-    <% if date.strftime("%A").upcase != "SUNDAY" %>
-      <tr>
-        <td><%= date.strftime("%A").upcase %></td>
-        <% time_count = 0 %>
-        <% for i in (8..12).to_a+(1..10).to_a %>
-          <% if i == 1 %><% time_count = 12 %><% end %>
-          <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:00:00,#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:59:59",false,:style => "display:none;" %></td>
-        <% end %>
-      </tr>
-    <% end %>
+    <tr>
+      <td><%= date.strftime("%A") %></td>
+      <% time_count = 0 %>
+      <% for i in (8..12).to_a+(1..10).to_a %>
+        <% if i == 1 %><% time_count = 12 %><% end %>
+        <td onclick="$(this).toggleClass('avalaible_checked').find('input[type=checkbox]').attr('checked', !$(this).find('input[type=checkbox]').attr('checked'));"><%= check_box_tag "times[]","#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:00:00,#{date} #{i+time_count > 9 ? i+time_count : '0'+(i+time_count).to_s}:59:59",false,:style => "display:none;" %></td>
+      <% end %>
+    </tr>
   <% end %>
 </table>
 <hr />
