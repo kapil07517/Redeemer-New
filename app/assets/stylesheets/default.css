@@ -101,7 +101,7 @@ select{margin-right:8px;
        color:#a6a8ab;
        font-size:13px;
        text-transform:uppercase;
-       border:none;background-color:#e6e7e8}
+       border:none;background-color:#e6e7e8;padding: 8px;}
 select option{padding-left:4px}
 p{padding-bottom:10px;margin:0}
 input,textarea,a{

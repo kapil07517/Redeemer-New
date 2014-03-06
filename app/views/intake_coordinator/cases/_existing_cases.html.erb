@@ -16,7 +16,7 @@
       <%= form_tag assign_case_intake_coordinator_cases_path,:remote => true do %>
         <%= hidden_field_tag "intake_ids" %>
         <td><%= check_box_tag "case_id","#{cas.id}" %></td>
-        <td><%= cas.number %></td>
+        <td><%= link_to cas.number, case_management_path(current_user.role,cas) %></td>
         <td><%= cas.case_name %></td>
         <td><%= cas.created_at.strftime("%b %d, %Y") %></td>
         <td><%= submit_tag "assign" %></td>
