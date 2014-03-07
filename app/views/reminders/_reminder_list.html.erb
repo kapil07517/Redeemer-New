@@ -1,7 +1,7 @@
 <% @reminders.each do |reminder| %>
-  <li id="reminder_<%= reminder.id %>" style='margin-left: -1px;'>
-    <div class="remindersColumn"><%= check_box_tag "reminders[]","#{reminder.id}",false,:onclick => "hide_review('#{current_user.role}',this)" %></div>
-    <h4><%= reminder.case.number if reminder.case %></h4>
-    <p><%= reminder.description %></p>
-  </li>
+  <li id="reminder_<%= reminder.id %>">
+      <div class="box-reminders"><%= check_box_tag "reminders[]","#{reminder.id}",false,:onclick => "hide_review('#{current_user.role}',this)" %></div>
+      <div style="width:71px;" class="box-reminders-date"><%= reminder.case.number if reminder.case %><br><%= reminder.created_at.strftime("%m/%d/%Y") %></div>
+      <p><%= reminder.description %></p>
+    </li>
 <% end %>
