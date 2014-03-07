@@ -47,7 +47,7 @@ class IntakeCoordinator::CasesController < ApplicationController
   
   def search_cases
     @intake_ids = params[:intake_id]
-    @cases = Case.where("number LIKE '%#{params[:search]}%'")
+    @cases = Case.where("number ILIKE '%#{params[:search]}%'")
   end
   
   def assign_case
