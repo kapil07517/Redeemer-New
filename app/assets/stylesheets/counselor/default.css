@@ -565,8 +565,6 @@ ul.list-reminders > li + li{ margin-left:12px; }
 }	
 .remindersColumn{
     float:left;
-    width:36px;
-    margin-right:25px;
 }	
 .remindersBox h3{ 
     margin:0px 10px;

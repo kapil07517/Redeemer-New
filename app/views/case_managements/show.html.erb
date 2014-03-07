@@ -26,12 +26,16 @@
     <ul class="list-clientinfo">
       <li>
         <div class="box">
-          <h3 id="addReminders1">REMINDERS<a title="" href="javascript:;"><del>.</del></a></h3>
-          <div id="addRemindersBox1" style="display:none;">
-            <div class="addRemindersContent1">
-              <%= render :partial => "/reminders/new" %>
+          <% if current_user.role == 'counselor' %>
+            <h3 id="addReminders1">REMINDERS<a title="" href="javascript:;"><del>.</del></a></h3>
+            <div id="addRemindersBox1" style="display:none;">
+              <div class="addRemindersContent1">
+                <%= render :partial => "/reminders/new" %>
+              </div>
             </div>
-          </div>	
+          <% else %>
+            <h2>REMINDERS</h2>
+          <% end %>
           <div id="reminder_section" style='height: 200px;overflow: auto;'>
             <%= render :partial => "/reminders/case_reminders" %>
           </div>
