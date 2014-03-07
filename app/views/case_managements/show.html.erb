@@ -117,7 +117,7 @@
       <tr>
         <td><%= appointment.case.number %></td>
         <td>
-          <%= appointment.counselor.full_name %>
+          <%= appointment.counselor.full_name if appointment.counselor %>
         </td>
         <td>
           <%= appointment.start_at.blank? ? '' : appointment.start_at.strftime("%A") %>

@@ -26,7 +26,7 @@ class AccountingsController < ApplicationController
     @session.client_id = params[:session_payment][:payment_name].split(",").last if params[:session_payment][:payment_name] and params[:session_payment][:payment_name].split(",").first == "Client"
     @session.payer_id = params[:session_payment][:payment_name].split(",").last if params[:session_payment][:payment_name] and params[:session_payment][:payment_name].split(",").first == "Payer"
     unless @session.session_status == "completed"
-      @session.balance = @session.fee - params[:amount].to_i
+      @session.balance = @session.fee - params[:amount].to_i if @session.fee
     end
     @session.update_attributes(params[:session_payment])
   end
