@@ -1,5 +1,7 @@
 <%= form_for @session,:url => @session.new_record? ? accountings_path(current_user.role,@session) : accounting_path(current_user.role,@session), :method => @session.new_record? ? :post : :put,:remote => true do |f| %>
-  <%= f.hidden_field :action_name,:value => "accounting" %>  
+  <%= f.hidden_field :action_name,:value => "accounting" %> 
+  <%= hidden_field_tag "client_id",@client.id if @client %>
+  <%= hidden_field_tag "case_id",@case.id if @case %>
   <div class="grayBox">
     <%= f.error_messages %>
     <div class="sessionPayment">
@@ -25,11 +27,15 @@
       </div>
       <div>
         <p>Payer</p>
-        <%= f.select :payment_name,options_for_select([["Select",""]]+Client.all.map{|a| [a.full_name,"Client,#{a.id}"]}+Payer.all.map{|a| [a.name_of_org,"Payer,#{a.id}"]},:selected => f.object.payment_name) %>
+        <% if @case %>
+          <%= f.select :payment_name,options_for_select([["Select",""]]+@case.case_clients.all.map{|a| [a.client.full_name,"Client,#{a.client_id}"]}+Payer.all.map{|a| [a.name_of_org,"Payer,#{a.id}"]},:selected => f.object.payment_name) %>
+        <% elsif @client %>
+          <%= f.select :payment_name,options_for_select([["Select",""],[@client.full_name,"Client,#{@client.id}"]]+Payer.all.map{|a| [a.name_of_org,"Payer,#{a.id}"]},:selected => f.object.payment_name) %>
+        <% end %>
       </div>
       <!--<div>
         <p>Amount</p>
-        <%#=  f.text_field :payment_amount,:class => "input-datePayment" %>
+  <%#=  f.text_field :payment_amount,:class => "input-datePayment" %>
       </div>-->
     </div>
     <div id="comment" style="display: none;">
