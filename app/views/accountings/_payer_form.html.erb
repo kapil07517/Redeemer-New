@@ -7,6 +7,10 @@
   </div>
   <div class="info payment">
     <div>
+      <p>Start Date</p>
+      <%= f.date_select :start_date, {:include_blank => true, :default => nil,:start_year => 1930} %>
+    </div>
+    <div>
       <p>Payer 2</p>
       <%= f.select :payer_id,options_for_select([["Select",""]]+Payer.all.map{|a| [a.name_of_org,a.id]},:selected => f.object.payer_id) %>
     </div>

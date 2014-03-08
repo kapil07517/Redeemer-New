@@ -16,7 +16,8 @@
       <td>SESSION <span><%= session_payment.case ? session_payment.case.number : '' %></span></td>
       <td><%= session_payment.session_status %></td>
       <td><%= session_payment.auth %></td>
-      <td><%= session_payment.fee %></td>
+      <% ses_fee = SessionFee.where("case_id = '#{session_payment.case_id}' and start_date < '#{session_payment.session_date}'").last %>
+      <td><%= ses_fee ? ses_fee.fee : session_payment.fee%></td>
       <td><%= session_payment.copay %></td>
       <td><%= session_payment.amount %></td>
       <td><%= session_payment.debit %></td>
