@@ -1,7 +1,7 @@
 <%= form_for @session,:url => @session.new_record? ? accountings_path(current_user.role,@session) : accounting_path(current_user.role,@session), :method => @session.new_record? ? :post : :put,:remote => true do |f| %>
   <%= f.hidden_field :action_name,:value => "accounting" %> 
   <%= hidden_field_tag "client_id",@client.id if @client %>
-  <%= hidden_field_tag "case_id",@case.id if @case %>
+  <%= f.hidden_field :case_id,:value => @case.id if @case %>
   <div class="grayBox">
     <%= f.error_messages %>
     <div class="sessionPayment">
@@ -15,7 +15,11 @@
       </div>
       <div>
         <p>Case Number</p>
-        <%= f.select :case_id,options_for_select([["Select",""]]+Case.all.map{|a| [a.number,a.id]},:selected => f.object.case_id) %>
+        <% if @case %>
+          <%= @case.number %>
+        <% elsif @client %>
+          <%= f.select :case_id,options_for_select([["Select",""]]+Case.all.map{|a| [a.number,a.id]},:selected => f.object.case_id) %>
+        <% end %>
       </div>
       <div>
         <p>Amount</p>

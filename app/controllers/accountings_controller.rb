@@ -14,7 +14,7 @@ class AccountingsController < ApplicationController
   end
   
   def create
-    @case = Case.find(params[:case_id]) if params[:case_id]
+    @case = Case.find(params[:session_payment][:case_id]) if params[:session_payment][:case_id]
     @client = Client.find(params[:client_id]) if params[:client_id]
     @session = SessionPayment.new(params[:session_payment])
     @session.client_id = @session.payment_name.split(",").last if @session.payment_name and @session.payment_name.split(",").first == "Client"
@@ -24,7 +24,7 @@ class AccountingsController < ApplicationController
   end
   
   def update
-    @case = Case.find(params[:case_id]) if params[:case_id]
+    @case = Case.find(params[:session_payment][:case_id]) if params[:session_payment][:case_id]
     @client = Client.find(params[:client_id]) if params[:client_id]
     @session = SessionPayment.find(params[:id])
     @session.client_id = params[:session_payment][:payment_name].split(",").last if params[:session_payment][:payment_name] and params[:session_payment][:payment_name].split(",").first == "Client"
@@ -58,5 +58,6 @@ class AccountingsController < ApplicationController
   
   def update_session_payment
     @session = SessionPayment.find(params[:id])
+    @case = Case.find(@session.case_id)
   end
 end
