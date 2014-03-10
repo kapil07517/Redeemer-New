@@ -9,11 +9,16 @@ class Client::ReducedFeesController < ApplicationController
   def create
     @reduced_fee = ReducedFee.new(params[:reduced_fee])
     @reduced_fee.client_id = current_user.id
-    if @reduced_fee.save
-      @document = Document.new(:client_id =>current_user.id,:reduced_fee_id => @reduced_fee.id,:doc_type => "reduced_fee")
-      @document.save(:validate => false)
-      redirect_to root_path
+    if current_user.valid_password?(params[:reduced_fee][:doc_password])
+      if @reduced_fee.save
+        @document = Document.new(:client_id =>current_user.id,:reduced_fee_id => @reduced_fee.id,:doc_type => "reduced_fee")
+        @document.save(:validate => false)
+        redirect_to root_path
+      else
+        render :action => :new
+      end
     else
+      @reduced_fee.errors.add(:doc_password,'Entered password is wrong.Please try again!')
       render :action => :new
     end
   end

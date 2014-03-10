@@ -39,7 +39,7 @@
       <div class="w50">
         <%= f.radio_button :student_job_type, "unemployeed", :id=>"checkbox_box_131" %><label for="checkbox_box_131" class="cssLabel" style="color:gray;"><span></span>Unemployed</label>
       </div>
-      <div>
+      <div style="width:30%;">
         Date of last employment
         <p>
           <%= f.date_select :date_of_last_empl, {:include_blank => true, :default => nil,:start_year => 1930} %>
@@ -163,7 +163,7 @@
     <div class="clearFix"></div>
   </div>
   <hr />
-  <h1 class="icon-no2">Consent And Signature</h1>	
+  <h1><span class="circle">4</span>&nbsp;Consent And Signature</h1>	
   <div class="boxGray">
     <h3>Consent And Signature</h3>
     <p> <%= f.check_box :content_and_signature, :id=>"checkbox_box_57" %>

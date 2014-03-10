@@ -32,9 +32,15 @@
       </div>	
     </div>
     <div class="staffrow">
-      <div>Date Of Marriage <em>*</em><br />Date Of Separation</div>
+      <div>Date Of Marriage <em>*</em></div>
       <div>
         <%= f.date_select :date_of_marriage, {:include_blank => true, :default => nil,:start_year => 1930} %>
+      </div>
+    </div>
+    <div class="staffrow">
+      <div>Date Of Separation <em>*</em></div>
+      <div>
+        <%= f.date_select :date_of_seperation, {:include_blank => true, :default => nil,:start_year => 1930} %>
       </div>
     </div>
     <div class="staffrow">
@@ -135,7 +141,7 @@
     <div class="clearFix"></div>
   </div>
   <hr />
-  <h1 class="icon-no3">Religious Background</h1>
+  <h1><span class="circle">4</span>&nbsp;Religious Background</h1>
   <div class="boxGray">
     <div class="staffrow">
       <div>Do you believe in God?<em>*</em></div>
@@ -169,7 +175,7 @@
     <div class="clearFix"></div>
   </div>
   <hr />
-  <h1 class="icon-no2">Consent And Signature</h1>	
+  <h1><span class="circle">5</span>&nbsp;Consent And Signature</h1>	
   <div class="boxGray">
     <h3>Consent And Signature</h3>
     <p><%= f.check_box :content_and_signature, :id=>"checkbox_box_57"  %>
