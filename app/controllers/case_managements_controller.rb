@@ -62,7 +62,7 @@ class CaseManagementsController < ApplicationController
     @counselor = Counselor.find(params[:counselor_id])
     @case_counselor = CaseCounselor.create(:case_id => @case.id,:counselor_id => @counselor.id)
     @counselor = @case_counselor.counselor.full_name
-    @document = Document.new(:user_id => current_user.id,:case_id =>@case.id,:doc_type => "staff_change",:description => "Counselor #{@counselor} was removed from Case #{@case.number} on #{Time.now.strftime('%m-%d-%Y')} by STAFF MEMBER #{current_user.full_name}")
+    @document = Document.new(:user_id => current_user.id,:case_id =>@case.id,:doc_type => "staff_change",:description => "Counselor #{@counselor} was added from Case #{@case.number} on #{Time.now.strftime('%m-%d-%Y')} by STAFF MEMBER #{current_user.full_name}")
     @document.save(:validate => false)
   end
 end
