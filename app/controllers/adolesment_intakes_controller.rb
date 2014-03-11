@@ -10,7 +10,7 @@ class AdolesmentIntakesController < ApplicationController
     @client = @case.intake_form.user
     @adolesment_intake = AdolesmentIntake.new(params[:adolesment_intake])
     if @adolesment_intake.save
-      @document = Document.new(:case_id =>@case.id,:client_id =>@client.id,:adolesment_intake_id => @adolesment_intake.id,:doc_type => "adolesment_intake")
+      @document = Document.new(:user_id => current_user.id,:case_id =>@case.id,:client_id =>@client.id,:adolesment_intake_id => @adolesment_intake.id,:doc_type => "adolesment_intake")
       @document.save(:validate => false)
       redirect_to edit_adolesment_intake_path(current_user.role,@adolesment_intake)
     else
@@ -27,7 +27,7 @@ class AdolesmentIntakesController < ApplicationController
     @client = Client.find(params[:adolesment_intake][:client_id])
     @adolesment_intake = AdolesmentIntake.new(params[:adolesment_intake])
     if @adolesment_intake.save
-      @document = Document.new(:client_id =>@client.id,:adolesment_intake_id => @adolesment_intake.id,:doc_type => "adolesment_intake")
+      @document = Document.new(:user_id => current_user.id,:client_id =>@client.id,:adolesment_intake_id => @adolesment_intake.id,:doc_type => "adolesment_intake")
       @document.save(:validate => false)
       redirect_to edit_adolesment_intake_path(current_user.role,@adolesment_intake)
     else

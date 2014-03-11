@@ -1,26 +1,6 @@
 <div>
-  <div class="fleft box">
-    <table class="table-jenny" border="0" cellpadding="0" cellspacing="0" width="620">
-      <tr>
-        <td colspan="2"><h6 class="jenny"><%= @case.case_name %></h6></td>
-        <td colspan="2"><h6 class="jenny"><%= @case.number %></h6></td>
-      </tr>
-      <tr>
-        <td>NAME</td>
-        <td>DOB</td>
-        <td>PHONE</td>
-        <td>EMAIL</td>
-      </tr>
-      <% @case.case_clients.each do |form| %>
-        <tr>
-          <td><%= form.client.full_name %></td>
-          <td><%= form.client.date_of_birth %></td>
-          <td><%= number_to_phone(form.client.mobile) %></td>
-          <td><%= form.client.email %></td>
-        </tr>
-      <% end %>
-      <tr><td class="4"><del>.</del></td></tr>
-    </table>
+  <div class="fleft box" id="case_clients">
+    <%= render :partial => "case_clients" %>
   </div>
   <div class="fright">
     <ul class="list-clientinfo">
@@ -50,37 +30,25 @@
 <div>			
   <div class="box counselorBox">
     <div class="counRow">
-      <div class="counColumn">
-        <h6 class="counselorHeading">Counselor (S)</h6>
-        <%= @case.counselor.full_name if @case.counselor %>
-      </div>
-      <div class="perColumn">
-        <h6 class="counselorHeading">Permissions</h6>
-        <% if @case.counselor %>
-          <% ["Read","Read / Write","Add","Remove","Edit"].each do |permission| %>
-            <p><%= check_box_tag "permission",permission,@permission == permission ? true : false,:onclick => "update_permission(this,'#{current_user.role}',#{@case.id},#{@case.counselor_id})",:class => "permisson" %><%= permission %></p>
+      <%= form_tag(counselor_permisson_case_managements_path(current_user.role),:remote => true) do %>
+        <div class="counColumn">
+          <h6 class="counselorHeading">Counselor (S) <%= link_to "edit","javascript:display_edit_links('perColumn')",:style => "float:right;" %></h6>
+          <div id="case_counselors">
+            <%= render :partial => "case_counselors" %>
+          </div><br/>
+        </div>
+        <div class="perColumn" style="display:none;">
+          <h6 class="counselorHeading">Permissions</h6>
+          <% ["Read","Read / Write"].each do |permission| %>
+            <p><%= check_box_tag "permission",permission,false,:onclick => "update_permission(this)",:class => "permisson" %><%= permission %></p>
           <% end %>
-        <% end %>
-      </div>						
-      <div class="clearFix"></div>
+          <p><%= submit_tag "Save",:onclick => "javascript:if($('.counselor_permi').is(':checked') === false){alert('check atleast one counselor'); return false;} if($('.permisson').is(':checked') === false){alert('check atleast one permission'); return false;}" %>
+            <%= submit_tag "Cancel",:onclick => "javascript:$('.counselor_permi').attr('checked',false);$('.permisson').attr('checked',false);return false;" %></p>
+        </div>						
+        <div class="clearFix"></div>
+      <% end %>
     </div>
   </div>
-  <script>
-    function update_permission(th, role, cs, coun) {
-      $("input.permisson").not(th).attr("checked", false);
-      $.ajax({
-        url: "/" + role + "/case_managements/counselor_permisson",
-        data: {
-          counselor_id: coun,
-          case_id: cs,
-          permission: $(th).val()
-        },
-        method: "post",
-        success: function(data) {
-        }
-      });
-    }
-  </script>
   <div class="box counselorBox mleft10">
     <div class="multiRow">
       <div class="multiColumn">Session Schedule:</div>
@@ -151,3 +119,8 @@
   </div>
 </div>
 <div class="clearFix"></div>
+<script>
+  function update_permission(th, role, cs, coun) {
+    $("input.permisson").not(th).attr("checked", false);
+  }
+</script>

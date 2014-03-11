@@ -11,7 +11,7 @@ class InitialEvalutionsController < ApplicationController
     @client = @case.intake_form.user
     @intake_evalution = IntakeEvalution.new(params[:intake_evalution])
     if @intake_evalution.save
-      @document = Document.new(:case_id =>@case.id,:client_id =>@client.id,:intake_evalution_id => @intake_evalution.id,:doc_type => "intake_evalution")
+      @document = Document.new(:user_id => current_user.id,:case_id =>@case.id,:client_id =>@client.id,:intake_evalution_id => @intake_evalution.id,:doc_type => "intake_evalution")
       @document.save(:validate => false)
       redirect_to edit_initial_evalution_path(current_user.role,@intake_evalution)
     else
@@ -28,7 +28,7 @@ class InitialEvalutionsController < ApplicationController
     @client = Client.find(params[:intake_evalution][:client_id])
     @intake_evalution = IntakeEvalution.new(params[:intake_evalution])
     if @intake_evalution.save
-      @document = Document.new(:client_id =>@client.id,:intake_evalution_id => @intake_evalution.id,:doc_type => "intake_evalution")
+      @document = Document.new(:user_id => current_user.id,:client_id =>@client.id,:intake_evalution_id => @intake_evalution.id,:doc_type => "intake_evalution")
       @document.save(:validate => false)
       redirect_to edit_initial_evalution_path(current_user.role,@intake_evalution)
     else

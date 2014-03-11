@@ -151,8 +151,10 @@ Rcms::Application.routes.draw do
   resources :case_managements,:path => "/:role/case_managements" do
     member do
       post :upload_document
+      delete :remove_counselor
     end
     collection do
+      post :add_counselor
       post :counselor_permisson
     end
   end

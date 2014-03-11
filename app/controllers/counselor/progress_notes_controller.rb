@@ -39,7 +39,7 @@ class Counselor::ProgressNotesController < ApplicationController
     respond_to do |format|
       if current_user.valid_password?(params[:progress_note][:password])
         if @progress_note.save
-          @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
+          @document = Document.new(:user_id => current_user.id,:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
           @document.save(:validate => false)
         else
         end
@@ -62,7 +62,7 @@ class Counselor::ProgressNotesController < ApplicationController
     params[:commit] == 'Save to Draft' ? (@progress_note.is_draft = true):(@progress_note.is_draft = false)
     if current_user.valid_password?(params[:progress_note][:password])
       if @progress_note.save
-        @document = Document.new(:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
+        @document = Document.new(:user_id => current_user.id,:case_id =>@appointment.case_id,:client_id =>@appointment.client_id,:progress_note_id => @progress_note.id,:doc_type => "progress_note")
         @document.save(:validate => false)
       else
         puts @progress_note.errors.inspect

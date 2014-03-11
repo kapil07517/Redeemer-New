@@ -236,3 +236,7 @@ function hide_review(role, th) {
         }
     });
 }
+
+function display_edit_links(link) {
+    $("." + link).show();
+}

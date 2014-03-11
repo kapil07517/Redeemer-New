@@ -13,7 +13,7 @@ class Client::FinancialsController < ApplicationController
     if @financial.save
       @intake_form = IntakeForm.new(:intake_type =>  @intake_type,:user_id => current_user.id,:intake_status => "processing")
       @intake_form.save
-      @document = Document.new(:client_id =>current_user.id,:intake_form_id => @intake_form.id,:doc_type => "intake_form")
+      @document = Document.new(:user_id => current_user.id,:client_id =>current_user.id,:intake_form_id => @intake_form.id,:doc_type => "intake_form")
       @document.save(:validate => false)
       @financial.update_attribute(:intake_form_id,@intake_form.id)
       redirect_to root_path

@@ -21,7 +21,7 @@ class Client::MinorsController < ApplicationController
     if @minor.save
       @intake_form = IntakeForm.new(:user_id => @client.id,:intake_type => @intake_type,:intake_status => "processing")
       @intake_form.save
-      @document = Document.new(:client_id =>current_user.id,:intake_form_id => @intake_form.id,:doc_type => "intake_form")
+      @document = Document.new(:user_id => current_user.id,:client_id =>current_user.id,:intake_form_id => @intake_form.id,:doc_type => "intake_form")
       @document.save(:validate => false)
       if params[:times]
         params[:times].each do |tim|

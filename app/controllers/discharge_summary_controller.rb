@@ -10,7 +10,7 @@ class DischargeSummaryController < ApplicationController
     @client = @case.intake_form.user
     @discharge_summary = DischargeSummary.new(params[:discharge_summary])
     if @discharge_summary.save
-      @document = Document.new(:case_id =>@case.id,:client_id =>@client.id,:discharge_summary_id => @discharge_summary.id,:doc_type => "discharge_summary")
+      @document = Document.new(:user_id => current_user.id,:case_id =>@case.id,:client_id =>@client.id,:discharge_summary_id => @discharge_summary.id,:doc_type => "discharge_summary")
       @document.save(:validate => false)
       redirect_to edit_discharge_summary_path(current_user.role,@discharge_summary)
     else
@@ -27,7 +27,7 @@ class DischargeSummaryController < ApplicationController
     @client = Client.find(params[:discharge_summary][:client_id])
     @discharge_summary = DischargeSummary.new(params[:discharge_summary])
     if @discharge_summary.save
-      @document = Document.new(:client_id =>@client.id,:discharge_summary_id => @discharge_summary.id,:doc_type => "discharge_summary")
+      @document = Document.new(:user_id => current_user.id,:client_id =>@client.id,:discharge_summary_id => @discharge_summary.id,:doc_type => "discharge_summary")
       @document.save(:validate => false)
       redirect_to edit_discharge_summary_path(current_user.role,@discharge_summary)
     else

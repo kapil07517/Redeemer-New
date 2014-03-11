@@ -17,6 +17,7 @@ class Case < ActiveRecord::Base
   has_many :case_clients,:dependent => :destroy
   has_many :session_fees, :dependent => :destroy
   has_one :counselor_permissions, :dependent => :destroy
+  has_many :case_counselors,:dependent => :destroy
   validates :prefix,:extension,:case_name,:presence => true
   before_create :combine_case_number
   validate :case_number,:on => :create

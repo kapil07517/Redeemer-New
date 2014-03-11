@@ -22,6 +22,8 @@
           <%= link_to ["individual","dating","family","marriage"].include?(document.intake_form.intake_type) ? "adult intake".upcase : document.intake_form.intake_type.split("_").join(" ").upcase,intake_form_details_path(:role => current_user.role,:id => document.intake_form_id) %>
         <% elsif document.doc_type == "reduced_fee" %>
           <%= link_to "reduced fee".upcase, reduced_fee_details_path(current_user.role,document.reduced_fee_id) %>
+        <% elsif document.doc_type == "client_change" or document.doc_type == "staff_change" %>
+          <%= link_to document.doc_type.split("_").join(" ").upcase,document_path(current_user.role,document) %>
         <% else %>
           <%= link_to document.document_content_type.upcase,document_path(current_user.role,document) %>
         <% end %>

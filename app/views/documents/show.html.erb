@@ -1,7 +1,11 @@
-<% if Rails.env == 'development' %>
-  <% if @document.document_content_type.split("/")[0] == "image" %>
-    <%= image_tag(@document.document) %>
-  <% else %>
-    <%= link_to "document","#{@document.document}",:target => "_blank" %>
+<% if @document.doc_type == "client_change" or @document.doc_type == "staff_change" %>
+  <%= @document.description %>
+<% else %>
+  <% if Rails.env == 'development' %>
+    <% if @document.document_content_type and @document.document_content_type.split("/")[0] == "image" %>
+      <%= image_tag(@document.document) %>
+    <% else %>
+      <%= link_to "document","#{@document.document}",:target => "_blank" %>
+    <% end %>
   <% end %>
 <% end %>

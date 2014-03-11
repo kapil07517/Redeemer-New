@@ -8,13 +8,14 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:role, :type, :first_name, :middle_initial,
     :last_name, :address, :city, :state, :zipcode, :mobile, :work, :home, :date_of_birth, :who_refered, :about_us,
-    :contact_name, :relationship, :contact_phone, :contact_email,:confirmation_token, :confirmed_at,:primary,:gender,:emergency_contact,:address2,:status,:account_id,:contact_name1,:contact_name2
+    :contact_name, :relationship, :contact_phone, :contact_email,:confirmation_token, :confirmed_at,:primary,:gender,:emergency_contact,:address2,:status,:account_id,:contact_name1,:contact_name2,:access_types
   # attr_accessible :title, :body
-  attr_accessor :contact_name1,:contact_name2
+  attr_accessor :contact_name1,:contact_name2,:access_types
   
   validates :first_name,:last_name,:type,:role,:presence => true
   validate :client_information
   has_many :intake_forms,:dependent => :destroy
+  has_many :documents,:dependent => :destroy
   before_create { generate_client_number(:account_id) }
   before_save :combine_contact_name
   

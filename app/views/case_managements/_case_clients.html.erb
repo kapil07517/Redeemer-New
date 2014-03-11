@@ -1,0 +1,22 @@
+<table class="table-jenny" border="0" cellpadding="0" cellspacing="0" width="620">
+  <tr>
+    <td colspan="2"><h6 class="jenny"><%= @case.case_name %></h6></td>
+    <td colspan="2"><h6 class="jenny"><%= @case.number %><%= link_to "edit","javascript:display_edit_links('delete_link')",:style => "float:right;" %></h6></td>
+  </tr>
+  <tr>
+    <td>NAME</td>
+    <td>DOB</td>
+    <td>PHONE</td>
+    <td>EMAIL</td>
+  </tr>
+  <% @case.case_clients.each do |form| %>
+    <tr>
+      <td><%= form.client.full_name %></td>
+      <td><%= form.client.date_of_birth %></td>
+      <td><%= number_to_phone(form.client.mobile) %></td>
+      <td><%= form.client.email %></td>
+      <td class="delete_link" style="display:none;"><%= link_to image_tag("/assets/counselor/icon_minus_small.jpeg",:width => "23",:height => "21"),case_management_path(current_user.role,form.id),:method => :delete,:remote => true,:style => "font-size:20px;text-decoration:none;" %></td>
+    </tr>
+  <% end %>
+  <tr><td class="4"><del>.</del></td></tr>
+</table>

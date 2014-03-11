@@ -33,6 +33,7 @@ class IntakeCoordinator::DashboardsController < ApplicationController
     @counselor = Counselor.find(params[:con]).id
     @appointment = Appointment.create(:client_id => @case.intake_form.user_id,:counselor_id => @counselor,:case_id => @case.id, :intake_form_id => @case.intake_form_id, :status => params[:status])
     @case.update_attribute(:counselor_id,@counselor)
+    CaseCounselor.create(:case_id => @case.id,:counselor_id => @counselor)
     render
   end
   
