@@ -36,12 +36,35 @@ class Counselor::DashboardsController < ApplicationController
   
   #displaying the counselor appointments in calendar format
   def appointments
-    @counselor = Counselor.find(current_user.id)
-    @appointments = @counselor.counselor_availabilities.scoped
-    @appointments = @counselor.counselor_availabilities.between(params['start'], params['end']) if (params['start'] && params['end'])
+    @date = Date.today
+    @start_date = @date.beginning_of_week(:sunday).to_date
+    @end_date = @date.end_of_week(:sunday).to_date
+    #    @counselor = Counselor.find(current_user.id)
+    #    @appointments = @counselor.counselor_availabilities.scoped
+    #    @appointments = @counselor.counselor_availabilities.between(params['start'], params['end']) if (params['start'] && params['end'])
+    #    respond_to do |format|
+    #      format.html # index.html.erb
+    #      format.json { render :json => @appointments.to_json }
+    #    end
+  end
+  
+  def next_calendar
+    @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
+    @start_date = @date.beginning_of_week(:sunday).to_date
+    @end_date = @date.end_of_week(:sunday).to_date
+    @day = params[:day].present? ? Date.parse(params[:day]).to_date : Date.today
+    #    @appointments = current_user.appointments.where("start_at BETWEEN '#{@day} 00:01:01' AND '#{@day} 23:59:59'")
+    #    @calendar_information = []
+    #    (@start_date..@end_date).each do |da|
+    #      (8..22).each do |i|
+    #        @availabilities = Avalability.where("start_at = '#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}'")
+    #        @availabilities.each do |avail|
+    #          @calendar_information<<["#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}",avail]
+    #        end
+    #      end
+    #    end
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @appointments.to_json }
+      format.js
     end
   end
   
