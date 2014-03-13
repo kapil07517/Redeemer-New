@@ -1,0 +1,158 @@
+<div class="commonr">
+  <div class="icon-calendar">
+    <a title="WEEK" href="#">WEEK</a>   |   <a title="MONTH" href="#">MONTH</a>
+    <input title="Calendar" type="text" id="datepicker" />
+  </div>
+  <div class="daySchedule">
+    <% if @start_date >= Date.today %>
+      <%= link_to '' , next_calendar_intake_coordinator_dashboards_path(:date => (@date - 1.week),:day =>@date - 1.week),
+        :remote => true, :id=>"prev212", :class=>"arrow-left" %>
+    <% end %>
+    WEEK OF <span><%= @start_date %></span><br>
+    <a title="EXPAND ALL" href="#">EXPAND ALL</a>   |   <a title="COLLAPSE  ALL" href="#">COLLAPSE  ALL</a>
+    <%= link_to '', next_calendar_intake_coordinator_dashboards_path(:date => (@date + 1.week),:day =>@date + 1.week),
+      :remote => true, :id=>"next212", :class=>"arrow-right" %>
+  </div>
+  <ul class="menu-calendar">
+    <li><a title="ROOM" href="#">ROOM</a>
+      <div class="submenu-calendar">
+        <div><a title="Click to view" href="#">Click to view</a> | <a title="Clear all" href="#">Clear all</a></div>
+        <ul class="list-submenu-calendar">
+          <% Room.all.each do |room| %>
+            <li><%= check_box_tag "room",room.id,nil,:class => "fleft" %><span style="border-color:<%= '#'+rand(999).to_s %>;"><%= room.name %></span></li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+    <li><a title="COUNSELOR" href="#">COUNSELOR</a>
+      <div class="submenu-calendar">
+        <div><a title="Click to view" href="#">Click to view</a> | <a title="Clear all" href="#">Clear all</a></div>
+        <ul class="list-submenu-calendar">
+          <% Counselor.all.each do |counselor| %>
+            <li style="width:155px;"><%= check_box_tag "room",counselor.id,nil,:class => "fleft" %> <span style="border-color:<%= '#'+rand(999).to_s %>;"><%= counselor.full_name %></span></li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+  </ul>					
+</div>
+<div class="list_carousel caroulproduct2">
+  <ul id="caroulproduct2">
+    <li>
+      <ul id="collexp-menu1" class="collexpMenu">
+        <% ["monday","tuesday","wedensday","thursday","friday","saturday"].each do |day| %>
+          <li>
+            <div title="Monday" class="expanded">
+              <table class="table-calendarTitle" cellpadding="0" cellspacing="0" width="100%" border="0">
+                <tr>
+                  <td><%= day %></td>
+                  <% for i in (8..12).to_a+(1..10).to_a %>
+                    <td><%= i.to_s+":00" %></td>
+                  <% end %>
+                </tr>
+              </table>
+            </div>
+            <ul>
+              <li>
+                <table class="table-roomavailability" cellpadding="0" cellspacing="0" width="100%" border="0">
+                  <% Room.all.each do |room| %>
+                    <tr>
+                      <td>ROOM <%= room.name %><br><span>reserve</span></td>
+                      <% (8..21).each do |d| %>
+                        <td>
+                          <div class="roomReserve">
+                            <table class="table-orange" cellpadding="0" cellspacing="0" width="100%" border="0">
+                              <tr>
+                                <td colspan="4">PETER PATORI</td>
+                              </tr>
+                              <tr>
+                                <td>J</td>
+                                <td>B</td>
+                                <td>R</td>
+                                <td>L</td>
+                              </tr>
+                              <tr>
+                                <td>J</td>
+                                <td>B</td>
+                                <td>R</td>
+                                <td>L</td>
+                              </tr>
+                            </table>
+                            <div class="arrow-calendar-popup"></div>
+                            <div class="roomReserveContent">
+                              <form>
+                                <h4>ROOM <%= room.name %></h4>
+                                <p>
+                                  <select>
+                                    <option>START <%= d %>:00</option>
+                                  </select>
+                                  <select>
+                                    <option>END <%= d+1 %>:00</option>
+                                  </select>
+                                  <select>
+                                    <option>COUNSELOR</option>
+                                    <% Counselor.all.each do |coun| %>
+                                      <option><%= coun.full_name %></option>
+                                    <% end %>
+                                  </select>
+                                  <select>
+                                    <option>CASE NAME</option>
+                                    <% Case.all.each do |cas| %>
+                                      <option><%= cas.number %></option>
+                                    <% end %>
+                                  </select>
+                                </p>
+                                <input type="submit" title="reserve" value="reserve" />
+                              </form>
+                            </div>
+                          </div>	
+                        </td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </table>							
+              </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+  <div id="pager212" class="pager"></div>
+</div>
+<style>
+  #ui-datepicker-div{
+    height: 240px;
+  }
+
+  iframe.ui-datepicker-cover{
+    display: none;
+  }
+</style>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#datepicker").datepicker({
+      minDate: 0,
+      dateFormat: "yy-mm-dd",
+      beforeShowDay: function(date) {
+        var day = date.getDay();
+        return [(day != 0), ''];
+      },
+      onSelect: function(dateText, inst) {
+        $.ajax({
+          url: "/intake_coordinator/dashboards/next_calendar?date=" + dateText + "&day=" + dateText,
+          dataType: "script",
+          success: function(data) {
+          }
+        });
+      }
+    });
+    setTimeout(function() {
+      $('#collexp-menu1 > li > div.expanded + ul').slideToggle('medium');
+      $('#collexp-menu1 > li > div').click(function() {
+        $('#collexp-menu1 > li > div.expanded').not(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+        $(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+      });
+    }, 250);
+  });
+</script>

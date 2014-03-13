@@ -76,6 +76,7 @@ Rcms::Application.routes.draw do
       collection do
         post :assign_case_counselor
         get :calendar
+        get :next_calendar
       end
     end
     resources :cases do

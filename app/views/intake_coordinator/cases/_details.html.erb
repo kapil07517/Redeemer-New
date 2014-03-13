@@ -9,30 +9,41 @@
   </div>
   <ul id="collexp-menu_1" class="collexpMenu list-intale">
     <li>
-      <div title="CONTACT INFORMATION" class="expanded">1. COUNSELING INFORMATION</div>
+      <div title="PERSONAL INFORMATION" class="expanded">1. PERSONAL INFORMATION</div>
       <ul>
         <li>
           <ul class="list-contactinfo">
             <li>
               <ul class="list-normal list-religious">
                 <li><span>NAME:</span><br> <%= @intake_form.name %></li>
-                <li><span>ADDRESS:</span><br>  <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
                 <li><span>SEX:</span><br><%= @intake_form.gender %></li>
                 <li><span>DATE OF BIRTH:</span><br><%= @intake_form.date_of_birth %></li>
+                <li><span>AGE:</span><br><%= Date.today.year - @intake_form.date_of_birth.strftime("%Y").to_i %></li>
               </ul>
             </li>
             <li>
               <ul class="list-normal list-religious">
                 <li><span>MARITAL STATUS:</span><br><%= @intake_form.marital_status %></li>
-                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
-                <li><span>LIVING WITH:</span><br> <%= @intake_form.living_with %></li>
+                <li><span>DATE OF MARRIAGE:</span><br> <%= @intake_form.date_of_marriage %></li>
+                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_seperation %></li>
+                <li><span>NUMBER OF MARRIAGES:</span><br> <%= @intake_form.no_of_marriages %></li>
+                <li><span>BELIEVE IN GOD</span><br><%= @intake_form.believe_in_god %></li>
+                <li><span>RELIGIOUS PREFERENCE</span><br><%= @intake_form.religious_preference %></li>
+                <li><span>CHURCH CURRENTLY ATTENDING</span><br><%= @intake_form.current_church %></li>
+                <li><span>MEMBER OF RPC</span><br><%= @intake_form.member_of_redeemer_church %></li>
+                <li><span>INFLUENCE RELIGION ON DAILY LIFE</span><br><%= @intake_form.day_to_day_activity %></li>
               </ul>
             </li>
             <li>
               <ul class="list-normal list-religious">
                 <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
                 <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
-                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+                <li><span>YEARS  WITH CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+                <li><span>ANNUAL INCOME:</span><br> <%= @intake_form.annual_income %></li>
+                <li><span>SCHOOL:</span><br> <%= @intake_form.school %></li>
+                <li><span>FIELD OF STUDY:</span><br> <%= @intake_form.field_of_study %></li>
+                <li><span>DEGREE:</span><br> <%= @intake_form.degree %></li>
+                <li><span>STATUS:</span><br> <%= @intake_form.status %></li>
               </ul>
             </li>
           </ul>
@@ -41,71 +52,52 @@
     </li>
 
     <li>
-      <div title="CONTACT INFORMATION" class="expanded">2. MEDICAL INFORMATION</div>
+      <div title="CONTACT INFORMATION" class="expanded">2. COUNSELING | MEDICAL INFORMATION</div>
       <ul>
         <li>
           <ul class="list-contactinfo">
             <li>
               <ul class="list-normal list-religious">
-                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
-                <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
-                <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
-                <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
+                <li><span>REASON FOR COMING IN:</span><br> <%= @intake_form.name %></li>
+                <li><span>AREA OF BIGGEST IMPACT:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
+                <li><span>WHEN DID IT START:</span><br> <%= @intake_form.gender %></li>
+                <li><span>DO OTHERS SEE IT:</span><br> <%= @intake_form.date_of_birth %></li>
+                <li><span>SEVERITY:</span><br> <%= @intake_form.date_of_birth %></li>
+                <li><span>CURRENT PROBLEMS:</span><br> <% problems = @intake_form.current_problems.nil? ? nil : @intake_form.current_problems.split("-")-[""]-["\n"] %><% if problems and !problems.empty? %><% problems.each_with_index do |p,index| %> <%= index+1 %>.<%= p %><br /> <% end %> <% end %></li>
               </ul>
             </li>
             <li>
               <ul class="list-normal list-religious">
-                <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
-                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
-                <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
+                <li><span>PSYCHIATRIC HOSPITALIZATIONS:</span><br> <%= @intake_form.hospitalized %></li>
+                <li><span>EXPLAIN:</span><br> <%= @intake_form.h_explain %></li>
+                <li><span>DATE:</span><br><%= @intake_form.living_with %></li>
+                <li><span>PRIOR COUNSELING:</span><br> <%= @intake_form.counseling_before %></li>
+                <li><span>PREVIOUS EXPERIENCE:</span><br> <%= @intake_form.p_explain %></li>
+                <li><span>FUTURE GAINS:</span><br> <%= @intake_form.gain_from_counseling %></li>
               </ul>
             </li>
             <li>
               <ul class="list-normal list-religious">
-                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
-                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
-                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
+                <li><span>RATE PHYSICAL HEALTH:</span><br> <%= @intake_form.rate %></li>
+                <li><span>DATE OF LAST PHYSICAL:</span><br> <%= @intake_form.date_of_last_p_exam %></li>
+                <li><span>CURRENT PHYSICAL PROBLEMS:</span><br><%= @intake_form.e_physical_problems %></li>
+                <li><span>EXPLAIN:</span><br> <%= @intake_form.c_explain %></li>
+                <% @medical_reasons.each do |med| %>
+                  <li><span>PRIOR HOSPITALIZATIONS:</span><br> <%= med.previous_hospital %></li>
+                  <li><span>DATE:</span><br> <%= med.previous_hospital_date %></li>
+                <% end %>
+                <% @medications.each do |medi| %>
+                  <li><span>CURRENT MEDICATIONS:</span><br> <%= medi.medician %></li>
+                  <li><span>DOSAGE:</span><br> <%= medi.dosage %></li>
+                <% end %>
               </ul>
             </li>
           </ul>
         </li>								
       </ul>
     </li>
-
     <li>
-      <div title="CONTACT INFORMATION" class="expanded">3. CONTACT INFORMATION</div>
-      <ul>
-        <li>
-          <ul class="list-contactinfo">
-            <li>
-              <ul class="list-normal list-religious">
-                <li><span>NAME:</span><br> <%= @intake_form.name %></li>
-                <li><span>ADDRESS:</span><br> <%= @intake_form.address %>, <%= @intake_form.city %>, <%= @intake_form.state %>&nbsp;&nbsp;<%= @intake_form.zip %></li>
-                <li><span>SEX:</span><br> <%= @intake_form.gender %></li>
-                <li><span>DATE OF BIRTH:</span><br> <%= @intake_form.date_of_birth %></li>
-              </ul>
-            </li>
-            <li>
-              <ul class="list-normal list-religious">
-                <li><span>MARITAL STATUS:</span><br> <%= @intake_form.marital_status %></li>
-                <li><span>DATE OF SEPARATION:</span><br> <%= @intake_form.date_of_marriage %></li>
-                <li><span>LIVING WITH:</span><br><%= @intake_form.living_with %></li>
-              </ul>
-            </li>
-            <li>
-              <ul class="list-normal list-religious">
-                <li><span>OCCUPATION:</span><br> <%= @intake_form.occupation %></li>
-                <li><span>EMPLOYER:</span><br> <%= @intake_form.employer %></li>
-                <li><span>YEARS  AT CURRENT EMPLOYER:</span><br><%= @intake_form.time_with_current_emp %></li>
-              </ul>
-            </li>
-          </ul>
-        </li>								
-      </ul>
-    </li>
-
-    <li>
-      <div title="EMERGENCY CONTACT" class="expanded">4.   EMERGENCY CONTACT</div>
+      <div title="EMERGENCY CONTACT" class="expanded">3.   EMERGENCY CONTACT</div>
       <ul>
         <li>
           <div class="table-emergencyContact">
@@ -125,35 +117,6 @@
         </li>
       </ul>
     </li>
-    <li>
-      <div title="RELIGIOUS BACKGROUND" class="expanded">5.   RELIGIOUS BACKGROUND</div>
-      <ul>
-        <li>
-          <ul class="list-normal list-religious">
-            <li>
-              <span>BELIEVE IN GOD</span><br>
-              <%= @intake_form.believe_in_god %>
-            </li>
-            <li>
-              <span>RELIGIOUS PREFERENCE</span><br>
-              <%= @intake_form.religious_preference %>
-            </li>
-            <li>
-              <span>CHURCH CURRENTLY ATTENDING</span><br>
-              <%= @intake_form.current_church %>
-            </li>
-            <li>
-              <span>MEMBER OF RPC</span><br>
-              <%= @intake_form.member_of_redeemer_church %>
-            </li>
-            <li>
-              <span>INFLUENCE RELIGION ON DAILY LIFE</span><br>
-              <%= @intake_form.day_to_day_activity %>
-            </li>	
-          </ul>
-        </li>
-      </ul>
-    </li>						
   </ul>
   <% unless @intakes.empty?  %>
     <div class="popupBox popupBox2 box">
