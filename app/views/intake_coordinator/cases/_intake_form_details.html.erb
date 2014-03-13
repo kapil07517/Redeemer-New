@@ -36,7 +36,7 @@
                 <li><span>NAME:</span><br> <%= @intake_form.name %></li>
                 <li><span>SEX:</span><br><%= @intake_form.gender %></li>
                 <li><span>DATE OF BIRTH:</span><br><%= @intake_form.date_of_birth %></li>
-                <li><span>AGE:</span><br><%= Date.today.year - @intake_form.date_of_birth.strftime("%Y").to_i %></li>
+                <li><span>AGE:</span><br><%= Date.today.year - @intake_form.date_of_birth.to_date.strftime("%Y").to_i %></li>
               </ul>
             </li>
             <li>
