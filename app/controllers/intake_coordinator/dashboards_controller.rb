@@ -55,16 +55,28 @@ class IntakeCoordinator::DashboardsController < ApplicationController
     @date = Date.today
     @start_date = @date.beginning_of_week(:sunday).to_date
     @end_date = @date.end_of_week(:sunday).to_date
-#    @calendar_information = []
-#    (@start_date..@end_date).each do |da|
-#      (8..22).each do |i|
-#        @availabilities = ClientAvailability.where("start_at BETWEEN '#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}' and '#{da.to_s+' '+(i>9 ? (i+1).to_s+':00:00' : '0'+(i+1).to_s+':00:00')}'")
-#        @availabilities.each do |avail|
-#          @calendar_information<<["#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}",avail]
-#        end
-#      end
-#      
-#    end
+    @rooms = Room.all
+    @counselors = Counselor.all
+    @cases = Case.all
+    @appointment = Appointment.new
+    @appointments = Appointment.where("start_at BETWEEN '#{@start_date} 00:01:01' and '#{@end_date} 23:59:59'")
+    @common_appointments = Array.new
+    @main_appoints = Array.new
+    @appointments.each do |a|
+      @common_appointments << a.start_at.strftime("%Y-%m-%d %H:%M:%S")+a.room_id.to_s
+      @main_appoints << a
+    end
+    
+    #    @calendar_information = []
+    #    (@start_date..@end_date).each do |da|
+    #      (8..22).each do |i|
+    #        @availabilities = ClientAvailability.where("start_at BETWEEN '#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}' and '#{da.to_s+' '+(i>9 ? (i+1).to_s+':00:00' : '0'+(i+1).to_s+':00:00')}'")
+    #        @availabilities.each do |avail|
+    #          @calendar_information<<["#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}",avail]
+    #        end
+    #      end
+    #      
+    #    end
     #    @appointments = CounselorAvailability.scoped
     #    respond_to do |format|
     #      format.html # index.html.erb
@@ -78,6 +90,18 @@ class IntakeCoordinator::DashboardsController < ApplicationController
     @start_date = @date.beginning_of_week(:sunday).to_date
     @end_date = @date.end_of_week(:sunday).to_date
     @day = params[:day].present? ? Date.parse(params[:day]).to_date : Date.today
+    @rooms = Room.all
+    @counselors = Counselor.all
+    @cases = Case.all
+    @appointment = Appointment.new
+    @appointments = Appointment.where("start_at BETWEEN '#{@start_date} 00:01:01' and '#{@end_date} 23:59:59'")
+    @common_appointments = Array.new
+    @main_appoints = Array.new
+    @appointments.each do |a|
+      @common_appointments << a.start_at.strftime("%Y-%m-%d %H:%M:%S")+a.room_id.to_s
+      @main_appoints << a
+    end
+    
     #    @appointments = current_user.appointments.where("start_at BETWEEN '#{@day} 00:01:01' AND '#{@day} 23:59:59'")
     #    @calendar_information = []
     #    (@start_date..@end_date).each do |da|

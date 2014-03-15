@@ -39,32 +39,33 @@ class Counselor::DashboardsController < ApplicationController
     @date = Date.today
     @start_date = @date.beginning_of_week(:sunday).to_date
     @end_date = @date.end_of_week(:sunday).to_date
-    #    @counselor = Counselor.find(current_user.id)
-    #    @appointments = @counselor.counselor_availabilities.scoped
-    #    @appointments = @counselor.counselor_availabilities.between(params['start'], params['end']) if (params['start'] && params['end'])
-    #    respond_to do |format|
-    #      format.html # index.html.erb
-    #      format.json { render :json => @appointments.to_json }
-    #    end
+    @rooms = Room.all
+    @counselors = Counselor.all
+    @cases = Case.all
+    @appointment = Appointment.new
+    @appointments = Appointment.where("start_at BETWEEN '#{@start_date} 00:01:01' and '#{@end_date} 23:59:59'")
+    @common_appointments = Array.new
+    @main_appoints = Array.new
+    @appointments.each do |a|
+      @common_appointments << a.start_at.strftime("%Y-%m-%d %H:%M:%S")+a.room_id.to_s
+      @main_appoints << a
+    end
   end
   
   def next_calendar
-    @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
+    @date = Date.today
     @start_date = @date.beginning_of_week(:sunday).to_date
     @end_date = @date.end_of_week(:sunday).to_date
-    @day = params[:day].present? ? Date.parse(params[:day]).to_date : Date.today
-    #    @appointments = current_user.appointments.where("start_at BETWEEN '#{@day} 00:01:01' AND '#{@day} 23:59:59'")
-    #    @calendar_information = []
-    #    (@start_date..@end_date).each do |da|
-    #      (8..22).each do |i|
-    #        @availabilities = Avalability.where("start_at = '#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}'")
-    #        @availabilities.each do |avail|
-    #          @calendar_information<<["#{da.to_s+' '+(i>9 ? i.to_s+':00:00' : '0'+i.to_s+':00:00')}",avail]
-    #        end
-    #      end
-    #    end
-    respond_to do |format|
-      format.js
+    @rooms = Room.all
+    @counselors = Counselor.all
+    @cases = Case.all
+    @appointment = Appointment.new
+    @appointments = Appointment.where("start_at BETWEEN '#{@start_date} 00:01:01' and '#{@end_date} 23:59:59'")
+    @common_appointments = Array.new
+    @main_appoints = Array.new
+    @appointments.each do |a|
+      @common_appointments << a.start_at.strftime("%Y-%m-%d %H:%M:%S")+a.room_id.to_s
+      @main_appoints << a
     end
   end
   

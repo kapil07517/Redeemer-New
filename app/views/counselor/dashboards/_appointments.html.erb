@@ -114,7 +114,7 @@
       <div class="submenu-calendar">
         <div><a title="Click to view" href="#">Click to view</a> | <a title="Clear all" href="#">Clear all</a></div>
         <ul class="list-submenu-calendar">
-          <% Room.all.each do |room| %>
+          <% @rooms.each do |room| %>
             <li><%= check_box_tag "room",room.id,nil,:class => "fleft" %><span style="border-color:<%= '#'+rand(999).to_s %>;"><%= room.name %></span></li>
           <% end %>
         </ul>
@@ -124,7 +124,7 @@
       <div class="submenu-calendar">
         <div><a title="Click to view" href="#">Click to view</a> | <a title="Clear all" href="#">Clear all</a></div>
         <ul class="list-submenu-calendar">
-          <% Counselor.all.each do |counselor| %>
+          <% @counselors.each do |counselor| %>
             <li style="width:155px;"><%= check_box_tag "room",counselor.id,nil,:class => "fleft" %> <span style="border-color:<%= '#'+rand(999).to_s %>;"><%= counselor.full_name %></span></li>
           <% end %>
         </ul>
@@ -136,7 +136,7 @@
   <ul id="caroulproduct2">
     <li>
       <ul id="collexp-menu1" class="collexpMenu">
-        <% ["monday","tuesday","wedensday","thursday","friday","saturday"].each do |day| %>
+        <% for day in (@start_date+1.day..@end_date) %>
           <li>
             <div title="Monday" class="expanded">
               <table class="table-calendarTitle" cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -151,51 +151,55 @@
             <ul>
               <li>
                 <table class="table-roomavailability" cellpadding="0" cellspacing="0" width="100%" border="0">
-                  <% Room.all.each do |room| %>
+                  <% @rooms.each do |room| %>
                     <tr>
                       <td>ROOM <%= room.name %><br><span>reserve</span></td>
                       <% (8..21).each do |d| %>
                         <td>
-                          <div class="roomReserve">
-                            <table class="table-orange" cellpadding="0" cellspacing="0" width="100%" border="0">
-                              <tr>
-                                <td colspan="4">PETER</td>
-                              </tr>
-                              <tr>
-                                <td>JA</td>
-                                <td>BC</td>
-                                <td>RS</td>
-                                <td>LP</td>
-                              </tr>
-                            </table>
-                            <div class="arrow-calendar-popup"></div>
-                            <div class="roomReserveContent">
-                              <form>
-                                <h4>ROOM <%= room.name %></h4>
-                                <p>
-                                  <select>
-                                    <option>START <%= d %>:00</option>
-                                  </select>
-                                  <select>
-                                    <option>END <%= d+1 %>:00</option>
-                                  </select>
-                                  <select>
-                                    <option>COUNSELOR</option>
-                                    <% Counselor.all.each do |coun| %>
-                                      <option><%= coun.full_name %></option>
-                                    <% end %>
-                                  </select>
-                                  <select>
-                                    <option>CASE NAME</option>
-                                    <% Case.all.each do |cas| %>
-                                      <option><%= cas.number %></option>
-                                    <% end %>
-                                  </select>
-                                </p>
-                                <input type="submit" title="reserve" value="reserve" />
-                              </form>
+                          <% if @common_appointments.include?(day.to_s+" "+(d > 9 ? d : "0"+d.to_s).to_s+":00:00"+room.id.to_s) == false %>
+                            <div style="width: 53px; height: 41px;" onclick="javascript:shedule_form(this);"></div>
+                            <div class="roomReserve">
+                              <div class="arrow-calendar-popup" style="top:-29px;"></div>
+                              <div class="roomReserveContent" style="top: -37px; padding: 8px; width: 161px;">
+                                <%= form_for @appointment,:url =>appointments_path(current_user.role),:remote => true do |f| %>
+                                  <div id="errors" style="color:red;font-size: 12px;"></div>
+                                  <%= f.hidden_field :room_id,:value => room.id %>
+                                  <h4>ROOM <%= room.name %></h4>
+                                  <p><%= f.text_field :start_at,:value => day.to_s+" "+(d > 9 ? d : "0"+d.to_s).to_s+":00:00",:style => "height:27px;width:159px;padding:0px;" %></p>
+                                  <p><%= f.text_field :end_at,:value => day.to_s+" "+(d+1 > 9 ? d+1 : "0"+(d+1).to_s).to_s+":00:00",:style => "height:27px;width:159px;padding:0px;" %></p>
+                                  <p><%= f.select :counselor_id,options_for_select([["COUNSELOR",""]]+@counselors.map{|a| [a.full_name,a.id]},:selected => f.object.counselor_id) %></p>
+                                  <p><%= f.select :case_id,options_for_select([["CASE NAME",""]]+@cases.map{|a| [a.number,a.id]},:selected => f.object.case_id) %></p>
+                                  <input type="submit" title="reserve" value="reserve" />
+                                <% end %>
+                              </div>
                             </div>
-                          </div>	
+                          <% else %>
+                            <% inde = @common_appointments.index(day.to_s+" "+(d > 9 ? d : "0"+d.to_s).to_s+":00:00"+room.id.to_s) %>
+                            <% app = @main_appoints.at(inde) %>
+                            <div class="roomReserve">
+                              <table class="table-orange" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                <tr>
+                                  <td><%= app.counselor.full_name %></td>
+                                </tr>
+                                <tr>
+                                  <td><%= app.case.number.slice(0..2) %></td>
+                                </tr>
+                              </table>
+                              <div class="arrow-calendar-popup"></div>
+                              <div class="roomReserveContent" style="top: -37px; padding: 8px; width: 161px;">
+                                <%= form_for @appointment,:url =>appointments_path(current_user.role),:remote => true do |f| %>
+                                  <div id="errors" style="color:red;font-size: 12px;"></div>
+                                  <%= f.hidden_field :room_id,:value => room.id %>
+                                  <h4>ROOM <%= room.name %></h4>
+                                  <p><%= f.text_field :start_at,:value => day.to_s+" "+(d > 9 ? d : "0"+d.to_s).to_s+":00:00",:style => "height:27px;width:159px;padding:0px;" %></p>
+                                  <p><%= f.text_field :end_at,:value => day.to_s+" "+(d+1 > 9 ? d+1 : "0"+(d+1).to_s).to_s+":00:00",:style => "height:27px;width:159px;padding:0px;" %></p>
+                                  <p><%= f.select :counselor_id,options_for_select([["COUNSELOR",""]]+@counselors.map{|a| [a.full_name,a.id]},:selected => f.object.counselor_id) %></p>
+                                  <p><%= f.select :case_id,options_for_select([["CASE NAME",""]]+@cases.map{|a| [a.number,a.id]},:selected => f.object.case_id) %></p>
+                                  <input type="submit" title="reserve" value="reserve" />
+                                <% end %>
+                              </div>
+                            </div>	
+                          <% end %>
                         </td>
                       <% end %>
                     </tr>
@@ -217,6 +221,16 @@
 
   iframe.ui-datepicker-cover{
     display: none;
+  }
+  .collexpMenu div.collapsed ,.collexpMenu div.collapsed:hover,.collexpMenu div.expanded, .collexpMenu div.collapsed:hover{
+    background-color:#231F20;
+    background-image:url(/assets/counselor/arrow-carousel-calendar.png);
+    background-position:10px 6px;
+    background-repeat:no-repeat no-repeat;
+    border-bottom-color:#7B7979;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    line-height:15px;
   }
 </style>
 <script type="text/javascript">
@@ -245,16 +259,11 @@
       });
     }, 250);
   });
-</script>
-<style>
-  .collexpMenu div.collapsed ,.collexpMenu div.collapsed:hover,.collexpMenu div.expanded, .collexpMenu div.collapsed:hover{
-    background-color:#231F20;
-    background-image:url(/assets/counselor/arrow-carousel-calendar.png);
-    background-position:10px 6px;
-    background-repeat:no-repeat no-repeat;
-    border-bottom-color:#7B7979;
-    border-bottom-style:solid;
-    border-bottom-width:1px;
-    line-height:15px;
+
+  function shedule_form(th) {
+    $('.arrow-calendar-popup,.roomReserveContent').hide();
+    $(th).next('div').children('div').toggle();
+    $('div#errors').removeClass("errors")
+    $(th).next('div').find('div#errors').addClass('errors').html("");
   }
-</style>
+</script>

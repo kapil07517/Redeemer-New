@@ -197,6 +197,8 @@ Rcms::Application.routes.draw do
     end
   end
   
+  resources :appointments,:path => "/:role/appointments"
+  
   match "/:role/initial_evalutions/:case_id/new" => "initial_evalutions#new",:as => "initial_evalution_new"
   match "/:role/discharge_summary/:case_id/new" => "discharge_summary#new",:as => "discharge_summary_new"
   match "/:role/adolesment_intakes/:case_id/new" => "adolesment_intakes#new",:as => "adolesments_intake_new"

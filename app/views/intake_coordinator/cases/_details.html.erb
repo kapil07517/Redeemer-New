@@ -1,6 +1,6 @@
 <div class="box pRelative">
   <div class="commonr row-intake">
-    <div class="columnIntake"><%= @intake_form.intake_type %> INTAKE</div>
+    <div class="columnIntake"><%= @intake_form.intake_type.split("_").join(" ") %> INTAKE</div>
   </div>
   <div class="commonrow">
     <div class="columnPersonal"><a title="PERSONAL" href="#">PERSONAL</a></div>

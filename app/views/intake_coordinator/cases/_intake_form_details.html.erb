@@ -1,7 +1,7 @@
 <div class="box pRelative">
   <%= form_tag(assign_case_counselor_intake_coordinator_dashboards_path(:case_in => @case.id, :con => @counselor.id), :remote => true) do  %>
     <div class="commonr row-intake">
-      <div class="columnIntake"><%= @intake_form.intake_type %> INTAKE</div>
+      <div class="columnIntake"><%= @intake_form.intake_type.split("_").join(" ") %> INTAKE</div>
       <div class="columnOffice">
         FOR OFFICE USE
         <ul class="list-normal">
@@ -68,7 +68,6 @@
         </li>								
       </ul>
     </li>
-
     <li>
       <div title="CONTACT INFORMATION" class="expanded" onclick="display_child_li(this);">2. COUNSELING | MEDICAL INFORMATION</div>
       <ul>
