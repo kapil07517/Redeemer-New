@@ -165,7 +165,7 @@
                                   <td><%= app.counselor.full_name %></td>
                                 </tr>
                                 <tr>
-                                  <td><%= app.case.number.slice(0..2) %></td>
+                                  <td><%= app.case.case_name.slice(0..2) %></td>
                                 </tr>
                               </table>
                               <% if app.counselor_id == current_user.id %>
