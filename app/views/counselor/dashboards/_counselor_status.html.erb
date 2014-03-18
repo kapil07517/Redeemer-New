@@ -25,7 +25,7 @@
                             <ul class="list-remindersBox">
                               <li>
                                 <div class="timeColumn"><%#= appointment.start_at.strftime("%H:%M")+'-'+appointment.end_at.strftime("%H:%M") %></div>
-                                <h4><%= appointment.client.first_name %></h4>
+                                <h4><%= appointment.case.number %></h4>
                                 <p class="columnClient"><%= appointment.case.number %> <abbr>|</abbr>   <span>1/5</span>   <abbr>|</abbr>   <em>auth.</em></p>
                               </li>
                             </ul>

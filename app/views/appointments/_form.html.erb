@@ -1,0 +1,11 @@
+<%= form_for @appointment,:url => appointment_path(@appointment),:remote => true do |f| %>
+  <div style="font-size: 12px;">
+    <%= f.error_messages  %>
+  </div>
+  <h4>ROOM <%= @appointment.room.name %></h4>
+  <p><%= f.text_field :start_at,:value => @appointment.start_at ? @appointment.start_at.strftime("%Y-%m-%d %H:%M:%S") : nil,:style => "height:27px;width:159px;padding:0px;" %></p>
+  <p><%= f.text_field :end_at,:value => @appointment.end_at ? @appointment.end_at.strftime("%Y-%m-%d %H:%M:%S") : nil,:style => "height:27px;width:159px;padding:0px;" %></p>
+  <p><%= f.select :counselor_id,options_for_select([["COUNSELOR",""]]+@counselors.map{|a| [a.full_name,a.id]},:selected => f.object.counselor_id) %></p>
+  <p><%= f.select :case_id,options_for_select([["CASE NAME",""]]+@cases.map{|a| [a.number,a.id]},:selected => f.object.case_id) %></p>
+  <input type="submit" title="reserve" value="reserve" />
+<% end %>

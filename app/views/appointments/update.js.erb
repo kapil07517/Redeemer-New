@@ -1,0 +1,5 @@
+<% if current_user.role == "counselor" %>
+  jQuery("#calendar_intake").html("<%= escape_javascript(render :partial => 'counselor/dashboards/appointments') %>");
+<% else %>
+  jQuery("#calendar_intake").html("<%= escape_javascript(render :partial => 'intake_coordinator/dashboards/next_calendar') %>");
+<% end %>

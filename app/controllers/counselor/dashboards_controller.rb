@@ -53,9 +53,10 @@ class Counselor::DashboardsController < ApplicationController
   end
   
   def next_calendar
-    @date = Date.today
+    @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
     @start_date = @date.beginning_of_week(:sunday).to_date
     @end_date = @date.end_of_week(:sunday).to_date
+    @day = params[:day].present? ? Date.parse(params[:day]).to_date : Date.today
     @rooms = Room.all
     @counselors = Counselor.all
     @cases = Case.all

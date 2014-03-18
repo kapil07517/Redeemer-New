@@ -124,14 +124,13 @@ function show_this_date_appointments1(date) {
     }
 }
 
-function display_invoice_form(role, case_id, counselor_id, client_id, appointment_id) {
+function display_invoice_form(role, case_id, counselor_id, appointment_id) {
     url = "/" + role + "/invoices/new";
     $.ajax({
         url: url,
         data: {
             role: role,
-            appointment_id: appointment_id,
-            client_id: client_id
+            appointment_id: appointment_id
         },
         type: 'GET',
         dataType: 'script',
@@ -239,4 +238,23 @@ function hide_review(role, th) {
 
 function display_edit_links(link) {
     $("." + link).show();
+}
+
+function shedule_form(th) {
+    $('.arrow-calendar-popup,.roomReserveContent').hide();
+    $(th).next('div').children('div').toggle();
+    $('div#errors').removeClass("errors");
+    $(th).next('div').find('div#errors').addClass('errors').html("");
+}
+
+function display_appointment(th, role, app_id) {
+    $('.arrow-calendar-popup,.roomReserveContent').hide();
+    $(th).next('div').toggle();
+    $(th).next('div').next('div').toggle();
+    $('div#errors').removeClass("errors");
+    $(th).next('div').next('div').find('div#errors').addClass('errors').html("");
+    $.ajax({
+        url: "/" + role + "/appointments/" + app_id + "/edit",
+        type: "GET"
+    });
 }

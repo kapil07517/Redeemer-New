@@ -1401,7 +1401,6 @@ ul.list-clientinfo-em li:hover{ color:#231f20; }
 }
 .roomReserve{ position:relative; }	
 .roomReserve .roomReserveContent, .roomReserve .arrow-calendar-popup{ display:none; }
-.roomReserve:hover .roomReserveContent, .roomReserve:hover .arrow-calendar-popup{ display:block; }
 .roomReserveContent{
     font-family:Arvo, Tahoma, sans-serif;
     position:absolute;
