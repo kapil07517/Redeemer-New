@@ -49,11 +49,6 @@ Rcms::Application.routes.draw do
         get :client_list
         get :counselor_status
         get :counselor_down_status
-        post :create_appointment
-        get :next_calendar
-      end
-      member do
-        put :update_appointment
       end
     end
     resources :progress_notes do

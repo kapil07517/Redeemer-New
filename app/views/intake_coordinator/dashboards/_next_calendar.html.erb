@@ -1,6 +1,5 @@
 <div class="commonr">
   <div class="icon-calendar">
-    <a title="WEEK" href="#">WEEK</a>   |   <a title="MONTH" href="#">MONTH</a>
     <input title="Calendar" type="text" id="datepicker" />
   </div>
   <div class="daySchedule">
@@ -83,19 +82,41 @@
                             <% inde = @common_appointments.index(day.to_s+" "+(d > 9 ? d : "0"+d.to_s).to_s+":00:00"+room.id.to_s) %>
                             <% app = @main_appoints.at(inde) %>
                             <div class="roomReserve">
-                              <table class="table-orange" cellpadding="0" cellspacing="0" width="100%" border="0" onclick="javascript:display_appointment(this, '<%= current_user.role %>', '<%= app.id %>');">
-                                <tr>
-                                  <td><%= app.counselor.full_name %></td>
-                                </tr>
-                                <tr>
-                                  <td><%= app.case.case_name.slice(0..2) %></td>
-                                </tr>
-                              </table>
+                              <% if current_user.role == 'counselor' %>
+                                <% if current_user.id == app.counselor_id %>
+                                  <table class="table-orange" cellpadding="0" cellspacing="0" width="100%" border="0" onclick="javascript:display_appointment(this, '<%= current_user.role %>', '<%= app.id %>');">
+                                    <tr>
+                                      <td><%= app.counselor.full_name %></td>
+                                    </tr>
+                                    <tr>
+                                      <td><%= app.case.case_name.slice(0..2) %></td>
+                                    </tr>
+                                  </table>
+                                <% else %>
+                                  <table class="table-orange" cellpadding="0" cellspacing="0" width="100%" border="0">
+                                    <tr>
+                                      <td><%= app.counselor.full_name %></td>
+                                    </tr>
+                                    <tr>
+                                      <td><%= app.case.case_name.slice(0..2) %></td>
+                                    </tr>
+                                  </table>
+                                <% end %>
+                              <% else %>
+                                <table class="table-orange" cellpadding="0" cellspacing="0" width="100%" border="0" onclick="javascript:display_appointment(this, '<%= current_user.role %>', '<%= app.id %>');">
+                                  <tr>
+                                    <td><%= app.counselor.full_name %></td>
+                                  </tr>
+                                  <tr>
+                                    <td><%= app.case.case_name.slice(0..2) %></td>
+                                  </tr>
+                                </table>
+                              <% end %>
                               <div class="arrow-calendar-popup" style="top:13px;"></div>
                               <div class="roomReserveContent" id="appointment_<%= app.id %>" style="top: 5px; padding: 8px; width: 161px;">
 
                               </div>
-                            </div>	
+                            </div>
                           <% end %>
                         </td>
                       <% end %>
@@ -112,6 +133,11 @@
   <div id="pager212" class="pager"></div>
 </div>
 <style>
+  .roomReserveContent select{
+    height: 27px;
+    padding: 4px;
+    width: 161px;
+  }
   #ui-datepicker-div{
     height: 240px;
   }
@@ -119,11 +145,15 @@
   iframe.ui-datepicker-cover{
     display: none;
   }
-
-  .roomReserveContent select{
-    height: 27px;
-    padding: 4px;
-    width: 161px;
+  .collexpMenu div.collapsed ,.collexpMenu div.collapsed:hover,.collexpMenu div.expanded, .collexpMenu div.collapsed:hover{
+    background-color:#231F20;
+    background-image:url(/assets/counselor/arrow-carousel-calendar.png);
+    background-position:10px 6px;
+    background-repeat:no-repeat no-repeat;
+    border-bottom-color:#7B7979;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    line-height:15px;
   }
 </style>
 <script type="text/javascript">

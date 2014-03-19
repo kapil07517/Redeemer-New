@@ -1,6 +1,6 @@
 class IntakeCoordinator::DashboardsController < ApplicationController
   before_filter :is_login
-  before_filter :is_correct_user  
+  before_filter :is_correct_user,:except => [:next_calendar]
   def index
     @cases = Case.where("counselor_id IS NULL")
   end

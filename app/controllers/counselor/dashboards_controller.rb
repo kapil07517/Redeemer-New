@@ -52,36 +52,6 @@ class Counselor::DashboardsController < ApplicationController
     end
   end
   
-  def next_calendar
-    @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
-    @start_date = @date.beginning_of_week(:sunday).to_date
-    @end_date = @date.end_of_week(:sunday).to_date
-    @day = params[:day].present? ? Date.parse(params[:day]).to_date : Date.today
-    @rooms = Room.all
-    @counselors = Counselor.all
-    @cases = Case.all
-    @appointment = Appointment.new
-    @appointments = Appointment.where("start_at BETWEEN '#{@start_date} 00:01:01' and '#{@end_date} 23:59:59'")
-    @common_appointments = Array.new
-    @main_appoints = Array.new
-    @appointments.each do |a|
-      @common_appointments << a.start_at.strftime("%Y-%m-%d %H:%M:%S")+a.room_id.to_s
-      @main_appoints << a
-    end
-  end
-  
-  def create_appointment
-    @counselor = Counselor.find(current_user.id)
-    @counselor_appointment = CounselorAvailability.new(params[:counselor_appointment])
-    @counselor_appointment.counselor_id = @counselor.id
-    @counselor_appointment.end_at = @counselor_appointment.start_at+1.hour
-    @counselor_appointment.save
-    @appointments = @counselor.counselor_availabilities.scoped
-    @appointments = @counselor.counselor_availabilities.between(params['start'], params['end']) if (params['start'] && params['end'])
-    respond_to do |format|
-      format.js
-    end
-  end
   
   #counselor cases /counselor/dashboards/case_list
   def case_list
@@ -98,11 +68,4 @@ class Counselor::DashboardsController < ApplicationController
     @appointments = current_user.appointments
   end
   
-  def update_appointment
-    @appointment = CounselorAvailability.find params[:id]
-    @appointment.update_attributes(params[:appointment])
-    respond_to do |format|
-      format.json { head :no_content }
-    end
-  end
 end
