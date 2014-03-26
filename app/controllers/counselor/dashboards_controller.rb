@@ -42,11 +42,11 @@ class Counselor::DashboardsController < ApplicationController
     @rooms = Room.all
     @counselors = Counselor.all
     @cases = Case.all
-    @appointment = Appointment.new
-    @appointments = Appointment.where("start_at BETWEEN '#{@start_date} 00:01:01' and '#{@end_date} 23:59:59'")
+    @counselor_room = CounselorAvailability.new
+    @counselor_availabilities = CounselorAvailability.where("start_at BETWEEN '#{@start_date} 00:01:01' and '#{@end_date} 23:59:59'")
     @common_appointments = Array.new
     @main_appoints = Array.new
-    @appointments.each do |a|
+    @counselor_availabilities.each do |a|
       @common_appointments << a.start_at.strftime("%Y-%m-%d %H:%M:%S")+a.room_id.to_s
       @main_appoints << a
     end

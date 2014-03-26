@@ -162,7 +162,7 @@ function search_form(th, role, appointment) {
         deselect(th);
     } else {
         $(th).addClass("selected");
-        $(".pop").slideFadeToggle(function() {
+        $("#addclient_"+appointment).slideFadeToggle(function() {
             $.ajax({
                 url: "/" + role + "/client_managements/search_form",
                 data: {
@@ -247,14 +247,14 @@ function shedule_form(th) {
     $(th).next('div').find('div#errors').addClass('errors').html("");
 }
 
-function display_appointment(th, role, app_id) {
+function display_appointment(th, role, schedule_id) {
     $('.arrow-calendar-popup,.roomReserveContent').hide();
     $(th).next('div').toggle();
     $(th).next('div').next('div').toggle();
     $('div#errors').removeClass("errors");
     $(th).next('div').next('div').find('div#errors').addClass('errors').html("");
     $.ajax({
-        url: "/" + role + "/appointments/" + app_id + "/edit",
+        url: "/" + role + "/" + schedule_id + "/appointments/new",
         type: "GET"
     });
 }

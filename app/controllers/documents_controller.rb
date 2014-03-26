@@ -38,6 +38,14 @@ class DocumentsController < ApplicationController
     elsif params[:client_document][:case_num].blank?
       @blank = true
       @cas_error = "can't be blank"
+    elsif !params[:client_document][:case_num].blank?
+      @case = Case.find_by_number(params[:client_document][:case_num])
+      puts "kapil"
+      unless @case
+        puts "ashok"
+        @blank = true
+        @cas_error = "case not found!"
+      end
     else
       @doc = params[:client_document][:document]
       @blank = false

@@ -1,1 +1,1 @@
-$(".errors").html("<ul><% @appointment.errors.each do |attr,er| %><li><%= attr %> <%= er %></li><% end %></ul>");
+$("#appointment_<%= @schedule.id %>").html("<%= escape_javascript render :partial => "form" %>");

@@ -24,7 +24,7 @@
                           <td>
                             <ul class="list-remindersBox">
                               <li>
-                                <div class="timeColumn"><%#= appointment.start_at.strftime("%H:%M")+'-'+appointment.end_at.strftime("%H:%M") %></div>
+                                <div class="timeColumn"><%#= appointment.start_at.strftime("%I:%M")+'-'+appointment.end_at.strftime("%I:%M") %></div>
                                 <h4><%= appointment.case.number %></h4>
                                 <p class="columnClient"><%= appointment.case.number %> <abbr>|</abbr>   <span>1/5</span>   <abbr>|</abbr>   <em>auth.</em></p>
                               </li>

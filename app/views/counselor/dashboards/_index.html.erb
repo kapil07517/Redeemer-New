@@ -20,7 +20,7 @@
                 <% if @appointments.exists? %>
                   <% for appointment in @appointments %>
                     <li id='clientName-1' onclick="display_invoice_form('counselor',<%= appointment.case.id %>,<%= appointment.counselor.id %>,<%= appointment.id %>)">
-                      <div class="timeColumn"><%= appointment.start_at.blank? ? '' : (appointment.start_at.strftime("%H:%M")+'-'+appointment.end_at.strftime("%H:%M")) %></div>
+                      <div class="timeColumn"><%= appointment.start_at.blank? ? '' : (appointment.start_at.strftime("%I:%M")+'-'+appointment.end_at.strftime("%I:%M")) %></div>
                       <h4><%= appointment.case.number %></h4>
                       <p class='columnClient'><%= appointment.case.number %> |    <span><%= appointment.case.appointments.count %>/<%#= appointment.case.total_sessions %></span>   |   <em>auth.</em></p>
                     </li>

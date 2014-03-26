@@ -72,7 +72,7 @@ Rcms::Application.routes.draw do
       collection do
         post :assign_case_counselor
         get :calendar
-        get :next_calendar
+        post :counselor_rooms
       end
     end
     resources :cases do
@@ -192,7 +192,8 @@ Rcms::Application.routes.draw do
     end
   end
   
-  resources :appointments,:path => "/:role/appointments"
+  resources :appointments,:path => "/:role/:shedule_id/appointments"
+  resources :schedulings,:path => "/:role/schedulings"
   
   match "/:role/initial_evalutions/:case_id/new" => "initial_evalutions#new",:as => "initial_evalution_new"
   match "/:role/discharge_summary/:case_id/new" => "discharge_summary#new",:as => "discharge_summary_new"

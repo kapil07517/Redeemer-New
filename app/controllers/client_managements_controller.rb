@@ -6,6 +6,7 @@ class ClientManagementsController < ApplicationController
     @document = Document.new
     @reminder = Reminder.new
     session[:ap_id] = params[:appointment_id] if params[:appointment_id]
+    @appointments = Appointment.where("case_id IN (#{@client.case_clients.map{|a| a.case_id}.split(",").join(",")})")
     @appointment = Appointment.find(session[:ap_id]) if session[:ap_id]
     render :layout => "counselor" if current_user.role == 'admin'
   end

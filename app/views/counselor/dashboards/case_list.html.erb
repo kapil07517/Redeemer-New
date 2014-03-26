@@ -17,7 +17,7 @@
           <td><%= link_to appointment.case.number, case_management_path(current_user.role,appointment.case,:appointment_id => appointment.id) %></td>
           <td><%= link_to appointment.counselor.full_name, "/counselor/dashboards/client_list" %></td>
           <td><%= link_to_function "add_client", "search_form(this,'#{current_user.role}','#{appointment.id}')",:id => "add_client" %>
-            <div class="messagepop pop">
+            <div class="messagepop pop" id="addclient_<%= appointment.id %>">
 
             </div>
           </td>

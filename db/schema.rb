@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140314054948) do
+ActiveRecord::Schema.define(:version => 20140320112909) do
 
   create_table "adolesment_intakes", :force => true do |t|
     t.integer  "client_id"
@@ -34,15 +34,14 @@ ActiveRecord::Schema.define(:version => 20140314054948) do
 
   create_table "appointments", :force => true do |t|
     t.integer  "case_id"
-    t.integer  "counselor_id"
-    t.integer  "intake_form_id"
-    t.integer  "client_id"
     t.datetime "start_at"
     t.datetime "end_at"
     t.string   "status"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "room_id"
+    t.integer  "counselor_id"
+    t.integer  "counselor_availability_id"
   end
 
   create_table "case_clients", :force => true do |t|
@@ -117,12 +116,11 @@ ActiveRecord::Schema.define(:version => 20140314054948) do
 
   create_table "counselor_availabilities", :force => true do |t|
     t.integer  "counselor_id"
-    t.string   "title"
-    t.text     "description"
     t.datetime "start_at"
     t.datetime "end_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "room_id"
   end
 
   create_table "counselor_permissions", :force => true do |t|

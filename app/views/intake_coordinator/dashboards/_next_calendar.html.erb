@@ -4,22 +4,22 @@
   </div>
   <div class="daySchedule">
     <% if @start_date >= Date.today %>
-      <%= link_to '' , next_calendar_intake_coordinator_dashboards_path(:date => (@date - 1.week),:day =>@date - 1.week),
+      <%= link_to '' , calendar_intake_coordinator_dashboards_path(:date => (@date - 1.week)),
         :remote => true, :id=>"prev212", :class=>"arrow-left" %>
     <% end %>
     WEEK OF <span><%= @start_date %></span><br>
     <a title="EXPAND ALL" href="#">EXPAND ALL</a>   |   <a title="COLLAPSE  ALL" href="#">COLLAPSE  ALL</a>
-    <%= link_to '', next_calendar_intake_coordinator_dashboards_path(:date => (@date + 1.week),:day =>@date + 1.week),
+    <%= link_to '', calendar_intake_coordinator_dashboards_path(:date => (@date + 1.week)),
       :remote => true, :id=>"next212", :class=>"arrow-right" %>
   </div>
-  <ul class="menu-calendar">
+  <!--<ul class="menu-calendar">
     <li><a title="ROOM" href="#">ROOM</a>
       <div class="submenu-calendar">
         <div><a title="Click to view" href="#">Click to view</a> | <a title="Clear all" href="#">Clear all</a></div>
         <ul class="list-submenu-calendar">
-          <% @rooms.each do |room| %>
-            <li><%= check_box_tag "room",room.id,nil,:class => "fleft" %><span style="border-color:<%= '#'+rand(999).to_s %>;"><%= room.name %></span></li>
-          <% end %>
+<%# @rooms.each do |room| %>
+            <li><%#= check_box_tag "room",room.id,nil,:class => "fleft" %><span style="border-color:<%#= '#'+rand(999).to_s %>;"><%#= room.name %></span></li>
+<%# end %>
         </ul>
       </div>
     </li>
@@ -27,13 +27,13 @@
       <div class="submenu-calendar">
         <div><a title="Click to view" href="#">Click to view</a> | <a title="Clear all" href="#">Clear all</a></div>
         <ul class="list-submenu-calendar">
-          <% @counselors.each do |counselor| %>
-            <li style="width:155px;"><%= check_box_tag "room",counselor.id,nil,:class => "fleft" %> <span style="border-color:<%= '#'+rand(999).to_s %>;"><%= counselor.full_name %></span></li>
-          <% end %>
+<%# @counselors.each do |counselor| %>
+            <li style="width:155px;"><%#= check_box_tag "room",counselor.id,nil,:class => "fleft" %> <span style="border-color:<%#= '#'+rand(999).to_s %>;"><%#= counselor.full_name %></span></li>
+<%# end %>
         </ul>
       </div>
     </li>
-  </ul>					
+  </ul>	-->				
 </div>
 <div class="list_carousel caroulproduct2">
   <ul id="caroulproduct2">
@@ -65,15 +65,14 @@
                               <div class="roomReserve">
                                 <div class="arrow-calendar-popup" style="top:-29px;"></div>
                                 <div class="roomReserveContent" style="top: -37px; padding: 8px; width: 161px;">
-                                  <%= form_for @appointment,:url =>appointments_path(current_user.role),:method => :post,:remote => true do |f| %>
+                                  <%= form_for @counselor_room,:url =>schedulings_path(current_user.role,@counselor_room),:remote => true do |f| %>
                                     <div id="errors" style="color:red;font-size: 12px;"></div>
                                     <%= f.hidden_field :room_id,:value => room.id %>
                                     <h4>ROOM <%= room.name %></h4>
                                     <p><%= f.text_field :start_at,:value => day.to_s+" "+(d > 9 ? d : "0"+d.to_s).to_s+":00:00",:style => "height:27px;width:159px;padding:0px;" %></p>
                                     <p><%= f.text_field :end_at,:value => day.to_s+" "+(d+1 > 9 ? d+1 : "0"+(d+1).to_s).to_s+":00:00",:style => "height:27px;width:159px;padding:0px;" %></p>
                                     <p><%= f.select :counselor_id,options_for_select([["COUNSELOR",""]]+@counselors.map{|a| [a.full_name,a.id]},:selected => f.object.counselor_id) %></p>
-                                    <p><%= f.select :case_id,options_for_select([["CASE NAME",""]]+@cases.map{|a| [a.number,a.id]},:selected => f.object.case_id) %></p>
-                                    <input type="submit" title="reserve" value="reserve" />
+                                    <input type="submit" title="reserve" value="assign" />
                                   <% end %>
                                 </div>
                               </div>
@@ -89,7 +88,11 @@
                                       <td><%= app.counselor.full_name %></td>
                                     </tr>
                                     <tr>
-                                      <td><%= app.case.case_name.slice(0..2) %></td>
+                                      <td>
+                                        <% app.appointments.each do |ap| %>
+                                          <%= ap.case.case_name.slice(0..1) %>
+                                        <% end %>
+                                      </td>
                                     </tr>
                                   </table>
                                 <% else %>
@@ -97,9 +100,11 @@
                                     <tr>
                                       <td><%= app.counselor.full_name %></td>
                                     </tr>
-                                    <tr>
-                                      <td><%= app.case.case_name.slice(0..2) %></td>
-                                    </tr>
+                                    <td>
+                                      <% app.appointments.each do |ap| %>
+                                        <%= ap.case.case_name.slice(0..1) %>  
+                                      <% end %>
+                                    </td>
                                   </table>
                                 <% end %>
                               <% else %>
@@ -107,9 +112,11 @@
                                   <tr>
                                     <td><%= app.counselor.full_name %></td>
                                   </tr>
-                                  <tr>
-                                    <td><%= app.case.case_name.slice(0..2) %></td>
-                                  </tr>
+                                  <td>
+                                    <% app.appointments.each do |ap| %>
+                                      <%= ap.case.case_name.slice(0..1) %> 
+                                    <% end %>
+                                  </td>
                                 </table>
                               <% end %>
                               <div class="arrow-calendar-popup" style="top:13px;"></div>
@@ -167,7 +174,7 @@
       },
       onSelect: function(dateText, inst) {
         $.ajax({
-          url: "/intake_coordinator/dashboards/next_calendar?date=" + dateText + "&day=" + dateText,
+          url: "/intake_coordinator/dashboards/calendar?date=" + dateText + "&day=" + dateText,
           dataType: "script",
           success: function(data) {
           }

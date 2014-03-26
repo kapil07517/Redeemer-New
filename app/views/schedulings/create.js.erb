@@ -1,0 +1,5 @@
+<% if @counselor_room.errors.any? %>
+  $(".errors").html("<ul><% @counselor_room.errors.each do |attr,er| %><li><%= attr %> <%= er %></li><% end %></ul>");
+<% else %>
+  jQuery("#calendar_intake").html("<%= escape_javascript(render :partial => 'intake_coordinator/dashboards/next_calendar') %>");
+<% end %>
