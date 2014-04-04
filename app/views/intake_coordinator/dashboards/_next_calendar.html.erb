@@ -214,7 +214,7 @@
       dateFormat: "yy-mm-dd",
       beforeShowDay: function(date) {
         var day = date.getDay();
-        return [(day != 0), ''];
+        return [(day !== 0), ''];
       },
       onSelect: function(dateText, inst) {
         $.ajax({

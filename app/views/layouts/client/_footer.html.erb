@@ -24,7 +24,7 @@
     </li>
     <li>	
       <div class="footer-lastColumn">
-        <a class="backtotop" title="Go to top" href="#">Go to top</a>
+        <a class="backtotop" title="Go to top" href="javascript:void(0);">Go to top</a>
         <ul class="list-topmenu">
           <% if current_user %>
             <li><%= link_to 'Sign Out', destroy_user_session_path,:method => 'DELETE' %></li>
@@ -40,3 +40,10 @@
   </ul>	
   <div class="clearFix"></div>
 </div>
+<script>
+  $('.backtotop').on("click", function() {
+    $('html, body').animate({
+      scrollTop: "0px"
+    }, 800);
+  });
+</script>
