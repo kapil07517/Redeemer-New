@@ -7,7 +7,6 @@ class IntakeCoordinator::DashboardsController < ApplicationController
   
   def intake_details
     @case = Case.find params[:id]
-    @counselor = Counselor.find(params[:appointment])
     @intake_form = IntakeForm.all_information(@case.intake_form_id).first
     if !@intake_form.medical_id.nil?
       @medical_reasons = MedicalReason.where("medical_id = '#{@intake_form.medical_id}'")
@@ -45,7 +44,7 @@ class IntakeCoordinator::DashboardsController < ApplicationController
   def assign_case_counselor
     @case = Case.find(params[:case_in])
     @counselor = Counselor.find(params[:con]).id
-    @appointment = Appointment.create(:client_id => @case.intake_form.user_id,:counselor_id => @counselor,:case_id => @case.id, :intake_form_id => @case.intake_form_id, :status => params[:status])
+    @appointment = Appointment.create(:counselor_id => @counselor,:case_id => @case.id, :status => params[:status])
     @case.update_attribute(:counselor_id,@counselor)
     CaseCounselor.create(:case_id => @case.id,:counselor_id => @counselor)
     render

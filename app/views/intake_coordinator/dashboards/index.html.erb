@@ -5,7 +5,7 @@
       <ul id="collexp-menu" class="collexpMenu">
         <% @cases.each do |cs| %>
           <li>
-            <div class="expanded">								
+            <div class="expanded" onclick = "javascript:display_intakes_details('<%=cs.id%>');">								
               <%= cs.number %>
             </div>
             <ul>
@@ -32,15 +32,12 @@
 </div>
 <script>
   function display_intake_details(coun_id, intake_id) {
-    if (coun_id !== "") {
-      $.ajax({
-        url: "/intake_coordinator/dashboards/" + intake_id + "/intake_details",
-        data: {
-          appointment: coun_id
-        }
-      });
-    } else {
-      $("#intake_from_information").html('');
-    }
+    $("#con").val(coun_id);
+  }
+
+  function display_intakes_details(intake_id) {
+    $.ajax({
+      url: "/intake_coordinator/dashboards/" + intake_id + "/intake_details"
+    });
   }
 </script>

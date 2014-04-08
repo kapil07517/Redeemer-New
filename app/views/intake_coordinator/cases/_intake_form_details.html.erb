@@ -1,5 +1,6 @@
 <div class="box pRelative">
-  <%= form_tag(assign_case_counselor_intake_coordinator_dashboards_path(:case_in => @case.id, :con => @counselor.id), :remote => true) do  %>
+  <%= form_tag(assign_case_counselor_intake_coordinator_dashboards_path(:case_in => @case.id), :remote => true) do  %>
+    <%= hidden_field_tag "con" %>
     <div class="commonr row-intake">
       <div class="columnIntake"><%= @intake_form.intake_type.split("_").join(" ") %> INTAKE</div>
       <div class="columnOffice">
@@ -12,7 +13,7 @@
       </div>
       <div class="columnDate">
         <div class="btn-createnew">
-          <%= submit_tag "save" %><em></em>
+          <%= submit_tag "save" , :onclick => "return validateform()" %><em></em>
         </div>
         <p><%= Date.today.strftime("%b %d %Y") %><br><span>start date</span></p>
       </div>
@@ -157,6 +158,14 @@
       },
       method: 'POST'
     });
+  }
+
+  function validateform() {
+    var coun_id = $("#con").val();
+    if (coun_id === "") {
+      alert("select counselor from left pane!");
+      return false;
+    }
   }
 
   $(document).ready(function() {
