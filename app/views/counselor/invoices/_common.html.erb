@@ -116,7 +116,7 @@ width: 120px;
 
   function UpdateValues(va) {
     var fees = $("#session_payment_fee").val();
-    var uos = va
+    var uos = va;
     var payer_amt = $("#session_payment_uos").data("payer_amt");
     var balance = $("#session_payment_uos").data("balance");
     $.ajax({
@@ -128,9 +128,9 @@ width: 120px;
       },
       type: "GET",
       dataType: "script",
-      success: function(data) {
+      success: function() {
       }
-    })
+    });
   }
 </script>
 

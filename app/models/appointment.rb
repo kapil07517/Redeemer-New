@@ -7,5 +7,5 @@ class Appointment < ActiveRecord::Base
   belongs_to :intake_form
   belongs_to :room
   has_one :progress_note
-  validates :case_id,:counselor_id,:start_at,:end_at,:presence => true
+  validates :case_id,:counselor_id,:presence => true
 end

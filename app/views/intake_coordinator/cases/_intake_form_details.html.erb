@@ -1,6 +1,7 @@
 <div class="box pRelative">
   <%= form_tag(assign_case_counselor_intake_coordinator_dashboards_path(:case_in => @case.id), :remote => true) do  %>
     <%= hidden_field_tag "con" %>
+  <%= hidden_field_tag "intake_form_id",@intake_form.id %>
     <div class="commonr row-intake">
       <div class="columnIntake"><%= @intake_form.intake_type.split("_").join(" ") %> INTAKE</div>
       <div class="columnOffice">

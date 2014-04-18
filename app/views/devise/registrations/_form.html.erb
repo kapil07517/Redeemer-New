@@ -105,8 +105,8 @@
     <div>Name:<em>*</em></div>
     <div>
       <ul class="list-name">
-        <li><p>First Name<span>*</span></p><%= f.text_field :contact_name1,:value => f.object.new_record? ? f.object.contact_name1 : (@user and f.object.contact_name1 ? f.object.contact_name1 : @user.contact_name.split(" ")[0] ) ,:class => "input-name" %></li>
-        <li><p>Last Name<span>*</span></p><%= f.text_field :contact_name2,:value => f.object.new_record? ? f.object.contact_name2 : (@user and f.object.contact_name2 ? f.object.contact_name2 : @user.contact_name.split(" ")[1] )  , :class=>"input-name"  %></li>
+        <li><p>First Name<span>*</span></p><%= f.text_field :contact_name1,:value => f.object.new_record? ? f.object.contact_name1 : (@user and @user.contact_name and f.object.contact_name1 ? f.object.contact_name1 : @user.contact_name.split(" ")[0] ) ,:class => "input-name" %></li>
+        <li><p>Last Name<span>*</span></p><%= f.text_field :contact_name2,:value => f.object.new_record? ? f.object.contact_name2 : (@user and @user.contact_name and f.object.contact_name2 ? f.object.contact_name2 : @user.contact_name.split(" ")[1] )  , :class=>"input-name"  %></li>
       </ul>
     </div>
   </div>
