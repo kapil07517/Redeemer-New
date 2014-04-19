@@ -10,7 +10,7 @@ class Counselor::InvoicesController < ApplicationController
     @authcounts = SessionPayment.where("case_id = #{@case.id}").count
     @session_payment = SessionPayment.where("case_id = #{@case.id}").last
     @reminder= Reminder.new
-    @invoice = SessionPayment.new
+    @invoice = SessionPayment.new(params[:session_payment])
     respond_to do |format|
       format.js
     end
@@ -20,7 +20,6 @@ class Counselor::InvoicesController < ApplicationController
     @invoice = SessionPayment.new(params[:session_payment])
     @appointment = Appointment.find(params[:session_payment][:appointment_id])
     @invoice.case_id = @appointment.case_id
-    @invoice.client_id = @client.id
     @reminders = Reminder.where("case_id = #{@appointment.case_id} and client_id = #{@appointment.client_id} and hidden = #{false}")
     @reminder= Reminder.new
     respond_to do |format|

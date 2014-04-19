@@ -13,6 +13,7 @@ class Counselor::ProgressNotesController < ApplicationController
     else
       @progress_note = ProgressNote.new
     end
+    @invoice = SessionPayment.new
   end
   
   def new
@@ -51,6 +52,7 @@ class Counselor::ProgressNotesController < ApplicationController
   end
   
   def create
+    @invoice = SessionPayment.new
     @appointment = Appointment.find(params[:progress_note][:appointment_id])
     appoint_ids = []
     @appointment.case.appointments.each do |app|

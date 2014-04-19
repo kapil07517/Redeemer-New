@@ -8,47 +8,7 @@
 <h3>PROGRESS NOTES  <span>+</span></h3>
 <div class="commonrow">
   <div class="columnLeft-clientInfo">
-    <div class="clientDetail">
-      <p><span>DATE OF SESSION</span></p>
-      <ul class="list-receiptdetail">
-        <li>
-          <div>Fees</div>
-          <div>$150</div>
-        </li>
-        <li>
-          <div>UOS</div>
-          <div>$150</div>
-        </li>
-        <li>
-          <div>COPAY</div>
-          <div>$150</div>
-        </li>
-        <li>
-          <div>BALANCE</div>
-          <div>$150</div>
-        </li>
-        <li>
-          <div>OWES</div>
-          <div>$150</div>
-        </li>
-        <li class="columnTotal">
-          <div>PAYER 2</div>
-          <div>$150</div>
-        </li>
-        <li>
-          <div>PAID</div>
-          <div>$150</div>
-        </li>
-        <li class="columnTotal">
-          <div class="columnPaySta"><span>PAYMENT</span></div>
-          <div class="columnPaySta"><span>STATUS</span></div>
-        </li>
-      </ul>
-      <ul class="menu-clientInfo">
-        <li><a title="CASE NUMBER" href="#">CASE NUMBER</a></li>
-        <li><a title="CPT CODE" href="#">CPT CODE</a></li>
-      </ul>
-    </div>
+    <%= render :partial => "counselor/invoices/new" %>
   </div>
   <div style='float: left;width:508px;' id='progress_notes_form'>
     <%= render :partial => 'counselor/progress_notes/new' %>
